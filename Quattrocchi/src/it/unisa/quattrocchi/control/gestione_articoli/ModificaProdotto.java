@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_articoli;
 
-public class ModificaProdotto {
+import javax.servlet.http.HttpServlet;
+
+public class ModificaProdotto extends HttpServlet{
 
 }

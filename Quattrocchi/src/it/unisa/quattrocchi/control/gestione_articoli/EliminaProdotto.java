@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_articoli;
 
-public class EliminaProdotto {
+import javax.servlet.http.HttpServlet;
+
+public class EliminaProdotto extends HttpServlet{
 
 }

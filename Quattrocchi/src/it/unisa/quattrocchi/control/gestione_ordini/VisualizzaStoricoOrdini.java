@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-public class VisualizzaStoricoOrdini {
+import javax.servlet.http.HttpServlet;
+
+public class VisualizzaStoricoOrdini extends HttpServlet{
 
 }

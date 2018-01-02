@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-public class AggiungiProdottoAlCarrello {
+import javax.servlet.http.HttpServlet;
+
+public class AggiungiProdottoAlCarrello extends HttpServlet{
 
 }

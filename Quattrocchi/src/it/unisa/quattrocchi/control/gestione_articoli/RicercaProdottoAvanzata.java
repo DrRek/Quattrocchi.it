@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_articoli;
 
-public class RicercaProdottoAvanzata {
+import javax.servlet.http.HttpServlet;
+
+public class RicercaProdottoAvanzata extends HttpServlet{
 
 }

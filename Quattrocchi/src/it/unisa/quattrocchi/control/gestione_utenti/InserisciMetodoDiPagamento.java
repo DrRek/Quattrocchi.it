@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_utenti;
 
-public class InserisciMetodoDiPagamento {
+import javax.servlet.http.HttpServlet;
+
+public class InserisciMetodoDiPagamento extends HttpServlet{
 
 }

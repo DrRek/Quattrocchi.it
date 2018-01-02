@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-public class GestioneOrdineDaSpedire {
+import javax.servlet.http.HttpServlet;
+
+public class GestioneOrdineDaSpedire extends HttpServlet{
 
 }

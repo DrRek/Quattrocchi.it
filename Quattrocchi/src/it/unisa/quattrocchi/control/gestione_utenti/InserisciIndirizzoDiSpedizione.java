@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_utenti;
 
-public class InserisciIndirizzoDiSpedizione {
+import javax.servlet.http.HttpServlet;
+
+public class InserisciIndirizzoDiSpedizione extends HttpServlet{
 
 }

@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_utenti;
 
-public class VisualizzaProfilo {
+import javax.servlet.http.HttpServlet;
+
+public class VisualizzaProfilo extends HttpServlet{
 
 }

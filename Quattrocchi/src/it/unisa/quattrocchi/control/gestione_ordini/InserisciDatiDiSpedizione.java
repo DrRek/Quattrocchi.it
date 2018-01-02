@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-public class InserisciDatiDiSpedizione {
+import javax.servlet.http.HttpServlet;
+
+public class InserisciDatiDiSpedizione extends HttpServlet{
 
 }

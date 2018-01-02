@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_utenti;
 
-public class Login {
+import javax.servlet.http.HttpServlet;
+
+public class Login extends HttpServlet{
 
 }

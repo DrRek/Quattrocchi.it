@@ -76,7 +76,6 @@ create table ArticoloInOrder(
 	Codice varchar(10) primary key,
 	Modello varchar(50) not null,
 	Marca varchar(20) not null, -- che cazz sta scritt nell'er
-	Tipo varchar(1) not null,
 	Img1 varchar(60) not null,
 	Img2 varchar(60) not null,
 	Img3 varchar(60) not null,

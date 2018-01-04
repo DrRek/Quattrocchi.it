@@ -2,10 +2,11 @@ package it.unisa.quattrocchi.entity;
 
 public abstract class Article {
 	
-	private String modello, marca, img1, img2, img3, descrizione;
+	private String codice, modello, marca, img1, img2, img3, descrizione;
 	private double prezzo;
 	
-	public Article(String modello, String marca, String img1, String img2, String img3, String descrizione, double prezzo) {
+	public Article(String codice, String modello, String marca, String img1, String img2, String img3, String descrizione, double prezzo) {
+		this.codice = codice;
 		this.modello=modello;
 		this.marca=marca;
 		this.img1=img1;

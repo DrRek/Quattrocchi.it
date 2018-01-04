@@ -1,3 +1,4 @@
+drop schema quattrocchiDB;
 create schema quattrocchiDB;
 use quattrocchiDB;
 
@@ -9,7 +10,7 @@ grant all on quattrocchiDB.* to progetto@localhost;
 
 create table Amministratore(
 	Username varchar(50) primary key,
-	Pwd varchar(15) not null
+	Pwd varchar(15) not null,
 	Nome varchar(30) not null,
 	Cognome varchar(30) not null,
 	Email varchar(40) not null unique
@@ -17,7 +18,7 @@ create table Amministratore(
 
 create table GestoreOrdini(
 	Username varchar(50) primary key,
-	Pwd varchar(15) not null
+	Pwd varchar(15) not null,
 	Nome varchar(30) not null,
 	Cognome varchar(30) not null,
 	Email varchar(40) not null unique,
@@ -26,26 +27,26 @@ create table GestoreOrdini(
 
 create table Acquirente(
 	Username varchar(50) primary key,
-	Pwd varchar(15) not null
+	Pwd varchar(15) not null,
 	Nome varchar(30) not null,
 	Cognome varchar(30) not null,
-	Email varchar(40) not null unique
+	Email varchar(40) not null unique,
 	DataNascita date not null
 );
 
 create table IndirizzoSpedizione(
 	Id integer(10) primary key,
 	Stato varchar(30) not null,
-	Provincia char(2) not null, --non Ë var Ë char
+	Provincia char(2) not null, -- non √® var √® char
 	CAP integer(5) not null,
 	Indirizzo varchar(40) not null,
-	NumeroCivico integer(5) not null --10 Ë decisamente troppo
+	NumeroCivico integer(5) not null, -- 10 √® decisamente troppo
 	Acquirente varchar(50),
 	foreign key (Acquirente) references Acquirente(Username) on delete set null on update cascade
 );
 
 create table CartaCredito(
-	NumeroCC integer(16) primary key, --sono solo numeri, integer Ë meglio
+	NumeroCC integer(16) primary key, -- sono solo numeri, integer √® meglio
 	Intestatario varchar(40) not null,
 	Circuito varchar(20) not null,
 	DataScadenza date not null,
@@ -59,7 +60,7 @@ create table Ordine(
    	DataEsecuzione date not null,
 	Prezzo decimal(8,2) not null, -- a che serve sto double che bastano due cifre dopo la virgola
 	IndirizzoSpedizione integer(10) not null,
-	CartaCredito decimal(16) not null,
+	CartaCredito integer(16) not null,
 	Acquirente char(16) not null,
 	StatoOrdine varchar(30) not null,
 	DataConsegna date,
@@ -74,13 +75,12 @@ create table ArticoloInOrder(
 	Codice varchar(10) primary key,
 	Modello varchar(30) not null,
 	Marca varchar(10) not null, -- che cazz sta scritt nell'er
-	Tipo varchar(1) not null,
-	Img1 varchar(60) not null, --il path delle immagini puÚ essere parecchio lungo, 10 non Ë abbastanza
+	Img1 varchar(60) not null, -- il path delle immagini pu√≤ essere parecchio lungo, 10 non √® abbastanza
 	Img2 varchar(60) not null,
 	Img3 varchar(60) not null,
 	Descrzione varchar(255) not null,
-	Prezzo decimal(6,2) not null, --sto prezzo double non s Ë mai sentito
-	Quantit‡ integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
+	Prezzo decimal(6,2) not null, -- sto prezzo double non s √® mai sentito
+	Quantit‡† integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
 	Ordine integer(10) not null,
 	foreign key (Ordine) references Ordine(Codice)
 );
@@ -89,21 +89,20 @@ create table ArticoloInStock(
 	Codice varchar(10) primary key,
 	Modello varchar(30) not null,
 	Marca varchar(10) not null, -- che cazz sta scritt nell'er
-	Tipo varchar(1) not null,
-	Img1 varchar(60) not null, --il path delle immagini puÚ essere parecchio lungo, 10 non Ë abbastanza
+	Img1 varchar(60) not null, -- il path delle immagini pu√≤ essere parecchio lungo, 10 non √® abbastanza
 	Img2 varchar(60) not null,
 	Img3 varchar(60) not null,
 	Descrzione varchar(255) not null,
-	Prezzo decimal(6,2) not null, --sto prezzo double non s Ë mai sentito
-	Disponibilit‡ integer(3) not null-- fare l'esagerato con le dimensioni non ti fa onore
+	Prezzo decimal(6,2) not null, -- sto prezzo double non s √® mai sentito
+	Disponibilit√† integer(3) not null-- fare l'esagerato con le dimensioni non ti fa onore
 );
 
--- non ho la minima idea di cosa ci sia scritto nell'er per quanto riguarda il carrello, questo Ë quello che voleva il prof da quello che ho capito
--- lo so che Ë l'ultima cosa e vuoi andare di fretta, ma guardatelo con attenzione e discutiamone
+-- non ho la minima idea di cosa ci sia scritto nell'er per quanto riguarda il carrello, questo √® quello che voleva il prof da quello che ho capito
+-- lo so che √® l'ultima cosa e vuoi andare di fretta, ma guardatelo con attenzione e discutiamone
 create table ArticoloInCarello(
 	Acquirente varchar(50) not null,
 	ArticoloInStock varchar(10) not null,
-	Quantit‡ integer(3) not null,
+	Quantit√† integer(3) not null,
 	foreign key (Acquirente) references Acquirente(Username),
 	foreign key (ArticoloInStock) references ArticoloInStock(Codice),
 	primary key(Acquirente, ArticoloInStock)

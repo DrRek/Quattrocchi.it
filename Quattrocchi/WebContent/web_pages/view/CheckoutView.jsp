@@ -32,7 +32,7 @@
 </head>
 <body>
 	​​​​​​​​​​​​
-	<%@ include file="header.jsp"%>
+	<%@ include file="Header.jsp"%>
 	<br>
 	<br>
 	<div class="container">
@@ -62,6 +62,7 @@
 		<form action="checkout" method="post">
 			<input type="hidden" name="action" value="submit"/>
 			<label>seleziona una carta:</label><br><select class="form-control" name="carta">
+			
 				<%
 					for (CreditCardBean c : creditCards) {
 				%>
@@ -69,7 +70,7 @@
 				<%
 					}
 				%>
-	
+
 			</select> <br>
 			<a href="user">aggiungi una carta</a><br><br>
 			<input class= "btn btn-outline-secondary " id="completeOrder" type="submit" value="Paga" />
@@ -78,7 +79,7 @@
 			}
 		%>
 	</div>
-		<%@ include file="../jsp/footer.jsp"%>
+		<%@ include file="Footer.jsp"%>
 	
 </body>
 </html>

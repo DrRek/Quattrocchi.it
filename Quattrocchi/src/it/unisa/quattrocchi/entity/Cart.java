@@ -28,4 +28,7 @@ public class Cart {
 		this.articoli = articoli;
 	}
 	
+	public int getNumeroDiArticoli() {
+		return articoli.size();
+	}
 }

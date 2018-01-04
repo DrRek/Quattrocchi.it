@@ -4,15 +4,15 @@
 <%
 	String daCercare = (String) request.getAttribute("daCercare");
 	String cercaPerTipo = (String) request.getAttribute("cercaPerTipo");
-	Cart cart = (Cart) request.getSession().getAttribute("cart");
-	UserBean user = (UserBean) request.getSession().getAttribute("user");
-	AdminBean admin = (AdminBean) request.getSession().getAttribute("admin");
+	//Cart cart = (Cart) request.getSession().getAttribute("cart");
+	//UserBean user = (UserBean) request.getSession().getAttribute("user");
+	//AdminBean admin = (AdminBean) request.getSession().getAttribute("admin");
 %>
 
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*, it.quattrocchi.control.*, it.quattrocchi.support.*, it.quattrocchi.*"%>
+	import="java.util.*"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -22,10 +22,10 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-<link href="css/bootstrap.css" type="text/css" rel="stylesheet"
+<link href="web_pages/css/bootstrap.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 
-<link href="css/ArticleView.css" type="text/css" rel="stylesheet"
+<link href="web_pages/css/ArticleView.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 
 <!--Let browser know website is optimized for mobile-->
@@ -38,7 +38,7 @@
 </head>
 
 <body>
-	<%@ include file="../jsp/header.jsp"%>
+	<%@ include file="../view/Header.jsp"%>
 	<script>
 		$(document).ready(function() {
 			$("#azione").click(function() {
@@ -218,7 +218,7 @@
 		</h5>
 		<div id="demos" class="products"></div>
 	</div>
-	<%@ include file="../jsp/footer.jsp"%>
+	<%@ include file="../view/Footer.jsp"%>
 	<script src="js/article.js"></script>
 
 </body>

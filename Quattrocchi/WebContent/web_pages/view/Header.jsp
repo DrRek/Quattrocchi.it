@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*, it.unisa.quattrocchi.entity.*"%>
+
 <%
-	UserBean usr = (UserBean) request.getSession().getAttribute("user");
-	AdminBean adm = (AdminBean) request.getSession().getAttribute("admin");
-	Cart crt = (Cart) request.getSession().getAttribute("cart");
+	User usr = null; //(UserBean) request.getSession().getAttribute("user");
+	Admin adm = null; //(AdminBean) request.getSession().getAttribute("admin");
+	Cart crt = null; //(Cart) request.getSession().getAttribute("cart");
 %>
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*, it.quattrocchi.control.*, it.quattrocchi.support.*, it.quattrocchi.*, it.quattrocchi.model.*"%>
+	import="java.util.*"%>
 
 <link href="css/header.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
@@ -49,7 +52,7 @@
 				<%
 						} else {
 					%>
-				<span style="color:white"><a id="count" href="checkout"><%=crt.getNumberOfProducts()%></span></a></li>
+				<span style="color:white"><a id="count" href="checkout"><%=crt.getNumeroDiArticoli()%></span></a></li>
 				<%
 						}
 						}
@@ -59,12 +62,12 @@
 				<%
 						} else if (usr != null) {
 					%>
-				<li><a href="user">Benvenuto, <%=usr.getUser()%></a></li>
+				<li><a href="user">Benvenuto, <%=usr.getUsername()%></a></li>
 				<li><a href="user?action=logout">logout</a></li>
 				<%
 						} else if (adm != null) {
 					%>
-				<li><a href="user">Benvenuto, <%=adm.getUser()%></a></li>
+				<li><a href="user">Benvenuto, <%=adm.getUsername()%></a></li>
 				<li><a href="user?action=logout">logout</a></li>
 				<%
 						}

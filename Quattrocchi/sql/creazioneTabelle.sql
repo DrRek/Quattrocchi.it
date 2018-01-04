@@ -45,7 +45,8 @@ create table IndirizzoSpedizione(
 );
 
 create table CartaCredito(
-	NumeroCC integer(16) primary key, --sono solo numeri, integer è meglio
+	IdCarta	integer(10) primary key,
+	NumeroCC integer(16) not null,
 	Intestatario varchar(40) not null,
 	Circuito varchar(20) not null,
 	DataScadenza date not null,
@@ -59,21 +60,21 @@ create table Ordine(
    	DataEsecuzione date not null,
 	Prezzo decimal(8,2) not null, -- a che serve sto double che bastano due cifre dopo la virgola
 	IndirizzoSpedizione integer(10) not null,
-	CartaCredito decimal(16) not null,
-	Acquirente char(16) not null,
+	CartaCredito integer(10) not null,
+	Acquirente varchar(16) not null,
 	StatoOrdine varchar(30) not null,
 	DataConsegna date,
 	NumeroTracking varchar(50),
 	Correriere varchar(40),
 	foreign key (IndirizzoSpedizione) references IndirizzoSpedizione(Id),
-	foreign key (CartaCredito) references CartaCredito(NumeroCC),
+	foreign key (CartaCredito) references CartaCredito(IdCarta),
 	foreign key (Acquirente) references Acquirente(Username)
 );
 
 create table ArticoloInOrder(
 	Codice varchar(10) primary key,
-	Modello varchar(30) not null,
-	Marca varchar(10) not null, -- che cazz sta scritt nell'er
+	Modello varchar(50) not null,
+	Marca varchar(20) not null, -- che cazz sta scritt nell'er
 	Tipo varchar(1) not null,
 	Img1 varchar(60) not null, --il path delle immagini può essere parecchio lungo, 10 non è abbastanza
 	Img2 varchar(60) not null,
@@ -87,7 +88,7 @@ create table ArticoloInOrder(
 
 create table ArticoloInStock(
 	Codice varchar(10) primary key,
-	Modello varchar(30) not null,
+	Modello varchar(50) not null,
 	Marca varchar(10) not null, -- che cazz sta scritt nell'er
 	Tipo varchar(1) not null,
 	Img1 varchar(60) not null, --il path delle immagini può essere parecchio lungo, 10 non è abbastanza

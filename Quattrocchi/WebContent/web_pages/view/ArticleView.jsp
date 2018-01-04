@@ -216,10 +216,11 @@
 				onclick="return orderByTipo()">Tipo</a> <a href="#"
 				onclick="return orderByPrezzo()">Prezzo</a>
 		</h5>
-		<div id="demos" class="products"></div>
+		<div id="demos" class="products">
+		</div>
 	</div>
 	<%@ include file="../view/Footer.jsp"%>
-	<script src="js/article.js"></script>
+	<script src="web_pages/js/article.js"></script>
 
 </body>
 </html>

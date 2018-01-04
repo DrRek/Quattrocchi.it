@@ -37,17 +37,17 @@ create table Acquirente(
 create table IndirizzoSpedizione(
 	Id integer(10) primary key,
 	Stato varchar(30) not null,
-	Provincia char(2) not null, -- non è var è char
+	Provincia char(2) not null, -- non Ã¨ var Ã¨ char
 	CAP integer(5) not null,
 	Indirizzo varchar(40) not null,
-	NumeroCivico integer(5) not null, -- 10 è decisamente troppo
+	NumeroCivico integer(5) not null, -- 10 Ã¨ decisamente troppo
 	Acquirente varchar(50),
 	foreign key (Acquirente) references Acquirente(Username) on delete set null on update cascade
 );
 
 create table CartaCredito(
 	IdCarta	integer(10) primary key,
-	NumeroCC integer(16) not null,
+	NumeroCC decimal(16) not null,
 	Intestatario varchar(40) not null,
 	Circuito varchar(20) not null,
 	DataScadenza date not null,
@@ -76,12 +76,12 @@ create table ArticoloInOrder(
 	Codice varchar(10) primary key,
 	Modello varchar(50) not null,
 	Marca varchar(20) not null, -- che cazz sta scritt nell'er
-	Img1 varchar(60) not null,
-	Img2 varchar(60) not null,
-	Img3 varchar(60) not null,
+	Img1 varchar(60),
+	Img2 varchar(60),
+	Img3 varchar(60),
 	Descrzione varchar(255) not null,
-	Prezzo decimal(6,2) not null, -- sto prezzo double non s è mai sentito
-	Quantit� integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
+	Prezzo decimal(6,2) not null, -- sto prezzo double non s Ã¨ mai sentito
+	Quantita  integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
 	Ordine integer(10) not null,
 	foreign key (Ordine) references Ordine(Codice)
 );
@@ -89,21 +89,21 @@ create table ArticoloInOrder(
 create table ArticoloInStock(
 	Codice varchar(10) primary key,
 	Modello varchar(50) not null,
-	Marca varchar(10) not null, -- che cazz sta scritt nell'er
-	Img1 varchar(60) not null, -- il path delle immagini può essere parecchio lungo, 10 non è abbastanza
-	Img2 varchar(60) not null,
-	Img3 varchar(60) not null,
+	Marca varchar(20) not null, -- che cazz sta scritt nell'er
+	Img1 varchar(60), -- il path delle immagini puÃ² essere parecchio lungo, 10 non Ã¨ abbastanza
+	Img2 varchar(60),
+	Img3 varchar(60),
 	Descrzione varchar(255) not null,
-	Prezzo decimal(6,2) not null, -- sto prezzo double non s è mai sentito
-	Disponibilità integer(3) not null-- fare l'esagerato con le dimensioni non ti fa onore
+	Prezzo decimal(6,2) not null, -- sto prezzo double non s Ã¨ mai sentito
+	Disponibilita decimal(3) not null-- fare l'esagerato con le dimensioni non ti fa onore
 );
 
--- non ho la minima idea di cosa ci sia scritto nell'er per quanto riguarda il carrello, questo è quello che voleva il prof da quello che ho capito
--- lo so che è l'ultima cosa e vuoi andare di fretta, ma guardatelo con attenzione e discutiamone
-create table ArticoloInCarello(
+-- non ho la minima idea di cosa ci sia scritto nell'er per quanto riguarda il carrello, questo Ã¨ quello che voleva il prof da quello che ho capito
+-- lo so che Ã¨ l'ultima cosa e vuoi andare di fretta, ma guardatelo con attenzione e discutiamone
+create table ArticoloInCarrello(
 	Acquirente varchar(50) not null,
 	ArticoloInStock varchar(10) not null,
-	Quantit� integer(3) not null,
+	Quantita integer(3) not null,
 	foreign key (Acquirente) references Acquirente(Username),
 	foreign key (ArticoloInStock) references ArticoloInStock(Codice),
 	primary key(Acquirente, ArticoloInStock)

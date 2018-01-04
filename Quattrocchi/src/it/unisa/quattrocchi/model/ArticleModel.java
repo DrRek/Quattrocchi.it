@@ -40,9 +40,9 @@ public class ArticleModel {
 				String img3 = rs.getString("Img3");
 				String descrizione = rs.getString("Descrzione");
 				Double prezzo = rs.getDouble("Prezzo");
-				int disponibilità = rs.getInt("Disponibilità");
+				int disponibilita = rs.getInt("Disponibilita");
 
-				bean = new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilità);
+				bean = new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita);
 			}
 
 			stm.close();
@@ -82,9 +82,9 @@ public class ArticleModel {
 				String img3 = rs.getString("Img3");
 				String descrizione = rs.getString("Descrzione");
 				Double prezzo = rs.getDouble("Prezzo");
-				int disponibilità = rs.getInt("Disponibilità");
+				int disponibilita = rs.getInt("Disponibilita");
 
-				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilità));
+				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
 			}
 
 			stm.close();
@@ -125,9 +125,9 @@ public class ArticleModel {
 				String img3 = rs.getString("Img3");
 				String descrizione = rs.getString("Descrzione");
 				Double prezzo = rs.getDouble("Prezzo");
-				int disponibilità = rs.getInt("Disponibilità");
+				int disponibilita = rs.getInt("Disponibilita");
 
-				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilità));
+				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
 			}
 
 			stm.close();
@@ -187,9 +187,9 @@ public class ArticleModel {
 				String img3 = rs.getString("Img3");
 				String descrizione = rs.getString("Descrzione");
 				Double prezzo = rs.getDouble("Prezzo");
-				int disponibilità = rs.getInt("Disponibilità");
+				int disponibilita = rs.getInt("Disponibilita");
 
-				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilità));
+				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
 			}
 
 			stm.close();

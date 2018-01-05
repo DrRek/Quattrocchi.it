@@ -14,12 +14,16 @@ import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 
 public class OrderModel {
+	
+	static ShippingAddressModel model;
+	
 	private static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
 	
 	public Order doRetrieveById(String idOrder) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		Order bean = null;
+	
 		
 		String query = "SELECT * FROM " + TABLE_NAME_ORDER + "WHERE Codice = ?;";
 		
@@ -33,8 +37,8 @@ public class OrderModel {
 			if(rs.next()) {
 				String codice = rs.getString("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
-				double prezzo = rs.getDouble("");
-				//ShippingAddress indirizzo = ??
+				double prezzo = rs.getDouble("Prezzo");
+				//ShippingAddress indirizzo = model.doRetrieveById(rs.getString(...)) fare cosi?
 				//CreditCard carta = ??
 				//Acquirente acq = ??
 				String statoOrdine = rs.getString("StatoOrdine");
@@ -68,6 +72,8 @@ public class OrderModel {
 		PreparedStatement stm = null;
 		List<Order> beans = new ArrayList<>();
 		
+		
+		
 		String query = "SELECT * FROM " + TABLE_NAME_ORDER + ";";
 		
 		try {
@@ -79,7 +85,7 @@ public class OrderModel {
 			if(rs.next()) {
 				String codice = rs.getString("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
-				double prezzo = rs.getDouble("");
+				double prezzo = rs.getDouble("Prezzo");
 				//ShippingAddress indirizzo = ??
 				//CreditCard carta = ??
 				//Acquirente acq = ??

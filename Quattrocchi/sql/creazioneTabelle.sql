@@ -35,7 +35,7 @@ create table Acquirente(
 );
 
 create table IndirizzoSpedizione(
-	Id integer(10) primary key,
+	Id varchar(10) primary key,
 	Stato varchar(30) not null,
 	Provincia char(2) not null, -- non Ã¨ var Ã¨ char
 	CAP integer(5) not null,
@@ -66,7 +66,7 @@ create table Ordine(
 	StatoOrdine varchar(30) not null,
 	DataConsegna date,
 	NumeroTracking varchar(50),
-	Correriere varchar(40),
+	Corriere varchar(40),
 	foreign key (IndirizzoSpedizione) references IndirizzoSpedizione(Id),
 	foreign key (CartaCredito) references CartaCredito(IdCarta),
 	foreign key (Acquirente) references Acquirente(Username)

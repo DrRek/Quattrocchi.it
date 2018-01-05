@@ -2,13 +2,42 @@ package it.unisa.quattrocchi.entity;
 
 public class ShippingAddress {
 	
-	private String stato,indirizzo, cap, provincia;
+	private String stato,indirizzo, provincia,codice;
+	private int nc,cap;
+	private Acquirente acq;
 
-	public ShippingAddress(String stato, String indirizzo, String cAP, String provincia) {
+	public ShippingAddress(String codice,String stato, String indirizzo, int cap, String provincia,int nc,Acquirente acq) {
+		this.codice = codice;
 		this.stato = stato;
 		this.indirizzo = indirizzo;
 		this.cap = cap;
 		this.provincia = provincia;
+		this.nc = nc;
+		this.acq = acq;
+	}
+	
+	public Acquirente getAcq() {
+		return acq;
+	}
+	
+	public void setAcq(Acquirente a) {
+		this.acq = a;
+	}
+	
+	public int getNC() {
+		return nc;
+	}
+	
+	public void setNC(int nc) {
+		this.nc = nc;
+	}
+	
+	public String getCodice() {
+		return codice;
+	}
+	
+	public void setCodice(String id) {
+		this.codice = id;
 	}
 
 	public String getStato() {
@@ -27,11 +56,11 @@ public class ShippingAddress {
 		this.indirizzo = indirizzo;
 	}
 
-	public String getCap() {
+	public int getCap() {
 		return cap;
 	}
 
-	public void setCap(String cap) {
+	public void setCap(int cap) {
 		this.cap = cap;
 	}
 

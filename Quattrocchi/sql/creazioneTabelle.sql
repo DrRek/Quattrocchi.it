@@ -60,7 +60,7 @@ create table Ordine(
 	Codice varchar(10) primary key,
    	DataEsecuzione date not null,
 	Prezzo decimal(8,2) not null, -- a che serve sto double che bastano due cifre dopo la virgola
-	IndirizzoSpedizione integer(10) not null,
+	IndirizzoSpedizione varchar(10) not null,
 	CartaCredito varchar(10) not null,
 	Acquirente varchar(16) not null,
 	StatoOrdine varchar(30) not null,

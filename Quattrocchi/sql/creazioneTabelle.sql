@@ -1,4 +1,4 @@
-drop schema quattrocchiDB;
+﻿drop schema quattrocchiDB;
 create schema quattrocchiDB;
 use quattrocchiDB;
 
@@ -57,7 +57,7 @@ create table CartaCredito(
 );
 
 create table Ordine(
-	Codice integer(10) primary key,
+	Codice varchar(10) primary key,
    	DataEsecuzione date not null,
 	Prezzo decimal(8,2) not null, -- a che serve sto double che bastano due cifre dopo la virgola
 	IndirizzoSpedizione integer(10) not null,

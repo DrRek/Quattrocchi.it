@@ -123,9 +123,9 @@ public class OrderModel {
 		Date dataConsegna = toCreate.getDataConsegna();
 		String numTrack = toCreate.getNumeroTracking();
 		String corriere = toCreate.getCodice();
-		Acquirente acq = toCreate.getAcquirente();
-		ShippingAddress sa = toCreate.getShippingAddress();
-		CreditCard cc = toCreate.getCreditCard();
+		String acq = toCreate.getAcquirente().getUsername();
+		String sa = toCreate.getShippingAddress().getCodice();
+		String cc = toCreate.getCreditCard().getIdCarta();
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
@@ -138,9 +138,9 @@ public class OrderModel {
 			stm.setDate(5, (java.sql.Date) dataConsegna);
 			stm.setString(6, numTrack);
 			stm.setString(7, corriere);
-			stm.setObject(8, acq);
-			stm.setObject(9, sa);
-			stm.setObject(10, cc);
+			stm.setString(8, acq);
+			stm.setString(9, sa);
+			stm.setString(10, cc);
 			
 			stm.executeUpdate();
 			stm.close();

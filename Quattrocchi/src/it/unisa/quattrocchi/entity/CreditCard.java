@@ -4,15 +4,24 @@ import java.util.Date;
 
 public class CreditCard {
 
-	private String numeroCC, intestatario, circuito, cvv;
+	private String numeroCC, intestatario, circuito, cvv,idCarta;
 	private Date dataScadenza;
-	public CreditCard(String numeroCC, String intestatario, String circuito, Date dataScadenza, String cvv) {
+	public CreditCard(String idCarta,String numeroCC, String intestatario, String circuito, Date dataScadenza, String cvv) {
 		super();
+		this.idCarta = idCarta;
 		this.numeroCC = numeroCC;
 		this.intestatario = intestatario;
 		this.circuito = circuito;
 		this.cvv = cvv;
 		this.dataScadenza = dataScadenza;
+	}
+	
+	public String getIdCarta() {
+		return idCarta;
+	}
+	
+	public void setIdCarta(String id) {
+		this.idCarta = id;
 	}
 	
 	public String getNumeroCC() {

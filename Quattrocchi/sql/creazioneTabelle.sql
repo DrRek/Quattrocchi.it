@@ -46,7 +46,7 @@ create table IndirizzoSpedizione(
 );
 
 create table CartaCredito(
-	IdCarta	integer(10) primary key,
+	IdCarta	varchar(10) primary key,
 	NumeroCC decimal(16) not null,
 	Intestatario varchar(40) not null,
 	Circuito varchar(20) not null,
@@ -61,7 +61,7 @@ create table Ordine(
    	DataEsecuzione date not null,
 	Prezzo decimal(8,2) not null, -- a che serve sto double che bastano due cifre dopo la virgola
 	IndirizzoSpedizione integer(10) not null,
-	CartaCredito integer(10) not null,
+	CartaCredito varchar(10) not null,
 	Acquirente varchar(16) not null,
 	StatoOrdine varchar(30) not null,
 	DataConsegna date,
@@ -82,7 +82,7 @@ create table ArticoloInOrder(
 	Descrzione varchar(255) not null,
 	Prezzo decimal(6,2) not null, -- sto prezzo double non s Ã¨ mai sentito
 	Quantita  integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
-	Ordine integer(10) not null,
+	Ordine varchar(10) not null,
 	foreign key (Ordine) references Ordine(Codice)
 );
 

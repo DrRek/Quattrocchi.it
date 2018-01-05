@@ -84,7 +84,7 @@ public class OrderModel {
 			
 			ResultSet rs = stm.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				String codice = rs.getString("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");

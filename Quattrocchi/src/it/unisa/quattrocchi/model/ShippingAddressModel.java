@@ -67,7 +67,7 @@ public class ShippingAddressModel {
 			stm = conn.prepareStatement(query);
 			ResultSet rs = stm.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				String codice = rs.getString("Id");
 				String stato = rs.getString("Stato");
 				String provincia = rs.getString("Provincia");

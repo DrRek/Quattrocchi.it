@@ -35,7 +35,7 @@ public class ShippingAddressModel {
 				int cap = rs.getInt("CAP");
 				String indirizzo = rs.getString("Indirizzo");
 				int nc = rs.getInt("NumeroCivico");
-				//Acquirente acq = ??
+				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
 				
 				bean = new ShippingAddress(codice,stato,indirizzo,cap,provincia,nc,null);
 			}
@@ -74,7 +74,7 @@ public class ShippingAddressModel {
 				int cap = rs.getInt("CAP");
 				String indirizzo = rs.getString("Indirizzo");
 				int nc = rs.getInt("NumeroCivico");
-				//Acquirente acq = ??
+				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
 				
 				beans.add(new ShippingAddress(codice,stato,indirizzo,cap,provincia,nc,null));
 			}

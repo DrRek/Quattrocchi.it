@@ -15,7 +15,9 @@ import it.unisa.quattrocchi.entity.ShippingAddress;
 
 public class OrderModel {
 	
-	static ShippingAddressModel model;
+	static ShippingAddressModel shippingAddressModel = new ShippingAddressModel();
+	static CreditCardModel creditCardModel = new CreditCardModel();
+	static UserModel userModel = new UserModel();
 	
 	private static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
 	
@@ -38,9 +40,9 @@ public class OrderModel {
 				String codice = rs.getString("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
-				//ShippingAddress indirizzo = model.doRetrieveById(rs.getString(...)) fare cosi?
-				//CreditCard carta = ??
-				//Acquirente acq = ??
+				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
+				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
+				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
 				String statoOrdine = rs.getString("StatoOrdine");
 				Date dataConsegna = rs.getDate("DataConsegna");
 				String numTracking = rs.getString("NumeroTracking");
@@ -48,7 +50,7 @@ public class OrderModel {
 				
 				
 				
-				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,null,null,null);
+				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,null,indirizzo,carta);
 				
 			}
 			
@@ -86,16 +88,16 @@ public class OrderModel {
 				String codice = rs.getString("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
-				//ShippingAddress indirizzo = ??
-				//CreditCard carta = ??
-				//Acquirente acq = ??
+				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
+				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
+				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
 				String statoOrdine = rs.getString("StatoOrdine");
 				Date dataConsegna = rs.getDate("DataConsegna");
 				String numTracking = rs.getString("NumeroTracking");
 				String corriere = rs.getString("Corriere");
 				
 				beans.add(new Order(codice,dataEx,prezzo,statoOrdine,
-						dataConsegna,numTracking,corriere,null,null,null));
+						dataConsegna,numTracking,corriere,null,indirizzo,carta));
 			}
 			
 			stm.close();

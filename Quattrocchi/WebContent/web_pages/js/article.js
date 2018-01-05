@@ -2,23 +2,22 @@ var toDoD = 'asyncGenericSearch';
 var sortD = 'nome';
 $(document).ready(function() {
 
-	/*initialize();
+	initialize();
 	setSearchField();
 	
 	    
 	$("#advancedSearch").on("click", function(event) {
 		toDoD = 'asyncSpecificSearch'
 		advancedSearch();
-	});*/
-	
-	formatData(response)
+	});
 });
 
 function formatData(responseText)
 {
 	var toAppend = '';
+	console.log(responseText)
 	$.each(responseText, function(i, articleObject) {
-		if(articleObject.disponibilita > 0){
+		if(articleObject.disponibilità > 0){
 			toAppend += '<div class="block enlarge">'
 							+'<div class="top">'
 								+ '<ul>'
@@ -176,11 +175,9 @@ function asyncGenericSearch() {
 	toDoD = 'asyncGenericSearch'
 		$.ajax({
 			type : "GET",
-			url : "article",
+			url : "visualizza_catalogo",
 			data : {
-				toDo : 'asyncGenericSearch',
-				daCercare : $('input[name=daCercare1]').val(),
-				sort : sortD
+				action : 'retrieveAll'
 			},
 			dataType : "json",
 			error : function(xhr, status, errorThrown) {

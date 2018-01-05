@@ -73,7 +73,7 @@ public class ArticleModel {
 			
 			ResultSet rs = stm.executeQuery();
 
-			if(rs.next()) {
+			while(rs.next()) {
 				String codice = rs.getString("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");

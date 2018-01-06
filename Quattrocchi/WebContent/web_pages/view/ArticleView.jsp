@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	String daCercare = (String) request.getAttribute("daCercare");
+	String toSearch = (String) request.getAttribute("toSearch");
 	String cercaPerTipo = (String) request.getAttribute("cercaPerTipo");
 	//Cart cart = (Cart) request.getSession().getAttribute("cart");
 	//UserBean user = (UserBean) request.getSession().getAttribute("user");
@@ -81,9 +81,8 @@
 				<hr>
 				<div class="form-group">
 				<h4>Name to search for:</h4>
-				<input type="text" class="form-control" name="daCercare1" <%if (cercaPerTipo != null) {%>
-					value="cercaPerTipo" <%} else if (daCercare != null) {%>
-					value="<%=daCercare%>" <%}%> />
+				<input type="text" class="form-control" name="daCercare1" <% if (toSearch != null) {%>
+					value="<%=toSearch%>" <%}%> />
 				</div>
 				<hr>
 				<div class="form-group">

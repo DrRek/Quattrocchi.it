@@ -38,7 +38,7 @@ public class ArticleModel {
 				String img1 = rs.getString("Img1");
 				String img2 = rs.getString("Img2");
 				String img3 = rs.getString("Img3");
-				String descrizione = rs.getString("Descrzione");
+				String descrizione = rs.getString("Descrizione");
 				Double prezzo = rs.getDouble("Prezzo");
 				int disponibilita = rs.getInt("Disponibilita");
 
@@ -80,7 +80,7 @@ public class ArticleModel {
 				String img1 = rs.getString("Img1");
 				String img2 = rs.getString("Img2");
 				String img3 = rs.getString("Img3");
-				String descrizione = rs.getString("Descrzione");
+				String descrizione = rs.getString("Descrizione");
 				Double prezzo = rs.getDouble("Prezzo");
 				int disponibilita = rs.getInt("Disponibilita");
 
@@ -102,7 +102,8 @@ public class ArticleModel {
 	}
 	
 	public List<Article> doRetrieveSimpleSearch(String daCercare) throws SQLException{
-		String query = "select * from "+TABLE_NAME_CATALOGO + "where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
+		String query = "select * from "+TABLE_NAME_CATALOGO + " where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<Article> beans = new ArrayList<>();
@@ -110,20 +111,22 @@ public class ArticleModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(0, daCercare);
+			
+			daCercare = "%"+daCercare+"%";
 			stm.setString(1, daCercare);
 			stm.setString(2, daCercare);
+			stm.setString(3, daCercare);
 			
 			ResultSet rs = stm.executeQuery();
 
-			if(rs.next()) {
+			while(rs.next()) {
 				String codice = rs.getString("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
 				String img1 = rs.getString("Img1");
 				String img2 = rs.getString("Img2");
 				String img3 = rs.getString("Img3");
-				String descrizione = rs.getString("Descrzione");
+				String descrizione = rs.getString("Descrizione");
 				Double prezzo = rs.getDouble("Prezzo");
 				int disponibilita = rs.getInt("Disponibilita");
 
@@ -185,7 +188,7 @@ public class ArticleModel {
 				String img1 = rs.getString("Img1");
 				String img2 = rs.getString("Img2");
 				String img3 = rs.getString("Img3");
-				String descrizione = rs.getString("Descrzione");
+				String descrizione = rs.getString("Descrizione");
 				Double prezzo = rs.getDouble("Prezzo");
 				int disponibilita = rs.getInt("Disponibilita");
 

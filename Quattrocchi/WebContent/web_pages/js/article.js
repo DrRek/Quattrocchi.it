@@ -15,7 +15,6 @@ $(document).ready(function() {
 function formatData(responseText)
 {
 	var toAppend = '';
-	console.log(responseText)
 	$.each(responseText, function(i, articleObject) {
 		if(articleObject.disponibilità > 0){
 			toAppend += '<div class="block enlarge">'
@@ -27,14 +26,11 @@ function formatData(responseText)
 								+ '</ul>'
 								+'</div>';
 				toAppend += '<div class="middle">';
-				
-				//toAppend += '<img src= \"/catalogoPW/'+articleObject.img1.trim().replace(/ /g,"_")+'\" alt="pic" />';
-				//toAppend += '<img src="/catalogoPW/1-Day_Acuvue_TrueEye_Acuvue_1.jpg" alt="pic" />';
+				toAppend += '<img src="/Quattrocchi/web_pages/image/occhiali_placeholder.jpg" alt="pic" />';
 				toAppend += '</div>'
 						 +  '<div class="bottom">'
-	    	   			 + '<div class="heading">'+ articleObject.nome +'</div>'
-	    	   			 + '<div class="info">' + articleObject.disponibilita + ' pezzi disponibili</div>';
-				console.log(articleObject)
+	    	   			 + '<div class="heading">'+ articleObject.modello +'</div>'
+	    	   			 + '<div class="info">' + articleObject.disponibilità + ' pezzi disponibili</div>';
 				if(articleObject.sconto > 0){
 					if(articleObject.tipoSconto == "%"){
 						var sconto = parseInt(((articleObject.prezzo)-(articleObject.prezzo*articleObject.sconto/100))*100)/100;
@@ -171,7 +167,7 @@ function advancedSearch() {
 	}
 }
 
-function asyncGenericSearch() {
+function retrieveAll() {
 	toDoD = 'asyncGenericSearch'
 		$.ajax({
 			type : "GET",
@@ -190,13 +186,32 @@ function asyncGenericSearch() {
 		})
 }
 
+function simpleSearch(toSearch) {
+	console.log(toSearch)
+		$.ajax({
+			type : "GET",
+			url : "ricerca_prodotto",
+			data : {
+				action : 'search',
+				toSearch : toSearch
+			},
+			dataType : "json",
+			error : function(xhr, status, errorThrown) {
+				console.log(JSON.stringify(xhr));
+				console.log("AJAX error: " + status + ' : ' + errorThrown);
+			},
+			success : function(responseText) {
+				formatData(responseText);
+			}
+		})
+}
+
 function initialize(){
-	if($('input[name=daCercare1]').val() == "cercaPerTipo"){
-		$('input[name=daCercare1]').val("");
-		toDoD = 'asyncSpecificSearch';
-		advancedSearch();
+	var toSearch = $('input[name=daCercare1]').val();
+	if(toSearch != null && toSearch != undefined && toSearch != ""){
+		simpleSearch(toSearch);
 	}
 	else{
-		asyncGenericSearch();
+		retrieveAll();
 	}
 }

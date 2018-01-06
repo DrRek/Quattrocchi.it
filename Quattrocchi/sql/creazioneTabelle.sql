@@ -1,5 +1,6 @@
-﻿drop schema quattrocchiDB;
+DROP DATABASE IF EXISTS quattrocchiDB;
 create schema quattrocchiDB;
+
 use quattrocchiDB;
 
 create user if not exists
@@ -93,7 +94,7 @@ create table ArticoloInStock(
 	Img1 varchar(60), -- il path delle immagini puÃ² essere parecchio lungo, 10 non Ã¨ abbastanza
 	Img2 varchar(60),
 	Img3 varchar(60),
-	Descrzione varchar(255) not null,
+	Descrizione varchar(255) not null,
 	Prezzo decimal(6,2) not null, -- sto prezzo double non s Ã¨ mai sentito
 	Disponibilita decimal(3) not null-- fare l'esagerato con le dimensioni non ti fa onore
 );

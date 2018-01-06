@@ -7,14 +7,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import it.unisa.quattrocchi.entity.Article;
 import it.unisa.quattrocchi.model.ArticleModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Logger;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,8 +19,9 @@ import javax.servlet.annotation.WebServlet;
 
 public class VisualizzaCatalogo extends HttpServlet{
 
+	private static final long serialVersionUID = 1L;
+	
 	static ArticleModel model = new ArticleModel();
-	private static Logger logger = Logger.getLogger("classname");
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,7 +31,6 @@ public class VisualizzaCatalogo extends HttpServlet{
 			try {
 				response.setContentType("application/json");
 				response.setHeader("Cache-Control", "no-cache");
-				List<Article> mod = model.doRetrieveAllInStock();
 				response.getWriter().write(new Gson().toJson(model.doRetrieveAllInStock()));
 			} catch(SQLException e) {
 				e.printStackTrace();

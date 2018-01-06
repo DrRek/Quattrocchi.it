@@ -29,10 +29,10 @@
 				<li><a href="article?toDo=searchOcchiale">Occhiali</a>
 				<li><a href="article?toDo=searchLente">Lentine</a>
 				<li>
-					<form class="navbar-form" action="article" method="get">
+					<form class="navbar-form" action="ricerca_prodotto" method="get">
 						<div class="input-group">
-							<input type="hidden" name="toDo" value="searchFromOtherPage">
-							<input name="daCercare" type="text" class="form-control"
+							<input type="hidden" name="action" value="searchFromOtherPage">
+							<input name="toSearch" type="text" class="form-control"
 								placeholder="Cerca"/>
 								<span class="input-group-btn">
 						<button type="submit" class="btn btn-default">Submit</button></span>

@@ -17,7 +17,7 @@ public class OrderModel {
 	
 	static ShippingAddressModel shippingAddressModel = new ShippingAddressModel();
 	static CreditCardModel creditCardModel = new CreditCardModel();
-	static UserModel userModel = new UserModel();
+	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	
 	private static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
 	
@@ -42,7 +42,7 @@ public class OrderModel {
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
 				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
-				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
+				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				String statoOrdine = rs.getString("StatoOrdine");
 				Date dataConsegna = rs.getDate("DataConsegna");
 				String numTracking = rs.getString("NumeroTracking");
@@ -50,7 +50,7 @@ public class OrderModel {
 				
 				
 				
-				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,null,indirizzo,carta);
+				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,acq,indirizzo,carta);
 				
 			}
 			
@@ -90,14 +90,14 @@ public class OrderModel {
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
 				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
-				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
+				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				String statoOrdine = rs.getString("StatoOrdine");
 				Date dataConsegna = rs.getDate("DataConsegna");
 				String numTracking = rs.getString("NumeroTracking");
 				String corriere = rs.getString("Corriere");
 				
 				beans.add(new Order(codice,dataEx,prezzo,statoOrdine,
-						dataConsegna,numTracking,corriere,null,indirizzo,carta));
+						dataConsegna,numTracking,corriere,acq,indirizzo,carta));
 			}
 			
 			stm.close();

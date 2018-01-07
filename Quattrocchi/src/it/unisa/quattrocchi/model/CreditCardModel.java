@@ -8,11 +8,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 
 public class CreditCardModel {
-private static final String TABLE_NAME_CREDITCARD = "quattrocchidb.cartacredito";
+	static AcquirenteModel acquirenteModel = new AcquirenteModel();
+
+	
+	private static final String TABLE_NAME_CREDITCARD = "quattrocchidb.cartacredito";
 	
 	public CreditCard doRetrieveById(String idCarta) throws SQLException {
 		Connection conn = null;
@@ -36,9 +40,9 @@ private static final String TABLE_NAME_CREDITCARD = "quattrocchidb.cartacredito"
 				Date dataScadenza = rs.getTimestamp("DataScadenza");
 				int cvv = rs.getInt("CvcCvv");
 				String indirizzo = rs.getString("Indirizzo");
-				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
+				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				
-				bean = new CreditCard(idCarta, numeroCC, intestatario, circuito , dataScadenza, cvv, null);
+				bean = new CreditCard(idCarta, numeroCC, intestatario, circuito , dataScadenza, cvv, acq);
 			}
 			
 			stm.close();
@@ -76,9 +80,9 @@ private static final String TABLE_NAME_CREDITCARD = "quattrocchidb.cartacredito"
 				Date dataScadenza = rs.getTimestamp("DataScadenza");
 				int cvv = rs.getInt("CvcCvv");
 				String indirizzo = rs.getString("Indirizzo");
-				//Acquirente acq = userModel.doRetriveById(rs.getString("Acquirente"));
+				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				
-				beans.add(new CreditCard(idCarta, numeroCC, intestatario, circuito , dataScadenza, cvv, null));
+				beans.add(new CreditCard(idCarta, numeroCC, intestatario, circuito , dataScadenza, cvv, acq));
 			}
 			stm.close();
 			rs.close();

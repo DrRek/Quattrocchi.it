@@ -1,10 +1,14 @@
 package it.unisa.quattrocchi.entity;
 
-public abstract class User {
-
-	private String username, password, nome, cognome, email;
-
-	public User(String username, String password, String nome, String cognome, String email) {
+public class Amministratore {
+	private String username;
+	private String password;
+	private String nome;
+	private String cognome;
+	private String email;
+	
+	public Amministratore(String username, String password, String nome, String cognome, String email) {
+		super();
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
@@ -51,7 +55,15 @@ public abstract class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	@Override
+	public String toString() {
+		return "Amministratore [username=" + username + ", password=" + password + ", nome=" + nome + ", cognome="
+				+ cognome + ", email=" + email + "]";
+	}
 	
 	
 	
+	
+
 }

@@ -3,6 +3,6 @@
 <web-app>
   <display-name>Quattrocchi.it</display-name>
   <welcome-file-list>
-    <welcome-file>view\Index.jsp</welcome-file>
+    <welcome-file>/web_pages/view/Index.jsp</welcome-file>
   </welcome-file-list>
 </web-app>

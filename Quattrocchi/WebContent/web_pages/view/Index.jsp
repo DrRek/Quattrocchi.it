@@ -14,5 +14,8 @@
  	<form action = "../../access" method = "GET">
 		<input type="submit" value="Prova Login view" style="height:25px; width:120px; background-color: royalblue;color: white;" />
  	</form>
+ 	<form action = "../../profilo" method = "GET">
+		<input type="submit" value="Prova Profilo view" style="height:25px; width:120px; background-color: royalblue;color: white;" />
+ 	</form>
 </body>
 </html>

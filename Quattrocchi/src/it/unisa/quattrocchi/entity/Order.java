@@ -10,6 +10,8 @@ public class Order {
 	private ShippingAddress shippingAddress;
 	private CreditCard creditCard;
 	
+	//aggiungere lista di articoli
+	
 	private double prezzo;
 	public Order(String codice, Date dataEsecuzione, double prezzo, String statoOrdine, Date dataConsegna, String numeroTracking, 
 			String corriere, Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard) {

@@ -35,7 +35,7 @@ public class RicercaProdotto extends HttpServlet{
 				if(toSearch!=null && !toSearch.equalsIgnoreCase("")) {
 					response.getWriter().write(new Gson().toJson(model.doRetrieveSimpleSearch(toSearch)));
 				} else {
-					response.getWriter().write(new Gson().toJson(model.doRetrieveAllInStock()));
+		//da rimuovere			response.getWriter().write(new Gson().toJson(model.doRetrieveAllInStock()));
 				}
 			} catch(SQLException e) {
 				e.printStackTrace();

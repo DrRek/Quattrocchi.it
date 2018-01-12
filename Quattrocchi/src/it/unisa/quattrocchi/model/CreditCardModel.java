@@ -65,21 +65,22 @@ public class CreditCardModel {
 		PreparedStatement stm = null;
 		List<CreditCard> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_CREDITCARD + ";";
+		String query = "SELECT * FROM " + TABLE_NAME_CREDITCARD + " WHERE acquirente = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
+			stm.setString(1, acquirente);
+			
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String idCarta  = rs.getString("Id");
+				String idCarta  = rs.getString("IdCarta");
 				String numeroCC  = rs.getString("NumeroCC"); //da cambiare nel db
 				String intestatario = rs.getString("Intestatario");
 				String circuito = rs.getString("Circuito");
 				Date dataScadenza = rs.getTimestamp("DataScadenza");
 				int cvv = rs.getInt("CvcCvv");
-				String indirizzo = rs.getString("Indirizzo");
 				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				
 				beans.add(new CreditCard(idCarta, numeroCC, intestatario, circuito , dataScadenza, cvv, acq));

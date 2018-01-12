@@ -167,8 +167,42 @@ public class OrderModel {
 		return;
 	}	
 	
-	public void updateOrder(Order toUpdate) {
-		//da fare
+	public void updateOrder(Order toUpdate) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String idOrder = toUpdate.getCodice();
+		String statoOrdine = toUpdate.getStatoOrdine();
+		Date dataConsegna = toUpdate.getDataConsegna();
+		String numTrack = toUpdate.getNumeroTracking();
+		String corriere = toUpdate.getCorriere();
+		
+		
+		String query = "update " + TABLE_NAME_ORDER + "set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ?" 
+		+ "where Codice =?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1,statoOrdine);
+			stm.setDate(2, (java.sql.Date) dataConsegna);
+			stm.setString(3, numTrack);
+			stm.setString(4, corriere);
+			stm.setString(5, idOrder);
+			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+			
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
 		return;
 	}
 }

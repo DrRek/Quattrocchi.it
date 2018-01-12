@@ -1,8 +1,6 @@
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
-.table-striped>tbody>tr:nth-child(odd)>td,
-	.table-striped>tbody>tr:nth-child(odd)>th { background-color: #cccccc;}
 @media screen and (max-width: 600px) {
     table#cartElementsElements tbody td .form-control{
 		width:20%;
@@ -15,9 +13,12 @@
 	
 	table#cartElements thead { display: none; }
 	table#cartElements tbody td { display: block; padding: .6rem; }
+	table#cartElements tbody tr td:first-child { background: #e4e4e4; color:white; }
 	table#cartElements tbody td:before {
 		content: attr(data-th); font-weight: bold;
 		display: inline-block; width: 8rem;
 	}
+	
+
 	
 }

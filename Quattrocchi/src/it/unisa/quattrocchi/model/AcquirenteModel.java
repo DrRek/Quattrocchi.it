@@ -17,7 +17,7 @@ public class AcquirenteModel {
 		PreparedStatement stm = null;
 		Acquirente bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ACQUIRENTE + "WHERE Username = ?;";
+		String query = "SELECT * FROM " + TABLE_NAME_ACQUIRENTE + " WHERE Username = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
@@ -35,6 +35,47 @@ public class AcquirenteModel {
 				Date dataNascita = rs.getDate("DataNascita");
 				
 				bean = new Acquirente(username,password,nome,cognome,email,dataNascita);
+			}
+			
+			stm.close();
+			rs.close();
+			conn.commit();
+			
+		}finally {
+			try {
+				if(stm!= null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return bean;
+	}
+	
+	public Acquirente checkLogin(String userName, String password) throws SQLException {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		Acquirente bean = null;
+		
+		String query = "SELECT * FROM " + TABLE_NAME_ACQUIRENTE + " WHERE Username = ? AND Pwd = ?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			stm.setString(1, userName);
+			stm.setString(2, password);
+			
+			ResultSet rs = stm.executeQuery();
+			
+			if(rs.next()) {
+				String username = rs.getString("Username");
+				String pwd = rs.getString("Pwd");
+				String nome = rs.getString("Nome");
+				String cognome = rs.getString("Cognome");
+				String email = rs.getString("Email");
+				Date dataNascita = rs.getDate("DataNascita");
+				
+				bean = new Acquirente(username,pwd,nome,cognome,email,dataNascita);
 			}
 			
 			stm.close();

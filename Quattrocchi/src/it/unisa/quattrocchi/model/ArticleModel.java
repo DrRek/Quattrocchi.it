@@ -148,7 +148,7 @@ public class ArticleModel {
 	}
 	
 	public List<Article> doRetrieveAdvancedSearch(String daCercare, String marcaDaCercare, double minPrice, double maxPrice, String colore) throws SQLException{
-		String query = "select * from "+TABLE_NAME_CATALOGO + "where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?))";
+		String query = "select * from "+TABLE_NAME_CATALOGO + " where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?))";
 		query+=" and (Prezzo >= ? and Prezzo <= ?)";
 		if(marcaDaCercare!=null && marcaDaCercare!="") {
 			query+=" and (Marca LIKE ?)";

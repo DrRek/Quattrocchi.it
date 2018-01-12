@@ -19,7 +19,7 @@ public class ShippingAddressModel {
 		ShippingAddress bean = null;
 		
 		String query = "SELECT * FROM " + TABLE_NAME_ADDRESS + 
-				"WHERE Id = ?;";
+				" WHERE Id = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();

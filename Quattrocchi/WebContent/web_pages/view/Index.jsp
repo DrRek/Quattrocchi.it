@@ -11,5 +11,8 @@
 	<form action = "../../visualizza_catalogo" method = "GET">
 		<input type="submit" value="Prova Article View" style="height:25px; width:120px; background-color: royalblue;color: white;" />
  	</form>
+ 	<form action = "../../access" method = "GET">
+		<input type="submit" value="Prova Login view" style="height:25px; width:120px; background-color: royalblue;color: white;" />
+ 	</form>
 </body>
 </html>

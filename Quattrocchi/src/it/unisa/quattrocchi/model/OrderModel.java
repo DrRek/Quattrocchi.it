@@ -27,7 +27,7 @@ public class OrderModel {
 		Order bean = null;
 	
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ORDER + "WHERE Codice = ?;";
+		String query = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
@@ -178,8 +178,8 @@ public class OrderModel {
 		String corriere = toUpdate.getCorriere();
 		
 		
-		String query = "update " + TABLE_NAME_ORDER + "set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ?" 
-		+ "where Codice =?;";
+		String query = "update " + TABLE_NAME_ORDER + " set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ?" 
+		+ " where Codice =?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();

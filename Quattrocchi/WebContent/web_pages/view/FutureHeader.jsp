@@ -72,7 +72,6 @@
 				<li><a href="visualizza_ordini">Ordini</a>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li>Benvenuto, <%=gestoreOrdini.getUsername()%></li>
 				<li><a href="user?action=logout">logout</a></li>
 				<%
 						}

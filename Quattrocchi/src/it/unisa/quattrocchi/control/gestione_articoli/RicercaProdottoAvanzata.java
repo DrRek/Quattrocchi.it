@@ -29,21 +29,16 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 			String toSearch, marca, colore;
 			double prezzoMin, prezzoMax;
 			
-			
-			if(request.getParameter("toSearch") != null) {
-				toSearch = request.getParameter("toSearch");
-			}
-			else {
+			toSearch = request.getParameter("toSearch");
+			if(toSearch == null) {
 				toSearch = "";
 			}
-			
-			if(request.getParameter("marca") != null) {
-				marca = request.getParameter("marca");
-			}
-			else {
+
+			marca = request.getParameter("marca");
+			if(marca == null) {
 				marca = "";
 			}
-			
+
 			if(!request.getParameter("prezzoMin").equals("")) {
 				prezzoMin = Double.parseDouble(request.getParameter("prezzoMin"));
 			}
@@ -57,11 +52,9 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 			else {
 				prezzoMax = 99999;
 			}
-			
-			if(request.getParameter("colore") != null) {
-				colore = request.getParameter("colore");
-			}
-			else {
+
+			colore = request.getParameter("colore");
+			if(colore == null) {
 				colore = "";
 			}
 			

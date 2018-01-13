@@ -5,7 +5,7 @@ import java.util.List;
 public class Cart {
 	
 	private double prezzo;
-	private List<Article> articoli;
+	private List<ArticoloInStock> articoli;
 	
 	public Cart(double prezzo) {
 		this.prezzo = prezzo;
@@ -20,11 +20,11 @@ public class Cart {
 		this.prezzo = prezzo;
 	}
 
-	public List<Article> getArticoli() {
+	public List<ArticoloInStock> getArticoli() {
 		return articoli;
 	}
 
-	public void setArticoli(List<Article> articoli) {
+	public void setArticoli(List<ArticoloInStock> articoli) {
 		this.articoli = articoli;
 	}
 	

@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 import it.unisa.quattrocchi.entity.Acquirente;
+import it.unisa.quattrocchi.entity.ArticoloInOrder;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
@@ -18,6 +19,7 @@ public class OrderModel {
 	static ShippingAddressModel shippingAddressModel = new ShippingAddressModel();
 	static CreditCardModel creditCardModel = new CreditCardModel();
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
+	static ArticoloInOrderModel articoloInOrderModel = new ArticoloInOrderModel();
 	
 	private static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
 	
@@ -25,6 +27,8 @@ public class OrderModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		Order bean = null;
+		List<ArticoloInOrder> listaArticoliInOrdine = new ArrayList<>();
+		listaArticoliInOrdine = articoloInOrderModel.restituisciArticoliAssociatiAdUnOrdine(idOrder);
 	
 		
 		String query = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
@@ -48,9 +52,7 @@ public class OrderModel {
 				String numTracking = rs.getString("NumeroTracking");
 				String corriere = rs.getString("Corriere");
 				
-				
-				
-				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,acq,indirizzo,carta);
+				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,acq,indirizzo,carta,listaArticoliInOrdine);
 				
 			}
 			
@@ -96,8 +98,10 @@ public class OrderModel {
 				String numTracking = rs.getString("NumeroTracking");
 				String corriere = rs.getString("Corriere");
 				
-				beans.add(new Order(codice,dataEx,prezzo,statoOrdine,
-						dataConsegna,numTracking,corriere,acq,indirizzo,carta));
+				List<ArticoloInOrder> listaArticoliAssociata = new ArrayList<>();
+				listaArticoliAssociata = articoloInOrderModel.restituisciArticoliAssociatiAdUnOrdine(codice);
+				
+				beans.add(new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,acq,indirizzo,carta,listaArticoliAssociata));
 			}
 			
 			stm.close();
@@ -167,6 +171,9 @@ public class OrderModel {
 		return;
 	}	
 	
+	
+	
+	
 	public void updateOrder(Order toUpdate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -205,4 +212,7 @@ public class OrderModel {
 		}
 		return;
 	}
+	
+	
+	
 }

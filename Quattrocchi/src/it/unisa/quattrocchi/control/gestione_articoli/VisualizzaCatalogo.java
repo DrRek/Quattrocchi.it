@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import it.unisa.quattrocchi.model.ArticleModel;
+import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class VisualizzaCatalogo extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
-	static ArticleModel model = new ArticleModel();
+	static ArticoloInStockModel articoloInStockModel = new ArticoloInStockModel();
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,8 +32,9 @@ public class VisualizzaCatalogo extends HttpServlet{
 			try {
 				response.setContentType("application/json");
 				response.setHeader("Cache-Control", "no-cache");
-				response.getWriter().write(new Gson().toJson(model.doRetrieveAllInStock()));
+				response.getWriter().write(new Gson().toJson(articoloInStockModel.doRetrieveAllInStock()));
 			} catch(SQLException e) {
+				System.out.println("Errore in visualizza catalogo:");
 				e.printStackTrace();
 			}
 			return;

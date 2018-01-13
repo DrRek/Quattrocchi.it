@@ -32,8 +32,6 @@ public class ArticleModel {
 			stm.setString(2, daCercare);
 			stm.setString(3, daCercare);
 			
-			System.out.println(stm);
-			
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {

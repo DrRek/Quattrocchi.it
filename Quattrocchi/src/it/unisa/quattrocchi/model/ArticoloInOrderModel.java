@@ -100,7 +100,7 @@ public class ArticoloInOrderModel {
 	public List<ArticoloInOrder> restituisciArticoliAssociatiAdUnOrdine(String codiceOrdine) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
-		List<ArticoloInOrder> beans = null;
+		List<ArticoloInOrder> beans = new ArrayList<>();
 		
 		String query = "SELECT * FROM " + TABLE_NAME_ARTICOLOINORDINE + " WHERE Ordine = ?;";
 		

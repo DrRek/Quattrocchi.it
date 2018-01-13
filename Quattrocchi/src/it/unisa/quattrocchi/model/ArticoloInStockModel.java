@@ -205,13 +205,4 @@ public class ArticoloInStockModel {
 		}
 		return beans;
 	}
-	
-	//da togliere
-		//cambiato dall'odd, sarebbe il doUpdate
-		public void doSave(ArticoloInStock toSave) {
-			//In teoria non lo dobbiamo implementare perché non ci serve
-			return;
-		}
-	
-	
 }

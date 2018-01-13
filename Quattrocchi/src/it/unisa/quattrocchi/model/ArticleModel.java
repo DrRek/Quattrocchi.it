@@ -117,6 +117,8 @@ public class ArticleModel {
 			stm.setString(2, daCercare);
 			stm.setString(3, daCercare);
 			
+			System.out.println(stm);
+			
 			ResultSet rs = stm.executeQuery();
 
 			while(rs.next()) {
@@ -148,15 +150,12 @@ public class ArticleModel {
 	}
 	
 	public List<Article> doRetrieveAdvancedSearch(String daCercare, String marcaDaCercare, double minPrice, double maxPrice, String colore) throws SQLException{
-		String query = "select * from "+TABLE_NAME_CATALOGO + " where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?))";
-		query+=" and (Prezzo >= ? and Prezzo <= ?)";
-		if(marcaDaCercare!=null && marcaDaCercare!="") {
-			query+=" and (Marca LIKE ?)";
-		}
-		if(colore!=null && colore!="") {
-			query+=" and (Descrizione LIKE ?)";
-		}
+		String query = "select * from "+TABLE_NAME_CATALOGO + " where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?))"
+				+ " and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
 		
+		daCercare = "%"+daCercare+"%";
+		marcaDaCercare = "%"+marcaDaCercare+"%";
+		colore = "%"+colore+"%";
 		
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -165,23 +164,20 @@ public class ArticleModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(0, daCercare);
 			stm.setString(1, daCercare);
 			stm.setString(2, daCercare);
-			stm.setDouble(3, minPrice);
-			stm.setDouble(4, maxPrice);
-			if(marcaDaCercare!=null && marcaDaCercare!="") {
-				stm.setString(5, marcaDaCercare);
-				if(colore!=null && colore!="") {
-					stm.setString(6, colore);
-				}
-			}else if(colore!=null && colore!="") {
-				stm.setString(5, colore);
-			}
+			stm.setString(3, daCercare);
+			stm.setDouble(4, minPrice);
+			stm.setDouble(5, maxPrice);
+			stm.setString(6, marcaDaCercare);
+			stm.setString(7, colore);
+			stm.setString(8, colore);
+			
+			System.out.println(stm);
 			
 			ResultSet rs = stm.executeQuery();
 
-			if(rs.next()) {
+			while(rs.next()) {
 				String codice = rs.getString("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");

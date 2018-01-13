@@ -13,44 +13,42 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import it.unisa.quattrocchi.entity.Article;
 import it.unisa.quattrocchi.model.ArticleModel;
 
 @WebServlet("/ricerca_prodotto")
 
 public class RicercaProdotto extends HttpServlet{
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	static ArticleModel model = new ArticleModel();
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-		String action = request.getParameter("action");
-		if(action!=null && action.equalsIgnoreCase("search")) {
-			try {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+
+		try {
+			String action = request.getParameter("action");
+			if(action!=null && action.equalsIgnoreCase("search")) {
 				String toSearch = request.getParameter("toSearch");
 				response.setContentType("application/json");
-				response.setHeader("Cache-Control", "no-cache");
 				if(toSearch!=null && !toSearch.equalsIgnoreCase("")) {
 					response.getWriter().write(new Gson().toJson(model.doRetrieveSimpleSearch(toSearch)));
-				} else {
-		//da rimuovere			response.getWriter().write(new Gson().toJson(model.doRetrieveAllInStock()));
 				}
-			} catch(SQLException e) {
-				e.printStackTrace();
+				return;
 			}
-			return;
-		}
 
-		request.setAttribute("toSearch", request.getParameter("toSearch"));
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
-		dispatcher.forward(request, response);
+			request.setAttribute("toSearch", request.getParameter("toSearch"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
+			dispatcher.forward(request, response);
+		}catch (Exception e) {
+			System.out.println("Errore in Ricerca prodotto:");
+			e.printStackTrace();
+		}
 		return;
 	}
-	
+
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}

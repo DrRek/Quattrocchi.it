@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS quattrocchiDB;
+﻿DROP DATABASE IF EXISTS quattrocchiDB;
 create schema quattrocchiDB;
 
 use quattrocchiDB;
@@ -96,7 +96,7 @@ create table ArticoloInStock(
 	Img3 varchar(60),
 	Descrizione varchar(255) not null,
 	Prezzo decimal(6,2) not null, -- sto prezzo double non s Ã¨ mai sentito
-	Disponibilita decimal(3) not null-- fare l'esagerato con le dimensioni non ti fa onore
+	Disponibilita integer(3) not null-- fare l'esagerato con le dimensioni non ti fa onore
 );
 
 -- non ho la minima idea di cosa ci sia scritto nell'er per quanto riguarda il carrello, questo Ã¨ quello che voleva il prof da quello che ho capito

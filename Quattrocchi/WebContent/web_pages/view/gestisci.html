@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link href="../css/bootstrap.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../css/gestisci.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+</head>
+<body>
+	<div class="container">
+		<h1>Info ordine #12345</h1>
+	</div>
+	<div class="container">
+		<h3>Cliente</h3>
+		<p>Luigi Piccolo: "luipi"</p>
+	</div>
+	<div class="container">
+		<h3>Prodotti acquistati</h3>
+	</div>
+	<div class="container">
+		<table id="ordinati"
+			class="table table-hover table-condensed table-striped">
+			<thead>
+				<th style="width: 40%" id="prod">Prodotto</th>
+				<th style="width: 20%">Quantità</th>
+				<th style="width: 40%">Prezzo</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="prodotto">
+						<h3 class="nomargin nomeArt">Rayban sport</h3>
+						<p class="marcaArt">Rayban</p>
+					</td>
+					<td>6</td>
+					<td class="prezzoArt ">$40.23</td>
+				</tr>
+				<tr>
+					<td class="prodotto">
+						<h3 class="nomargin nomeArt">Oakley classics</h3>
+						<p class="marcaArt">Oakley</p>
+					</td>
+					<td>3</td>
+					<td class="prezzoArt ">$102.34</td>
+				</tr>
+				<tr>
+					<td class="prodotto">
+						<h3 class="nomargin nomeArt">Soldani xy</h3>
+						<p class="marcaArt">Soldani</p>
+					</td>
+					<td>2</td>
+					<td class="prezzoArt ">$21.00</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="container">
+		<h3>Indirizzo di consegna</h3>
+		<p>Via Gramsci 9 Aversa 81031 CE Italia</p>
+	</div>
+	<div class="container">
+		<h3>Corriere</h3>
+		<select class="form-control">
+			<option value="sda">SDA</option>
+			<option value="dhl">DHL</option>
+			<option value="bartolini">Bartolini</option>
+			<option value="poste">Poste</option>
+		</select>
+	</div>
+	<div class="container">
+		<h3>Numero tracking</h3>
+		<input class="form-control" name="tracking" type="text"
+			value="123456789" />
+	</div>
+	<div class="container">
+		<h3>Stato ordine</h3>
+		<form>
+			<label class="radio-inline"><input type="radio"
+				name="statoOrdine" value="daSpedire" checked>Da spedire</label> <label
+				class="radio-inline"><input type="radio" name="statoOrdine"
+				value="inCorso">In corso</label> <label class="radio-inline"><input
+				type="radio" name="statoOrdine" value="terminato">Terminato</label>
+		</form>
+	</div>
+	<br>
+	<div class="container">
+		<input class="btn btn-outline-secondary " type="submit"
+			name="inserireNOME" value="Conferma" style="float: right;"/>
+	</div>
+
+</body>
+</html>

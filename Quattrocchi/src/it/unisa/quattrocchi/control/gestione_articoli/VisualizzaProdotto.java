@@ -21,7 +21,6 @@ public class VisualizzaProdotto extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String id = request.getParameter("id");
-			System.out.println(id);
 			ArticoloInStock a = articoloInStockModel.doRetrieveByIdInStock(id);
 			
 			request.setAttribute("articolo", a);

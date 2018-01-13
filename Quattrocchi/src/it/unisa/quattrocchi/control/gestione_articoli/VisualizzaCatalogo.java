@@ -34,6 +34,7 @@ public class VisualizzaCatalogo extends HttpServlet{
 				response.setHeader("Cache-Control", "no-cache");
 				response.getWriter().write(new Gson().toJson(articoloInStockModel.doRetrieveAllInStock()));
 			} catch(SQLException e) {
+				System.out.println("Errore in visualizza catalogo:");
 				e.printStackTrace();
 			}
 			return;

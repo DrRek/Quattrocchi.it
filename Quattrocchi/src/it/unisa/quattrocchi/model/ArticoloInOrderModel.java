@@ -96,4 +96,47 @@ public class ArticoloInOrderModel {
 		}
 		return beans;
 	}
+	
+	public List<ArticoloInOrder> restituisciArticoliAssociatiAdUnOrdine(String codiceOrdine) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		List<ArticoloInOrder> beans = null;
+		
+		String query = "SELECT * FROM " + TABLE_NAME_ARTICOLOINORDINE + " WHERE Ordine = ?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			stm.setString(1, codiceOrdine);
+			
+			ResultSet rs = stm.executeQuery();
+			
+			if(rs.next()) {
+				String codice = rs.getString("Codice");
+				String modello = rs.getString("Modello");
+				String marca = rs.getString("Marca");
+				String img1 = rs.getString("Img1");
+				String img2 = rs.getString("Img2");
+				String img3 = rs.getString("Img3");
+				String descrizione = rs.getString("Descrizione");
+				double prezzo = rs.getDouble("Prezzo");
+				int quantità = rs.getInt("Quantità");
+				
+				beans.add(new ArticoloInOrder(codice,modello,marca,img1,img2,img3,descrizione,prezzo,quantità));
+				
+			}
+			
+			stm.close();
+			rs.close();
+			conn.commit();
+		}finally {
+			try {
+				if (stm != null)
+					stm.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return beans;
+	}
 }

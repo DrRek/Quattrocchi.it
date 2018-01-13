@@ -26,12 +26,37 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 		try {
 			response.setContentType("application/json");
 			response.setHeader("Cache-Control", "no-cache");
-	
-			String toSearch = request.getParameter("toSearch");
-			String marca = request.getParameter("marca");
-			double prezzoMin = Double.parseDouble(request.getParameter("prezzoMin"));
-			double prezzoMax = Double.parseDouble(request.getParameter("prezzoMax"));
-			String colore = request.getParameter("colore");
+			String toSearch, marca, colore;
+			double prezzoMin, prezzoMax;
+			
+			toSearch = request.getParameter("toSearch");
+			if(toSearch == null) {
+				toSearch = "";
+			}
+
+			marca = request.getParameter("marca");
+			if(marca == null) {
+				marca = "";
+			}
+
+			if(!request.getParameter("prezzoMin").equals("")) {
+				prezzoMin = Double.parseDouble(request.getParameter("prezzoMin"));
+			}
+			else {
+				prezzoMin = 0;
+			}
+			
+			if(!request.getParameter("prezzoMax").equals("")) {
+				prezzoMax = Double.parseDouble(request.getParameter("prezzoMax"));
+			}
+			else {
+				prezzoMax = 99999;
+			}
+
+			colore = request.getParameter("colore");
+			if(colore == null) {
+				colore = "";
+			}
 			
 			response.getWriter().write(new Gson().toJson(model.doRetrieveAdvancedSearch(toSearch, marca, prezzoMin, prezzoMax, colore)));
 		} catch (Exception e) {

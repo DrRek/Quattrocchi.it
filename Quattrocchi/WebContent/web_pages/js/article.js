@@ -140,13 +140,25 @@ function initialize(){
 	}
 }
 
-
+function articlePageViewFunction(idProdotto){
+	window.location.href = '/Quattrocchi/visualizza_prodotto?id='+idProdotto;
+	//$.get("/Quattrocchi/visualizza_prodotto", {id:idProdotto});
+	/*
+	$.ajax({
+		type : "GET",
+		url : "visualizza_prodotto",
+		data : {
+			id : idProdotto
+		},
+		async: false
+	})*/
+}
 
 function formatData(responseText){
 	var toAppend = '';
 	$.each(responseText, function(i, articleObject) {
 		if(articleObject.disponibilità > 0){
-			toAppend += '<div class="block enlarge">'
+			toAppend += '<div class="block enlarge" onClick="articlePageViewFunction('+articleObject.codice+')">' //funzione che viene chiamata per ArticlePageView
 				+'<div class="top">'
 				+ '<ul>'
 				+ '<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>'
@@ -170,9 +182,7 @@ function formatData(responseText){
 			} else {
 				toAppend += '<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>';
 			}
-			toAppend +='<div><a href="articlePage?nome=' + articleObject.nome
-			+ '&marca=' + articleObject.marca + '">Mostra</a></div>'
-			+ '</div>'
+			toAppend +='</div>'
 			+'</div>';
 		}
 	});

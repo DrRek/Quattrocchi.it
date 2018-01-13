@@ -30,7 +30,7 @@
 </head>
 
 <body>
-	<!-- Includere Header.jsp -->
+	<%@ include file="../view/FutureHeader.jsp"%>
 	<br><br><br><br>
 	<%
 		if (acquirente == null) {

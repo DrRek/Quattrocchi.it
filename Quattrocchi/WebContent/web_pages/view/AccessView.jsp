@@ -31,7 +31,7 @@
 </head>
 
 <body>
-	<!--  Da inserire Header -->
+	<%@ include file="../view/FutureHeader.jsp"%>
 	<br><br><br><br>
 	<% if(acquirente != null || admin !=  null) {%>
 

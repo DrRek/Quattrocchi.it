@@ -37,7 +37,7 @@
 </head>
 
 <body>
-	<%@ include file="../view/Header.jsp"%>
+	<%@ include file="../view/FutureHeader.jsp"%>
 	<script>
 		$(document).ready(function() {
 			$("#azione").click(function() {

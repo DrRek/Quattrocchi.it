@@ -76,7 +76,7 @@ public class CreditCardModel {
 			
 			while(rs.next()) {
 				String idCarta  = rs.getString("IdCarta");
-				String numeroCC  = rs.getString("NumeroCC"); //da cambiare nel db
+				String numeroCC  = rs.getString("NumeroCC"); 
 				String intestatario = rs.getString("Intestatario");
 				String circuito = rs.getString("Circuito");
 				Date dataScadenza = rs.getTimestamp("DataScadenza");
@@ -98,5 +98,47 @@ public class CreditCardModel {
 		}
 		
 		return beans;
+	}
+	
+	public void createCreditCard(CreditCard toCreate) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String query = "INSERT INTO " + TABLE_NAME_CREDITCARD + 
+				" (IdCarta,NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente)" +
+				" VALUES(?,?,?,?,?,?,?);";
+		
+		String codice = toCreate.getIdCarta();
+		String numeroCC = toCreate.getNumeroCC();
+		String intestatario = toCreate.getIntestatario();
+		String circuito = toCreate.getCircuito();
+		Date dataScadenza = toCreate.getDataScadenza();
+		int cvccvv = toCreate.getCvv();
+		String acquirente = toCreate.getAcquirente().getUsername();
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, codice);
+			stm.setString(2, numeroCC);
+			stm.setString(3, intestatario);
+			stm.setString(4, circuito);
+			stm.setDate(5, (java.sql.Date) dataScadenza);
+			stm.setInt(6, cvccvv);
+			stm.setString(7, acquirente);
+			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return;
 	}
 }

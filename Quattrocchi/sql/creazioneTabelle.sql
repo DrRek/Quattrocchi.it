@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS quattrocchiDB;
+﻿DROP DATABASE IF EXISTS quattrocchiDB;
 create schema quattrocchiDB;
 
 use quattrocchiDB;
@@ -48,7 +48,7 @@ create table IndirizzoSpedizione(
 
 create table CartaCredito(
 	IdCarta	varchar(10) primary key,
-	NumeroCC decimal(16) not null,
+	NumeroCC varchar(16) not null,
 	Intestatario varchar(40) not null,
 	Circuito varchar(20) not null,
 	DataScadenza date not null,

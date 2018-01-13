@@ -1,23 +1,24 @@
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
+th{text-align:center;}
+td{text-align:center;}
+#prod, #qta{text-align:left;}
+.prodotto,.qta{text-align: left;}
 .table-striped>tbody>tr:nth-child(odd)>td,
-	.table-striped>tbody>tr:nth-child(odd)>th { background-color: #cccccc;}
+	.table-striped>tbody>tr:nth-child(odd)>th { background-color: #f5f5f5;}
 @media screen and (max-width: 600px) {
-    table#cartElementsElements tbody td .form-control{
-		width:20%;
+    table#cartElements tbody td .form-control{
 		display: inline !important;
 	}
 	.actions .btn{
 		width:36%;
 		margin:1.5em 0;
 	}
-	
+	th{text-align:left;}
+	td{text-align:left;}
 	table#cartElements thead { display: none; }
 	table#cartElements tbody td { display: block; padding: .6rem; }
-	table#cartElements tbody td:before {
-		content: attr(data-th); font-weight: bold;
-		display: inline-block; width: 8rem;
-	}
+	
 	
 }

@@ -49,8 +49,8 @@ public class OrderModel {
 				String corriere = rs.getString("Corriere");
 				
 				
-				
-				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,acq,indirizzo,carta);
+				//aggiungere lista di prodotti
+				bean = new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,acq,indirizzo,carta,null);
 				
 			}
 			
@@ -96,8 +96,9 @@ public class OrderModel {
 				String numTracking = rs.getString("NumeroTracking");
 				String corriere = rs.getString("Corriere");
 				
+				//aggiungere lista di prodotti
 				beans.add(new Order(codice,dataEx,prezzo,statoOrdine,
-						dataConsegna,numTracking,corriere,acq,indirizzo,carta));
+						dataConsegna,numTracking,corriere,acq,indirizzo,carta,null));
 			}
 			
 			stm.close();
@@ -167,6 +168,9 @@ public class OrderModel {
 		return;
 	}	
 	
+	
+	
+	
 	public void updateOrder(Order toUpdate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -205,4 +209,7 @@ public class OrderModel {
 		}
 		return;
 	}
+	
+	
+	
 }

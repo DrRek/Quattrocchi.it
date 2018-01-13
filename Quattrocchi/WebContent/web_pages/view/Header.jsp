@@ -7,7 +7,6 @@
 <%
 	Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
 	GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
-	Cart crt = (Cart) request.getSession().getAttribute("cart");
 %>
 <%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*"%>
@@ -46,13 +45,13 @@
 				<li style="margin-right:10px"><span><img src="../image/cart.png" alt="carrello:"
 					style="max-height: 50px;"></span>
 				<%
-						if (crt == null) {
+						if (usr.getCart() == null) {
 					%>
 				<span style="color:white"><a id="count" href="checkout">0</a></span></li>
 				<%
 						} else {
 					%>
-				<span style="color:white"><a id="count" href="checkout"><%=crt.getNumeroDiArticoli()%></span></a></li>
+				<span style="color:white"><a id="count" href="checkout"><%=usr.getCart().getNumeroDiArticoli()%></span></a></li>
 				<%
 							}
 						}

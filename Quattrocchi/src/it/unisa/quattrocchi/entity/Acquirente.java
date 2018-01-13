@@ -14,6 +14,7 @@ public class Acquirente {
 	private Date dataNascita;
 	private ArrayList<CreditCard> cc;
 	private ArrayList<ShippingAddress> shipAdd;
+	private Cart cart;
 	
 	public Acquirente(String username, String password, String nome, String cognome, String email, Date dataNascita) {
 		this.username = username;
@@ -87,14 +88,18 @@ public class Acquirente {
 	public void setDataNascita(Date dataNascita) {
 		this.dataNascita = dataNascita;
 	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 	
 	@Override
 	public String toString() {
 		return "Acquirente [username=" + username + ", password=" + password + ", nome=" + nome + ", cognome=" + cognome
 				+ ", email=" + email + ", dataNascita=" + dataNascita + "]";
 	}
-	
-	
-	
-
 }

@@ -1,15 +1,14 @@
 package it.unisa.quattrocchi.entity;
 
-import java.util.List;
+import java.util.Map;
 
 public class Cart {
 	
 	private double prezzo;
-	private List<ArticoloInStock> articoli;
+	private Map<ArticoloInStock, Integer> articoli;
 	
-	public Cart(double prezzo) {
-		this.prezzo = prezzo;
-		this.articoli = null;
+	public Cart(Map<ArticoloInStock, Integer> articoli) {
+		this.articoli = articoli;
 	}
 
 	public double getPrezzo() {
@@ -20,11 +19,11 @@ public class Cart {
 		this.prezzo = prezzo;
 	}
 
-	public List<ArticoloInStock> getArticoli() {
+	public Map<ArticoloInStock, Integer> getArticoli() {
 		return articoli;
 	}
 
-	public void setArticoli(List<ArticoloInStock> articoli) {
+	public void setArticoli(Map<ArticoloInStock, Integer> articoli) {
 		this.articoli = articoli;
 	}
 	

@@ -66,6 +66,7 @@ public class Login extends HttpServlet{
 					if(acquirente != null) {
 						acquirente.setCc(ccModel.doRetrieveByUser(userid));
 						acquirente.setShipAdd(saModel.doRetrieveByUser(userid));
+						acquirente.setCart(aModel.doRetrieveCartByUser(userid));
 						request.getSession().setAttribute("acquirente", acquirente);
 						System.out.println("Trovato acquirente");
 					} else {

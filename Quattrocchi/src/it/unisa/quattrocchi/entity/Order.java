@@ -1,6 +1,8 @@
 package it.unisa.quattrocchi.entity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
 
@@ -9,12 +11,12 @@ public class Order {
 	private Acquirente acquirente;
 	private ShippingAddress shippingAddress;
 	private CreditCard creditCard;
+	private List<ArticoloInOrder> listaDiArticoli = new ArrayList<>();
 	
-	//aggiungere lista di articoli
 	
 	private double prezzo;
 	public Order(String codice, Date dataEsecuzione, double prezzo, String statoOrdine, Date dataConsegna, String numeroTracking, 
-			String corriere, Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard) {
+			String corriere, Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard,List<ArticoloInOrder> listaDiArticoli) {
 		this.codice = codice;
 		this.statoOrdine = statoOrdine;
 		this.numeroTracking = numeroTracking; 
@@ -25,6 +27,7 @@ public class Order {
 		this.acquirente = acquirente;
 		this.shippingAddress =shippingAddress;
 		this.creditCard = creditCard;
+		this.listaDiArticoli = listaDiArticoli;
 	}
 	
 	public String getCodice() {
@@ -105,6 +108,14 @@ public class Order {
 
 	public void setCreditCard(CreditCard creditCard) {
 		this.creditCard = creditCard;
+	}
+	
+	public List<ArticoloInOrder> getListaArticoliInOrdine(){
+		return listaDiArticoli;
+	}
+	
+	public void setListaArticoliInOrdine(List<ArticoloInOrder> listaNuova) {
+		this.listaDiArticoli = listaNuova;
 	}
 
 	

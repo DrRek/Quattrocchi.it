@@ -16,14 +16,19 @@ import it.unisa.quattrocchi.entity.Acquirente;
 public class VisualizzaProfilo extends HttpServlet{
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
-		dispatcher.forward(request, response);
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
+			dispatcher.forward(request, response);
+		} catch (Exception e) {
+			System.out.println("Errore in Ricerca prodotto avanzata:");
+			e.printStackTrace();
+		}
 		return;
 	}
-	
+
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}

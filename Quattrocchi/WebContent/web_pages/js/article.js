@@ -182,9 +182,7 @@ function formatData(responseText){
 			} else {
 				toAppend += '<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>';
 			}
-			toAppend +='<div><a href="articlePage?nome=' + articleObject.nome
-			+ '&marca=' + articleObject.marca + '">Mostra</a></div>'
-			+ '</div>'
+			toAppend +='</div>'
 			+'</div>';
 		}
 	});

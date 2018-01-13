@@ -20,7 +20,7 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-<link href="css/bootstrap.css" type="text/css" rel="stylesheet"
+<link href="web_pages/css/bootstrap.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 
 <!--Let browser know website is optimized for mobile-->

@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import it.unisa.quattrocchi.entity.Article;
-import it.unisa.quattrocchi.entity.ArticleInStock;
+import it.unisa.quattrocchi.entity.ArticoloInStock;
 
 public class ArticleModel {
 	
@@ -16,97 +15,13 @@ public class ArticleModel {
 	private static final String TABLE_NAME_ORDINE = "quattrocchidb.articoloinorder";
 	private static final String TABLE_NAME_CARRELLO = "quattrocchidb.articoloincarrello";
 	
-	//Metodo cambiato dall'odd, deve cercare solo nel catalogo
-	public Article doRetrieveByIdInStock(String codiceProdotto) throws SQLException {
-		Connection conn = null;
-		PreparedStatement stm = null;
-		Article bean = null;
-
-		String query = "SELECT * FROM " + TABLE_NAME_CATALOGO + " WHERE Codice = ?;";
-
-		try {
-			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
-			stm.setString(1, codiceProdotto);
-			
-			ResultSet rs = stm.executeQuery();
-
-			if(rs.next()) {
-				String codice = rs.getString("Codice");
-				String modello = rs.getString("Modello");
-				String marca = rs.getString("Marca");
-				String img1 = rs.getString("Img1");
-				String img2 = rs.getString("Img2");
-				String img3 = rs.getString("Img3");
-				String descrizione = rs.getString("Descrizione");
-				Double prezzo = rs.getDouble("Prezzo");
-				int disponibilita = rs.getInt("Disponibilita");
-
-				bean = new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita);
-			}
-
-			stm.close();
-			rs.close();
-			conn.commit();
-		} finally {
-			try {
-				if (stm != null)
-					stm.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(conn);
-			}
-		}
-		return bean;
-	}
 	
-	//Metodo cambiato dall'odd, deve cercare solo nel catalogo
-	public List<Article> doRetrieveAllInStock() throws SQLException{
-		Connection conn = null;
-		PreparedStatement stm = null;
-		List<Article> beans = new ArrayList<>();
-
-		String query = "SELECT * FROM " + TABLE_NAME_CATALOGO + ";";
-
-		try {
-			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
-			
-			ResultSet rs = stm.executeQuery();
-
-			while(rs.next()) {
-				String codice = rs.getString("Codice");
-				String modello = rs.getString("Modello");
-				String marca = rs.getString("Marca");
-				String img1 = rs.getString("Img1");
-				String img2 = rs.getString("Img2");
-				String img3 = rs.getString("Img3");
-				String descrizione = rs.getString("Descrizione");
-				Double prezzo = rs.getDouble("Prezzo");
-				int disponibilita = rs.getInt("Disponibilita");
-
-				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
-			}
-
-			stm.close();
-			rs.close();
-			conn.commit();
-		} finally {
-			try {
-				if (stm != null)
-					stm.close();
-			} finally {
-				DriverManagerConnectionPool.releaseConnection(conn);
-			}
-		}
-		return beans;
-	}
-	
-	public List<Article> doRetrieveSimpleSearch(String daCercare) throws SQLException{
+	public List<ArticoloInStock> doRetrieveSimpleSearch(String daCercare) throws SQLException{
 		String query = "select * from "+TABLE_NAME_CATALOGO + " where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
 		
 		Connection conn = null;
 		PreparedStatement stm = null;
-		List<Article> beans = new ArrayList<>();
+		List<ArticoloInStock> beans = new ArrayList<>();
 
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
@@ -120,7 +35,7 @@ public class ArticleModel {
 			System.out.println(stm);
 			
 			ResultSet rs = stm.executeQuery();
-
+			
 			while(rs.next()) {
 				String codice = rs.getString("Codice");
 				String modello = rs.getString("Modello");
@@ -132,7 +47,7 @@ public class ArticleModel {
 				Double prezzo = rs.getDouble("Prezzo");
 				int disponibilita = rs.getInt("Disponibilita");
 
-				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
+				beans.add(new ArticoloInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
 			}
 
 			stm.close();
@@ -148,8 +63,8 @@ public class ArticleModel {
 		}
 		return beans;
 	}
-	
-	public List<Article> doRetrieveAdvancedSearch(String daCercare, String marcaDaCercare, double minPrice, double maxPrice, String colore) throws SQLException{
+			
+	public List<ArticoloInStock> doRetrieveAdvancedSearch(String daCercare, String marcaDaCercare, double minPrice, double maxPrice, String colore) throws SQLException{
 		String query = "select * from "+TABLE_NAME_CATALOGO + " where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?))"
 				+ " and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
 		
@@ -159,7 +74,7 @@ public class ArticleModel {
 		
 		Connection conn = null;
 		PreparedStatement stm = null;
-		List<Article> beans = new ArrayList<>();
+		List<ArticoloInStock> beans = new ArrayList<>();
 
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
@@ -188,7 +103,7 @@ public class ArticleModel {
 				Double prezzo = rs.getDouble("Prezzo");
 				int disponibilita = rs.getInt("Disponibilita");
 
-				beans.add(new ArticleInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
+				beans.add(new ArticoloInStock(codice, modello, marca, img1, img2, img3, descrizione, prezzo, disponibilita));
 			}
 
 			stm.close();
@@ -203,13 +118,5 @@ public class ArticleModel {
 			}
 		}
 		return beans;
-	}
-	
-	
-	//da togliere
-	//cambiato dall'odd, sarebbe il doUpdate
-	public void doSave(Article toSave) {
-		//In teoria non lo dobbiamo implementare perché non ci serve
-		return;
 	}
 }

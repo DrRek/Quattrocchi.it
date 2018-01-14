@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import it.unisa.quattrocchi.entity.Acquirente;
@@ -163,6 +164,7 @@ public class AcquirenteModel {
 			stm.setString(3, cognome);
 			stm.setString(4, email);
 			stm.setDate(5, (java.sql.Date) dataNascita);
+			stm.setString(6, username);
 			
 			stm.executeUpdate();
 			stm.close();
@@ -176,6 +178,77 @@ public class AcquirenteModel {
 			}
 		}
 		return;
+	}
+	
+	public void updateCart(Cart toUpdate, Acquirente acquirente) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+	
+		dropCart(acquirente);
+		
+		String acq = acquirente.getUsername();
+		Map<ArticoloInStock,Integer> mappa = toUpdate.getArticoli();
+		List<ArticoloInStock> articoli = (List<ArticoloInStock>) mappa.keySet();
+		
+		
+		String query = "insert into " + TABLE_NAME_ARTICOLOINCARRELLO + 
+				" values(?,?,?);";
+		
+		for(ArticoloInStock a: articoli) {
+			String codiceArticolo = a.getCodice();
+			int quantità = mappa.get(a);
+			
+			try {
+				conn = DriverManagerConnectionPool.getConnection();
+				stm = conn.prepareStatement(query);
+				
+				stm.setString(1, acq);
+				stm.setString(2, codiceArticolo);
+				stm.setInt(3, quantità);
+				
+				stm.executeUpdate();
+				stm.close();
+				conn.close();
+				
+			}finally {
+				try {
+					if(stm != null)
+						stm.close();
+				}finally {
+					DriverManagerConnectionPool.releaseConnection(conn);
+				}
+			}	
+		}
+	}
+	
+	public void dropCart(Acquirente acquirente) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String acq = acquirente.getUsername();
+		
+		String query = "delete from " + TABLE_NAME_ARTICOLOINCARRELLO + 
+				"where Acquirente = ?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, acq);
+			
+			stm.executeUpdate();
+			stm.clearBatch();
+			conn.close();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		
+		
 	}
 
 }

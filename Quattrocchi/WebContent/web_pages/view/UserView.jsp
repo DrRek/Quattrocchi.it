@@ -57,7 +57,7 @@
 			</div>
 			<div class="col-sm-3">
 				<br> <span class="etichetta">Data di nascita:</span> <span
-					class="value">usr.getDataNascita()</span>
+					class="value"><%=usr.getDataNascita()%></span>
 			</div>
 
 		</div>

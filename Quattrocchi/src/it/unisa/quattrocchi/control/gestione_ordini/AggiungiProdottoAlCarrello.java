@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
+import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/aggiungi_al_carrello")
@@ -19,6 +20,7 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	static ArticoloInStockModel articoloInStockModel = new ArticoloInStockModel();
+	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -29,6 +31,8 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
 			carrello.addArticle(articolo);
+
+			acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
 		} catch (Exception e) {
 			System.out.println("Errore in aggiungi prodotto al carrello");
 			e.printStackTrace();

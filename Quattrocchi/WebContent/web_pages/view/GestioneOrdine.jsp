@@ -89,10 +89,8 @@
 	</div>
 	<br>
 	<div class="container">
-		<form action="/Quattrocchi/inserisciDatiDiSpedizione" method="post">
-             <input type="hidden" name="ordineId" value="<%=ordine.getCodice()%>">
-             <input class="btn btn-outline-secondary " type="submit" name="inserireNOME" value="Conferma" style="float: right;"/>
-        </form>
+		<input class="btn btn-outline-secondary " type="submit"
+			name="inserireNOME" value="Conferma" style="float: right;"/>
 	</div>
 <% } %>
 </body>

@@ -1,12 +1,96 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+	List<Order> ordini = (List<Order>) request.getAttribute("ordini");
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<%@ page contentType="text/html; charset=UTF-8"
+	import="java.util.*,it.unisa.quattrocchi.control.*, it.unisa.quattrocchi.entity.*"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>gestione_ordini</title>
+</head>
+<link href="../css/bootstrap.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
+<link href="../css/gestoreordini.css" type="text/css" rel="stylesheet"
+	media="screen,projection" />
 </head>
 <body>
-
+<% if(gestoreOrdini != null) { %>
+	<div class="container">
+		<h1>Gestione ordini</h1>
+	</div>
+	<div class="container">
+	<%
+		if (ordini != null && ordini.size() != 0) { %>
+		<h3>Da spedire</h3>
+		<table id="inserireID"
+			class="table table-hover table-condensed table-striped">
+			<%
+				int i = 0;
+				while(i < ordini.size()) {
+					if(ordini.get(i).getStatoOrdine().equals("daSpedire")) {
+						
+			%>
+			<tbody>
+				<tr>
+					<td class="prodotto"><%=ordini.get(i).getCodice()%></td>
+					<td class="gestisci"><input class="btn btn-outline-secondary "
+						type="submit" name="inserireNAME" value="Gestisci" /></td>
+				</tr>
+			</tbody>
+			<% 		i++; 
+					}
+				}
+			%>
+		</table>
+		<hr>
+		<h3>In corso</h3>
+		<table id="inserireID"
+			class="table table-hover table-condensed table-striped">
+			<% 	i = 0;
+				while(i < ordini.size()) {
+					if(ordini.get(i).getStatoOrdine().equals("inCorso")) {
+			%>
+			<tbody>
+				<tr>
+					<td class="prodotto"><%=ordini.get(i).getCodice() %></td>
+					<td class="gestisci"><input class="btn btn-outline-secondary "
+						type="submit" name="inserireNAME" value="Gestisci" /></td>
+				</tr>
+			</tbody>
+			<% 		i++;
+					}
+				}
+			%>
+		</table>
+		<h3>Consegnati</h3>
+		<table id="inserireID"
+			class="table table-hover table-condensed table-striped">
+			<% 	i = 0;
+				while(i < ordini.size()) {
+					if(ordini.get(i).getStatoOrdine().equals("consegnato")) {
+			%>
+			<tbody>
+				<tr>
+					<td class="prodotto"><%=ordini.get(i).getCodice()%></td>
+					<td class="gestisci"><input class="btn btn-outline-secondary "
+						type="submit" name="inserireNAME" value="Gestisci" /></td>
+				</tr>
+			</tbody>
+			<% 		i++;
+					}
+				}
+			%>
+			<% } else { %>
+			<p> Nessun ordine da visualizzare </p>
+			<% } %>
+		</table>
+	</div>
+	<% } else { %>
+	<h1> Devi effettuare il login da gestore! </h1>
+	<% } %>
 </body>
 </html>

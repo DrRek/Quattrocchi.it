@@ -209,7 +209,53 @@ public class OrderModel {
 		}
 		return;
 	}
-	
-	
-	
+
+	public List<Order> doRetrieveByAcquirente(Acquirente attribute) throws SQLException {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		List<Order> beans = new ArrayList<>();
+		
+		
+		
+		String query = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			stm.setString(1, attribute.getUsername());
+			
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				String codice = rs.getString("Codice");
+				Date dataEx = rs.getDate("DataEsecuzione");
+				double prezzo = rs.getDouble("Prezzo");
+				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
+				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
+				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
+				String statoOrdine = rs.getString("StatoOrdine");
+				Date dataConsegna = rs.getDate("DataConsegna");
+				String numTracking = rs.getString("NumeroTracking");
+				String corriere = rs.getString("Corriere");
+				
+				List<ArticoloInOrder> listaArticoliAssociata = new ArrayList<>();
+				listaArticoliAssociata = articoloInOrderModel.restituisciArticoliAssociatiAdUnOrdine(codice);
+				
+				beans.add(new Order(codice,dataEx,prezzo,statoOrdine,dataConsegna,numTracking,corriere,acq,indirizzo,carta,listaArticoliAssociata));
+			}
+			
+			stm.close();
+			rs.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		
+		return beans;
+	}
 }

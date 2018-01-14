@@ -75,5 +75,8 @@ public class CreditCard {
 		this.acquirente = acquirente;
 	}
 	
+	public String getLastCC() {
+		return numeroCC.substring(11);
+	}
 	
 }

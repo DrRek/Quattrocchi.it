@@ -63,7 +63,7 @@
 				<%
 					} else if (usr != null) {
 				%>
-				<li><a href="user">Benvenuto, <%=usr.getUsername()%></a></li>
+				<li><a href="profilo">Benvenuto, <%=usr.getUsername()%></a></li>
 				<li><a href="user?action=logout">logout</a></li>
 				<%
 						} else if (gestoreOrdini != null) {

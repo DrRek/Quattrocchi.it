@@ -171,9 +171,6 @@ public class OrderModel {
 		return;
 	}	
 	
-	
-	
-	
 	public void updateOrder(Order toUpdate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;

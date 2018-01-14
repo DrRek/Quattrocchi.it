@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
@@ -180,19 +181,18 @@ public class AcquirenteModel {
 		return;
 	}
 	
-	public void updateCart(Cart toUpdate, Acquirente acquirente) throws SQLException{
+	public void updateCart(Acquirente acquirente) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 	
 		dropCart(acquirente);
 		
 		String acq = acquirente.getUsername();
-		Map<ArticoloInStock,Integer> mappa = toUpdate.getArticoli();
-		List<ArticoloInStock> articoli = (List<ArticoloInStock>) mappa.keySet();
+		Map<ArticoloInStock,Integer> mappa = acquirente.getCart().getArticoli();
+		Set<ArticoloInStock> articoli = mappa.keySet();
 		
 		
-		String query = "insert into " + TABLE_NAME_ARTICOLOINCARRELLO + 
-				" values(?,?,?);";
+		String query = "insert into " + TABLE_NAME_ARTICOLOINCARRELLO + " values(?,?,?)";
 		
 		for(ArticoloInStock a: articoli) {
 			String codiceArticolo = a.getCodice();
@@ -228,13 +228,14 @@ public class AcquirenteModel {
 		String acq = acquirente.getUsername();
 		
 		String query = "delete from " + TABLE_NAME_ARTICOLOINCARRELLO + 
-				"where Acquirente = ?;";
+				" where Acquirente = ?";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
 			
 			stm.setString(1, acq);
+			System.out.println(stm);
 			
 			stm.executeUpdate();
 			stm.clearBatch();

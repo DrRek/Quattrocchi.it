@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
+import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 
@@ -19,6 +20,7 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	static ArticoloInStockModel articoloInStockModel = new ArticoloInStockModel();
+	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -29,6 +31,8 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
 			carrello.removeArticle(articolo);
+
+			acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");
 			dispatcher.forward(request, response);

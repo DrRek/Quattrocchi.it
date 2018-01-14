@@ -43,7 +43,7 @@
 	%>
 	<div class="container">
 
-		<h2>Ciao, <%=usr.getUsername() %>></h2>
+		<h2>Ciao, <%=usr.getUsername() %></h2>
 		<div class="row">
 			<div class="col-sm-3">
 				<br> <span class="etichetta">Email:</span> <span class="value"><%=usr.getEmail()%></span>
@@ -57,7 +57,7 @@
 			</div>
 			<div class="col-sm-3">
 				<br> <span class="etichetta">Data di nascita:</span> <span
-					class="value">usr.getDataNascita()</span>
+					class="value"><%=usr.getDataNascita()%></span>
 			</div>
 
 		</div>

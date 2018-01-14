@@ -66,8 +66,12 @@
 			<tbody>
 				<tr>
 					<td><%=ordini.get(i).getCodice() %></td>
-					<td><input class="btn btn-outline-secondary "
-						type="submit" name="inserireNAME" value="Gestisci" /></td>
+					<td>
+					<form action="/Quattrocchi/gestioneOrdiniInCorso" method="post">
+                            <input type="hidden" name="ordineId" value="<%=ordini.get(i).getCodice()%>">
+                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
+                    </form>
+					</td>
 				</tr>
 			</tbody>
 			<% 		}

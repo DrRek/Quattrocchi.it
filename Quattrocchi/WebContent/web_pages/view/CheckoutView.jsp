@@ -2,14 +2,14 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	Cart cart = (Cart) request.getSession().getAttribute("cart");
-	UserBean user = (UserBean) request.getSession().getAttribute("user");
+	Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
+	Cart cart = usr.getCart();
 %>
 
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*,it.quattrocchi.support.*, it.quattrocchi.*"%>
+	import="java.util.*,it.unisa.quattrocchi.control.*, it.unisa.quattrocchi.entity.*"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -31,8 +31,8 @@
 
 </head>
 <body>
-	​​​​​​​​​​​​
-	<%@ include file="Header.jsp"%>
+	
+	<%@ include file="../view/Header.jsp"%>
 	<br>
 	<br>
 	<div class="container">
@@ -47,7 +47,11 @@
 	<%
 		} else if(cart!=null && user !=null) {
 	%>
-	<div class="container" id="divCartElements"></div>
+	<div class="container" id="divCartElements">
+		<%
+			Map<ArticoloInStock, Integer> map = cart.getArticoli();
+		%>
+	</div>
 	<%
 		}
 	%>

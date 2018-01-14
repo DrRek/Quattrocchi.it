@@ -12,6 +12,10 @@ public class Cart {
 	}
 
 	public double getPrezzo() {
+		double prezzo = 0;
+		for(ArticoloInStock i : articoli.keySet()) {
+			prezzo= prezzo + (i.getPrezzo()*articoli.get(i));
+		}
 		return prezzo;
 	}
 
@@ -28,6 +32,10 @@ public class Cart {
 	}
 	
 	public int getNumeroDiArticoli() {
-		return articoli.size();
+		int size = 0;
+		for(int i : articoli.values()) {
+			size+=i;
+		}
+		return size;
 	}
 }

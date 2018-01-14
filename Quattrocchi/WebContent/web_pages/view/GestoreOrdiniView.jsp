@@ -20,6 +20,8 @@
 	media="screen,projection" />
 </head>
 <body>
+<%@ include file="../view/Header.jsp"%>
+	<br><br><br><br>
 <% if(gestoreOrdini != null) { 
 	System.out.println("Gestore != null ");
 %>

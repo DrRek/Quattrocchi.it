@@ -6,7 +6,7 @@
 
 <%
 	Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
-	GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+	GestoreOrdini gestore = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
 %>
 <%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*"%>
@@ -24,7 +24,7 @@
 			<a class="navbar-brand  navbar-brand-left" href="/Quattrocchi/">Quattrocchi.it</a>
 		</div>
 		<%
-						if (gestoreOrdini == null) {
+						if (gestore == null) {
 					%>
 		<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-centered">
@@ -57,7 +57,7 @@
 							}
 						}
 					}
-					if (usr == null && gestoreOrdini == null) {
+					if (usr == null && gestore == null) {
 				%>
 				<li><a href="access">Login / Register</a></li>
 				<%
@@ -66,7 +66,7 @@
 				<li><a href="profilo">Benvenuto, <%=usr.getUsername()%></a></li>
 				<li><a href="user?action=logout">logout</a></li>
 				<%
-						} else if (gestoreOrdini != null) {
+						} else if (gestore != null) {
 					%>
 					<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-centered">

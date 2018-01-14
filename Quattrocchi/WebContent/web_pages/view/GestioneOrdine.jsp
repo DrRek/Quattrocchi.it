@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%
 	GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
 	System.out.println("Preso gestore");
@@ -8,10 +8,10 @@
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<%@ page contentType="text/html; charset=ISO-8859-1"
+<%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*,it.unisa.quattrocchi.control.*, it.unisa.quattrocchi.entity.*"%>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="web_pages/css/bootstrap.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 <link href="web_pages/css/gestoreordini.css" type="text/css" rel="stylesheet"
@@ -19,6 +19,8 @@
 <title>Gestione Ordine</title>
 </head>
 <body>
+<%@ include file="../view/Header.jsp"%>
+	<br><br><br><br>
 <% if(gestoreOrdini != null && ordine != null) { 
 	System.out.println("Gestore != null ");
 %>
@@ -37,7 +39,7 @@
 			class="table table-hover table-condensed table-striped">
 			<thead>
 				<th style="width: 40%" id="prod">Prodotto</th>
-				<th style="width: 20%">Quantità</th>
+				<th style="width: 20%">QuantitÃ </th>
 				<th style="width: 40%">Prezzo</th>
 			</thead>
 			<tbody>
@@ -50,7 +52,7 @@
 						<h3 class="nomargin nomeArt"><%=ordine.getListaArticoliInOrdine().get(i).getModello() %></h3>
 						<p class="marcaArt"><%=ordine.getListaArticoliInOrdine().get(i).getMarca() %></p>
 					</td>
-					<td><%=ordine.getListaArticoliInOrdine().get(i).getQuantità() %></td>
+					<td><%=ordine.getListaArticoliInOrdine().get(i).getQuantitÃ () %></td>
 					<td class="prezzoArt "><%=ordine.getListaArticoliInOrdine().get(i).getPrezzo() %></td>
 				</tr>
 			<%
@@ -62,7 +64,7 @@
 	</div>
 	<div class="container">
 		<h3>Indirizzo di consegna</h3>
-		<p>Via Gramsci 9 Aversa 81031 CE Italia</p>
+		<p><%=ordine.getShippingAddress().getIndirizzo() %>, <%=ordine.getShippingAddress().getStato() %> <%=ordine.getShippingAddress().getProvincia() %></p>
 	</div>
 	<div class="container">
 		<h3>Corriere</h3>

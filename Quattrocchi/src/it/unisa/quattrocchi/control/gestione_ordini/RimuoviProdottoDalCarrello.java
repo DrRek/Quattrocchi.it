@@ -1,7 +1,6 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-import java.sql.SQLException;
-
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +11,10 @@ import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
-@WebServlet("/aggiungi_al_carrello")
 
-public class AggiungiProdottoAlCarrello extends HttpServlet{
+@WebServlet("/rimuovi_dal_carrello")
+
+public class RimuoviProdottoDalCarrello extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +28,10 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 			
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
-			carrello.addArticle(articolo);
+			carrello.removeArticle(articolo);
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");
+			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Errore in aggiungi prodotto al carrello");
 			e.printStackTrace();

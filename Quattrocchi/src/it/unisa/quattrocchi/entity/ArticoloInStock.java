@@ -82,4 +82,17 @@ public class ArticoloInStock {
 		return "ArticoloInStock [codice=" + codice + ", modello=" + modello + ", marca=" + marca + ", descrizione="
 				+ descrizione + ", prezzo=" + prezzo + ", disponibilità=" + disponibilità + "]";
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(codice.equals(((ArticoloInStock) o).getCodice())){
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+	    return codice.hashCode();
+	}
 }

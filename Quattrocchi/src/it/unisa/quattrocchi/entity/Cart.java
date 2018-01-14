@@ -38,4 +38,16 @@ public class Cart {
 		}
 		return size;
 	}
+
+	public void addArticle(ArticoloInStock a) {
+		articoli.put(a, articoli.getOrDefault(a, 0)+1);
+	}
+
+	public void removeArticle(ArticoloInStock articolo) {
+		articoli.remove(articolo);
+	}
+
+	public void setArticle(ArticoloInStock articolo, int quantità) {
+		articoli.put(articolo, quantità);
+	}
 }

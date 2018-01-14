@@ -140,4 +140,45 @@ public class CreditCardModel {
 		}
 		return;
 	}
+	
+	public void updateCreditCard(CreditCard toUpdate) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String idCarta = toUpdate.getIdCarta();
+		String numeroCC = toUpdate.getNumeroCC();
+		String intestatario = toUpdate.getIntestatario();
+		String circuito = toUpdate.getCircuito();
+		Date dataScadenza = toUpdate.getDataScadenza();
+		int cvccvv = toUpdate.getCvv();
+		String acquirente = toUpdate.getAcquirente().getUsername();
+		
+		String query = "update " + TABLE_NAME_CREDITCARD + " set NumeroCC = ?, Intestatario = ?,Circuito = ?,DataScadenza = ?,CvcCvv = ? "+
+		"where IdCarta = ? AND Acquirente = ?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, numeroCC);
+			stm.setString(2, intestatario);
+			stm.setString(3, circuito);
+			stm.setDate(4, (java.sql.Date) dataScadenza);
+			stm.setInt(5, cvccvv);
+			stm.setString(6, idCarta);
+			stm.setString(7, acquirente);
+			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return;
+	}
 }

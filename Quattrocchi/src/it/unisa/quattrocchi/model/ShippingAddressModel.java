@@ -138,4 +138,45 @@ public class ShippingAddressModel {
 		return;
 	}
 	
+	public void updateShippingAddress(ShippingAddress toUpdate) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String id = toUpdate.getCodice();
+		String stato = toUpdate.getStato();
+		String provincia = toUpdate.getProvincia();
+		int cap = toUpdate.getCap();
+		String indirizzo = toUpdate.getIndirizzo();
+		int numeroCivico = toUpdate.getNC();
+		String acquirente = toUpdate.getAcq().getUsername();
+		
+		String query = "update " + TABLE_NAME_ADDRESS + " set Stato = ?, Provincia = ?, CAP = ?, Indirizzo = ?, NumeroCivico = ?"
+				+ " where Id = ? AND Acquirente = ?";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, stato);
+			stm.setString(2, provincia);
+			stm.setInt(3, cap);
+			stm.setString(4, indirizzo);
+			stm.setInt(5, numeroCivico);
+			stm.setString(6, id);
+			stm.setString(7, acquirente);
+			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return;
+	}
+	
 }

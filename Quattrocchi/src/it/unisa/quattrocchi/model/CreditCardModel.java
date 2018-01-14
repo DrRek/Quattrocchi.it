@@ -10,7 +10,6 @@ import java.util.List;
 
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.CreditCard;
-import it.unisa.quattrocchi.entity.ShippingAddress;
 
 public class CreditCardModel {
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
@@ -167,6 +166,34 @@ public class CreditCardModel {
 			stm.setInt(5, cvccvv);
 			stm.setString(6, idCarta);
 			stm.setString(7, acquirente);
+			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return;
+	}
+	
+	public void deleteCreditCard(CreditCard toUpdate) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String codice = toUpdate.getIdCarta();
+		
+		String query = "delete from " + TABLE_NAME_CREDITCARD + " where IdCarta = ?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, codice);
 			
 			stm.executeUpdate();
 			stm.close();

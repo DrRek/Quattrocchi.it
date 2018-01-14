@@ -137,5 +137,45 @@ public class AcquirenteModel {
 		}
 		return bean;
 	}
+	
+	public void updateAcquirente(Acquirente toUpdate) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String username = toUpdate.getUsername();
+		String password = toUpdate.getPassword();
+		String nome = toUpdate.getNome();
+		String cognome = toUpdate.getCognome();
+		String email = toUpdate.getEmail();
+		Date dataNascita = toUpdate.getDataNascita();
+		
+		Cart carrello = toUpdate.getCart();
+		
+		String query = "update " + TABLE_NAME_ACQUIRENTE + " set Pwd = ?, Nome = ?, Cognome = ?,Email = ?, DataNascita = ?" +
+		" where Username = ?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, password);
+			stm.setString(2, nome);
+			stm.setString(3, cognome);
+			stm.setString(4, email);
+			stm.setDate(5, (java.sql.Date) dataNascita);
+			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return;
+	}
 
 }

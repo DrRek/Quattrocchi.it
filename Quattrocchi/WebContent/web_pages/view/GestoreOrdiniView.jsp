@@ -45,8 +45,8 @@
 			%>
 			<tbody>
 				<tr>
-					<td class="prodotto"><%=ordini.get(i).getCodice()%></td>
-					<td class="gestisci"><input class="btn btn-outline-secondary "
+					<td><%=ordini.get(i).getCodice()%></td>
+					<td><input class="btn btn-outline-secondary "
 						type="submit" name="inserireNAME" value="Gestisci" /></td>
 				</tr>
 			</tbody>
@@ -65,8 +65,8 @@
 			%>
 			<tbody>
 				<tr>
-					<td class="prodotto"><%=ordini.get(i).getCodice() %></td>
-					<td class="gestisci"><input class="btn btn-outline-secondary "
+					<td><%=ordini.get(i).getCodice() %></td>
+					<td><input class="btn btn-outline-secondary "
 						type="submit" name="inserireNAME" value="Gestisci" /></td>
 				</tr>
 			</tbody>
@@ -84,8 +84,8 @@
 			%>
 			<tbody>
 				<tr>
-					<td class="prodotto"><%=ordini.get(i).getCodice()%></td>
-					<td class="gestisci"><input class="btn btn-outline-secondary "
+					<td><%=ordini.get(i).getCodice()%></td>
+					<td><input class="btn btn-outline-secondary "
 						type="submit" name="inserireNAME" value="Gestisci" /></td>
 				</tr>
 			</tbody>

@@ -10,9 +10,13 @@
 .table>tbody>tr>td, .table>tfoot>tr>td{
     vertical-align: middle;
 }
+.table-striped>tbody>tr:nth-child(odd)>td,
+	.table-striped>tbody>tr:nth-child(odd)>th { background-color: #f5f5f5;}
 @media screen and (max-width: 600px) {
-    table tbody td .form-control{
-		width:20%;
+    #cards td .form-control{
+		display: inline !important;
+	}
+	#indirizzi td .form-control{
 		display: inline !important;
 	}
 	.actions .btn{
@@ -21,12 +25,8 @@
 	}
 	
 	table thead { display: none; }
-	table tbody td { display: block; padding: .6rem; }
-	table tbody tr td:first-child { background: #e4e4e4; color:white; }
-	table tbody td:before {
-		content: attr(data-th); font-weight: bold;
-		display: inline-block; width: 8rem;
-	}
+	#cards td { display: block; padding: .6rem; }
+	#indirizzi td { display: block; padding: .6rem; }
 	
 
 	

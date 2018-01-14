@@ -28,8 +28,7 @@ public class VisualizzaStoricoOrdini extends HttpServlet{
 			e.printStackTrace();
 		}
 		
-		// quale pagina?
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
 		dispatcher.forward(request, response);
 		return;
 	}

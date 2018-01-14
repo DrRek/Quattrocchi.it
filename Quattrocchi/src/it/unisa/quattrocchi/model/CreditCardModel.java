@@ -34,12 +34,11 @@ public class CreditCardModel {
 			ResultSet rs = stm.executeQuery();
 			
 			if(rs.next()) {
-				String numeroCC  = rs.getString("NumeroCC"); //da cambiare nel db
+				String numeroCC  = rs.getString("NumeroCC");
 				String intestatario = rs.getString("Intestatario");
 				String circuito = rs.getString("Circuito");
 				Date dataScadenza = rs.getTimestamp("DataScadenza");
 				int cvv = rs.getInt("CvcCvv");
-				String indirizzo = rs.getString("Indirizzo");
 				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				
 				bean = new CreditCard(idCarta, numeroCC, intestatario, circuito , dataScadenza, cvv, acq);

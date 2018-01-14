@@ -14,9 +14,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>gestione_ordini</title>
 </head>
-<link href="../css/bootstrap.css" type="text/css" rel="stylesheet"
+<link href="web_pages/css/bootstrap.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
-<link href="../css/gestoreordini.css" type="text/css" rel="stylesheet"
+<link href="web_pages/css/gestoreordini.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 </head>
 <body>

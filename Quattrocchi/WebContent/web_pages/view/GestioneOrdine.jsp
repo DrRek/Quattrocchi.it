@@ -63,37 +63,37 @@
 		<h3>Indirizzo di consegna</h3>
 		<p><%=ordine.getShippingAddress().getIndirizzo() %>, <%=ordine.getShippingAddress().getStato() %> <%=ordine.getShippingAddress().getProvincia() %></p>
 	</div>
-	<div class="container">
-		<h3>Corriere</h3>
-		<select class="form-control">
-			<option value="sda">SDA</option>
-			<option value="dhl">DHL</option>
-			<option value="bartolini">Bartolini</option>
-			<option value="poste">Poste</option>
-		</select>
-	</div>
-	<div class="container">
-		<h3>Numero tracking</h3>
-		<input class="form-control" name="tracking" type="text"
-			value="123456789" />
-	</div>
-	<div class="container">
-		<h3>Stato ordine</h3>
-		<form>
-			<label class="radio-inline"><input type="radio"
-				name="statoOrdine" value="daSpedire" checked>Da spedire</label> <label
-				class="radio-inline"><input type="radio" name="statoOrdine"
-				value="inCorso">In corso</label> <label class="radio-inline"><input
-				type="radio" name="statoOrdine" value="terminato">Terminato</label>
-		</form>
-	</div>
-	<br>
-	<div class="container">
-		<form action="/Quattrocchi/inserisciDatiDiSpedizione" method="post">
-             <input type="hidden" name="ordineId" value="<%=ordine.getCodice()%>">
-             <input class="btn btn-outline-secondary " type="submit" name="inserireNOME" value="Conferma" style="float: right;"/>
-        </form>
-	</div>
+	<form action="/Quattrocchi/inserisciDatiDiSpedizione" method="post">
+    	<input type="hidden" name="ordineId" value="<%=ordine.getCodice()%>">
+		<div class="container">
+			<h3>Corriere</h3>
+			<select class="form-control" name = "corriere">
+				<option value="sda">SDA</option>
+				<option value="dhl">DHL</option>
+				<option value="bartolini">Bartolini</option>
+				<option value="poste">Poste</option>
+			</select>
+		</div>
+		<div class="container">
+			<h3>Numero tracking</h3>
+			<input class="form-control" name="tracking" type="text"
+				value="123456789" />
+		</div>
+		<div class="container">
+			<h3>Stato ordine</h3>
+			
+				<label class="radio-inline"><input type="radio"
+					name="statoOrdine" value="Da spedire" checked>Da spedire</label> <label
+					class="radio-inline"><input type="radio" name="statoOrdine"
+					value="In corso">In corso</label> <label class="radio-inline"><input
+					type="radio" name="statoOrdine" value="consegnato">Terminato</label>
+				
+		</div>
+		<br>
+		<div class="container">
+	      <input class="btn btn-outline-secondary " type="submit" name="inserireNOME" value="Conferma" style="float: right;"/>
+		</div>
+	</form>
 <% } %>
 </body>
 </html>

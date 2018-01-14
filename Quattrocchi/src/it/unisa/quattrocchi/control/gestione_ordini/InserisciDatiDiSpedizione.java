@@ -23,10 +23,13 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
 			Order orderToUpdate = orderModel.doRetrieveById(request.getParameter("ordineId"));
-			//orderToUpdate.setCorriere(request.getParameter("corriere"));
-			//orderToUpdate.setNumeroTracking(request.getParameter("tracking"));
-			//orderToUpdate.setStatoOrdine(request.getParameter("statoOrdine"));
-			//orderToUpdate.setStatoOrdine("In corso");
+			orderToUpdate.setCorriere(request.getParameter("corriere"));
+			String tracking = request.getParameter("tracking");
+			if(tracking == null) { //aggiungere controlli
+				return;
+			}
+			orderToUpdate.setNumeroTracking(tracking);
+			orderToUpdate.setStatoOrdine(request.getParameter("statoOrdine"));
 			orderModel.updateOrder(orderToUpdate);
 			request.getSession().setAttribute("ordini", orderModel.doRetrieveAll());			
 		} catch (SQLException e) {

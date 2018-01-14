@@ -1,6 +1,6 @@
 $(document).ready(function() {
-
-	updateTable();
+	
+	//updateTable();
 	//initializeCart();
 
 	$("body").on("change","input[name='quantitaPezzi']",
@@ -159,7 +159,7 @@ $(document).ready(function() {
 		formatData(dati_carrello, prescrizioni_disponibili)
 	}
 	
-	function formatData(cart, presc){
+	function formatData(cart){
 		var toAppend = '<table id="cartElements"class="table table-hover table-condensed">'
 			+'<thead><th style="width:20%">Prodotto</th>'
 			+'<th style="width:10%" >Tipo</th>'
@@ -180,26 +180,8 @@ $(document).ready(function() {
 			toAppend+='<td data-th="Tipo" class="tipoArt ">' + prod.articolo.tipo + '</td>'
 			
 			toAppend += '<td data-th="Gradazione" class="gradazioneArt ">'
-				if(prod.articolo.tipo == "O"){
-					toAppend += '<select class="form-control" class="gradazioneArt">';
-					var find=false;
-					jQuery.each(presc, function(index, pre) {
-						if(prod.prescrizione!=null&&pre.codice == prod.prescrizione.codice){
-							toAppend += '<option value="'+pre.codice+'" selected>'+pre.codice+'</option>';
-							find=true;
-						}else{
-							toAppend += '<option value="'+pre.codice+'">'+pre.codice+'</option>';
-						}
-					});
-					if(find){
-						toAppend += '<option value="Neutro">Neutro</option>';
-					}else{
-						toAppend += '<option value="Neutro" selected>Neutro</option>';
-					}
-					toAppend += '</select>';
-				}
-				else
-					toAppend+= prod.articolo.gradazione;
+				
+			toAppend+= prod.articolo.gradazione;
 
 			toAppend += '</td>';
 

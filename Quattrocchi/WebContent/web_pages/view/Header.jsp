@@ -21,7 +21,7 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand  navbar-brand-left" href="article">Quattrocchi.it</a>
+			<a class="navbar-brand  navbar-brand-left" href="/Quattrocchi/">Quattrocchi.it</a>
 		</div>
 		<%
 						if (gestoreOrdini == null) {
@@ -45,22 +45,24 @@
 				<li style="margin-right:10px"><span><img src="../image/cart.png" alt="carrello:"
 					style="max-height: 50px;"></span>
 				<%
+					if(usr != null){
 						if (usr.getCart() == null) {
 					%>
 				<span style="color:white"><a id="count" href="checkout">0</a></span></li>
 				<%
 						} else {
 					%>
-				<span style="color:white"><a id="count" href="checkout"><%=usr.getCart().getNumeroDiArticoli()%></span></a></li>
+				<span style="color:white"><a id="count" href="visualizza_carrello"><%=usr.getCart().getNumeroDiArticoli()%></span></a></li>
 				<%
 							}
 						}
-						if (usr == null && gestoreOrdini == null) {
-					%>
+					}
+					if (usr == null && gestoreOrdini == null) {
+				%>
 				<li><a href="access">Login / Register</a></li>
 				<%
-						} else if (usr != null) {
-					%>
+					} else if (usr != null) {
+				%>
 				<li><a href="user">Benvenuto, <%=usr.getUsername()%></a></li>
 				<li><a href="user?action=logout">logout</a></li>
 				<%

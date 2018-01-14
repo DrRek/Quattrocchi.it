@@ -179,4 +179,31 @@ public class ShippingAddressModel {
 		return;
 	}
 	
+	public void deleteShippingAddress(ShippingAddress toUpdate) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String codice = toUpdate.getCodice();
+		
+		String query = "delete from " + TABLE_NAME_ADDRESS + " where Id = ?;";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, codice);
+			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return;
+	}
 }

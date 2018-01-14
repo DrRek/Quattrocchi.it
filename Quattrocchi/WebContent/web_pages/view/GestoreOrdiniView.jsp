@@ -2,9 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%
 	GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
-	System.out.println("Preso gestore");
 	List<Order> ordini = (List<Order>) request.getSession().getAttribute("ordini");
-	System.out.println("ordini nella JSP " + ordini.size());
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -23,7 +21,6 @@
 <%@ include file="../view/Header.jsp"%>
 	<br><br><br><br>
 <% if(gestoreOrdini != null) { 
-	System.out.println("Gestore != null ");
 %>
 	<div class="container">
 		<h1>Gestione ordini</h1>
@@ -31,19 +28,14 @@
 	<div class="container">
 	<%
 		if (ordini != null && ordini.size() != 0) { 
-			System.out.println("Ordini != null e Ordini.size() != 0");
 		%>
 		<h3>Da spedire</h3>
 		<table id="inserireID"
 			class="table table-hover table-condensed table-striped">
 			<%
 				int i = 0;
-				System.out.println("Inizializzata i");
 				while(i < ordini.size()) {
-					System.out.println("Ciclo");
 					if(ordini.get(i).getStatoOrdine().equals("Da spedire")) {
-						System.out.println("Ordine da spedire");
-						
 			%>
 			<tbody>
 				<tr>

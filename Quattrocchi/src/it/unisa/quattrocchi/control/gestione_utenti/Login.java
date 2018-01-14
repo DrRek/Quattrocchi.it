@@ -50,10 +50,8 @@ public class Login extends HttpServlet{
 			try {
 				gestoreOrdini = gModel.checkLogin(userid, passid);
 				request.getSession().setAttribute("gestoreOrdini", gestoreOrdini);
-				System.out.println("Try gestore");
 				if(gestoreOrdini != null){
 					isGestore = true;
-					System.out.println("Trovato gestore");
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -62,15 +60,12 @@ public class Login extends HttpServlet{
 			if(!isGestore) {
 				try {
 					acquirente = aModel.checkLogin(userid, passid);
-					System.out.println("Try acquirente");
 					if(acquirente != null) {
 						acquirente.setCc(ccModel.doRetrieveByUser(userid));
 						acquirente.setShipAdd(saModel.doRetrieveByUser(userid));
 						acquirente.setCart(aModel.doRetrieveCartByUser(userid));
 						request.getSession().setAttribute("acquirente", acquirente);
-						System.out.println("Trovato acquirente");
 					} else {
-						System.out.println("nessuno");
 						request.setAttribute("loginFailed", true);
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/AccessView.jsp");
 						dispatcher.forward(request, response);
@@ -81,7 +76,6 @@ public class Login extends HttpServlet{
 				}
 			}
 
-			System.out.println("Trovato qualcuno");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/Index.jsp");
 			dispatcher.forward(request, response);	
 			

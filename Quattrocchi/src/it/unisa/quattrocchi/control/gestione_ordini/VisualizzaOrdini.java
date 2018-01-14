@@ -25,11 +25,8 @@ public class VisualizzaOrdini extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
-			System.out.println("Try find order");
 			List<Order> ordini = orderModel.doRetrieveAll();
-			System.out.println("numero ordini " + ordini.size());
 			request.getSession().setAttribute("ordini", ordini);
-			System.out.println("Settato attributo");
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}

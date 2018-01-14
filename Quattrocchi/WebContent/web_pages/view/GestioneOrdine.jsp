@@ -2,9 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
-	System.out.println("Preso gestore");
 	Order ordine = (Order) request.getSession().getAttribute("ordineDaGestire");
-	System.out.println("ordini nella JSP " + ordine.getCodice());
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -22,7 +20,6 @@
 <%@ include file="../view/Header.jsp"%>
 	<br><br><br><br>
 <% if(gestoreOrdini != null && ordine != null) { 
-	System.out.println("Gestore != null ");
 %>
 	<div class="container">
 		<h1>Info <%=ordine.getCodice() %></h1>

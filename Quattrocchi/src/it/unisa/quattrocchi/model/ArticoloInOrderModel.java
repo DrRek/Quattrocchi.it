@@ -120,7 +120,7 @@ public class ArticoloInOrderModel {
 				String img3 = rs.getString("Img3");
 				String descrizione = rs.getString("Descrizione");
 				double prezzo = rs.getDouble("Prezzo");
-				int quantità = rs.getInt("Quantità");
+				int quantità = rs.getInt("Quantita");
 				
 				beans.add(new ArticoloInOrder(codice,modello,marca,img1,img2,img3,descrizione,prezzo,quantità));
 				

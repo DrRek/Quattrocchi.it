@@ -24,7 +24,7 @@ public class CreditCardModel {
 		CreditCard bean = null;
 		
 		String query = "SELECT * FROM " + TABLE_NAME_CREDITCARD + 
-				" WHERE Id = ?;";
+				" WHERE IdCarta = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();

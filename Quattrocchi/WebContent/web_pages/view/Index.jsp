@@ -17,5 +17,8 @@
  	<form action = "/Quattrocchi/profilo" method = "GET">
 		<input type="submit" value="Prova Profilo view" style="height:25px; width:120px; background-color: royalblue;color: white;" />
  	</form>
+ 	 	<form action = "/Quattrocchi/gestoreOrdini" method = "GET">
+		<input type="submit" value="Prova Gestione Ordini view" style="height:25px; width:120px; background-color: royalblue;color: white;" />
+ 	</form>
 </body>
 </html>

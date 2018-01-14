@@ -96,6 +96,7 @@
 					</div>
 
 					<div class="col-sm-6">
+						<input type="hidden" id="codice" value="<%=articolo.getCodice()%>"/>
 						<div class="product-title" id="oNome"><%=articolo.getModello()%></div>
 						<h4 id="oMarca"><%=articolo.getMarca()%></h4>
 						<hr>
@@ -110,8 +111,7 @@
 							disponibili
 						</span>
 						<div style="margin-left:10px"class="btn-group cart" >
-							<button type="button" id="oAddCart"
-								class="btn btn-outline-secondary">Add to cart</button>
+							<button type="button" id="addCart" class="btn btn-outline-secondary">Add to cart</button>
 						</div>
 						</div>
 					</div>
@@ -121,6 +121,6 @@
 		</div>
 	</div>
 	<%@ include file="../view/Footer.jsp"%>	
-	<script src="js/article-page.js"></script>
+	<script src="web_pages/js/article-page.js"></script>
 </body>
 </html>

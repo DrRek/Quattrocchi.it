@@ -1,45 +1,19 @@
 $(document).ready(function() {
 
-	$("#AddGlassToStorage").click(function(event) {
-		var oNome = $("#oNome").html();
-		var oMarca = $("#oMarca").html();
-		var oQuantita = $("input[name=oQuantita]").val();
+	$("#addCart").click(function(event) {
+		var codice = document.getElementById('codice').value;
 		$.ajax({
 			type : "GET",
-			url : "articlePage",
+			url : "aggiungi_al_carrello",
 			data : {
-				action : "updateGlass",
-				nome : oNome,
-				marca : oMarca,
-				quantita : oQuantita
+				articoloId:codice
 			},
 			dataType : "json",
 			success : function(responseText) {
+				//Need to update header
 			}
 		});
-		$("#oDisp").html(oQuantita + " left");
-	});
-	
-	$("#AddLenseToStorage").click(function(event) {
-		var nome = $('#lNome').html();
-		var marca = $('#lMarca').html();
-		var gradazione = $('select[name=lGradazione]').val();
-		var quantita = $('input[name=lQuantita]').val();
-		$.ajax({
-			type : "GET",
-			url : "articlePage",
-			data : {
-				action : 'updateContact',
-				nome : nome,
-				marca : marca,
-				gradazione : gradazione,
-				quantita : quantita
-			},
-			dataType : "json",
-			success : function(responseText) {
-			}
-		});
-		var optionGiusto = $('select#gradazione option[value="' + gradazione + '"]');
-		optionGiusto.html(gradazione+" ("+quantita+" left)")
+		
+		$("a#count").html(parseInt($("a#count").html()) + 1);
 	});
 });

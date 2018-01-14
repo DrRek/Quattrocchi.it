@@ -13,7 +13,7 @@ public class ArticoloInStockModel {
 	
 	private static final String TABLE_NAME_CATALOGO = "quattrocchidb.articoloinstock";
 
-	//Metodo cambiato dall'odd, deve cercare solo nel catalogo
+	
 	public ArticoloInStock doRetrieveByIdInStock(String codiceProdotto) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -56,7 +56,7 @@ public class ArticoloInStockModel {
 		return bean;
 	}
 	
-	//Metodo cambiato dall'odd, deve cercare solo nel catalogo
+	
 	public List<ArticoloInStock> doRetrieveAllInStock() throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;

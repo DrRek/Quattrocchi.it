@@ -1,4 +1,3 @@
-﻿DROP DATABASE IF EXISTS quattrocchiDB;
 create schema quattrocchiDB;
 
 use quattrocchiDB;
@@ -80,9 +79,9 @@ create table ArticoloInOrder(
 	Img1 varchar(60),
 	Img2 varchar(60),
 	Img3 varchar(60),
-	Descrzione varchar(255) not null,
+	Descrizione varchar(255) not null,
 	Prezzo decimal(6,2) not null, -- sto prezzo double non s Ã¨ mai sentito
-	Quantita  integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
+	Quantita integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
 	Ordine varchar(10) not null,
 	foreign key (Ordine) references Ordine(Codice)
 );

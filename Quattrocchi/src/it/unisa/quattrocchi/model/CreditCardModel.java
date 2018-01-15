@@ -7,16 +7,30 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.CreditCard;
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è un manager che si occupa di interagire con il database.
+ * Gestisce le query riguardanti le carte di credito.
+ */
 public class CreditCardModel {
+	
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 
-	
 	private static final String TABLE_NAME_CREDITCARD = "quattrocchidb.cartacredito";
 	
+	
+	/**
+	 * Questo metodo si occupa di effettuare la ricerca di una carta di credito
+	 * tramite id preso in input.
+	 * @param idCarta un oggetto idCarta di tipo <strong>String</strong>
+	 * @return un oggetto di tipo <strong>CreditCard</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
 	public CreditCard doRetrieveById(String idCarta) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -58,7 +72,15 @@ public class CreditCardModel {
 		return bean;
 	}
 	
-	public List<CreditCard> doRetrieveByUser(String acquirente) throws SQLException{
+	
+	/**
+	 * Questo metodo si occupa di effettuare la ricerca delle carte di credito associate
+	 * ad un Acquirente tramite user preso in input.
+	 * @param username un oggetto username di tipo <strong>String</strong>
+	 * @return una lista di carte di credito di tipo <strong>CreditCard</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
+	public List<CreditCard> doRetrieveByUser(String username) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<CreditCard> beans = new ArrayList<>();
@@ -68,7 +90,7 @@ public class CreditCardModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(1, acquirente);
+			stm.setString(1, username);
 			
 			ResultSet rs = stm.executeQuery();
 			
@@ -98,6 +120,11 @@ public class CreditCardModel {
 		return beans;
 	}
 	
+	/**
+	 * Questo metodo si occupa di inserire una nuova carta di credito nel database.
+	 * @param toCreate un oggetto toCreate di tipo <strong>CreditCard</strong>
+	 * @throws SQLException
+	 */
 	public void createCreditCard(CreditCard toCreate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -140,6 +167,11 @@ public class CreditCardModel {
 		return;
 	}
 	
+	/**
+	 * Questo metodo si occupa di aggiornare una carta di credito nel database.
+	 * @param toUpdate un oggetto toUpdate di tipo <strong>CreditCard</strong>
+	 * @throws SQLException
+	 */
 	public void updateCreditCard(CreditCard toUpdate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -181,11 +213,17 @@ public class CreditCardModel {
 		return;
 	}
 	
-	public void deleteCreditCard(CreditCard toUpdate) throws SQLException{
+	
+	/**
+	 * Questo metodo si occupa di cancellare una carta di credito nel database.
+	 * @param toDelete un oggetto toDelete di tipo <strong>CreditCard</strong>
+	 * @throws SQLException
+	 */
+	public void deleteCreditCard(CreditCard toDelete) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String codice = toUpdate.getIdCarta();
+		String codice = toDelete.getIdCarta();
 		
 		String query = "delete from " + TABLE_NAME_CREDITCARD + " where IdCarta = ?;";
 		

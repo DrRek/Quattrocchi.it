@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import it.unisa.quattrocchi.entity.GestoreOrdini;
+
 @WebServlet("/welcome")
 
 public class welcome extends HttpServlet{
@@ -17,7 +19,12 @@ public class welcome extends HttpServlet{
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		GestoreOrdini gestore = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+		if(gestore != null) {
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+			dispatcher.forward(request, response);
+			return;
+		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/Index.jsp");
 		dispatcher.forward(request, response);	
 			

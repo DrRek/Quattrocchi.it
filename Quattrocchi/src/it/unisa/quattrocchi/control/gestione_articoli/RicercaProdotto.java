@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import it.unisa.quattrocchi.model.ArticleModel;
+import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/ricerca_prodotto")
 
@@ -21,7 +21,7 @@ public class RicercaProdotto extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
-	static ArticleModel model = new ArticleModel();
+	static ArticoloInStockModel model = new ArticoloInStockModel();
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

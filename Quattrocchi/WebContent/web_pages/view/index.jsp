@@ -4,9 +4,10 @@
       Quattrocchi.it - index
    </title>
    <!-- styles -->
-   <link href="../css/bootstrap.css" rel="stylesheet">
+   <link href="web_pages/css/bootstrap.css" rel="stylesheet">
 </head>
 <body>
+<%@ include file="../view/Header.jsp"%>
    <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -63,6 +64,7 @@
 		<input class="btn btn-outline-secondary " type="submit"
 			name="inserireNOME" value="Vai al catalogo" />
 	</div>
+	<%@ include file="Footer.jsp"%>
 	<script> 
 	$('.carousel').carousel({
 		  interval: 2000
@@ -70,8 +72,7 @@
 	</script>
 	<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="web_pages/js/checkout.js"></script>
 <script
-	src="../js/bootstrap.js"></script>
+	src="web_pages/js/bootstrap.js"></script>
 </body>
 </html>

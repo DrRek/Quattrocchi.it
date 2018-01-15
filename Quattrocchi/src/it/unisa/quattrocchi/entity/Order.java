@@ -38,7 +38,7 @@ public class Order {
 		this.codice = null;
 		this.statoOrdine = Order.DA_SPEDIRE;
 		this.numeroTracking = null; 
-		this.dataEsecuzione = null;
+		this.dataEsecuzione = new Date();
 		this.dataConsegna = null;
 		this.prezzo = acquirente.getCart().getPrezzo();
 		this.corriere= null;

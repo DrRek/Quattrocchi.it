@@ -125,10 +125,9 @@ public class OrderModel {
 		PreparedStatement stm = null;
 		
 		String query = "INSERT INTO " + TABLE_NAME_ORDER + 
-				" (Codice,DataEsecuzione,Prezzo,IndirizzoSpedizione,CartaCredito,Acquirente,StatoOrdine,DataConsegna,NumeroTracking,Corriere)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?,?);";
+				" (DataEsecuzione,Prezzo,IndirizzoSpedizione,CartaCredito,Acquirente,StatoOrdine,DataConsegna,NumeroTracking,Corriere)"
+				+ " VALUES(?,?,?,?,?,?,?,?,?);";
 		
-		String codice = toCreate.getCodice();
 		Date dataEx = toCreate.getDataEsecuzione();
 		double prezzo = toCreate.getPrezzo();
 		String statoOrdine = toCreate.getStatoOrdine();
@@ -143,16 +142,21 @@ public class OrderModel {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
 			
-			stm.setString(1, codice);
-			stm.setDate(2, (java.sql.Date) dataEx);
-			stm.setDouble(3, prezzo);
-			stm.setString(4, statoOrdine);
-			stm.setDate(5, (java.sql.Date) dataConsegna);
-			stm.setString(6, numTrack);
-			stm.setString(7, corriere);
-			stm.setString(8, acq);
-			stm.setString(9, sa);
-			stm.setString(10, cc);
+			stm.setDate(1, new java.sql.Date(dataEx.getTime()));
+			stm.setDouble(2, prezzo);
+			stm.setString(3, sa);
+			stm.setString(4, cc);
+			stm.setString(5, acq);
+			stm.setString(6, Order.DA_SPEDIRE);
+			
+			java.sql.Date consegna = null;
+			if(dataConsegna!=null) {
+				consegna = new java.sql.Date(dataConsegna.getTime());
+			}
+			stm.setDate(7, consegna);
+			
+			stm.setString(8, numTrack);
+			stm.setString(9, corriere);
 			
 			stm.executeUpdate();
 			stm.close();

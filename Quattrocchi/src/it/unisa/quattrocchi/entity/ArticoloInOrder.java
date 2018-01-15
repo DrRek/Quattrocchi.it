@@ -25,6 +25,18 @@ public class ArticoloInOrder {
 		this.quantità = quantità;
 	}
 
+	public ArticoloInOrder(ArticoloInStock a, int i) {
+		this.codice = null;
+		this.modello = a.getModello();
+		this.marca = a.getMarca();
+		this.img1 = a.getImg1();
+		this.img2 = a.getImg2();
+		this.img3 = a.getImg3();
+		this.descrizione = a.getDescrizione();
+		this.prezzo = a.getPrezzo();
+		this.quantità = i;
+	}
+
 	public String getCodice() {
 		return codice;
 	}

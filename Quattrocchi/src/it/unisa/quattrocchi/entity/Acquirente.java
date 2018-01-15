@@ -2,6 +2,7 @@ package it.unisa.quattrocchi.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public class Acquirente {
@@ -103,21 +104,25 @@ public class Acquirente {
 				+ ", email=" + email + ", dataNascita=" + dataNascita + "]";
 	}
 
-	public boolean checkCC(String creditCardID) {
+	public CreditCard checkCC(String creditCardID) {
 		for(CreditCard c : cc) {
 			if(c.getIdCarta().equals(creditCardID)) {
-				return true;
+				return c;
 			}
 		}
-		return false;
+		return null;
 	}
 
-	public boolean checkSA(String shippingAddressID) {
+	public ShippingAddress checkSA(String shippingAddressID) {
 		for(ShippingAddress s : shipAdd) {
 			if(s.getCodice().equals(shippingAddressID)) {
-				return true;
+				return s;
 			}
 		}
-		return false;
+		return null;
+	}
+
+	public void resetCart() {
+		cart = new Cart(new HashMap<ArticoloInStock, Integer>());
 	}
 }

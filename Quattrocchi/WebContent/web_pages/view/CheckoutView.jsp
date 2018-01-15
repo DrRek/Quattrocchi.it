@@ -140,7 +140,7 @@
 		</form>
 	</div>
 	
-	<input class="btn btn-outline-secondary" id="sumbit_order" type="submit" value="Completa l'acquisto" />
+	<input class="btn btn-outline-secondary" id="submit_order" type="submit" value="Completa l'acquisto" />
 
 	<%
 		}

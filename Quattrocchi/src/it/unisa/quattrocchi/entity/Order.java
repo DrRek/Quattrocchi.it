@@ -3,18 +3,22 @@ package it.unisa.quattrocchi.entity;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class Order {
+	
+	public static String DA_SPEDIRE = "da_spedire";
+	public static String IN_CORSO = "in_corso";
+	public static String TERMINATO = "terminato";
 
 	private String codice, statoOrdine, numeroTracking, corriere;
 	private Date dataEsecuzione, dataConsegna;
 	private Acquirente acquirente;
 	private ShippingAddress shippingAddress;
 	private CreditCard creditCard;
-	private List<ArticoloInOrder> listaDiArticoli = new ArrayList<>();
-	
-	
+	private List<ArticoloInOrder> listaDiArticoli;
 	private double prezzo;
+	
 	public Order(String codice, Date dataEsecuzione, double prezzo, String statoOrdine, Date dataConsegna, String numeroTracking, 
 			String corriere, Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard,List<ArticoloInOrder> listaDiArticoli) {
 		this.codice = codice;
@@ -28,6 +32,26 @@ public class Order {
 		this.shippingAddress =shippingAddress;
 		this.creditCard = creditCard;
 		this.listaDiArticoli = listaDiArticoli;
+	}
+	
+	public Order(Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard) {
+		this.codice = null;
+		this.statoOrdine = Order.DA_SPEDIRE;
+		this.numeroTracking = null; 
+		this.dataEsecuzione = null;
+		this.dataConsegna = null;
+		this.prezzo = acquirente.getCart().getPrezzo();
+		this.corriere= null;
+		this.acquirente = acquirente;
+		this.shippingAddress =shippingAddress;
+		this.creditCard = creditCard;
+		
+		this.listaDiArticoli = new ArrayList<>();
+		
+		Map<ArticoloInStock, Integer> map = acquirente.getCart().getArticoli();
+		for(ArticoloInStock a : map.keySet()) {
+			this.listaDiArticoli.add(new ArticoloInOrder(a, map.get(a)));
+		}
 	}
 	
 	public String getCodice() {

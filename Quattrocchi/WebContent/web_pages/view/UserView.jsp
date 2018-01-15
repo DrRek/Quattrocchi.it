@@ -131,7 +131,7 @@
 						value="remove" /></td>
 				</tr>
 				<%} %>
-				<tr>
+				<tr id="lastShipAdd">
 					<td><input name="indirizzo" type="text" class="form-control" placeholder="Indirizzo"/></td>
 					<td><input name="numeroCivico" type="text" class="form-control" placeholder="Numero civico"/></td>
 					<td><input name="cap" type="text" class="form-control" placeholder="CAP"/></td>
@@ -165,7 +165,7 @@
 
 	<%@ include file="../view/Footer.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="js/user.js"></script>
+	<script src="web_pages/js/user.js"></script>
 	<script src="js/util.js"></script>
 </body>
 </html>

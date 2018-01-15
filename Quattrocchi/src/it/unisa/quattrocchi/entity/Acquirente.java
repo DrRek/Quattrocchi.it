@@ -125,4 +125,9 @@ public class Acquirente {
 	public void resetCart() {
 		cart = new Cart(new HashMap<ArticoloInStock, Integer>());
 	}
+
+	public void addShippingAddress(ShippingAddress sa) {
+		if(shipAdd==null) shipAdd=new ArrayList<>();
+		shipAdd.add(sa);
+	}
 }

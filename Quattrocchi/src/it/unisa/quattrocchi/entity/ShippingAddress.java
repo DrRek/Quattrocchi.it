@@ -16,6 +16,16 @@ public class ShippingAddress {
 		this.acq = acq;
 	}
 	
+	public ShippingAddress(String stato, String indirizzo, int cap2, String provincia,int civico,Acquirente acq) {
+		this.codice = null;
+		this.stato = stato;
+		this.indirizzo = indirizzo;
+		this.cap = cap2;
+		this.provincia = provincia;
+		this.nc = civico;
+		this.acq = acq;
+	}
+	
 	public Acquirente getAcq() {
 		return acq;
 	}

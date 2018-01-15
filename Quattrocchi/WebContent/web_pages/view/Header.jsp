@@ -64,7 +64,7 @@
 					} else if (usr != null) {
 				%>
 				<li><a href="profilo">Benvenuto, <%=usr.getUsername()%></a></li>
-				<li><a href="user?action=logout">logout</a></li>
+				<li><a href="logout">logout</a></li>
 				<%
 						} else if (gestore != null) {
 					%>
@@ -73,7 +73,7 @@
 				<li><a href="visualizza_ordini">Ordini</a>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="user?action=logout">logout</a></li>
+				<li><a href="logout">logout</a></li>
 				<%
 						}
 					%>

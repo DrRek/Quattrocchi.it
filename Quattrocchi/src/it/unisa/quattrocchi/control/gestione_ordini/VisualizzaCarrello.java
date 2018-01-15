@@ -15,7 +15,7 @@ public class VisualizzaCarrello extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CartView.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Errore in Visualizza prodotto:");

@@ -1,13 +1,13 @@
 package it.unisa.quattrocchi.model;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,12 +15,28 @@ import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è un manager che si occupa di interagire con il database.
+ * Gestisce le query riguardanti l'acquirente e il carrello ad esso associato.
+ *
+ */
+
 public class AcquirenteModel {
 	
 	private static final String TABLE_NAME_ACQUIRENTE = "quattrocchidb.acquirente";
 	private static final String TABLE_NAME_ARTICOLOINCARRELLO = "quattrocchidb.articoloincarrello";
 	
 	private static ArticoloInStockModel asModel = new ArticoloInStockModel();
+	
+	/**
+	 * Questo metodo si occupa di verificare se nel data base è presente un Acquirente
+	 * tramite una username specifica presa in input.
+	 * @param userName Username dell'acquirente da cercare
+	 * @return un acquirente con l'username specificato se è presente, altrimenti null.
+	 * @throws SQLException
+	 */
 	
 	public Acquirente doRetriveById(String userName) throws SQLException {
 		Connection conn = null;
@@ -46,13 +62,11 @@ public class AcquirenteModel {
 				
 				bean = new Acquirente(username,password,nome,cognome,email,dataNascita);
 			}
-			
-			stm.close();
 			rs.close();
-			conn.commit();
 			
 		}finally {
 			try {
+				conn.commit();
 				if(stm!= null)
 					stm.close();
 			}finally {
@@ -61,6 +75,15 @@ public class AcquirenteModel {
 		}
 		return bean;
 	}
+	
+	/**
+	 * Questo metodo si occupa di verificare se i dati immessi dall'utente per effettuare
+	 * il login sono presenti nel database.
+	 * @param userName Username inserita dall'utente.
+	 * @param password Password inserita dall'utente.
+	 * @return un acquirente con l'username e la password specificati se è presente, altrimenti null.
+	 * @throws SQLException
+	 */
 	
 	public Acquirente checkLogin(String userName, String password) throws SQLException {
 		Connection conn = null;
@@ -88,12 +111,11 @@ public class AcquirenteModel {
 				bean = new Acquirente(username,pwd,nome,cognome,email,dataNascita);
 			}
 			
-			stm.close();
 			rs.close();
-			conn.commit();
 			
 		}finally {
 			try {
+				conn.commit();
 				if(stm!= null)
 					stm.close();
 			}finally {
@@ -102,6 +124,13 @@ public class AcquirenteModel {
 		}
 		return bean;
 	}
+	
+	/**
+	 * Questo metodo si occupa di verificare se il carrello associato ad un acquirente è presente nel database.
+	 * @param userid Username dell'acquirente
+	 * @return un carrello associato alla Username presa in input se è presente, altrimenti null.
+	 * @throws SQLException
+	 */
 
 	public Cart doRetrieveCartByUser(String userid) throws SQLException {
 		Connection conn = null;
@@ -125,12 +154,12 @@ public class AcquirenteModel {
 				list.put(asModel.doRetrieveByIdInStock(id), n);
 			}
 			bean = new Cart(list);
-			stm.close();
+			
 			rs.close();
-			conn.commit();
 			
 		}finally {
 			try {
+				conn.commit();
 				if(stm!= null)
 					stm.close();
 			}finally {
@@ -139,6 +168,12 @@ public class AcquirenteModel {
 		}
 		return bean;
 	}
+	
+	/**
+	 * Questo metodo si occupa di aggiornare i dati di un Acquirente presente nel database.
+	 * @param toUpdate Acquirente da aggiornare
+	 * @throws SQLException
+	 */
 	
 	public void updateAcquirente(Acquirente toUpdate) throws SQLException{
 		Connection conn = null;
@@ -168,10 +203,9 @@ public class AcquirenteModel {
 			stm.setString(6, username);
 			
 			stm.executeUpdate();
-			stm.close();
-			conn.commit();
 		}finally {
 			try {
+				conn.commit();
 				if(stm != null)
 					stm.close();
 			}finally {
@@ -180,6 +214,12 @@ public class AcquirenteModel {
 		}
 		return;
 	}
+	
+	/**
+	 * Questo metodo si occupa di aggiornare la lista di articoli presente in un carrello reso persistente sul database.
+	 * @param acquirente Acquirente a cui è associato il carrello da aggiornare.
+	 * @throws SQLException
+	 */
 	
 	public void updateCart(Acquirente acquirente) throws SQLException{
 		Connection conn = null;
@@ -207,12 +247,11 @@ public class AcquirenteModel {
 				stm.setInt(3, quantità);
 				
 				stm.executeUpdate();
-				stm.close();
-				conn.close();
 				
 			}finally {
 				try {
 					if(stm != null)
+						conn.commit();
 						stm.close();
 				}finally {
 					DriverManagerConnectionPool.releaseConnection(conn);
@@ -220,6 +259,12 @@ public class AcquirenteModel {
 			}	
 		}
 	}
+	
+	/**
+	 * Questo metodo si occupa di cancellare un carrello associato ad un acquirente. 
+	 * @param acquirente Acquirente a cui è associato il carrello.
+	 * @throws SQLException
+	 */
 	
 	public void dropCart(Acquirente acquirente) throws SQLException{
 		Connection conn = null;
@@ -235,21 +280,17 @@ public class AcquirenteModel {
 			stm = conn.prepareStatement(query);
 			
 			stm.setString(1, acq);
-			System.out.println(stm);
 			
 			stm.executeUpdate();
-			stm.clearBatch();
-			conn.close();
 		}finally {
 			try {
+				conn.commit();
 				if(stm != null)
 					stm.close();
 			}finally {
 				DriverManagerConnectionPool.releaseConnection(conn);
 			}
 		}
-		
-		
 	}
 
 }

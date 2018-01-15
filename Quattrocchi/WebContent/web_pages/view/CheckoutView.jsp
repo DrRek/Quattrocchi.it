@@ -14,10 +14,10 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
 	rel="stylesheet">
 
-<link href="web_pages/css/bootstrap.css" type="text/css" rel="stylesheet"
-	media="screen,projection" />
-<link href="web_pages/css/CheckoutView.css" type="text/css" rel="stylesheet"
-	media="screen,projection" />
+<link href="web_pages/css/bootstrap.css" type="text/css"
+	rel="stylesheet" media="screen,projection" />
+<link href="web_pages/css/CheckoutView.css" type="text/css"
+	rel="stylesheet" media="screen,projection" />
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <script
@@ -26,7 +26,7 @@
 
 </head>
 <body>
-	
+
 	<%@ include file="../view/Header.jsp"%>
 	<%
 		Cart cart = usr.getCart();
@@ -46,12 +46,13 @@
 		} else if(cart!=null && usr !=null) {
 	%>
 	<div class="container" id="divCartElements">
-		<table id="cartElements"class="table table-hover table-condensed table-striped">
+		<table id="cartElements"
+			class="table table-hover table-condensed table-striped">
 			<thead>
-				<th style="width:40%" id="prod">Prodotto</th>
-				<th style="width:20%" id="qta" >Quantità</th>
-				<th style="width:20%" >Prezzo</th>
-				<th style="width:20%"></th>
+				<th style="width: 40%" id="prod">Prodotto</th>
+				<th style="width: 20%" id="qta">Quantità</th>
+				<th style="width: 20%">Prezzo</th>
+				<th style="width: 20%"></th>
 			</thead>
 			<%
 				Map<ArticoloInStock, Integer> map = cart.getArticoli();
@@ -60,23 +61,87 @@
 			<tbody>
 				<tr>
 					<td class="prodotto">
-						<h3 class="nomargin nomeArt"><%=a.getModello() %></h3><p class="marcaArt"><%=a.getMarca() %></p>
+						<h3 class="nomargin nomeArt"><%=a.getModello() %></h3>
+						<p class="marcaArt"><%=a.getMarca() %></p>
 					</td>
-					<td><input  data-th="Numero Prodotti" name="quantitaPezzi" class="form-control"  type="number" min="1"value="<%=map.get(a) %>"></td>
-					<td class="prezzoArt "><%=a.getPrezzo() %>€</td>
-					<td class="forForm">
-						<form class="formForRemove"action="/Quattrocchi/rimuovi_dal_carrello" method="post">
-							<input type="hidden" class="articoloId" name="articoloId" value="<%=a.getCodice()%>">
-							<input class= "btn btn-outline-secondary " type="submit" value="rimuovi" />
-						</form>
-					</td>
+					<td><%=map.get(a)%></td>
+					<td class="prezzoArt "><%=a.getPrezzo()%>€</td>
 				</tr>
 			</tbody>
 			<%
 				}
 			%>
 		</table>
+		<h5>
+			Total:
+			<%=cart.getPrezzo()%>€
+		</h5>
 	</div>
+
+	<div>
+		<!-- Uso questo per la carta di credito -->
+		<%
+			List<CreditCard> cc = usr.getCc();
+			if(cc==null || cc.size()==0){
+		%>
+		<h5>Nessuna carta di credito disponibile</h5>
+		<form action="/Quattrocchi/profilo" method="post">
+			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi una carta di credito" />
+		</form>
+		<%
+			}else{
+		%>
+		<h5>Seleziona una carta di credito: </h5>
+		<select id="credit_card_select">
+			<%
+				for(CreditCard c : cc){
+			%>
+			<option value="<%=c.getIdCarta()%>">XXXX-XXXX-XXXX-<%=c.getLastCC()%> | <%=c.getIntestatario()%></option>
+			<%
+				}
+			%>
+		</select>
+		<%
+			}
+		%>
+		<form action="/Quattrocchi/profilo" method="post">
+			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi una carta di credito" />
+		</form>
+	</div>
+	
+	<div>
+		<!-- Uso questo per l'indirizzo di spedizione -->
+		<%
+			List<ShippingAddress> sas = usr.shipAdd();
+			if(sas==null || sas.size()==0){
+		%>
+		<h5>Nessun indirizzo di spedizione disponibile</h5>
+		<form action="/Quattrocchi/profilo" method="post">
+			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi un indirizzo di spedizione" />
+		</form>
+		<%
+			}else{
+		%>
+		<h5>Seleziona un indirizzo di spedizione: </h5>
+		<select id="shipping_address_select">
+			<%
+				for(ShippingAddress sa : sas){
+			%>
+			<option value="<%=sa.getCodice()%>"><%=sa.getIndirizzo()%>, <%=sa.getNC() %> | <%=sa.getCap()%></option>
+			<%
+				}
+			%>
+		</select>
+		<%
+			}
+		%>
+		<form action="/Quattrocchi/profilo" method="post">
+			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi un indirizzo di spedizione" />
+		</form>
+	</div>
+	
+	<input class="btn btn-outline-secondary" id="sumbit_order" type="submit" value="Completa l'acquisto" />
+
 	<%
 		}
 	%>

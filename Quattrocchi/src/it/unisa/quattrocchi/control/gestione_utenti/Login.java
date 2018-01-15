@@ -31,7 +31,7 @@ public class Login extends HttpServlet{
 	public Login() {
 		super();
 	}
-	
+
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userid = request.getParameter("userid");
@@ -39,24 +39,26 @@ public class Login extends HttpServlet{
 		Acquirente acquirente;
 		GestoreOrdini gestoreOrdini;
 		boolean isGestore = false;
-		
+
 		if(userid==null||userid.equalsIgnoreCase("")){
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/AccessView.jsp");
 			dispatcher.forward(request, response);
 			return;
 		}
-		
+
 		else {
 			try {
 				gestoreOrdini = gModel.checkLogin(userid, passid);
 				request.getSession().setAttribute("gestoreOrdini", gestoreOrdini);
-				if(gestoreOrdini != null){
-					isGestore = true;
+				if(gestoreOrdini != null) {
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+					dispatcher.forward(request, response);
+					return;
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			
+
 			if(!isGestore) {
 				try {
 					acquirente = aModel.checkLogin(userid, passid);
@@ -78,10 +80,10 @@ public class Login extends HttpServlet{
 
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/Index.jsp");
 			dispatcher.forward(request, response);	
-			
+
 		}
 	}
-	
+
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

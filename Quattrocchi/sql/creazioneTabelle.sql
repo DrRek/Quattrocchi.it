@@ -35,7 +35,7 @@ create table Acquirente(
 );
 
 create table IndirizzoSpedizione(
-	Id varchar(10) primary key,
+	Id int primary key auto_increment,
 	Stato varchar(30) not null,
 	Provincia char(2) not null, -- non Ã¨ var Ã¨ char
 	CAP integer(5) not null,
@@ -46,7 +46,7 @@ create table IndirizzoSpedizione(
 );
 
 create table CartaCredito(
-	IdCarta	varchar(10) primary key,
+	IdCarta	int primary key auto_increment,
 	NumeroCC varchar(16) not null,
 	Intestatario varchar(40) not null,
 	Circuito varchar(20) not null,
@@ -57,11 +57,11 @@ create table CartaCredito(
 );
 
 create table Ordine(
-	Codice varchar(10) primary key,
+	Codice int primary key auto_increment,
    	DataEsecuzione date not null,
 	Prezzo decimal(8,2) not null, -- a che serve sto double che bastano due cifre dopo la virgola
-	IndirizzoSpedizione varchar(10) not null,
-	CartaCredito varchar(10) not null,
+	IndirizzoSpedizione int not null,
+	CartaCredito int not null,
 	Acquirente varchar(16) not null,
 	StatoOrdine varchar(30) not null,
 	DataConsegna date,
@@ -73,7 +73,7 @@ create table Ordine(
 );
 
 create table ArticoloInOrder(
-	Codice varchar(10) primary key,
+	Codice int primary key auto_increment,
 	Modello varchar(50) not null,
 	Marca varchar(20) not null, -- che cazz sta scritt nell'er
 	Img1 varchar(60),
@@ -82,12 +82,12 @@ create table ArticoloInOrder(
 	Descrizione varchar(255) not null,
 	Prezzo decimal(6,2) not null, -- sto prezzo double non s Ã¨ mai sentito
 	Quantita integer(3) not null,-- fare l'esagerato con le dimensioni non ti fa onore
-	Ordine varchar(10) not null,
+	Ordine int not null,
 	foreign key (Ordine) references Ordine(Codice)
 );
 
 create table ArticoloInStock(
-	Codice varchar(10) primary key,
+	Codice int primary key auto_increment,
 	Modello varchar(50) not null,
 	Marca varchar(20) not null, -- che cazz sta scritt nell'er
 	Img1 varchar(60), -- il path delle immagini puÃ² essere parecchio lungo, 10 non Ã¨ abbastanza
@@ -102,7 +102,7 @@ create table ArticoloInStock(
 -- lo so che Ã¨ l'ultima cosa e vuoi andare di fretta, ma guardatelo con attenzione e discutiamone
 create table ArticoloInCarrello(
 	Acquirente varchar(50) not null,
-	ArticoloInStock varchar(10) not null,
+	ArticoloInStock int not null,
 	Quantita integer(3) not null,
 	foreign key (Acquirente) references Acquirente(Username),
 	foreign key (ArticoloInStock) references ArticoloInStock(Codice),

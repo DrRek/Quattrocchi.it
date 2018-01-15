@@ -6,10 +6,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import it.unisa.quattrocchi.entity.GestoreOrdini;
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è un manager che si occupa di interagire con il database.
+ * Gestisce le query riguardanti i gestori degli ordini.
+ */
 public class GestoreOrdiniModel {
 	
 	private static final String TABLE_NAME_GESTOREORDINI = "quattrocchidb.gestoreordini";
 	
+	
+	/**
+	 * Questo metodo si occupa di verificare se nel database è presente un GestoreOrdini
+	 * tramite una username specifica presa in input.
+	 * @param userName un oggetto userName di tipo <strong>String</strong>
+	 * @return un oggetto di tipo <strong>GestoreOrdini</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
 	public GestoreOrdini doRetriveById(String userName) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -50,6 +65,15 @@ public class GestoreOrdiniModel {
 		return bean;
 	}
 	
+	
+	/**
+	 * Questo metodo si occupa di verificare se i dati immessi dal gestore ordini per
+	 * effettuare il login sono presenti nel database.
+	 * @param userName un oggetto userName di tipo <strong>String</strong>
+	 * @param password un oggetto password di tipo <strong>String</strong>
+	 * @return un oggetto di tipo <strong>GestoreOrdini</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
 	public GestoreOrdini checkLogin(String userName, String password) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;

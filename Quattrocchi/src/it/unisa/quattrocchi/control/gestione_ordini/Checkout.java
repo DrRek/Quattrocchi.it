@@ -23,7 +23,7 @@ public class Checkout extends HttpServlet{
 			String ShippingAddressID = request.getParameter("ShippingAddressID");
 			if(usr!=null && CreditCardID!=null && !CreditCardID.equals("") && ShippingAddressID!=null && !ShippingAddressID.equals("")) {
 				if(usr.checkCC(CreditCardID) && usr.checkSA(ShippingAddressID)) {
-					Order nuovo = new Order();
+					//Order nuovo = new Order();
 				}
 				return;
 			}

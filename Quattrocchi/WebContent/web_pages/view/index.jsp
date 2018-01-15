@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
    <title>
-      Quattrocchi.it - index
+      Quattrocchi.it
    </title>
    <!-- styles -->
    <link href="web_pages/css/bootstrap.css" rel="stylesheet">

@@ -7,22 +7,34 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInOrder;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è un manager che si occupa di interagire con il database.
+ * Gestisce le query riguardanti gli ordini.
+ */
 public class OrderModel {
 	
 	static ShippingAddressModel shippingAddressModel = new ShippingAddressModel();
 	static CreditCardModel creditCardModel = new CreditCardModel();
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	static ArticoloInOrderModel articoloInOrderModel = new ArticoloInOrderModel();
-	
 	private static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
 	
+	
+	/**
+	 * Questo metodo si occupa di effettuare la ricerca di un ordine per id.
+	 * @param idOrder un oggetto idOrder di tipo <strong>String</strong>
+	 * @return un oggetto di tipo <strong>Order</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
 	public Order doRetrieveById(String idOrder) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -71,6 +83,12 @@ public class OrderModel {
 		return bean;
 	}
 
+	
+	/**
+	 * Questo metodo si occupa di effettuare la ricerca di tutti gli ordini.
+	 * @return una lista di ordini di tipo <strong>Order</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
 	public List<Order> doRetrieveAll() throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -119,6 +137,12 @@ public class OrderModel {
 		return beans;
 	}
 	
+	
+	/**
+	 * Questo metodo si occupa di rendere persistente un nuovo ordine.
+	 * @param toCreate un oggetto toCreate di tipo <strong>Order</strong>
+	 * @throws SQLException
+	 */
 	public void createOrder(Order toCreate) throws SQLException {
 		
 		Connection conn = null;
@@ -175,6 +199,12 @@ public class OrderModel {
 		return;
 	}	
 	
+	
+	/**
+	 * Questo metodo si occupa di effettuare l'aggiornamento di un ordine.
+	 * @param toUpdate un oggetto toUpdate di tipo <strong>Order</strong>
+	 * @throws SQLException
+	 */
 	public void updateOrder(Order toUpdate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -214,7 +244,14 @@ public class OrderModel {
 		return;
 	}
 
-	public List<Order> doRetrieveByAcquirente(Acquirente attribute) throws SQLException {
+	
+	/**
+	 * Questo metodo si occupa di ricercare tutti gli ordini effettuati da un determinato acquirente.
+	 * @param acquirente un oggetto acquirente di tipo <strong>Acquirente</strong>
+	 * @return una lista di ordini di tipo <strong>Order</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
+	public List<Order> doRetrieveByAcquirente(Acquirente acquirente) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<Order> beans = new ArrayList<>();
@@ -226,7 +263,7 @@ public class OrderModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(1, attribute.getUsername());
+			stm.setString(1, acquirente.getUsername());
 			
 			ResultSet rs = stm.executeQuery();
 			

@@ -5,9 +5,14 @@
    </title>
    <!-- styles -->
    <link href="web_pages/css/bootstrap.css" rel="stylesheet">
+   	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="web_pages/js/bootstrap.js"></script>
 </head>
 <body>
 <%@ include file="../view/Header.jsp"%>
+<br><br>
    <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -18,28 +23,27 @@
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-    <div class="item active">
-      <img src="../image/home2.jpg" alt="rayban">
+  <div class="item active">
+      <img src="web_pages/image/home1.jpg" alt="persol">
       <div class="carousel-caption">
-        <h1><a style="color:white"  href="">Rayban</a></h1>
+        <h1><a style="color:white"  href="ricerca_prodotto?action=searchFromOtherPage&toSearch=persol">Persol</a></h1>
+        <p>La marca eco-frienldy</p>
+        </div>
+    </div>
+    <div class="item">
+      <img src="web_pages/image/home2.jpg" alt="rayban">
+      <div class="carousel-caption">
+        <h1><a style="color:white"  href="ricerca_prodotto?action=searchFromOtherPage&toSearch=rayban">Rayban</a></h1>
         <p>Guarda le ultime uscite</p>
       </div>
     </div>
 
     <div class="item">
-      <img src="../image/home3.jpg" alt="oakley">
+      <img src="web_pages/image/home3.jpg" alt="oakley">
       <div class="carousel-caption">
-        <h1><a style="color:white" href="">Oakley</a></h1>
+        <h1><a style="color:white" href="ricerca_prodotto?action=searchFromOtherPage&toSearch=oakley">Oakley</a></h1>
         <p>Scegli lo stile californiano</p>
       </div>
-    </div>
-
-    <div class="item">
-      <img src="../image/home1.jpg" alt="persol">
-      <div class="carousel-caption">
-        <h1><a style="color:white"  href="">Persol</a></h1>
-        <p>La marca eco-frienldy</p>
-        </div>
     </div>
   </div>
 
@@ -60,18 +64,15 @@
       <!-- /.container -->
    <br>
    <div class="container" align="center">
-		<input class="btn btn-outline-secondary " type="submit"
-			name="inserireNOME" value="Vai al catalogo" />
+   <form class="navbar-form" action="visualizza_catalogo" method="get">
+		<button type="submit" class="btn btn-default">Vai al catalogo</button>
+			</form>
 	</div>
-	<%@ include file="Footer.jsp"%>
+	<%@ include file="../view/Footer.jsp"%>
 	<script> 
 	$('.carousel').carousel({
 		  interval: 2000
 	})
 	</script>
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script
-	src="web_pages/js/bootstrap.js"></script>
 </body>
 </html>

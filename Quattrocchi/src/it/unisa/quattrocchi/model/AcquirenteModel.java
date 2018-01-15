@@ -46,13 +46,11 @@ public class AcquirenteModel {
 				
 				bean = new Acquirente(username,password,nome,cognome,email,dataNascita);
 			}
-			
-			stm.close();
 			rs.close();
-			conn.commit();
 			
 		}finally {
 			try {
+				conn.commit();
 				if(stm!= null)
 					stm.close();
 			}finally {
@@ -88,12 +86,11 @@ public class AcquirenteModel {
 				bean = new Acquirente(username,pwd,nome,cognome,email,dataNascita);
 			}
 			
-			stm.close();
 			rs.close();
-			conn.commit();
 			
 		}finally {
 			try {
+				conn.commit();
 				if(stm!= null)
 					stm.close();
 			}finally {
@@ -125,12 +122,12 @@ public class AcquirenteModel {
 				list.put(asModel.doRetrieveByIdInStock(id), n);
 			}
 			bean = new Cart(list);
-			stm.close();
+			
 			rs.close();
-			conn.commit();
 			
 		}finally {
 			try {
+				conn.commit();
 				if(stm!= null)
 					stm.close();
 			}finally {
@@ -168,10 +165,9 @@ public class AcquirenteModel {
 			stm.setString(6, username);
 			
 			stm.executeUpdate();
-			stm.close();
-			conn.commit();
 		}finally {
 			try {
+				conn.commit();
 				if(stm != null)
 					stm.close();
 			}finally {
@@ -207,12 +203,11 @@ public class AcquirenteModel {
 				stm.setInt(3, quantità);
 				
 				stm.executeUpdate();
-				stm.close();
-				conn.close();
 				
 			}finally {
 				try {
 					if(stm != null)
+						conn.commit();
 						stm.close();
 				}finally {
 					DriverManagerConnectionPool.releaseConnection(conn);
@@ -235,21 +230,17 @@ public class AcquirenteModel {
 			stm = conn.prepareStatement(query);
 			
 			stm.setString(1, acq);
-			System.out.println(stm);
 			
 			stm.executeUpdate();
-			stm.clearBatch();
-			conn.close();
 		}finally {
 			try {
+				conn.commit();
 				if(stm != null)
 					stm.close();
 			}finally {
 				DriverManagerConnectionPool.releaseConnection(conn);
 			}
 		}
-		
-		
 	}
 
 }

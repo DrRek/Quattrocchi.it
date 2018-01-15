@@ -27,7 +27,7 @@ public class Welcome extends HttpServlet{
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/index.jsp");
 		dispatcher.forward(request, response);	
-			
+		return;
 	}
 	
 	@Override

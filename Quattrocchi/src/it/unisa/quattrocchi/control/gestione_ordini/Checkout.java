@@ -13,6 +13,7 @@ import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
+import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/checkout")
@@ -22,6 +23,7 @@ public class Checkout extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	
 	static OrderModel model = new OrderModel();
+	static AcquirenteModel acModel = new AcquirenteModel();
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -36,6 +38,7 @@ public class Checkout extends HttpServlet{
 					Order nuovo = new Order(usr, sa, cc);
 					model.createOrder(nuovo);
 					usr.resetCart();
+					acModel.updateCart(usr);
 				}
 				return;
 			}

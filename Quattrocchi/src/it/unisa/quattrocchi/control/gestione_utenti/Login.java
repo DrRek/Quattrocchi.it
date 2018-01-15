@@ -51,7 +51,7 @@ public class Login extends HttpServlet{
 				gestoreOrdini = gModel.checkLogin(userid, passid);
 				request.getSession().setAttribute("gestoreOrdini", gestoreOrdini);
 				if(gestoreOrdini != null) {
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 					dispatcher.forward(request, response);
 					return;
 				}

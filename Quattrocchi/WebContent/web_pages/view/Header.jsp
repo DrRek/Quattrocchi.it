@@ -70,7 +70,7 @@
 					%>
 					<div class="collapse navbar-collapse" id="myNavbar">
 			<ul class="nav navbar-nav navbar-centered">
-				<li><a href="visualizza_ordini">Ordini</a>
+				<li><a href="gestoreOrdini">Ordini</a>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="logout">logout</a></li>

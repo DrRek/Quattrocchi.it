@@ -102,4 +102,22 @@ public class Acquirente {
 		return "Acquirente [username=" + username + ", password=" + password + ", nome=" + nome + ", cognome=" + cognome
 				+ ", email=" + email + ", dataNascita=" + dataNascita + "]";
 	}
+
+	public boolean checkCC(String creditCardID) {
+		for(CreditCard c : cc) {
+			if(c.getIdCarta().equals(creditCardID)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean checkSA(String shippingAddressID) {
+		for(ShippingAddress s : shipAdd) {
+			if(s.getCodice().equals(shippingAddressID)) {
+				return true;
+			}
+		}
+		return false;
+	}
 }

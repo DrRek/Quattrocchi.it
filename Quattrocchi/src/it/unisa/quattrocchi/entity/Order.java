@@ -15,9 +15,9 @@ public class Order {
 	
 	
 	private double prezzo;
-	public Order(String codice, Date dataEsecuzione, double prezzo, String statoOrdine, Date dataConsegna, String numeroTracking, 
+	public Order(Date dataEsecuzione, double prezzo, String statoOrdine, Date dataConsegna, String numeroTracking, 
 			String corriere, Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard,List<ArticoloInOrder> listaDiArticoli) {
-		this.codice = codice;
+		this.codice = null;
 		this.statoOrdine = statoOrdine;
 		this.numeroTracking = numeroTracking; 
 		this.dataEsecuzione = dataEsecuzione;

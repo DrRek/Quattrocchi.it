@@ -4,10 +4,6 @@ $(document).ready(function() {
 		var CreditCardID = $('select#credit_card_select').val();
 		var ShippingAddressID = $('select#shipping_address_select').val();
 		
-		console.log("prova");
-		console.log(CreditCardID);
-		console.log(ShippingAddressID);
-		
 		if(CreditCardID==null||CreditCardID==""){
 			alert("Carta di credito non valida!");
 			return;
@@ -16,5 +12,15 @@ $(document).ready(function() {
 			alert("Indirizzo di spedizione non valido!");
 			return;
 		}
+		
+		$.ajax({
+			type : "POST",
+			url : "checkout",
+			data : {
+				CreditCardID:CreditCardID,
+				ShippingAddressID:ShippingAddressID
+			},
+			dataType : "json"
+		});
 	});
 });

@@ -11,7 +11,7 @@
 <%@ page contentType="text/html; charset=UTF-8"
 	import="java.util.*"%>
 
-<link href="css/header.css" type="text/css" rel="stylesheet"
+<link href="web_pages/css/header.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
@@ -42,7 +42,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				
-				<li style="margin-right:10px"><span><img src="../image/cart.png" alt="carrello:"
+				<li style="margin-right:10px"><span><img src="web_pages/image/cart.png" alt="carrello:"
 					style="max-height: 50px;"></span>
 				<%
 					if(usr != null){

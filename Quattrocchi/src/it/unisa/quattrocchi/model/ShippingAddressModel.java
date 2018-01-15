@@ -6,16 +6,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è un manager che si occupa di interagire con il database.
+ * Gestisce le query riguardanti gli indirizzi di spedizione.
+ */
 public class ShippingAddressModel {
 	
 	private static final String TABLE_NAME_ADDRESS = "quattrocchidb.indirizzospedizione";
-	
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	
+	
+	/**
+	 * Questo metodo si occupa di effettuare la ricerca di un indirizzo di spedizione per id.
+	 * @param idShip un oggetto idShip di tipo <strong>String</strong>
+	 * @return un oggetto di tipo <strong>ShippingAddress</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
 	public ShippingAddress doRetrieveById(String idShip) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -58,7 +70,14 @@ public class ShippingAddressModel {
 		return bean;
 	}
 	
-	public List<ShippingAddress> doRetrieveByUser(String user) throws SQLException{
+	
+	/**
+	 * Questo metodo si occupa di effettuare la ricerca degli indirizzi di spedizione per username.
+	 * @param username un oggetto username di tipo <strong>String</strong>
+	 * @return una lista di indirizzi di spedizione di tipo <strong>ArticoloInStock</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
+	public List<ShippingAddress> doRetrieveByUser(String username) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<ShippingAddress> beans = new ArrayList<>();
@@ -77,7 +96,7 @@ public class ShippingAddressModel {
 				int cap = rs.getInt("CAP");
 				String indirizzo = rs.getString("Indirizzo");
 				int nc = rs.getInt("NumeroCivico");
-				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
+				Acquirente acq = acquirenteModel.doRetriveById(username);
 				
 				beans.add(new ShippingAddress(codice,stato,indirizzo,cap,provincia,nc,acq));
 			}
@@ -96,6 +115,12 @@ public class ShippingAddressModel {
 		return beans;
 	}
 	
+	
+	/**
+	 * Questo metodo si occupa di rendere persistente un nuovo indirizzo di spedizione.
+	 * @param toCreate un oggetto toCreate di tipo <strong>ShippingAddress</strong>
+	 * @throws SQLException
+	 */
 	public void createShippingAddress(ShippingAddress toCreate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -138,6 +163,12 @@ public class ShippingAddressModel {
 		return;
 	}
 	
+	
+	/**
+	 * Questo metodo si occupa di effettuare l'aggiornamento di un indirizzo di spezione.
+	 * @param toUpdate un oggetto toUpdate di tipo <strong>ShippingAddress</strong>
+	 * @throws SQLException
+	 */
 	public void updateShippingAddress(ShippingAddress toUpdate) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -179,11 +210,17 @@ public class ShippingAddressModel {
 		return;
 	}
 	
-	public void deleteShippingAddress(ShippingAddress toUpdate) throws SQLException{
+	
+	/**
+	 * Questo metodo si occupa di effettuare la rimozione di un indirizzo di spedizione.
+	 * @param toDelete un oggetto toDelete di tipo <strong>ShippingAddress</strong>
+	 * @throws SQLException
+	 */
+	public void deleteShippingAddress(ShippingAddress toDelete) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String codice = toUpdate.getCodice();
+		String codice = toDelete.getCodice();
 		
 		String query = "delete from " + TABLE_NAME_ADDRESS + " where Id = ?;";
 		

@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import it.unisa.quattrocchi.model.ArticleModel;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 import java.io.IOException;

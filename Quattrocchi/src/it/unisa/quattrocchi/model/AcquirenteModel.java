@@ -30,7 +30,7 @@ public class AcquirenteModel {
 	
 	
 	/**
-	 * Questo metodo si occupa di verificare se nel data base è presente un Acquirente
+	 * Questo metodo si occupa di verificare se nel database è presente un Acquirente
 	 * tramite una username specifica presa in input.
 	 * @param userName un oggetto userName di tipo <strong>String</strong> 
 	 * @return un oggetto di tipo <strong>Acquirente</strong>, altrimenti null.

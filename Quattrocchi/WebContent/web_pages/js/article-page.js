@@ -10,10 +10,8 @@ $(document).ready(function() {
 			},
 			dataType : "json",
 			success : function(responseText) {
-				//Need to update header
+				$("a#count").html(parseInt($("a#count").html()) + 1);
 			}
 		});
-		
-		$("a#count").html(parseInt($("a#count").html()) + 1);
 	});
 });

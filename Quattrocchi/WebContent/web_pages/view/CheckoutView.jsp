@@ -92,7 +92,7 @@
 			}else{
 		%>
 		<h5>Seleziona una carta di credito: </h5>
-		<select>
+		<select id="credit_card_select">
 			<%
 				for(CreditCard c : cc){
 			%>
@@ -123,7 +123,7 @@
 			}else{
 		%>
 		<h5>Seleziona un indirizzo di spedizione: </h5>
-		<select>
+		<select id="shipping_address_select">
 			<%
 				for(ShippingAddress sa : sas){
 			%>
@@ -140,7 +140,7 @@
 		</form>
 	</div>
 	
-	<input class="btn btn-outline-secondary " type="submit" value="Completa l'acquisto" />
+	<input class="btn btn-outline-secondary" id="sumbit_order" type="submit" value="Completa l'acquisto" />
 
 	<%
 		}

@@ -13,7 +13,7 @@ import it.unisa.quattrocchi.entity.GestoreOrdini;
 
 @WebServlet("/welcome")
 
-public class welcome extends HttpServlet{
+public class Welcome extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -25,7 +25,7 @@ public class welcome extends HttpServlet{
 			dispatcher.forward(request, response);
 			return;
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/Index.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/index.jsp");
 		dispatcher.forward(request, response);	
 			
 	}

@@ -58,7 +58,6 @@
          <p>Quattrocchi.it è un e-commerce innovativo dedicato esclusivamente alla vendita di occhiali da sole.</p>
       </div>
       <!-- /.container -->
-   </div>
    <br>
    <div class="container" align="center">
 		<input class="btn btn-outline-secondary " type="submit"

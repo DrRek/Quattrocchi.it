@@ -35,7 +35,7 @@
 			<%
 				int i = 0;
 				while(i < ordini.size()) {
-					if(ordini.get(i).getStatoOrdine().equals("Da spedire")) {
+					if(ordini.get(i).getStatoOrdine().equalsIgnoreCase("Da spedire")) {
 			%>
 			<tbody>
 				<tr>
@@ -59,7 +59,7 @@
 			class="table table-hover table-condensed table-striped">
 			<% 	i = 0;
 				while(i < ordini.size()) {
-					if(ordini.get(i).getStatoOrdine().equals("In corso")) {
+					if(ordini.get(i).getStatoOrdine().equalsIgnoreCase("In corso")) {
 			%>
 			<tbody>
 				<tr>
@@ -82,7 +82,7 @@
 			class="table table-hover table-condensed table-striped">
 			<% 	i = 0;
 				while(i < ordini.size()) {
-					if(ordini.get(i).getStatoOrdine().equals("Consegnato")) {
+					if(ordini.get(i).getStatoOrdine().equalsIgnoreCase("Consegnato")) {
 			%>
 			<tbody>
 				<tr>

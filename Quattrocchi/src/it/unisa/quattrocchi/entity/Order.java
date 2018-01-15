@@ -7,9 +7,9 @@ import java.util.Map;
 
 public class Order {
 	
-	public static String DA_SPEDIRE = "da_spedire";
-	public static String IN_CORSO = "in_corso";
-	public static String TERMINATO = "terminato";
+	public static String DA_SPEDIRE = "Da spedire";
+	public static String IN_CORSO = "In corso";
+	public static String TERMINATO = "Consegnato";
 
 	private String codice, statoOrdine, numeroTracking, corriere;
 	private Date dataEsecuzione, dataConsegna;

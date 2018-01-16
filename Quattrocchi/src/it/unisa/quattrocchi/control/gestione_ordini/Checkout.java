@@ -1,15 +1,13 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-import java.util.HashMap;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import it.unisa.quattrocchi.entity.Acquirente;
-import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
@@ -18,6 +16,12 @@ import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/checkout")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la procedura di checkout.
+ */
 public class Checkout extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
@@ -25,6 +29,10 @@ public class Checkout extends HttpServlet{
 	static OrderModel model = new OrderModel();
 	static AcquirenteModel acModel = new AcquirenteModel();
 
+	
+	/**
+	 * Questo metodo si occupa di effettuare la procedura di checkout.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

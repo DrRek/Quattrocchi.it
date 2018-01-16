@@ -6,12 +6,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import it.unisa.quattrocchi.entity.ArticoloInStock;
 
 @WebServlet("/visualizza_carrello")
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la visualizzazione del carrello.
+ */
 public class VisualizzaCarrello extends HttpServlet{
 
+	private static final long serialVersionUID = 1L;
+
+	
+	/**
+	 * Questo metodo si occupa di effettuare la visualizzazione del carrello.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

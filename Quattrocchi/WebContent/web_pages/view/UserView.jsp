@@ -32,6 +32,10 @@
 <body>
 	<%@ include file="../view/Header.jsp"%>
 	<br><br><br><br>
+	<div id="errorInfoDiv" style="text-align: center; display: none;">
+		<h5 id="errorText">Test</h5>
+		<input type="button" onClick='$("#errorInfoDiv").hide()' value="OK!"/>
+	</div>
 	<%
 		if (usr == null) {
 	%>

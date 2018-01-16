@@ -1,6 +1,10 @@
 $(document).ready(function() {
 
 	$(document).on("click", 'input[name=addAddress]', function(event){
+		if(checkForErrorAddAddress()) {
+			return;
+		}
+		
 		var indirizzo = $("input[name=indirizzo]").val();
 		var civico = $("input[name=numeroCivico]").val();
 		var cap = $("input[name=cap]").val();
@@ -80,5 +84,37 @@ $(document).ready(function() {
 		});
 		$(this).parent().parent().remove();
 	})
-	
 });
+
+function showError(error){
+	$('#errorInfoDiv').show();
+	$('#errorText').html(error);
+}
+
+function checkForErrorAddAddress(){
+	if(!/^([A-Za-z0-9 ]{5,40})$/.test($('input[name=indirizzo]').val())){
+		showError("Inserire un valore valido per l'indirizzo!");
+		return true;
+	}
+	
+	if(!/^([0-9]{1,4})$/.test($('input[name=numeroCivico]').val())){
+		showError("Inserire un valore valido per il numero civico!");
+		return true;
+	}
+	
+	if(!/^([0-9]{5})$/.test($('input[name=cap]').val())){
+		showError("Inserire un valore valido per il cap!");
+		return true;
+	}
+	
+	if(!/^([A-Z]{2})$/.test($('input[name=provincia]').val())){
+		showError("Inserire un valore valido per la provincia (sigla in maiuscolo)!");
+		return true;
+	}
+
+	if(!/^([A-Za-z ]{5,30})$/.test($('input[name=stato]').val())){
+		showError("Inserire un valore valido per lo stato!");
+		return true;
+	}
+	return false;
+}

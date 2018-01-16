@@ -149,7 +149,7 @@ public class CreditCardModel {
 			stm.setString(2, numeroCC);
 			stm.setString(3, intestatario);
 			stm.setString(4, circuito);
-			stm.setDate(5, (java.sql.Date) dataScadenza);
+			stm.setDate(5, new java.sql.Date(dataScadenza.getTime()));
 			stm.setInt(6, cvccvv);
 			stm.setString(7, acquirente);
 			
@@ -216,14 +216,12 @@ public class CreditCardModel {
 	
 	/**
 	 * Questo metodo si occupa di cancellare una carta di credito nel database.
-	 * @param toDelete un oggetto toDelete di tipo <strong>CreditCard</strong>
+	 * @param codice un oggetto toDelete di tipo <strong>CreditCard</strong>
 	 * @throws SQLException
 	 */
-	public void deleteCreditCard(CreditCard toDelete) throws SQLException{
+	public void deleteCreditCard(String codice) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
-		
-		String codice = toDelete.getIdCarta();
 		
 		String query = "delete from " + TABLE_NAME_CREDITCARD + " where IdCarta = ?;";
 		

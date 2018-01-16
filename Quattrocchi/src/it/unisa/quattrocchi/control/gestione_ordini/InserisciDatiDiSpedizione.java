@@ -22,14 +22,20 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
-			Order orderToUpdate = orderModel.doRetrieveById(request.getParameter("ordineId"));
-			orderToUpdate.setCorriere(request.getParameter("corriere"));
+			String orderId = request.getParameter("ordineId");
+			String corriere = request.getParameter("corriere");
 			String tracking = request.getParameter("tracking");
-			if(tracking == null) { //aggiungere controlli
+			String statoOrdine = request.getParameter("statoOrdine");
+			if(orderId == null || corriere == null || corriere.length() < 3 || corriere.length() >10 || tracking == null || tracking.length() < 5 ||
+					tracking.length() > 15 || statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
+				dispatcher.forward(request, response);
 				return;
 			}
+			Order orderToUpdate = orderModel.doRetrieveById(orderId);
+			orderToUpdate.setCorriere(corriere);
 			orderToUpdate.setNumeroTracking(tracking);
-			orderToUpdate.setStatoOrdine(request.getParameter("statoOrdine"));
+			orderToUpdate.setStatoOrdine(statoOrdine);
 			orderModel.updateOrder(orderToUpdate);
 			request.getSession().setAttribute("ordini", orderModel.doRetrieveAll());			
 		} catch (SQLException e) {

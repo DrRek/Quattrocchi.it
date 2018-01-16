@@ -98,4 +98,5 @@
 	</form>
 <% } %>
 </body>
+	<script type="text/javascript" src="web_pages/js/validation.js"></script>
 </html>

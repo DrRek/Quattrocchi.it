@@ -1,13 +1,10 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-<<<<<<< HEAD
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-=======
-
->>>>>>> 9385f996905c38f8655ef5b94835b88fdd5d2bd4
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -15,12 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.unisa.quattrocchi.entity.Acquirente;
-<<<<<<< HEAD
+
 import it.unisa.quattrocchi.entity.ArticoloInOrder;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
-=======
->>>>>>> 9385f996905c38f8655ef5b94835b88fdd5d2bd4
+
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;

@@ -108,12 +108,7 @@
 		</div>
 
 		<div class="container-fluid col-sm-8 col-md-9 col-lg-10 products"></div>
-		<h5 style="padding: 20px">
-			order by <a href="#" onclick="return orderByName()">Nome</a> <a
-				href="#" onclick="return orderByMarca()">Marca</a> <a href="#"
-				onclick="return orderByTipo()">Tipo</a> <a href="#"
-				onclick="return orderByPrezzo()">Prezzo</a>
-		</h5>
+	
 		<div id="demos" class="products"></div>
 	</div>
 	<%@ include file="../view/Footer.jsp"%>

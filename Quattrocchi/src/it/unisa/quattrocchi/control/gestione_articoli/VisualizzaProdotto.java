@@ -25,6 +25,9 @@ public class VisualizzaProdotto extends HttpServlet{
 	
 	static ArticoloInStockModel articoloInStockModel = new ArticoloInStockModel();
 	
+	/**
+	 * Questo metodo si occupa di far visualizzare la scheda di un prodotto.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

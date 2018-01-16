@@ -78,7 +78,7 @@
 		</h5>
 	</div>
 
-	<div>
+	<div class="container">
 		<!-- Uso questo per la carta di credito -->
 		<%
 			List<CreditCard> cc = usr.getCc();
@@ -86,17 +86,17 @@
 		%>
 		<h5>Nessuna carta di credito disponibile</h5>
 		<form action="/Quattrocchi/profilo" method="post">
-			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi una carta di credito" />
+			<input class="btn btn-outline-secondary form-control" type="submit" value="Aggiungi una carta di credito" />
 		</form>
 		<%
 			}else{
 		%>
-		<h5>Seleziona una carta di credito: </h5>
-		<select id="credit_card_select">
+		<h3>Seleziona una carta di credito: </h3>
+		<select class ="form-control" id="credit_card_select">
 			<%
 				for(CreditCard c : cc){
 			%>
-			<option value="<%=c.getIdCarta()%>">XXXX-XXXX-XXXX-<%=c.getLastCC()%> | <%=c.getIntestatario()%></option>
+			<option value="<%=c.getIdCarta()%>">XXXX-XXXX-XXXX-<%=c.getLastCC()%> , <%=c.getIntestatario()%></option>
 			<%
 				}
 			%>
@@ -104,44 +104,48 @@
 		<%
 			}
 		%>
-		<form action="/Quattrocchi/profilo" method="post">
+		<br>
+		<form style="float:right" action="/Quattrocchi/profilo" method="post">
 			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi una carta di credito" />
 		</form>
 	</div>
 	
-	<div>
+	<div class="container">
 		<!-- Uso questo per l'indirizzo di spedizione -->
 		<%
 			List<ShippingAddress> sas = usr.shipAdd();
 			if(sas==null || sas.size()==0){
 		%>
 		<h5>Nessun indirizzo di spedizione disponibile</h5>
-		<form action="/Quattrocchi/profilo" method="post">
+		<br>
+		<form style="float:right" action="/Quattrocchi/profilo" method="post">
 			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi un indirizzo di spedizione" />
 		</form>
 		<%
 			}else{
 		%>
-		<h5>Seleziona un indirizzo di spedizione: </h5>
-		<select id="shipping_address_select">
+		<h3>Seleziona un indirizzo di spedizione: </h3>
+		<select class="form-control" id="shipping_address_select">
 			<%
 				for(ShippingAddress sa : sas){
 			%>
-			<option value="<%=sa.getCodice()%>"><%=sa.getIndirizzo()%>, <%=sa.getNC() %> | <%=sa.getCap()%></option>
+			<option value="<%=sa.getCodice()%>"><%=sa.getIndirizzo()%>, <%=sa.getNC() %> , <%=sa.getCap()%></option>
 			<%
 				}
 			%>
 		</select>
 		<%
 			}
-		%>
-		<form action="/Quattrocchi/profilo" method="post">
-			<input class="btn btn-outline-secondary " type="submit" value="Aggiungi un indirizzo di spedizione" />
+		%> 
+		<br>
+		<form style="float:right" action="/Quattrocchi/profilo" method="post">
+			<input class="btn   " type="submit" value="Aggiungi un indirizzo di spedizione" />
 		</form>
 	</div>
-	
+	<div class="container">
+	<br>
 	<input class="btn btn-outline-secondary" id="submit_order" type="submit" value="Completa l'acquisto" />
-
+	</div>
 	<%
 		}
 	%>

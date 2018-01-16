@@ -96,7 +96,7 @@ function showError(error){
 }
 
 function checkForErrorAddCard(){
-	if(!/^[0-9]{16})$/.test($('input[name=numcc]').val())){
+	if(!/^([0-9]{16})$/.test($('input[name=numcc]').val())){
 		showError("Inserire un valore valido per il numero della carta!");
 		return true;
 	}

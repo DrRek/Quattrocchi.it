@@ -8,9 +8,19 @@ public class CreditCard {
 	private int cvv;
 	private Date dataScadenza;
 	private Acquirente acquirente;
+	
 	public CreditCard(String idCarta,String numeroCC, String intestatario, String circuito, Date dataScadenza, int cvv, Acquirente acquirente) {
-		super();
 		this.idCarta = idCarta;
+		this.numeroCC = numeroCC;
+		this.intestatario = intestatario;
+		this.circuito = circuito;
+		this.cvv = cvv;
+		this.dataScadenza = dataScadenza;
+		this.acquirente = acquirente;
+	}
+	
+	public CreditCard(String numeroCC, String intestatario, String circuito, Date dataScadenza, int cvv, Acquirente acquirente) {
+		this.idCarta = null;
 		this.numeroCC = numeroCC;
 		this.intestatario = intestatario;
 		this.circuito = circuito;
@@ -76,7 +86,7 @@ public class CreditCard {
 	}
 	
 	public String getLastCC() {
-		return numeroCC.substring(11);
+		return numeroCC.substring(12);
 	}
 	
 }

@@ -30,7 +30,6 @@ public class RicercaProdotto extends HttpServlet{
 			String action = request.getParameter("action");
 			if(action!=null && action.equalsIgnoreCase("search")) {
 				String toSearch = request.getParameter("toSearch");
-				response.setContentType("application/json");
 				if(toSearch!=null && !toSearch.equalsIgnoreCase("")) {
 					response.getWriter().write(new Gson().toJson(model.doRetrieveSimpleSearch(toSearch)));
 				}

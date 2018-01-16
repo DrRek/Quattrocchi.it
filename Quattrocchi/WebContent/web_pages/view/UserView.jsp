@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*, it.unisa.quattrocchi.control.*, it.unisa.quattrocchi.entity.*, it.unisa.quattrocchi.*"%>
+	import="java.util.*, it.unisa.quattrocchi.control.*, it.unisa.quattrocchi.entity.*, it.unisa.quattrocchi.*, java.util.Date, java.text.DateFormat, java.text.SimpleDateFormat"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
@@ -79,19 +79,23 @@
 				</tr>
 			</thead>
 			<tbody>
-				<%for(CreditCard cc : usr.getCc()){%>
+				<%
+					DateFormat df = new SimpleDateFormat("MM/yyyy");
+					for(CreditCard cc : usr.getCc()){
+				%>
 				<tr>
-					<td><%=cc.getLastCC()%></td>
+					<td>xxxx-xxxx-xxxx-<%=cc.getLastCC()%></td>
 					<td ><%=cc.getIntestatario()%></td>
 					<td ><%=cc.getCircuito()%></td>
-					<td ><%=cc.getDataScadenza()%></td>
+					<td ><%=df.format(cc.getDataScadenza())%></td>
 					<td >xxx</td>
-					<td><input type="submit"
-						class="removeCard btn btn-outline-secondary" name="removeCard"
-						value="rimuovi" /></td>
+					<td>
+						<input type="hidden" class="cardCode" value="<%=cc.getIdCarta()%>"/>
+						<input type="submit" class="removeCard btn btn-outline-secondary" name="removeCard" value="rimuovi" />
+					</td>
 				</tr>
 				<%} %>
-				<tr>
+				<tr id="lastCreditCard">
 					<td><input name="numcc" type="text" class="form-control" placeholder="Numero carta"/></td>
 					<td><input name="intestatario" type="text" class="form-control" placeholder="Intestatario"/></td>
 					<td><input name="circuito" type="text" class="form-control" placeholder="Circuito"/></td>
@@ -126,9 +130,10 @@
 					<td ><%=sa.getCap() %></td>
 					<td><%=sa.getProvincia() %></td>
 					<td><%=sa.getStato() %></td>
-					<td><input type="submit"
-						class="btn btn-outline-secondary" name="removeAddress"
-						value="remove" /></td>
+					<td>
+						<input type="hidden" class="addressCode" value="<%=sa.getCodice()%>"/>
+						<input type="submit" class="btn btn-outline-secondary" name="removeAddress" value="remove" />
+					</td>
 				</tr>
 				<%} %>
 				<tr id="lastShipAdd">
@@ -137,9 +142,9 @@
 					<td><input name="cap" type="text" class="form-control" placeholder="CAP"/></td>
 					<td><input name="provincia" type="text" class="form-control" placeholder="Provincia"/></td>
 					<td><input name="stato" type="text" class="form-control" placeholder="Stato" /></td>
-					<td><input type="submit"
-						class="addAddress btn btn-outline-secondary" name="addAddress"
-						value="aggiungi" /></td>
+					<td>
+						<input type="submit" class="addAddress btn btn-outline-secondary" name="addAddress" value="aggiungi" />
+					</td>
 				</tr>
 			</tbody>
 		</table>

@@ -13,6 +13,7 @@
 <body>
 <%@ include file="../view/Header.jsp"%>
 <br><br>
+<div class="container">
    <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -56,6 +57,7 @@
     <span class="glyphicon glyphicon-chevron-right"></span>
     <span class="sr-only">Next</span>
   </a>
+</div>
 </div>
       <div class="container">
          <h2>Benvenuto su Quattrocchi.it</h2>

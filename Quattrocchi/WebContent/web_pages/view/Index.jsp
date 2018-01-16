@@ -12,7 +12,7 @@
 </head>
 <body>
 <%@ include file="../view/Header.jsp"%>
-<br><br>
+<br><br><br>
 <div class="container">
    <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->

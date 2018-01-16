@@ -25,7 +25,9 @@
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand  navbar-brand-left" href="/Quattrocchi/">Quattrocchi.it</a>
+			<ul class="nav navbar-nav navbar-left">
+						  <li><a class="navbar-brand" id="fix" rel="home" href="/Quattrocchi/" >Quattrocchi.it</a><li>
+						  </ul>
 		</div>
 		<!-- /Quattrocchi.it -->
 		
@@ -56,7 +58,7 @@
 		<div>	
 			<ul class="nav navbar-nav navbar-right">
 				<!-- Carrello -->
-				<li style="margin-right: 10px"><span><img
+				<li  style="margin-right: 10px"><span><img
 						src="web_pages/image/cart.png" alt="carrello:"
 						style="max-height: 50px;"></span> 
 				<%
@@ -74,7 +76,7 @@
 					
 				if (usr == null) {
 				%>
-						<li><a href="access">Login / Register</a></li>
+						<li><a href="access">Login</a></li>
 				<%
 					} else {
 				%>
@@ -96,11 +98,10 @@
 						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navb">
 							<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 						</button>
-					
-					<a class="navbar-brand  navbar-brand-left"
-						href="/Quattrocchi/gestoreOrdini">Quattrocchi.it</a>
-				
-					</div> 
+						<ul class="nav navbar-nav navbar-left">
+						  <li><a class="navbar-brand" id="fix" rel="home" href="/Quattrocchi/gestoreOrdini" >Quattrocchi.it</a><li>
+						  </ul>
+				</div>
 				<!-- CONTENUTO QUANDO COLLAPSE -->
 				<div class="collapse navbar-collapse" id="navb">
 				<div>

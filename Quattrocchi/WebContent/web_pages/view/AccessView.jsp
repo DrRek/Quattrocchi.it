@@ -45,7 +45,7 @@
 		<h1>Login</h1>
 		<div class="form-group">
 		<form name='login'
-			action='access' method="post">
+			action='access' method="post" onSubmit="return loginValidation()">
 
 			<input type="hidden" name="action" value="login"> 
 			<div class="form-group">
@@ -74,7 +74,7 @@
 	</div>
 	<% } %>
 	<%@ include file="../view/Footer.jsp"%>
-	<script type="text/javascript" src="js/access-validation.js"></script>
+	<script type="text/javascript" src="web_pages/js/validation.js"></script>
 	<script src="js/util.js"></script>
 </body>
 </html>

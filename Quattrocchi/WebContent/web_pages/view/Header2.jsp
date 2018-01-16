@@ -15,7 +15,6 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<%
-		//SE GESTORE è NULL
 			if (gestore == null) {
 		%>
 		<!-- Quattrocchi.it -->
@@ -29,15 +28,14 @@
 		</div>
 		<!-- /Quattrocchi.it -->
 		
+		
 		<div class="collapse navbar-collapse" id="myNavbar">
-		<!-- CENTRO NAVBAR -->
-		<div>
 			<ul class="nav navbar-nav navbar-centered">
 		<!-- Visualizza Catalogo -->
 				<li><a href="visualizza_catalogo">Catalogo</a>
 		<!-- /Visualizza Catalogo -->
 		<!-- Ricerca -->
-				<li class="navbar-collapse">
+				<li>
 					<form class="navbar-form" action="ricerca_prodotto" method="get">
 						<div class="input-group">
 							<input type="hidden" name="action" value="searchFromOtherPage">
@@ -50,72 +48,57 @@
 				</li>
 		<!-- /Ricerca -->	
 			</ul>
-		</div>
-		<!-- /CENTRO NAVBAR -->
-		<!-- DESTRA NAVBAR -->
-		<div>	
+			
 			<ul class="nav navbar-nav navbar-right">
 				<!-- Carrello -->
 				<li style="margin-right: 10px"><span><img
 						src="web_pages/image/cart.png" alt="carrello:"
-						style="max-height: 50px;"></span> 
-				<%
-				//DA CAMBIARE_________________________________________ perchè dobbiamo permettere l'aggiunta anche a chi non è loggato
- 					if (usr == null || usr.getCart() == null) {
- 				%> 
- 						<span style="color: white"><a id="count" href="checkout">0</a></span></li>
+						style="max-height: 50px;"></span> <%
+ 	if (usr != null) {
+ 			if (usr.getCart() == null) {
+ %> <span style="color: white"><a id="count" href="checkout">0</a></span></li>
 				<%
 					} else {
 				%>
-						<span style="color: white"><a id="count"
-						href="visualizza_carrello"><%=usr.getCart().getNumeroDiArticoli()%></span></a></li>
+				<span style="color: white"><a id="count"
+					href="visualizza_carrello"><%=usr.getCart().getNumeroDiArticoli()%></span>
+				</a>
+				</li>
 				<%
 					}
-					
-				if (usr == null) {
-				%>
-						<li><a href="access">Login / Register</a></li>
-				<%
-					} else {
-				%>
-						<li><a href="profilo">Benvenuto, <%=usr.getUsername()%></a></li>
-						<li><a href="logout">logout</a></li>
-				<%
+						}
 					}
+					if (usr == null && gestore == null) {
 				%>
-					</ul>
-				</div>
-				<!-- DESTRA NAVBAR -->
-				</div>
-			<%
-			//SE GESTORE NON è NULL
-			} else {
-			%>
-			
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navb">
-							<span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
-						</button>
-					
+				<li><a href="access">Login / Register</a></li>
+				<%
+					} else if (usr != null) {
+				%>
+				<li><a href="profilo">Benvenuto, <%=usr.getUsername()%></a></li>
+				<li><a href="logout">logout</a></li>
+				<%
+					} else if (gestore != null) {
+				%>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse"
+						data-target="#myNavbar">
+						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+							class="icon-bar"></span>
+					</button>
 					<a class="navbar-brand  navbar-brand-left"
 						href="/Quattrocchi/gestoreOrdini">Quattrocchi.it</a>
-				
-					</div> 
-				<!-- CONTENUTO QUANDO COLLAPSE -->
-				<div class="collapse navbar-collapse" id="navb">
-				<div>
-						<ul class="nav navbar-nav navbar-centered">
-							<li><a href="gestoreOrdini">Ordini</a>
-						</ul>
-					</div><div>
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="logout">logout</a></li>
-						</ul>
-						</div>
 				</div>
+				<div class="collapse navbar-collapse" id="myNavbar">
+					<ul class="nav navbar-nav navbar-centered">
+						<li><a href="gestoreOrdini">Ordini</a>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="logout">logout</a></li>
 						<%
 							}
 						%>
-						</div>
+					</ul>
+				</div>
+		</div>
 		<script src="web_pages/js/bootstrap.js"></script>
 </nav>

@@ -17,21 +17,21 @@
    <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
-    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="0"></li>
+    <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
 
   <!-- Wrapper for slides -->
   <div class="carousel-inner">
-  <div class="item active">
+  <div class="item">
       <img src="web_pages/image/home1.jpg" alt="persol">
       <div class="carousel-caption">
         <h1><a style="color:white"  href="ricerca_prodotto?action=searchFromOtherPage&toSearch=persol">Persol</a></h1>
         <p>La marca eco-frienldy</p>
         </div>
     </div>
-    <div class="item">
+    <div class="item active">
       <img src="web_pages/image/home2.jpg" alt="rayban">
       <div class="carousel-caption">
         <h1><a style="color:white"  href="ricerca_prodotto?action=searchFromOtherPage&toSearch=rayban">Rayban</a></h1>

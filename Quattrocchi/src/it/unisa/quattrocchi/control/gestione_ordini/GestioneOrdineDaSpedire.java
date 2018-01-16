@@ -22,12 +22,6 @@ public class GestioneOrdineDaSpedire extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			String orderId = request.getParameter("ordineId");
-			if(orderId == null) {
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
-				dispatcher.forward(request, response);
-				return;
-			}
 			Order ordineDaGestire = orderModel.doRetrieveById(request.getParameter("ordineId"));
 			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
 		} catch (SQLException e) {

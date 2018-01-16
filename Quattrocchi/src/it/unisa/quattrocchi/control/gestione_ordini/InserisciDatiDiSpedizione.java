@@ -26,12 +26,9 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			String corriere = request.getParameter("corriere");
 			String tracking = request.getParameter("tracking");
 			String statoOrdine = request.getParameter("statoOrdine");
-			if(orderId == null || corriere == null || corriere.length() < 3 || corriere.length() >10 || tracking == null || tracking.length() < 5 ||
-					tracking.length() > 15 || statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
-				dispatcher.forward(request, response);
+			if(orderId == null || orderId.length() != 10 || corriere == null || corriere.length() < 3 || corriere.length() >10 || tracking == null || tracking.length() < 5 ||
+					tracking.length() > 15 || statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato"))))
 				return;
-			}
 			Order orderToUpdate = orderModel.doRetrieveById(orderId);
 			orderToUpdate.setCorriere(corriere);
 			orderToUpdate.setNumeroTracking(tracking);

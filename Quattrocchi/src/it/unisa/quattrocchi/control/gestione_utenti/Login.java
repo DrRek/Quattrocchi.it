@@ -40,8 +40,7 @@ public class Login extends HttpServlet{
 		GestoreOrdini gestoreOrdini;
 		boolean isGestore = false;
 
-		if(userid == null || userid.length() < 5 || userid.length() > 15 || passid == null || passid.length() < 5 || passid.length() > 15){
-			request.setAttribute("loginFailed", true);
+		if(userid==null||userid.equalsIgnoreCase("")){
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/AccessView.jsp");
 			dispatcher.forward(request, response);
 			return;

@@ -42,7 +42,7 @@ function corriereSelect(inp, x, y)
 }
 
 function statoControl(inp) {
-	if(inp.val().equals("Da spedire") || inp.val().equals("In corso") || inp.val().equals("consegnato"))
+	if(inp.equals("Da spedire") || inp.equals("In corso") || inp.equals("consegnato"))
 		return true;
 	else
 		return false;

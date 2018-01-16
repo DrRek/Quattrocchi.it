@@ -34,6 +34,10 @@ $(document).ready(function() {
 	})
 	
 	$(document).on("click", 'input[name=addCard]', function(event){
+		if(checkForErrorAddCard()){
+			return;
+		}
+		
 		var numcc = $("input[name=numcc]").val();
 		var intestatario = $("input[name=intestatario]").val();
 		var circuito = $("input[name=circuito]").val();
@@ -51,7 +55,7 @@ $(document).ready(function() {
 				cvv : cvv
 			},
 			success : function(responseText) {
-				$("#lastCreditCard").before('<tr><td>'+numcc.substring(12)+'</td><td>'+intestatario+'</td><td >'+circuito+'</td><td>'+scadenza+'</td><td>XXX</td><td><input type="hidden" class="cardCode" value="'+responseText+'"/><input type="submit"class="btn btn-outline-secondary" name="removeAddress"value="remove" /></td></tr>');
+				$("#lastCreditCard").before('<tr><td>'+numcc.substring(12)+'</td><td>'+intestatario+'</td><td >'+circuito+'</td><td>'+scadenza+'</td><td>xxx</td><td><input type="hidden" class="cardCode" value="'+responseText+'"/><input type="submit"class="btn btn-outline-secondary" name="removeAddress"value="remove" /></td></tr>');
 				$("input[name=numcc]").val("");
 				$("input[name=intestatario]").val("");
 				$("input[name=circuito]").val("");
@@ -89,6 +93,33 @@ $(document).ready(function() {
 function showError(error){
 	$('#errorInfoDiv').show();
 	$('#errorText').html(error);
+}
+
+function checkForErrorAddCard(){
+	if(!/^([0-9]{16})$/.test($('input[name=numcc]').val())){
+		showError("Inserire un valore valido per il numero della carta!");
+		return true;
+	}
+	
+	if(!/^([A-Za-z ]{5,40})$/.test($('input[name=intestatario]').val())){
+		showError("Inserire un valore valido per l'intestatario!");
+		return true;
+	}
+	
+	if(!/^([A-Za-z ]{4,20})$/.test($('input[name=circuito]').val())){
+		showError("Inserire un valore valido per il circuito!");
+		return true;
+	}
+	
+	if(!/^([0-9]{2}[/]{1}[0-9]{4})$/.test($('input[name=scadenza]').val())){
+		showError("Inserire un valore valido per la data (MM/yyyy)!");
+		return true;
+	}
+	
+	if(!/^([0-9]{3})$/.test($('input[name=cvv]').val())){
+		showError("Inserire un valore valido per il cvv!");
+		return true;
+	}
 }
 
 function checkForErrorAddAddress(){

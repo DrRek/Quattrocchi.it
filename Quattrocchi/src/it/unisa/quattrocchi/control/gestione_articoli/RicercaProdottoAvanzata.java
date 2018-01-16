@@ -10,12 +10,23 @@ import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/ricerca_prodotto_avanzata")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la ricerca avanzata di prodotti dal catalogo.
+ */
 public class RicercaProdottoAvanzata extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
 	static ArticoloInStockModel model = new ArticoloInStockModel();
 	
+	
+	/**
+	 * Questo metodo si occupa di effettuare la ricerca avanza di prodotti all'interno del catalogo
+	 * utilizzando i vari parametri inseriti dall'utente nell'apposita form.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 

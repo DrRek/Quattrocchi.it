@@ -14,6 +14,8 @@
 	media="screen,projection" />
 <link href="web_pages/css/gestoreordini.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <title>Gestione Ordine</title>
 </head>
 <body>

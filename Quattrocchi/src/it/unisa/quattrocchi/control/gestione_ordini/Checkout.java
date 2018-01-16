@@ -1,6 +1,9 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.quattrocchi.entity.Acquirente;
+import it.unisa.quattrocchi.entity.ArticoloInOrder;
+import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 import it.unisa.quattrocchi.model.AcquirenteModel;
+import it.unisa.quattrocchi.model.ArticoloInOrderModel;
 import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/checkout")
@@ -24,6 +30,7 @@ public class Checkout extends HttpServlet{
 	
 	static OrderModel model = new OrderModel();
 	static AcquirenteModel acModel = new AcquirenteModel();
+	static ArticoloInOrderModel aInOrderModel = new ArticoloInOrderModel();
 
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -39,7 +46,15 @@ public class Checkout extends HttpServlet{
 					model.createOrder(nuovo);
 					usr.resetCart();
 					acModel.updateCart(usr);
+					Map<ArticoloInStock, Integer> articoli = usr.getCart().getArticoli();
+					Set<ArticoloInStock> artInStock = articoli.keySet();
+					for(ArticoloInStock a: artInStock) {
+						//aInOrderModel.doSave(new ArticoloInOrder(a, articoli.get(a)), codiceOrdine);
+						//BISOGNA RISALIRE ALL'ID DELL'ORDINE E CREARE IL DOSAVE
+					}
 				}
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
+				dispatcher.forward(request, response);
 				return;
 			}
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");

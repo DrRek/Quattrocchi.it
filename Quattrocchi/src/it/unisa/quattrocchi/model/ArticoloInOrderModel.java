@@ -136,7 +136,7 @@ public class ArticoloInOrderModel {
 			
 			ResultSet rs = stm.executeQuery();
 			
-			if(rs.next()) {
+			while(rs.next()) {
 				String codice = rs.getString("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
@@ -146,6 +146,10 @@ public class ArticoloInOrderModel {
 				String descrizione = rs.getString("Descrizione");
 				double prezzo = rs.getDouble("Prezzo");
 				int quantità = rs.getInt("Quantita");
+				
+				if(codiceOrdine.equals("999")) {
+					System.out.println("Articolo aggiunto: " + codice + " " + modello + " " + marca);
+				}
 				
 				beans.add(new ArticoloInOrder(codice,modello,marca,img1,img2,img3,descrizione,prezzo,quantità));
 				

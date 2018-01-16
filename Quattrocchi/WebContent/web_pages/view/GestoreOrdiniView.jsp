@@ -10,7 +10,7 @@
 	import="java.util.*,it.unisa.quattrocchi.control.*, it.unisa.quattrocchi.entity.*"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>gestione_ordini</title>
+<title>Gestione Ordini</title>
 </head>
 <link href="web_pages/css/bootstrap.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
@@ -87,8 +87,10 @@
 			<tbody>
 				<tr>
 					<td><%=ordini.get(i).getCodice()%></td>
-					<td><input class="btn btn-outline-secondary "
-						type="submit" name="inserireNAME" value="Gestisci" /></td>
+					<td><form action="/Quattrocchi/GestioneOrdineTerminato" method="post">
+                            <input type="hidden" name="ordineId" value="<%=ordini.get(i).getCodice()%>">
+                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
+                    </form></td>
 				</tr>
 			</tbody>
 			<% 		}

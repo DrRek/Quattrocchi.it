@@ -37,7 +37,7 @@
 				<li><a href="visualizza_catalogo">Catalogo</a>
 		<!-- /Visualizza Catalogo -->
 		<!-- Ricerca -->
-				<li class="navbar-collapse">
+				<li>
 					<form class="navbar-form" action="ricerca_prodotto" method="get">
 						<div class="input-group">
 							<input type="hidden" name="action" value="searchFromOtherPage">

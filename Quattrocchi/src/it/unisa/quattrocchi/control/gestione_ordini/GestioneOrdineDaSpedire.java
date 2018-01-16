@@ -15,10 +15,21 @@ import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/gestioneOrdineDaSpedire")
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di effettuare la gestione dell'ordine da spedire.
+ */
 public class GestioneOrdineDaSpedire extends HttpServlet{
 
+	private static final long serialVersionUID = 1L;
 	static OrderModel orderModel = new OrderModel();
 	
+	
+	/**
+	 * Questo metodo si occupa di fornire la funzionalità di gestione di un ordine
+	 * da spedire. 
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {

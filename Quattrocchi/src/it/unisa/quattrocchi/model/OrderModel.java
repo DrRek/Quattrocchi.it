@@ -41,6 +41,7 @@ public class OrderModel {
 		Order bean = null;
 		List<ArticoloInOrder> listaArticoliInOrdine = new ArrayList<>();
 		listaArticoliInOrdine = articoloInOrderModel.restituisciArticoliAssociatiAdUnOrdine(idOrder);
+		System.out.println(listaArticoliInOrdine.size());
 	
 		
 		String query = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";

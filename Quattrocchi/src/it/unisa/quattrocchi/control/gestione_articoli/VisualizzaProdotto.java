@@ -5,12 +5,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/visualizza_prodotto")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la visualizzazione della scheda di un prodotto.
+ * Prende l'id di tipo <strong>String</strong> del'articolo dalla request di tipo <strong>HttpServletRequest</strong>,
+ * chiama il metodo <strong>doRetrieveByIdInStock</strong> per controllare se il prodtto è presente nel databse,
+ * esegue il dispatch della pagina.
+ */
 public class VisualizzaProdotto extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

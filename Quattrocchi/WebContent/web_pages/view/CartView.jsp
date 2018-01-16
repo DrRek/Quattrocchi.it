@@ -16,7 +16,7 @@
 
 <link href="web_pages/css/bootstrap.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
-<link href="web_pages/css/CheckoutView.css" type="text/css" rel="stylesheet"
+<link href="web_pages/css/CartView.css" type="text/css" rel="stylesheet"
 	media="screen,projection" />
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />

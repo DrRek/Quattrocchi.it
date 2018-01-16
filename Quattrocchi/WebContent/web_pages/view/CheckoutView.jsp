@@ -52,7 +52,6 @@
 				<th style="width: 40%" id="prod">Prodotto</th>
 				<th style="width: 20%" id="qta">Quantità</th>
 				<th style="width: 20%">Prezzo</th>
-				<th style="width: 20%"></th>
 			</thead>
 			<%
 				Map<ArticoloInStock, Integer> map = cart.getArticoli();
@@ -72,12 +71,12 @@
 				}
 			%>
 		</table>
-		<h5>
-			Total:
+		<h4>
+			Totale:
 			<%=cart.getPrezzo()%>€
-		</h5>
+		</h4>
 	</div>
-
+<br>
 	<div class="container">
 		<!-- Uso questo per la carta di credito -->
 		<%

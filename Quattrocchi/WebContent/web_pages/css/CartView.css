@@ -17,8 +17,8 @@ td{text-align:center;}
 	}
 	th{text-align:left;}
 	td{text-align:left;}
-	table#cartElements thead { display: none; }
-	table#cartElements tbody td { display: block; padding: .6rem; }
+	table thead { display: none; }
+	table tbody td { display: block; padding: .6rem; }
 	
 	
 }

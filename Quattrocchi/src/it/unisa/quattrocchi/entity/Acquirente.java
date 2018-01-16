@@ -130,4 +130,27 @@ public class Acquirente {
 		if(shipAdd==null) shipAdd=new ArrayList<>();
 		shipAdd.add(sa);
 	}
+
+	public void addCreditCard(CreditCard creditCard) {
+		if(cc==null) cc=new ArrayList<>();
+		cc.add(creditCard);
+	}
+
+	public void removeShippingAddress(String id) {
+		for(int i=0; i<shipAdd.size(); i++) {
+			if(shipAdd.get(i).getCodice().equals(id)) {
+				shipAdd.remove(i);
+			}
+		}
+		return;
+	}
+
+	public void removeCartAddress(String id) {
+		for(int i=0; i<cc.size(); i++) {
+			if(cc.get(i).getIdCarta().equals(id)) {
+				cc.remove(i);
+			}
+		}
+		return;
+	}
 }

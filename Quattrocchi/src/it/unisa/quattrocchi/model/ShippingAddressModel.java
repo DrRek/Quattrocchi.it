@@ -121,7 +121,8 @@ public class ShippingAddressModel {
 	 * @param toCreate un oggetto toCreate di tipo <strong>ShippingAddress</strong>
 	 * @throws SQLException
 	 */
-	public void createShippingAddress(ShippingAddress toCreate) throws SQLException{
+	public String createShippingAddress(ShippingAddress toCreate) throws SQLException{
+		String codice = null;
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -160,7 +161,39 @@ public class ShippingAddressModel {
 				DriverManagerConnectionPool.releaseConnection(conn);
 			}
 		}
-		return;
+		
+		query = "Select * from " + TABLE_NAME_ADDRESS +
+				" where Stato = ? and Provincia = ? and CAP = ? and Indirizzo = ? and NumeroCivico = ? and Acquirente = ?";
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, stato);
+			stm.setString(2, provincia);
+			stm.setInt(3, cap);
+			stm.setString(4, indirizzo);
+			stm.setInt(5, numeroCivico);
+			stm.setString(6, acquirente);
+			
+			System.out.println(stm);
+			
+			ResultSet rs = stm.executeQuery();
+			if(rs.next()) {
+				 codice= rs.getString("id");
+			}
+			rs.close();
+			stm.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return codice;
 	}
 	
 	
@@ -213,14 +246,12 @@ public class ShippingAddressModel {
 	
 	/**
 	 * Questo metodo si occupa di effettuare la rimozione di un indirizzo di spedizione.
-	 * @param toDelete un oggetto toDelete di tipo <strong>ShippingAddress</strong>
+	 * @param codice un oggetto toDelete di tipo <strong>ShippingAddress</strong>
 	 * @throws SQLException
 	 */
-	public void deleteShippingAddress(ShippingAddress toDelete) throws SQLException{
+	public void deleteShippingAddress(String codice) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
-		
-		String codice = toDelete.getCodice();
 		
 		String query = "delete from " + TABLE_NAME_ADDRESS + " where Id = ?;";
 		

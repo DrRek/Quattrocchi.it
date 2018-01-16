@@ -2,23 +2,34 @@ package it.unisa.quattrocchi.control.gestione_ordini;
 
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/inserisciDatiDiSpedizione")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire l'aggiunta del numero
+ * di tracking e la data della consegna relativa all'ordine da gestire.
+ */
 public class InserisciDatiDiSpedizione extends HttpServlet{
-	
+
+	private static final long serialVersionUID = 1L;
 	static OrderModel orderModel = new OrderModel();
 
+	
+	/**
+	 * Questo metodo si occupa di effetttuare l'aggiunta del numero di tracking,
+	 * la data della consegna e dello stato relativi all'ordine da gestire.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {

@@ -1,12 +1,9 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-import java.sql.SQLException;
-
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
@@ -15,6 +12,12 @@ import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/aggiungi_al_carrello")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire l'aggiunta di un articolo al carrello.
+ */
 public class AggiungiProdottoAlCarrello extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
@@ -22,6 +25,9 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 	static ArticoloInStockModel articoloInStockModel = new ArticoloInStockModel();
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 
+	/**
+	 * Questo metodo si occupa di effettuare l'aggiunta di un articolo al carrello.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

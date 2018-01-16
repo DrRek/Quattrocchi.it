@@ -4,16 +4,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
-
 @WebServlet("/modifica_nel_carrello")
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di modificare la quantitò
+ * degli articoli presenti nel carrello.
+ */
 public class ModificaQuantitàInCarrello extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;

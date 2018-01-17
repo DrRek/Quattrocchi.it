@@ -35,7 +35,7 @@ public class InserireCarta  extends HttpServlet{
 			Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
 			
 			if(usr!=null && numcc!=null && !numcc.equals("") && intestatario!=null && !intestatario.equals("") && circuito!=null && !circuito.equals("") && scadenza!=null && !scadenza.equals("") && cvv!=null && !cvv.equals("")) {
-				DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+				DateFormat df = new SimpleDateFormat("MM/yyyy");
 				Date scadenzaDate = df.parse(scadenza);
 				
 				CreditCard cc = new CreditCard(numcc, intestatario, circuito, scadenzaDate, Integer.parseInt(cvv), usr);

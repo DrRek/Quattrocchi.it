@@ -55,7 +55,7 @@ $(document).ready(function() {
 				cvv : cvv
 			},
 			success : function(responseText) {
-				$("#lastCreditCard").before('<tr><td>'+numcc.substring(12)+'</td><td>'+intestatario+'</td><td >'+circuito+'</td><td>'+scadenza+'</td><td>xxx</td><td><input type="hidden" class="cardCode" value="'+responseText+'"/><input type="submit"class="btn btn-outline-secondary" name="removeAddress"value="remove" /></td></tr>');
+				$("#lastCreditCard").before('<tr><td>xxxx-xxxx-xxxx-'+numcc.substring(12)+'</td><td>'+intestatario+'</td><td >'+circuito+'</td><td>'+scadenza+'</td><td>xxx</td><td><input type="hidden" class="cardCode" value="'+responseText+'"/><input type="submit"class="btn btn-outline-secondary" name="removeAddress"value="remove" /></td></tr>');
 				$("input[name=numcc]").val("");
 				$("input[name=intestatario]").val("");
 				$("input[name=circuito]").val("");

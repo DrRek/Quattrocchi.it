@@ -119,6 +119,7 @@
 						%>
 						</div>
 		<script src="web_pages/js/bootstrap.js"></script>
+		<script src="web_pages/js/header.js"></script>
 </nav>
 <br>
 <br>

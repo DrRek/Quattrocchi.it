@@ -22,6 +22,11 @@ $(document).ready(function() {
 				stato : stato
 			},
 			dataType : "json",
+			error : function(xhr, status, errorThrown) {
+				console.log(JSON.stringify(xhr));
+				console.log("AJAX error: " + status + ' : ' + errorThrown);
+				showError("Errore durante l'aggiunta dell'indirizzo! Se il problema persiste contattaci");
+			},
 			success : function(responseText) {
 				$("#lastShipAdd").before('<tr><td>'+indirizzo+'</td><td>'+civico+'</td><td >'+cap+'</td><td>'+provincia+'</td><td>'+stato+'</td><td><input type="hidden" class="addressCode" value="'+responseText+'"/><input type="submit"class="btn btn-outline-secondary" name="removeAddress"value="remove" /></td></tr>');
 				$("input[name=indirizzo]").val("");
@@ -54,6 +59,11 @@ $(document).ready(function() {
 				scadenza : scadenza,
 				cvv : cvv
 			},
+			error : function(xhr, status, errorThrown) {
+				console.log(JSON.stringify(xhr));
+				console.log("AJAX error: " + status + ' : ' + errorThrown);
+				showError("Errore durante l'aggiunta della carta! Se il problema persiste contattaci");
+			},
 			success : function(responseText) {
 				$("#lastCreditCard").before('<tr><td>xxxx-xxxx-xxxx-'+numcc.substring(12)+'</td><td>'+intestatario+'</td><td >'+circuito+'</td><td>'+scadenza+'</td><td>xxx</td><td><input type="hidden" class="cardCode" value="'+responseText+'"/><input type="submit"class="btn btn-outline-secondary" name="removeAddress"value="remove" /></td></tr>');
 				$("input[name=numcc]").val("");
@@ -70,6 +80,11 @@ $(document).ready(function() {
 		$.ajax({
 			type : "POST",
 			url : "rimuovere_indirizzo",
+			error : function(xhr, status, errorThrown) {
+				console.log(JSON.stringify(xhr));
+				console.log("AJAX error: " + status + ' : ' + errorThrown);
+				showError("Errore durante la rimozione dell'indirizzo! Se il problema persiste contattaci");
+			},
 			data : {
 				id : idToRemove
 			}
@@ -82,6 +97,11 @@ $(document).ready(function() {
 		$.ajax({
 			type : "POST",
 			url : "rimuovere_carta",
+			error : function(xhr, status, errorThrown) {
+				console.log(JSON.stringify(xhr));
+				console.log("AJAX error: " + status + ' : ' + errorThrown);
+				showError("Errore durante la rimozione della carta! Se il problema persiste contattaci");
+			},
 			data : {
 				id : idToRemove
 			}
@@ -89,11 +109,6 @@ $(document).ready(function() {
 		$(this).parent().parent().remove();
 	})
 });
-
-function showError(error){
-	$('#errorInfoDiv').show();
-	$('#errorText').html(error);
-}
 
 function checkForErrorAddCard(){
 	if(!/^([0-9]{16})$/.test($('input[name=numcc]').val())){

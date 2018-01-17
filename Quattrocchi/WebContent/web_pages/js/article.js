@@ -86,6 +86,7 @@ function advancedSearch() {
 		error : function(xhr, status, errorThrown) {
 			console.log(JSON.stringify(xhr));
 			console.log("AJAX error: " + status + ' : ' + errorThrown);
+			showError("Errore durante l'esecuzione della ricerca avanzata! Se il problema persiste contattaci");
 		},
 		success : function(responseText) {
 			formatData(responseText);
@@ -104,6 +105,7 @@ function retrieveAll() {
 		error : function(xhr, status, errorThrown) {
 			console.log(JSON.stringify(xhr));
 			console.log("AJAX error: " + status + ' : ' + errorThrown);
+			showError("Errore durante l'esecuzione della ricerca globale! Se il problema persiste contattaci");
 		},
 		success : function(responseText) {
 			formatData(responseText);
@@ -123,6 +125,7 @@ function simpleSearch(toSearch) {
 		error : function(xhr, status, errorThrown) {
 			console.log(JSON.stringify(xhr));
 			console.log("AJAX error: " + status + ' : ' + errorThrown);
+			showError("Errore durante l'esecuzione della ricerca semplice! Se il problema persiste contattaci");
 		},
 		success : function(responseText) {
 			formatData(responseText);

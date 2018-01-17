@@ -51,10 +51,6 @@
 		});
 	</script>
 	<!--  search.js gestisce questa parte-->
-	<br>
-	<br>
-	<br>
-	<br>
 	<div class="row container-fluid">
 		<!-- devo ancora ricercare nelle impostazioni iniziali anche in base alla parola cercata e implementare il sort -->
 		<div id='daMettereASinistra' class='col-sm-4 col-md-3 col-lg-2 '>

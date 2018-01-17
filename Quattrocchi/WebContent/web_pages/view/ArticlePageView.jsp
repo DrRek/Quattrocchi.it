@@ -62,11 +62,6 @@
 
 		})
 	</script>
-
-	<br>
-	<br>
-	<br>
-	<br>
 	<div class="container-fluid">
 		<div class="content-wrapper">
 			<div class="item-container">

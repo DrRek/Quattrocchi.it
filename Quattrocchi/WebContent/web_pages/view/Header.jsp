@@ -120,3 +120,12 @@
 						</div>
 		<script src="web_pages/js/bootstrap.js"></script>
 </nav>
+<br>
+<br>
+<br>
+<br>
+<div id="errorInfoDiv" style="text-align: center; display: none;">
+	<h5 id="errorText">Test</h5>
+	<input type="button" onClick='$("#errorInfoDiv").hide()' value="OK!" />
+</div>
+

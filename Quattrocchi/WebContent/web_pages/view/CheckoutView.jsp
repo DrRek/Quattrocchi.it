@@ -31,8 +31,6 @@
 	<%
 		Cart cart = usr.getCart();
 	%>
-	<br>
-	<br>
 	<div class="container">
 		<h2>Carrello</h2>
 	</div>

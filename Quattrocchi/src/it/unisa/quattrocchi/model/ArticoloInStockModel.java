@@ -206,8 +206,6 @@ public class ArticoloInStockModel {
 			stm.setString(7, colore);
 			stm.setString(8, colore);
 			
-			System.out.println(stm);
-			
 			ResultSet rs = stm.executeQuery();
 
 			while(rs.next()) {

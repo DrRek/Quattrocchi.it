@@ -35,6 +35,8 @@ public class RicercaProdotto extends HttpServlet{
 			if(action!=null && action.equalsIgnoreCase("search")) {
 				String toSearch = request.getParameter("toSearch");
 				if(toSearch!=null && !toSearch.equalsIgnoreCase("")) {
+					response.setContentType("application/json");
+					response.setHeader("Cache-Control", "no-cache");
 					response.getWriter().write(new Gson().toJson(model.doRetrieveSimpleSearch(toSearch)));
 				}
 				return;

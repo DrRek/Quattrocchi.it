@@ -157,6 +157,7 @@ function articlePageViewFunction(idProdotto){
 function formatData(responseText){
 	var toAppend = '';
 	$.each(responseText, function(i, articleObject) {
+		console.log("elemento trovato")
 		if(articleObject.disponibilità > 0){
 			toAppend += '<div class="block enlarge" onClick="articlePageViewFunction('+articleObject.codice+')">' //funzione che viene chiamata per ArticlePageView
 				+'<div class="top">'

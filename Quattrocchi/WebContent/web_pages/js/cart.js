@@ -12,6 +12,11 @@ $(document).ready(function() {
 					articoloId : modello,
 					quantita : val
 				},
+				error : function(xhr, status, errorThrown) {
+					console.log(JSON.stringify(xhr));
+					console.log("AJAX error: " + status + ' : ' + errorThrown);
+					showError("Errore durante il cambio della quantità dell'articolo nel carrello! Se il problema persiste contattaci");
+				},
 				success : updateCartNumber()
 			});
 		}

@@ -20,6 +20,11 @@ $(document).ready(function() {
 				CreditCardID:CreditCardID,
 				ShippingAddressID:ShippingAddressID
 			},
+			error : function(xhr, status, errorThrown) {
+				console.log(JSON.stringify(xhr));
+				console.log("AJAX error: " + status + ' : ' + errorThrown);
+				showError("Errore durante l'esecuzione del checkout! Se il problema persiste contattaci");
+			},
 			dataType : "json"
 		});
 	});

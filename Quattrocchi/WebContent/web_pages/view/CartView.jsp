@@ -28,9 +28,6 @@
 <body>
 	
 	<%@ include file="../view/Header.jsp"%>
-	<%
-		Cart cart = usr.getCart();
-	%>
 	<div class="container">
 		<h2>Carrello</h2>
 	</div>

@@ -2,11 +2,25 @@
 	pageEncoding="UTF-8"%>
 
 <%@ page contentType="text/html; charset=UTF-8"
-	import="java.util.*, it.unisa.quattrocchi.entity.*"%>
+	import="java.util.*, it.unisa.quattrocchi.entity.*, java.util.HashMap"%>
 
 <%
 	Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
 	GestoreOrdini gestore = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+	Cart cart = null;
+	if(gestore == null){
+		if(usr == null){
+			if(request.getSession().getAttribute("carrello")== null){
+				cart = new Cart(new HashMap<ArticoloInStock, Integer>());
+			}
+			else{
+				cart = (Cart) request.getSession().getAttribute("carrello");
+			}
+		}
+		else{
+			cart = usr.getCart();
+		}
+	}
 %>
 <%@ page contentType="text/html; charset=UTF-8" import="java.util.*"%>
 
@@ -61,18 +75,9 @@
 				<li  style="margin-right: 10px"><span><img
 						src="web_pages/image/cart.png" alt="carrello:"
 						style="max-height: 50px;"></span> 
+				<span style="color: white"><a id="count"
+						href="visualizza_carrello"><%=cart.getNumeroDiArticoli()%></span></a></li>
 				<%
-				//DA CAMBIARE_________________________________________ perchè dobbiamo permettere l'aggiunta anche a chi non è loggato
- 					if (usr == null || usr.getCart() == null) {
- 				%> 
- 						<span style="color: white"><a id="count" href="checkout">0</a></span></li>
-				<%
-					} else {
-				%>
-						<span style="color: white"><a id="count"
-						href="visualizza_carrello"><%=usr.getCart().getNumeroDiArticoli()%></span></a></li>
-				<%
-					}
 					
 				if (usr == null) {
 				%>

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.unisa.quattrocchi.entity.Acquirente;
+import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.entity.GestoreOrdini;
 import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.CreditCardModel;
@@ -66,6 +67,12 @@ public class Login extends HttpServlet{
 						acquirente.setCc(ccModel.doRetrieveByUser(userid));
 						acquirente.setShipAdd(saModel.doRetrieveByUser(userid));
 						acquirente.setCart(aModel.doRetrieveCartByUser(userid));
+						if(request.getSession().getAttribute("carrello") != null) {
+							acquirente.getCart().mergeCart((Cart)request.getSession().getAttribute("carrello"));
+							request.getSession().setAttribute("carrello", null);
+							aModel.updateCart(acquirente);
+						}
+						request.getSession().invalidate();
 						request.getSession().setAttribute("acquirente", acquirente);
 					} else {
 						request.setAttribute("loginFailed", true);

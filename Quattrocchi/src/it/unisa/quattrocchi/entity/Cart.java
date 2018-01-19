@@ -1,5 +1,6 @@
 package it.unisa.quattrocchi.entity;
 
+
 import java.util.Map;
 
 public class Cart {
@@ -49,5 +50,12 @@ public class Cart {
 
 	public void setArticle(ArticoloInStock articolo, int quantità) {
 		articoli.put(articolo, quantità);
+	}
+
+	public void mergeCart(Cart toIntegrate) {
+		Map<ArticoloInStock, Integer> temp = toIntegrate.getArticoli();
+		for(ArticoloInStock a : temp.keySet()) {
+			articoli.put(a, temp.get(a));
+		}
 	}
 }

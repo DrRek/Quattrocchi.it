@@ -39,7 +39,7 @@ public class GestioneOrdineDaSpedire extends HttpServlet{
 				dispatcher.forward(request, response);
 				return;
 			}
-			Order ordineDaGestire = orderModel.doRetrieveById(request.getParameter("ordineId"));
+			Order ordineDaGestire = orderModel.doRetrieveById(Integer.parseInt(request.getParameter("ordineId")));
 			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
 		} catch (SQLException e) {
 			e.printStackTrace();

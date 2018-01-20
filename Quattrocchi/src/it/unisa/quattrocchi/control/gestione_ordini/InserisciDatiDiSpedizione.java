@@ -33,11 +33,11 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		try {
-			String orderId = request.getParameter("ordineId");
+			int orderId = Integer.parseInt(request.getParameter("ordineId"));
 			String corriere = request.getParameter("corriere");
 			String tracking = request.getParameter("tracking");
 			String statoOrdine = request.getParameter("statoOrdine");
-			if(orderId == null || corriere == null || corriere.length() < 3 || corriere.length() >10 || tracking == null || tracking.length() < 5 ||
+			if(orderId == 0 || corriere == null || corriere.length() < 3 || corriere.length() >10 || tracking == null || tracking.length() < 5 ||
 					tracking.length() > 15 || statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
 				dispatcher.forward(request, response);

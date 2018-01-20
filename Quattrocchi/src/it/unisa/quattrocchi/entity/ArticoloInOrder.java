@@ -1,7 +1,7 @@
 package it.unisa.quattrocchi.entity;
 
 public class ArticoloInOrder {
-	private String codice;
+	private int codice;
 	private String modello;
 	private String marca;
 	private String img1;
@@ -11,7 +11,7 @@ public class ArticoloInOrder {
 	private double prezzo;
 	private int quantità;
 	
-	public ArticoloInOrder(String codice, String modello, String marca, String img1, String img2, String img3,
+	public ArticoloInOrder(int codice, String modello, String marca, String img1, String img2, String img3,
 			String descrizione, double prezzo, int quantità) {
 		super();
 		this.codice = codice;
@@ -26,7 +26,7 @@ public class ArticoloInOrder {
 	}
 
 	public ArticoloInOrder(ArticoloInStock a, int i) {
-		this.codice = null;
+		this.codice = 0;
 		this.modello = a.getModello();
 		this.marca = a.getMarca();
 		this.img1 = a.getImg1();
@@ -37,11 +37,11 @@ public class ArticoloInOrder {
 		this.quantità = i;
 	}
 
-	public String getCodice() {
+	public int getCodice() {
 		return codice;
 	}
 
-	public void setCodice(String codice) {
+	public void setCodice(int codice) {
 		this.codice = codice;
 	}
 

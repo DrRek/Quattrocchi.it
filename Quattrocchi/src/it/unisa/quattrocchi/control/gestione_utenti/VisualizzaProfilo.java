@@ -24,7 +24,7 @@ public class VisualizzaProfilo extends HttpServlet{
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
-			System.out.println("Errore in Ricerca prodotto avanzata:");
+			System.out.println("Errore in Visualizza profilo:");
 			e.printStackTrace();
 		}
 		return;

@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import it.unisa.quattrocchi.entity.ArticoloInOrder;
+import it.unisa.quattrocchi.entity.Order;
 
 /**
  * @author quattrocchi.it
@@ -39,7 +41,7 @@ public class ArticoloInOrderModel {
 			
 			ResultSet rs = stm.executeQuery();
 			if(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
 				String img1 = rs.getString("Img1");
@@ -87,7 +89,7 @@ public class ArticoloInOrderModel {
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
 				String img1 = rs.getString("Img1");
@@ -118,11 +120,11 @@ public class ArticoloInOrderModel {
 	/**
 	 * Questo metodo si occupa di effettuare la ricerca di tutti gli articoli in ordine
 	 * associati ad un determinato ordine presenti nel database.
-	 * @param codiceOrdine un oggetto codiceOrdine di tipo <strong>String</strong>
+	 * @param codice2 un oggetto codiceOrdine di tipo <strong>String</strong>
 	 * @return una lista di articoli in ordine di tipo <strong>ArticoloInOrder</strong>, altrimenti null.
 	 * @throws SQLException
 	 */
-	public List<ArticoloInOrder> restituisciArticoliAssociatiAdUnOrdine(String codiceOrdine) throws SQLException{
+	public List<ArticoloInOrder> restituisciArticoliAssociatiAdUnOrdine(int idOrder) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<ArticoloInOrder> beans = new ArrayList<>();
@@ -132,12 +134,12 @@ public class ArticoloInOrderModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(1, codiceOrdine);
+			stm.setInt(1, idOrder);
 			
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String codice = rs.getString("Codice");
+				idOrder = rs.getInt("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
 				String img1 = rs.getString("Img1");
@@ -147,11 +149,7 @@ public class ArticoloInOrderModel {
 				double prezzo = rs.getDouble("Prezzo");
 				int quantità = rs.getInt("Quantita");
 				
-				if(codiceOrdine.equals("999")) {
-					System.out.println("Articolo aggiunto: " + codice + " " + modello + " " + marca);
-				}
-				
-				beans.add(new ArticoloInOrder(codice,modello,marca,img1,img2,img3,descrizione,prezzo,quantità));
+				beans.add(new ArticoloInOrder(idOrder,modello,marca,img1,img2,img3,descrizione,prezzo,quantità));
 				
 			}
 			
@@ -167,5 +165,59 @@ public class ArticoloInOrderModel {
 			}
 		}
 		return beans;
+	}
+
+
+	public void addArticle(ArticoloInOrder a, Order o) throws SQLException{
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		String query = "INSERT INTO " + TABLE_NAME_ARTICOLOINORDINE + 
+				" (Modello,Marca,Img1,Img2,Img3,Descrizione,Prezzo,Quantita,Ordine)"
+				+ " VALUES(?,?,?,?,?,?,?,?,?);";
+		
+		String modello = a.getModello();
+		String marca = a.getMarca();
+		String img1 = a.getImg1();
+		String img2 = a.getImg2();
+		String img3 = a.getImg3();
+		String descrizione = a.getDescrizione();
+		double prezzo = a.getPrezzo();
+		int quantità = a.getQuantità();
+		int codiceOrdine = o.getCodice();
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			stm.setString(1, modello);
+			stm.setString(2, marca);
+			stm.setString(3, img1);
+			stm.setString(4, img2);
+			stm.setString(5, img3);
+			stm.setString(6, descrizione);
+			stm.setDouble(7, prezzo);
+			stm.setInt(8, quantità);
+			stm.setInt(9, codiceOrdine);
+			
+			stm.executeUpdate();
+			ResultSet rs = stm.getGeneratedKeys();
+			if(rs.next()) {
+				a.setCodice(rs.getInt(0));
+			}
+			rs.close();
+			stm.close();
+			conn.commit();
+			
+			
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		return;
 	}
 }

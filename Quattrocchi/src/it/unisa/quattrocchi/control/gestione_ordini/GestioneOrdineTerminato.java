@@ -21,8 +21,8 @@ public class GestioneOrdineTerminato extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String orderId = request.getParameter("ordineId");
-		if(orderId != null) {
+		int orderId = Integer.parseInt(request.getParameter("ordineId"));
+		if(orderId != 0) {
 			try {
 				Order ordine = orderModel.doRetrieveById(orderId);
 				request.getSession().setAttribute("ordineDaGestire", ordine);

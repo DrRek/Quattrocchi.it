@@ -4,11 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInOrder;
+import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
@@ -35,7 +37,7 @@ public class OrderModel {
 	 * @return un oggetto di tipo <strong>Order</strong>, altrimenti null.
 	 * @throws SQLException
 	 */
-	public Order doRetrieveById(String idOrder) throws SQLException {
+	public Order doRetrieveById(int idOrder) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		Order bean = null;
@@ -49,12 +51,12 @@ public class OrderModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(1, idOrder);
+			stm.setInt(1, idOrder);
 			
 			ResultSet rs = stm.executeQuery();
 			
 			if(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
@@ -106,7 +108,7 @@ public class OrderModel {
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
@@ -158,14 +160,14 @@ public class OrderModel {
 		String statoOrdine = toCreate.getStatoOrdine();
 		Date dataConsegna = toCreate.getDataConsegna();
 		String numTrack = toCreate.getNumeroTracking();
-		String corriere = toCreate.getCodice();
+		String corriere = toCreate.getCorriere();
 		String acq = toCreate.getAcquirente().getUsername();
 		String sa = toCreate.getShippingAddress().getCodice();
 		String cc = toCreate.getCreditCard().getIdCarta();
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			stm.setDate(1, new java.sql.Date(dataEx.getTime()));
 			stm.setDouble(2, prezzo);
@@ -184,6 +186,14 @@ public class OrderModel {
 			stm.setString(9, corriere);
 			
 			stm.executeUpdate();
+			ResultSet rs = stm.getGeneratedKeys();
+			if(rs.next()) {
+				toCreate.setCodice(rs.getInt(1));
+				for(ArticoloInOrder a : toCreate.getListaArticoliInOrdine()) {
+					articoloInOrderModel.addArticle(a, toCreate);
+				}
+			}
+			rs.close();
 			stm.close();
 			conn.commit();
 			
@@ -196,7 +206,6 @@ public class OrderModel {
 				DriverManagerConnectionPool.releaseConnection(conn);
 			}
 		}
-	
 		return;
 	}	
 	
@@ -210,7 +219,7 @@ public class OrderModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String idOrder = toUpdate.getCodice();
+		int idOrder = toUpdate.getCodice();
 		String statoOrdine = toUpdate.getStatoOrdine();
 		Date dataConsegna = toUpdate.getDataConsegna();
 		String numTrack = toUpdate.getNumeroTracking();
@@ -228,7 +237,7 @@ public class OrderModel {
 			stm.setDate(2, (java.sql.Date) dataConsegna);
 			stm.setString(3, numTrack);
 			stm.setString(4, corriere);
-			stm.setString(5, idOrder);
+			stm.setInt(5, idOrder);
 			
 			stm.executeUpdate();
 			stm.close();
@@ -269,7 +278,7 @@ public class OrderModel {
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));

@@ -30,7 +30,7 @@ public class GestioneOrdineInCorso extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Order toUpdateOrder = orderModel.doRetrieveById(request.getParameter("ordineId"));
+			Order toUpdateOrder = orderModel.doRetrieveById(Integer.parseInt(request.getParameter("ordineId")));
 			toUpdateOrder.setStatoOrdine("Consegnato");
 			orderModel.updateOrder(toUpdateOrder);
 			request.getSession().setAttribute("ordini", orderModel.doRetrieveAll());

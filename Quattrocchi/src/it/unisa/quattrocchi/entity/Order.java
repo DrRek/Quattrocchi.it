@@ -11,7 +11,8 @@ public class Order {
 	public static String IN_CORSO = "In corso";
 	public static String TERMINATO = "Consegnato";
 
-	private String codice, statoOrdine, numeroTracking, corriere;
+	private int codice;
+	private String statoOrdine, numeroTracking, corriere;
 	private Date dataEsecuzione, dataConsegna;
 	private Acquirente acquirente;
 	private ShippingAddress shippingAddress;
@@ -19,7 +20,7 @@ public class Order {
 	private List<ArticoloInOrder> listaDiArticoli;
 	private double prezzo;
 	
-	public Order(String codice, Date dataEsecuzione, double prezzo, String statoOrdine, Date dataConsegna, String numeroTracking, 
+	public Order(int codice, Date dataEsecuzione, double prezzo, String statoOrdine, Date dataConsegna, String numeroTracking, 
 			String corriere, Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard,List<ArticoloInOrder> listaDiArticoli) {
 		this.codice = codice;
 		this.statoOrdine = statoOrdine;
@@ -35,7 +36,7 @@ public class Order {
 	}
 	
 	public Order(Acquirente acquirente, ShippingAddress shippingAddress, CreditCard creditCard) {
-		this.codice = null;
+		this.codice = 0;
 		this.statoOrdine = Order.DA_SPEDIRE;
 		this.numeroTracking = null; 
 		this.dataEsecuzione = new Date();
@@ -54,11 +55,11 @@ public class Order {
 		}
 	}
 	
-	public String getCodice() {
+	public int getCodice() {
 		return codice;
 	}
 	
-	public void setCodice(String codice) {
+	public void setCodice(int codice) {
 		this.codice = codice;
 	}
 	

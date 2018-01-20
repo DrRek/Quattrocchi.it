@@ -189,15 +189,15 @@ public class OrderModel {
 			ResultSet rs = stm.getGeneratedKeys();
 			if(rs.next()) {
 				toCreate.setCodice(rs.getInt(1));
-				for(ArticoloInOrder a : toCreate.getListaArticoliInOrdine()) {
-					articoloInOrderModel.addArticle(a, toCreate);
-				}
+				
 			}
 			rs.close();
 			stm.close();
 			conn.commit();
 			
-			
+			for(ArticoloInOrder a : toCreate.getListaArticoliInOrdine()) {
+				articoloInOrderModel.addArticle(a, toCreate);
+			}
 		}finally {
 			try {
 				if(stm != null)

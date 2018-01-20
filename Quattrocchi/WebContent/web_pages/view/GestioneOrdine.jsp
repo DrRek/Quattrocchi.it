@@ -64,6 +64,7 @@
 		<h3>Indirizzo di consegna</h3>
 		<p><%=ordine.getShippingAddress().getIndirizzo() %>, <%=ordine.getShippingAddress().getStato() %> <%=ordine.getShippingAddress().getProvincia() %></p>
 	</div>
+	
 	<form action="/Quattrocchi/inserisciDatiDiSpedizione" method="post">
     	<input type="hidden" name="ordineId" value="<%=ordine.getCodice()%>">
 		<div class="container">
@@ -80,6 +81,21 @@
 			<input class="form-control" name="tracking" type="text"
 				value="123456789" />
 		</div>
+		<div class="container">
+        	 <h3>Data di consegna</h3>
+         	<p>
+         	<% 	
+         		String strDataConsegna;
+         		if(ordine.getDataConsegna() == null){
+         			strDataConsegna = "1970-01-01";
+         		}
+         		else{
+         			strDataConsegna = ordine.getDataConsegna().toString();
+         		} 
+         	%>
+         	<input type="date" class="form-control" value="<%=strDataConsegna%>" name="dataDiConsegna">
+         </p>
+    	</div>
 		<div class="container">
 			<h3>Stato ordine</h3>
 			<%
@@ -118,4 +134,7 @@
 <% } %>
 </body>
 	<script type="text/javascript" src="web_pages/js/validation.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+ 
 </html>

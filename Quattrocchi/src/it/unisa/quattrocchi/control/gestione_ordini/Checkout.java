@@ -58,14 +58,8 @@ public class Checkout extends HttpServlet{
 					model.createOrder(nuovo);
 					usr.resetCart();
 					acModel.updateCart(usr);
-					Map<ArticoloInStock, Integer> articoli = usr.getCart().getArticoli();
-					Set<ArticoloInStock> artInStock = articoli.keySet();
-					for(ArticoloInStock a: artInStock) {
-						//aInOrderModel.doSave(new ArticoloInOrder(a, articoli.get(a)), codiceOrdine);
-						//BISOGNA RISALIRE ALL'ID DELL'ORDINE E CREARE IL DOSAVE
-					}
 				}
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profilo");
 				dispatcher.forward(request, response);
 				return;
 			}

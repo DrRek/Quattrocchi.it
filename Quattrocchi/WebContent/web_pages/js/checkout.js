@@ -12,20 +12,20 @@ $(document).ready(function() {
 			alert("Indirizzo di spedizione non valido!");
 			return;
 		}
-		
-		$.ajax({
+		window.location.href = '/Quattrocchi/checkout?CreditCardID='+CreditCardID+'&ShippingAddressID='+ShippingAddressID;
+		/*$.ajax({
 			type : "POST",
 			url : "checkout",
 			data : {
 				CreditCardID:CreditCardID,
 				ShippingAddressID:ShippingAddressID
 			},
+			async : false,
 			error : function(xhr, status, errorThrown) {
 				console.log(JSON.stringify(xhr));
 				console.log("AJAX error: " + status + ' : ' + errorThrown);
 				showError("Errore durante l'esecuzione del checkout! Se il problema persiste contattaci");
-			},
-			dataType : "json"
-		});
+			}
+		});*/
 	});
 });

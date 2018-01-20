@@ -1,7 +1,13 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
 import java.io.IOException;
+import java.util.Date;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,19 +43,26 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			String corriere = request.getParameter("corriere");
 			String tracking = request.getParameter("tracking");
 			String statoOrdine = request.getParameter("statoOrdine");
+			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+			String strDate = request.getParameter("dataDiConsegna");
+		    Date parsed = format.parse(strDate);
+		    java.sql.Date dataConsegna = new java.sql.Date(parsed.getTime());
+		    
 			if(orderId == 0 || corriere == null || corriere.length() < 3 || corriere.length() >10 || tracking == null || tracking.length() < 5 ||
 					tracking.length() > 15 || statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
 				dispatcher.forward(request, response);
 				return;
 			}
+			
 			Order orderToUpdate = orderModel.doRetrieveById(orderId);
 			orderToUpdate.setCorriere(corriere);
 			orderToUpdate.setNumeroTracking(tracking);
 			orderToUpdate.setStatoOrdine(statoOrdine);
+			orderToUpdate.setDataConsegna(dataConsegna);
 			orderModel.updateOrder(orderToUpdate);
 			request.getSession().setAttribute("ordini", orderModel.doRetrieveAll());			
-		} catch (SQLException e) {
+		} catch (SQLException | ParseException e) {
 			e.printStackTrace();
 		}
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");

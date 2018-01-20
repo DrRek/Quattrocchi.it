@@ -74,12 +74,16 @@
 		<%
 			if(usr != null && cart.getNumeroDiArticoli() > 0){
 		%>
-		<form action="/Quattrocchi/checkout" method="post">
-			<input class="btn btn-outline-secondary " type="submit" value="Checkout" />
-		</form>
+			<form action="/Quattrocchi/checkout" method="post">
+				<input class="btn btn-outline-secondary " type="submit" value="Checkout" />
+			</form>
 		<%
-			}
+			}else if(usr == null){
 		%>
+			<form action="/Quattrocchi/access" method="get">
+				<input class="btn btn-outline-secondary " type="submit" value="Accedi per il checkout" />
+			</form>
+		<%} %>
 	</div>
 	<%
 		}

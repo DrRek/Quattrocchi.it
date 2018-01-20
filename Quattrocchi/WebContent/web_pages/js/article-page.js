@@ -14,7 +14,7 @@ $(document).ready(function() {
 				showError("Errore durante l'aggiunta al carrello! Se il problema persiste contattaci");
 			},
 			success : function(responseText) {
-				$("a#count").html(parseInt($("a#count").html()) + 1);
+				$("span#count").html(parseInt($("span#count").html()) + 1);
 			}
 		});
 	});

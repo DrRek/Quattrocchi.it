@@ -28,5 +28,5 @@ function updateCartNumber(){
 	$("input[name=quantitaPezzi]").each(function(){
 		sum += parseInt(this.value);
 	});
-	$("a#count").html(sum);
+	$("span#count").html(sum);
 }

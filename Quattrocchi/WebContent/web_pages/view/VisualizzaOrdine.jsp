@@ -45,8 +45,9 @@
 		<tbody>
 		<%
 		int i = 0;
+		int prezzoTotale = 0;
 		while(i < ordine.getListaArticoliInOrdine().size()) {
-			System.out.println(ordine.getListaArticoliInOrdine().size());
+			prezzoTotale += ordine.getListaArticoliInOrdine().get(i).getPrezzo() * ordine.getListaArticoliInOrdine().get(i).getQuantità();
 		%>
 			<tr>
 				<td class="prodotto">
@@ -62,6 +63,7 @@
 		%>
 		</tbody>
 	</table>
+	<h3>Prezzo Totale: <%=prezzoTotale%> </h3>
 	</div>
 <% } %>
 </body>

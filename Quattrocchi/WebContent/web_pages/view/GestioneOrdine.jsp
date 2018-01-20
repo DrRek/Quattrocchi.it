@@ -83,7 +83,6 @@
 		</div>
 		<div class="container">
         	 <h3>Data di consegna</h3>
-         	<p>
          	<% 	
          		String strDataConsegna;
          		if(ordine.getDataConsegna() == null){
@@ -94,7 +93,6 @@
          		} 
          	%>
          	<input type="date" class="form-control" value="<%=strDataConsegna%>" name="dataDiConsegna">
-         </p>
     	</div>
 		<div class="container">
 			<h3>Stato ordine</h3>

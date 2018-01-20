@@ -29,12 +29,46 @@
 <% if((gestoreOrdini != null && ordine != null) || (acquirente != null && ordine != null)) { 
 %>
 	<div class="container">
-		<h1>Ordine n. <%=ordine.getCodice()%> eseguito da <%=ordine.getAcquirente().getUsername() %></h1>
-		<br>
-		<h3>Stato ordine: <%=ordine.getStatoOrdine() %> ; consegna prevista per il : <%=ordine.getDataConsegna()%> tramite <%=ordine.getCorriere() %></h3>
-		<br>
+		<h1>Ordine n. <%=ordine.getCodice()%></h1>
 	</div>
+	
 	<div class="container">
+		<h3>Stato ordine</h3>
+		<p><%=ordine.getStatoOrdine() %></p>
+	</div>
+	
+	<div class="container">
+		<h3>Data consegna</h3>
+		<%
+			String infoDataConsegna;
+			if(ordine.getDataConsegna() == null)
+			{
+				infoDataConsegna = "Data non ancora disponibile";
+			}
+			else{
+				infoDataConsegna = ordine.getDataConsegna().toString();
+			}
+		%>
+		<p><%=infoDataConsegna%></p>
+	</div>
+	
+	<div class="container">
+		<h3>Corriere</h3>
+		<%
+			String infoCorriere;
+			if(ordine.getCorriere() == null)
+			{
+				infoCorriere = "Corriere non ancora disponibile";
+			}
+			else{
+				infoCorriere = ordine.getCorriere();
+			}
+		%>
+		<p><%=infoCorriere%></p>
+	</div>
+	
+	<div class="container">
+	<h3>Prodotti acquistati</h3>
 	<table id="cartElements"class="table table-hover table-condensed table-striped">
 		<thead>
 			<th style="width:40%" id="prod">Prodotto</th>

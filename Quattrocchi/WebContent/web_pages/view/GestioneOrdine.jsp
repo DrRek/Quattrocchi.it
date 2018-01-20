@@ -84,7 +84,7 @@
 		<div class="container">
         	 <h3>Data di consegna</h3>
          	<p>
-         	<input type="text" id="datepickerIniz" onchange="checkDate()" name="dataDiConsegna">
+         	<input type="date" class="form-control" id="datepickerIniz" onchange="checkDate()" name="dataDiConsegna">
          </p>
     	</div>
 		<div class="container">
@@ -127,7 +127,7 @@
 	<script type="text/javascript" src="web_pages/js/validation.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    
+    <!-- 
     <script>
         $(function() {
             //Data Inizio
@@ -156,5 +156,6 @@
                 $("#datepickerFine").datepicker().datepicker("setDate", d);
         }
     </script>
+    -->
     
 </html>

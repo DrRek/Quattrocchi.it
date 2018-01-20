@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+	Acquirente acquirente = (Acquirente) request.getSession().getAttribute("acquirente");
 	Order ordine = (Order) request.getSession().getAttribute("ordineDaGestire");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -25,7 +26,7 @@
 </head>
 <body>
 <%@ include file="../view/Header.jsp"%>
-<% if(gestoreOrdini != null && ordine != null) { 
+<% if((gestoreOrdini != null && ordine != null) || (acquirente != null && ordine != null)) { 
 %>
 	<div class="container">
 		<h1>Ordine n. <%=ordine.getCodice()%> eseguito da <%=ordine.getAcquirente().getUsername() %></h1>

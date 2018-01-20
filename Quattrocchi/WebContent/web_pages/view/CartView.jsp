@@ -32,13 +32,13 @@
 		<h2>Carrello</h2>
 	</div>
 	<%
-		if (cart == null) {
+		if (cart == null || cart.getNumeroDiArticoli() == 0) {
 	%>
 	<div class="container">
 		<h3>Carrello vuoto</h3>
 	</div>
 	<%
-		} else if(cart!=null && usr !=null) {
+		} else if(cart!=null) {
 	%>
 	<div class="container" id="divCartElements">
 		<table id="cartElements"class="table table-hover table-condensed table-striped">
@@ -71,9 +71,15 @@
 				}
 			%>
 		</table>
+		<%
+			if(usr != null && cart.getNumeroDiArticoli() > 0){
+		%>
 		<form action="/Quattrocchi/checkout" method="post">
 			<input class="btn btn-outline-secondary " type="submit" value="Checkout" />
 		</form>
+		<%
+			}
+		%>
 	</div>
 	<%
 		}

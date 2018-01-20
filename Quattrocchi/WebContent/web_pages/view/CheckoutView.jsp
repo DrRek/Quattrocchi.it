@@ -32,13 +32,13 @@
 		<h2>Carrello</h2>
 	</div>
 	<%
-		if (cart == null) {
+		if (cart == null || cart.getNumeroDiArticoli() == 0) {
 	%>
 	<div class="container">
 		<h3>Carrello vuoto</h3>
 	</div>
 	<%
-		} else if(cart!=null && usr !=null) {
+		} else if(cart!=null && cart.getNumeroDiArticoli() > 0 && usr !=null) {
 	%>
 	<div class="container" id="divCartElements">
 		<table id="cartElements"

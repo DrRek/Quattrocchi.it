@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
+import java.util.HashMap;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,13 +32,29 @@ public class ModificaQuantit‡InCarrello extends HttpServlet{
 		try {
 			String articoloId = request.getParameter("articoloId");
 			int quantit‡ = Integer.parseInt(request.getParameter("quantita"));
-			Cart carrello = ((Acquirente)request.getSession().getAttribute("acquirente")).getCart();
+			Cart carrello = null;
+			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
+			if(a != null) {
+				carrello = a.getCart();
+			}
+			else {
+				
+				if(request.getSession().getAttribute("carrello")!= null) {
+					carrello = (Cart)request.getSession().getAttribute("carrello");
+				}
+				else {
+					carrello = new Cart(new HashMap<ArticoloInStock,Integer>());
+					request.getSession().setAttribute("carrello", carrello);
+				}
+			}
 			
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
 			carrello.setArticle(articolo, quantit‡);
 			
-			acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
+			if(a != null) {
+				acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
+			}
 		} catch (Exception e) {
 			System.out.println("Errore in aggiungi prodotto al carrello");
 			e.printStackTrace();

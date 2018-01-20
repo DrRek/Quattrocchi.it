@@ -72,11 +72,10 @@
 		<div>	
 			<ul class="nav navbar-nav navbar-right">
 				<!-- Carrello -->
-				<li  style="margin-right: 10px"><span><img
+				<li  style="margin-right: 10px"><a href="visualizza_carrello"><span><img
 						src="web_pages/image/cart.png" alt="carrello:"
-						style="max-height: 50px;"></span> 
-				<span style="color: white"><a id="count"
-						href="visualizza_carrello"><%=cart.getNumeroDiArticoli()%></span></a></li>
+						style="max-height: 20px;"></span> 
+				<span id="count"><%=cart.getNumeroDiArticoli()%></span></a></li>
 				<%
 					
 				if (usr == null) {

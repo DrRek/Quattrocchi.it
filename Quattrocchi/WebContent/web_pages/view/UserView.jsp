@@ -161,7 +161,7 @@
 					<td class="ordine"><%=o.getDataEsecuzione() %></td>
 					<td><form action="/Quattrocchi/GestioneOrdineTerminato" method="post">
                             <input type="hidden" name="ordineId" value="<%=o.getCodice()%>">
-                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Visualizza" />
+                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
                     </form></td>
                     </tr>
 				<%}%>

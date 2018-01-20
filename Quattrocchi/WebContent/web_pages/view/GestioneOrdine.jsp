@@ -91,13 +91,21 @@
 					value="In corso">In corso</label> <label class="radio-inline"><input
 					type="radio" name="statoOrdine" value="consegnato">Terminato</label>
 			<%
-				} else {
+				} else if(ordine.getStatoOrdine().equalsIgnoreCase("In corso")) {
 			%>	
 				<label class="radio-inline"><input type="radio"
 					name="statoOrdine" value="Da spedire">Da spedire</label> <label
 					class="radio-inline"><input type="radio" name="statoOrdine"
 					value="In corso" checked>In corso</label> <label class="radio-inline"><input
 					type="radio" name="statoOrdine" value="consegnato">Terminato</label>
+			<%
+				} else {
+			%>
+			<label class="radio-inline"><input type="radio"
+					name="statoOrdine" value="Da spedire">Da spedire</label> <label
+					class="radio-inline"><input type="radio" name="statoOrdine"
+					value="In corso">In corso</label> <label class="radio-inline"><input
+					type="radio" name="statoOrdine" value="consegnato" checked>Terminato</label>
 			<%
 				}
 			%>

@@ -20,23 +20,29 @@ public class GestioneOrdineTerminato extends HttpServlet {
 	static OrderModel orderModel = new OrderModel();
 	private static final long serialVersionUID = 1L;
        
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int orderId = Integer.parseInt(request.getParameter("ordineId"));
-		if(orderId != 0) {
-			try {
-				Order ordine = orderModel.doRetrieveById(orderId);
-				request.getSession().setAttribute("ordineDaGestire", ordine);
-			} catch (SQLException e) {
-				e.printStackTrace();
+	@Override
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			String orderId = request.getParameter("ordineId");
+			if(orderId == null) {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+				dispatcher.forward(request, response);
+				return;
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/VisualizzaOrdine.jsp");
-			dispatcher.forward(request, response);
-			return;
+			Order ordineDaGestire = orderModel.doRetrieveById(Integer.parseInt(request.getParameter("ordineId")));
+			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
+		dispatcher.forward(request, response);
+		return;
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	@Override
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+		return;
 	}
 
 }

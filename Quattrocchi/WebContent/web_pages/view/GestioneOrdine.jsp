@@ -84,7 +84,16 @@
 		<div class="container">
         	 <h3>Data di consegna</h3>
          	<p>
-         	<input type="date" class="form-control" id="datepickerIniz" onchange="checkDate()" name="dataDiConsegna">
+         	<% 	
+         		String strDataConsegna;
+         		if(ordine.getDataConsegna() == null){
+         			strDataConsegna = "1970-01-01";
+         		}
+         		else{
+         			strDataConsegna = ordine.getDataConsegna().toString();
+         		} 
+         	%>
+         	<input type="date" class="form-control" value="<%=strDataConsegna%>" name="dataDiConsegna">
          </p>
     	</div>
 		<div class="container">
@@ -127,35 +136,5 @@
 	<script type="text/javascript" src="web_pages/js/validation.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- 
-    <script>
-        $(function() {
-            //Data Inizio
-            $("#datepickerIniz").datepicker({
-                minDate : 0
-            });
-            $("#datepickerIniz").datepicker().datepicker("setDate", new Date());
-
-            var d = $("#datepickerIniz").datepicker('getDate');
-
-            //Data Fine
-            $("#datepickerFine").datepicker({
-                minDate : d
-            });
-            $("#datepickerFine").datepicker().datepicker("setDate", new Date());
-
-        });
-    </script>
-    <script>
-        function checkDate() {
-            var d = $("#datepickerIniz").datepicker('getDate');
-            var s = $("#datepickerFine").datepicker('getDate');
-
-            $("#datepickerFine").datepicker("option", "minDate", d);
-            if (d > s)
-                $("#datepickerFine").datepicker().datepicker("setDate", d);
-        }
-    </script>
-    -->
-    
+ 
 </html>

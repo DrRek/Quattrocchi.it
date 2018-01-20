@@ -90,7 +90,7 @@
 					<td><%=ordini.get(i).getCodice()%></td>
 					<td><form action="/Quattrocchi/GestioneOrdineTerminato" method="post">
                             <input type="hidden" name="ordineId" value="<%=ordini.get(i).getCodice()%>">
-                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
+                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Visualizza" />
                     </form></td>
 				</tr>
 			</tbody>

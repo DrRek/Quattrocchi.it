@@ -30,15 +30,18 @@ public class GestioneOrdineInCorso extends HttpServlet{
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			Order toUpdateOrder = orderModel.doRetrieveById(Integer.parseInt(request.getParameter("ordineId")));
-			toUpdateOrder.setStatoOrdine("Consegnato");
-			orderModel.updateOrder(toUpdateOrder);
-			request.getSession().setAttribute("ordini", orderModel.doRetrieveAll());
+			String orderId = request.getParameter("ordineId");
+			if(orderId == null) {
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			Order ordineDaGestire = orderModel.doRetrieveById(Integer.parseInt(request.getParameter("ordineId")));
+			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
 		dispatcher.forward(request, response);
 		return;
 	}

@@ -82,13 +82,25 @@
 		</div>
 		<div class="container">
 			<h3>Stato ordine</h3>
-			
+			<%
+				if(ordine.getStatoOrdine().equalsIgnoreCase("Da spedire")) {
+			%>
 				<label class="radio-inline"><input type="radio"
 					name="statoOrdine" value="Da spedire" checked>Da spedire</label> <label
 					class="radio-inline"><input type="radio" name="statoOrdine"
 					value="In corso">In corso</label> <label class="radio-inline"><input
 					type="radio" name="statoOrdine" value="consegnato">Terminato</label>
-				
+			<%
+				} else {
+			%>	
+				<label class="radio-inline"><input type="radio"
+					name="statoOrdine" value="Da spedire">Da spedire</label> <label
+					class="radio-inline"><input type="radio" name="statoOrdine"
+					value="In corso" checked>In corso</label> <label class="radio-inline"><input
+					type="radio" name="statoOrdine" value="consegnato">Terminato</label>
+			<%
+				}
+			%>
 		</div>
 		<br>
 		<div class="container">

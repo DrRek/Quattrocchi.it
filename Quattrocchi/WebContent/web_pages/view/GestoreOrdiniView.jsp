@@ -66,7 +66,7 @@
 				<tr>
 					<td><%=ordini.get(i).getCodice() %></td>
 					<td>
-					<form action="/Quattrocchi/gestioneOrdiniInCorso" method="post">
+					<form action = "/Quattrocchi/gestioneOrdineDaSpedire" method="post">
                             <input type="hidden" name="ordineId" value="<%=ordini.get(i).getCodice()%>">
                             <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
                     </form>
@@ -88,9 +88,9 @@
 			<tbody>
 				<tr>
 					<td><%=ordini.get(i).getCodice()%></td>
-					<td><form action="/Quattrocchi/GestioneOrdineTerminato" method="post">
+					<td><form action="/Quattrocchi/gestioneOrdineDaSpedire" method="post">
                             <input type="hidden" name="ordineId" value="<%=ordini.get(i).getCodice()%>">
-                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Visualizza" />
+                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
                     </form></td>
 				</tr>
 			</tbody>

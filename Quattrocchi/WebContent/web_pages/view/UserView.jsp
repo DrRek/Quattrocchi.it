@@ -159,9 +159,9 @@
 				<tr>
 					<td class="ordine">ordine: <%=o.getCodice() %></td>
 					<td class="ordine"><%=o.getDataEsecuzione() %></td>
-					<td><form action="/Quattrocchi/GestioneOrdineTerminato" method="post">
+					<td><form action="/Quattrocchi/VisualizzaOrdineUtente" method="post">
                             <input type="hidden" name="ordineId" value="<%=o.getCodice()%>">
-                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
+                            <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Visualizza" />
                     </form></td>
                     </tr>
 				<%}%>

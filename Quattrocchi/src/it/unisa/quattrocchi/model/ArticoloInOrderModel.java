@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.mysql.jdbc.Statement;
+
 import it.unisa.quattrocchi.entity.ArticoloInOrder;
 import it.unisa.quattrocchi.entity.Order;
 
@@ -188,7 +191,7 @@ public class ArticoloInOrderModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			stm.setString(1, modello);
 			stm.setString(2, marca);
@@ -201,15 +204,14 @@ public class ArticoloInOrderModel {
 			stm.setInt(9, codiceOrdine);
 			
 			stm.executeUpdate();
+			
 			ResultSet rs = stm.getGeneratedKeys();
 			if(rs.next()) {
-				a.setCodice(rs.getInt(0));
+				a.setCodice(rs.getInt(1));
 			}
 			rs.close();
 			stm.close();
 			conn.commit();
-			
-			
 		}finally {
 			try {
 				if(stm != null)

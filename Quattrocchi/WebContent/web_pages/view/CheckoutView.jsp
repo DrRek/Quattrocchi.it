@@ -72,6 +72,8 @@
 		</h4>
 	</div>
 <br>
+
+
 	<div class="container">
 		<!-- Uso questo per la carta di credito -->
 		<%

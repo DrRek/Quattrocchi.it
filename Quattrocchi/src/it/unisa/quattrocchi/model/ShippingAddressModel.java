@@ -82,11 +82,12 @@ public class ShippingAddressModel {
 		PreparedStatement stm = null;
 		List<ShippingAddress> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ADDRESS + ";";
+		String query = "SELECT * FROM " + TABLE_NAME_ADDRESS + " where Acquirente = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
+			stm.setString(1, username);
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {

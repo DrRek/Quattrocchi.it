@@ -8,7 +8,6 @@ $(document).ready(function() {
 			data : {
 				articoloId:codice
 			},
-			dataType : "json",
 			error : function(xhr, status, errorThrown) {
 				console.log(JSON.stringify(xhr));
 				console.log("AJAX error: " + status + ' : ' + errorThrown);

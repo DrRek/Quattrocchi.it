@@ -1,5 +1,7 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
+import java.util.HashMap;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,15 +28,31 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String articoloId = request.getParameter("articoloId");
-			Cart carrello = ((Acquirente)request.getSession().getAttribute("acquirente")).getCart();
+			Cart carrello = null;
+			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
+			if(a != null) {
+				carrello = a.getCart();
+			}
+			else {
+				
+				if(request.getSession().getAttribute("carrello")!= null) {
+					carrello = (Cart)request.getSession().getAttribute("carrello");
+				}
+				else {
+					carrello = new Cart(new HashMap<ArticoloInStock,Integer>());
+					request.getSession().setAttribute("carrello", carrello);
+				}
+			}
 			
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
 			carrello.removeArticle(articolo);
 
-			acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
+			if(a != null) {
+				acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
+			}
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CartView.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Errore in aggiungi prodotto al carrello");

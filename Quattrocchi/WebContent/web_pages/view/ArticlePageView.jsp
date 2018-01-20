@@ -66,25 +66,23 @@
 		<div class="content-wrapper">
 			<div class="item-container">
 			<% 
-				String img1 = articolo.getImg1(), img2=articolo.getImg2(), img3=articolo.getImg3();
-				if(img1==null) img1 = "/Quattrocchi/web_pages/occhiali_placeholder.jpg";
-				if(img2==null) img2 = "/Quattrocchi/web_pages/occhiali_placeholder.jpg";
-				if(img3==null) img3 = "/Quattrocchi/web_pages/occhiali_placeholder.jpg";
+				String path = "/Quattrocchi/web_pages/image/";
+				String img1 = path+articolo.getImg1(), img2=path+articolo.getImg2(), img3=path+articolo.getImg3();
 			%>
 				<div class="container">
 					<div>
 						<div class="enlarge product col-sm-3 service-image-left">
 							<center>
-								<img class="enlarge" src="<%=img1.replaceAll(" ", "_").trim()%>" alt="pic1"></img>
+								<img class="enlarge" src="<%=img1.trim()%>" alt="pic1"></img>
 							</center>
 						</div>
 
 						<div class="container service1-items col-sm-2 col-sm-2 pull-left">
 							<center>
 								<a class="service1-item"> <img 
-									src="<%=img2.replaceAll(" ", "_").trim()%>" alt="img"></img>
+									src="<%=img2.trim()%>" alt="img"></img>
 								</a> <a class="service1-item"> <img 
-									src="<%=img3.replaceAll(" ", "_").trim()%>" alt="img"></img>
+									src="<%=img3.trim()%>" alt="img"></img>
 								</a>
 							</center>
 						</div>

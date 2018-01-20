@@ -171,7 +171,7 @@ function formatData(responseText){
 				+ '</ul>'
 				+'</div>';
 			toAppend += '<div class="middle">';
-			toAppend += '<img src="/Quattrocchi/web_pages/image/occhiali_placeholder.jpg" alt="pic" />';
+			toAppend += '<img src="/Quattrocchi/web_pages/image/'+articleObject.img1+'" alt="pic" />';
 			toAppend += '</div>'
 				+  '<div class="bottom">'
 				+ '<div class="heading">'+ articleObject.modello +'</div>'

@@ -23,7 +23,7 @@
 <% if(gestoreOrdini != null && ordine != null) { 
 %>
 	<div class="container">
-		<h1>Info <%=ordine.getCodice() %></h1>
+		<h1>Ordine n. <%=ordine.getCodice() %></h1>
 	</div>
 	<div class="container">
 		<h3>Cliente</h3>

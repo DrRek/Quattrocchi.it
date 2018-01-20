@@ -64,6 +64,7 @@
 		<h3>Indirizzo di consegna</h3>
 		<p><%=ordine.getShippingAddress().getIndirizzo() %>, <%=ordine.getShippingAddress().getStato() %> <%=ordine.getShippingAddress().getProvincia() %></p>
 	</div>
+	
 	<form action="/Quattrocchi/inserisciDatiDiSpedizione" method="post">
     	<input type="hidden" name="ordineId" value="<%=ordine.getCodice()%>">
 		<div class="container">
@@ -80,6 +81,12 @@
 			<input class="form-control" name="tracking" type="text"
 				value="123456789" />
 		</div>
+		<div class="container">
+        	 <h3>Data di consegna</h3>
+         	<p>
+         	<input type="text" id="datepickerIniz" onchange="checkDate()" name="dataDiConsegna">
+         </p>
+    	</div>
 		<div class="container">
 			<h3>Stato ordine</h3>
 			<%
@@ -118,4 +125,36 @@
 <% } %>
 </body>
 	<script type="text/javascript" src="web_pages/js/validation.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    
+    <script>
+        $(function() {
+            //Data Inizio
+            $("#datepickerIniz").datepicker({
+                minDate : 0
+            });
+            $("#datepickerIniz").datepicker().datepicker("setDate", new Date());
+
+            var d = $("#datepickerIniz").datepicker('getDate');
+
+            //Data Fine
+            $("#datepickerFine").datepicker({
+                minDate : d
+            });
+            $("#datepickerFine").datepicker().datepicker("setDate", new Date());
+
+        });
+    </script>
+    <script>
+        function checkDate() {
+            var d = $("#datepickerIniz").datepicker('getDate');
+            var s = $("#datepickerFine").datepicker('getDate');
+
+            $("#datepickerFine").datepicker("option", "minDate", d);
+            if (d > s)
+                $("#datepickerFine").datepicker().datepicker("setDate", d);
+        }
+    </script>
+    
 </html>

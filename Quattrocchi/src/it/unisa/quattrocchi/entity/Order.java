@@ -99,8 +99,8 @@ public class Order {
 		return dataConsegna;
 	}
 	
-	public void setDataConsegna(Date dataConsegna) {
-		this.dataConsegna = dataConsegna;
+	public void setDataConsegna(Date dataConsegna2) {
+		this.dataConsegna = dataConsegna2;
 	}
 	
 	public double getPrezzo() {
@@ -142,7 +142,6 @@ public class Order {
 	public void setListaArticoliInOrdine(List<ArticoloInOrder> listaNuova) {
 		this.listaDiArticoli = listaNuova;
 	}
-
 	
 
 }

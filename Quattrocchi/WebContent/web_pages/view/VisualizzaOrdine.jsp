@@ -31,8 +31,7 @@
 	<div class="container">
 		<h1>Ordine n. <%=ordine.getCodice()%> eseguito da <%=ordine.getAcquirente().getUsername() %></h1>
 		<br>
-		<h3>Stato ordine: <%=ordine.getStatoOrdine() %></h3>
-		<h3>In consegna da: <%=ordine.getCorriere() %></h3>
+		<h3>Stato ordine: <%=ordine.getStatoOrdine() %> ; consegna prevista per il : <%=ordine.getDataConsegna()%> tramite <%=ordine.getCorriere() %></h3>
 		<br>
 	</div>
 	<div class="container">

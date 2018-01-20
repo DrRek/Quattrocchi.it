@@ -55,6 +55,7 @@
 		<!-- devo ancora ricercare nelle impostazioni iniziali anche in base alla parola cercata e implementare il sort -->
 		<div id='daMettereASinistra' class='col-sm-4 col-md-3 col-lg-2 '>
 			<div align="center">
+				<br><br><br>
 				<h3>Advanced Search</h3>
 				<button class="btn btn-outline-secondary" id="azione">nascondi</button>
 			</div>

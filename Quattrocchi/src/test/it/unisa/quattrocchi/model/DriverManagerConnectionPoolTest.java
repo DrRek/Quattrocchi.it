@@ -1,4 +1,4 @@
-package it.unisa.quattrocchi.model;
+package test.it.unisa.quattrocchi.model;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DriverManagerConnectionPool  {
+public class DriverManagerConnectionPoolTest  {
 
 	private static List<Connection> freeDbConnections;
 
@@ -23,7 +23,7 @@ public class DriverManagerConnectionPool  {
 		Connection newConnection = null;
 		String ip = "localhost";
 		String port = "3306";
-		String db = "quattrocchidb";
+		String db = "quattrocchidbtest";
 		String username = "progetto";
 		String password = "pw";
 

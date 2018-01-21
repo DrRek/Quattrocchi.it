@@ -46,15 +46,17 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 				marca = "";
 			}
 
-			if(!request.getParameter("prezzoMin").equals("")) {
-				prezzoMin = Double.parseDouble(request.getParameter("prezzoMin"));
+			String prezzoMinS = request.getParameter("prezzoMin");
+			if(prezzoMinS!=null && !prezzoMinS.equals("")) {
+				prezzoMin = Double.parseDouble(prezzoMinS);
 			}
 			else {
 				prezzoMin = 0;
 			}
 			
-			if(!request.getParameter("prezzoMax").equals("")) {
-				prezzoMax = Double.parseDouble(request.getParameter("prezzoMax"));
+			String prezzoMaxS = request.getParameter("prezzoMax");
+			if(prezzoMaxS!=null && !prezzoMaxS.equals("")) {
+				prezzoMax = Double.parseDouble(prezzoMaxS);
 			}
 			else {
 				prezzoMax = 99999;

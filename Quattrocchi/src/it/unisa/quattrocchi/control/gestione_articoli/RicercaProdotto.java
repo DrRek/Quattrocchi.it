@@ -32,6 +32,8 @@ public class RicercaProdotto extends HttpServlet{
 
 		try {
 			String action = request.getParameter("action");
+			
+			//In questo caso la ricerca è asincrona
 			if(action!=null && action.equalsIgnoreCase("search")) {
 				String toSearch = request.getParameter("toSearch");
 				if(toSearch!=null && !toSearch.equalsIgnoreCase("")) {
@@ -42,9 +44,11 @@ public class RicercaProdotto extends HttpServlet{
 				return;
 			}
 
+			//In questo caso è sincrona
 			request.setAttribute("toSearch", request.getParameter("toSearch"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
 			dispatcher.forward(request, response);
+			
 		}catch (Exception e) {
 			System.out.println("Errore in Ricerca prodotto:");
 			e.printStackTrace();

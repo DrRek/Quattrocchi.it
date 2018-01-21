@@ -87,8 +87,6 @@
 				<p>
 					<h4>Dettagli prodotto</h4>
                             <p><%=articolo.getDescrizione()%></p>
-                            
-                            <hr>
             </div>
 
                   

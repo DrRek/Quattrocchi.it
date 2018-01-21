@@ -50,7 +50,7 @@
 
 				</div>
 				<div class="col-sm-6">
-					<br><br>
+					<br><br><br>
 					<div class="box">
 						<input type="hidden" id="codice" value="<%=articolo.getCodice()%>" />
 						<h1 class="text-center"><%=articolo.getModello()%></h1>

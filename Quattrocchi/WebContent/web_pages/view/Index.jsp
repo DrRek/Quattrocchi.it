@@ -26,14 +26,14 @@
   <div class="item">
       <img src="web_pages/image/home1.jpg" alt="persol">
       <div class="carousel-caption">
-        <h1><a style="color:white"  href="ricerca_prodotto?action=searchFromOtherPage&toSearch=persol">Persol</a></h1>
+        <h1><a style="color:white;text-decoration: none;"  href="ricerca_da_pagina_esterna?toSearch=persol">Persol</a></h1>
         <p>La marca eco-frienldy</p>
         </div>
     </div>
     <div class="item active">
       <img src="web_pages/image/home2.jpg" alt="rayban">
       <div class="carousel-caption">
-        <h1><a style="color:white"  href="ricerca_prodotto?action=searchFromOtherPage&toSearch=rayban">Rayban</a></h1>
+        <h1><a style="color:white; text-decoration: none;"  href="ricerca_da_pagina_esterna?toSearch=rayban">Rayban</a></h1>
         <p>Guarda le ultime uscite</p>
       </div>
     </div>
@@ -41,7 +41,7 @@
     <div class="item">
       <img src="web_pages/image/home3.jpg" alt="oakley">
       <div class="carousel-caption">
-        <h1><a style="color:white" href="ricerca_prodotto?action=searchFromOtherPage&toSearch=oakley">Oakley</a></h1>
+        <h1><a style="color:white; text-decoration: none;" href="ricerca_da_pagina_esterna?toSearch=oakley">Oakley</a></h1>
         <p>Scegli lo stile californiano</p>
       </div>
     </div>

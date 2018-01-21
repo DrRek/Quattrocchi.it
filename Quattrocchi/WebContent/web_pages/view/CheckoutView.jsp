@@ -48,11 +48,11 @@
 				<th style="width: 20%" id="qta">Quantità</th>
 				<th style="width: 20%">Prezzo</th>
 			</thead>
+			<tbody>
 			<%
 				Map<ArticoloInStock, Integer> map = cart.getArticoli();
 				for(ArticoloInStock a : map.keySet()){
 			%>
-			<tbody>
 				<tr>
 					<td class="prodotto">
 						<h3 class="nomargin nomeArt"><%=a.getModello() %></h3>
@@ -61,10 +61,10 @@
 					<td><%=map.get(a)%></td>
 					<td class="prezzoArt "><%=a.getPrezzo()%>€</td>
 				</tr>
-			</tbody>
 			<%
 				}
 			%>
+			</tbody>
 		</table>
 		<h4>
 			Totale:

@@ -33,12 +33,12 @@
 		<h3>Da spedire</h3>
 		<table id="inserireID"
 			class="table table-hover table-condensed table-striped">
+			<tbody>
 			<%
 				int i = 0;
 				while(i < ordini.size()) {
 					if(ordini.get(i).getStatoOrdine().equalsIgnoreCase("Da spedire")) {
 			%>
-			<tbody>
 				<tr>
 					<td><%=ordini.get(i).getCodice()%></td>
 					<td>
@@ -48,21 +48,21 @@
                     </form>
 					</td>
 				</tr>
-			</tbody>
 			<% 		}
 					i++; 
 				}
 			%>
+			</tbody>
 		</table>
 		<hr>
 		<h3>In corso</h3>
 		<table id="inserireID"
 			class="table table-hover table-condensed table-striped">
+			<tbody>
 			<% 	i = 0;
 				while(i < ordini.size()) {
 					if(ordini.get(i).getStatoOrdine().equalsIgnoreCase("In corso")) {
 			%>
-			<tbody>
 				<tr>
 					<td><%=ordini.get(i).getCodice() %></td>
 					<td>
@@ -72,20 +72,20 @@
                     </form>
 					</td>
 				</tr>
-			</tbody>
 			<% 		}
 					i++; 
 				}
 			%>
+			</tbody>
 		</table>
 		<h3>Consegnati</h3>
 		<table id="inserireID"
 			class="table table-hover table-condensed table-striped">
+			<tbody>
 			<% 	i = 0;
 				while(i < ordini.size()) {
 					if(ordini.get(i).getStatoOrdine().equalsIgnoreCase("Consegnato")) {
 			%>
-			<tbody>
 				<tr>
 					<td><%=ordini.get(i).getCodice()%></td>
 					<td><form action="/Quattrocchi/gestioneOrdineDaSpedire" method="post">
@@ -93,7 +93,6 @@
                             <input class="btn btn-outline-secondary " type="submit" name="inserireNAME" value="Gestisci" />
                     </form></td>
 				</tr>
-			</tbody>
 			<% 		}
 					i++; 
 				}
@@ -101,6 +100,7 @@
 			<% } else { %>
 			<p> Nessun ordine da visualizzare </p>
 			<% } %>
+			</tbody>
 		</table>
 	</div>
 	<% } else { %>

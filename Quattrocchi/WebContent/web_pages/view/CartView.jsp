@@ -41,18 +41,18 @@
 		} else if(cart!=null) {
 	%>
 	<div class="container" id="divCartElements">
-		<table id="cartElements"class="table table-hover table-condensed table-striped">
+		<table id="cartElements"class="table table-striped table-hover table-condensed">
 			<thead>
 				<th style="width:40%" id="prod">Prodotto</th>
 				<th style="width:20%" id="qta" >Quantità</th>
 				<th style="width:20%" >Prezzo</th>
 				<th style="width:20%"></th>
 			</thead>
+			<tbody>
 			<%
 				Map<ArticoloInStock, Integer> map = cart.getArticoli();
 				for(ArticoloInStock a : map.keySet()){
 			%>
-			<tbody>
 				<tr>
 					<td class="prodotto">
 						<h3 class="nomargin nomeArt"><%=a.getModello() %></h3><p class="marcaArt"><%=a.getMarca() %></p>
@@ -66,10 +66,10 @@
 						</form>
 					</td>
 				</tr>
-			</tbody>
 			<%
 				}
 			%>
+			</tbody>
 		</table>
 		<%
 			if(usr != null && cart.getNumeroDiArticoli() > 0){

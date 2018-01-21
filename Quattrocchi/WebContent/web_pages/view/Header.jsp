@@ -54,9 +54,8 @@
 		<!-- /Visualizza Catalogo -->
 		<!-- Ricerca -->
 				<li>
-					<form class="navbar-form" action="ricerca_prodotto" method="get">
+					<form class="navbar-form" action="ricerca_da_pagina_esterna" method="get">
 						<div class="input-group">
-							<input type="hidden" name="action" value="searchFromOtherPage">
 							<input name="toSearch" type="text" class="form-control"
 								placeholder="Cerca" /> <span class="input-group-btn">
 								<button type="submit" class="btn btn-default">Submit</button>

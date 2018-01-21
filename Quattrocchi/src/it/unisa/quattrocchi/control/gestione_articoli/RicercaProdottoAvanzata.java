@@ -26,6 +26,9 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 	/**
 	 * Questo metodo si occupa di effettuare la ricerca avanza di prodotti all'interno del catalogo
 	 * utilizzando i vari parametri inseriti dall'utente nell'apposita form.
+	 * 
+	 * @precondition Esiste almeno un articolo in database che corrisponde ai parametri non vuoti.
+	 * @postcondition Viene scritto in response una lista di articoli non vuota.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -46,15 +49,17 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 				marca = "";
 			}
 
-			if(!request.getParameter("prezzoMin").equals("")) {
-				prezzoMin = Double.parseDouble(request.getParameter("prezzoMin"));
+			String prezzoMinS = request.getParameter("prezzoMin");
+			if(prezzoMinS!=null && !prezzoMinS.equals("")) {
+				prezzoMin = Double.parseDouble(prezzoMinS);
 			}
 			else {
 				prezzoMin = 0;
 			}
 			
-			if(!request.getParameter("prezzoMax").equals("")) {
-				prezzoMax = Double.parseDouble(request.getParameter("prezzoMax"));
+			String prezzoMaxS = request.getParameter("prezzoMax");
+			if(prezzoMaxS!=null && !prezzoMaxS.equals("")) {
+				prezzoMax = Double.parseDouble(prezzoMaxS);
 			}
 			else {
 				prezzoMax = 99999;

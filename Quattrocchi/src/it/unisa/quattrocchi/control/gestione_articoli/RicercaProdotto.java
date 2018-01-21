@@ -1,6 +1,5 @@
 package it.unisa.quattrocchi.control.gestione_articoli;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,29 +21,26 @@ public class RicercaProdotto extends HttpServlet{
 
 	static ArticoloInStockModel model = new ArticoloInStockModel();
 
-	
+
 	/**
 	 * Questo metodo si occupa di effettuare la ricerca dei prodotti all'interno del catalogo
 	 * utilizzando la stringa inserita dall'utente nell'apposita barra di ricerca.
+	 * 
+	 * @precondition toSearch != null && !toSearch.equals("") && esiste almeno un articolo in database che corrisponde alla ricerca.
+	 * @postcondition Viene scritto in response una lista di articoli non vuota.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
-			String action = request.getParameter("action");
-			if(action!=null && action.equalsIgnoreCase("search")) {
-				String toSearch = request.getParameter("toSearch");
-				if(toSearch!=null && !toSearch.equalsIgnoreCase("")) {
-					response.setContentType("application/json");
-					response.setHeader("Cache-Control", "no-cache");
-					response.getWriter().write(new Gson().toJson(model.doRetrieveSimpleSearch(toSearch)));
-				}
-				return;
+			String toSearch = request.getParameter("toSearch");
+			if(toSearch!=null && !toSearch.equals("")) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson(model.doRetrieveSimpleSearch(toSearch)));
 			}
+			return;
 
-			request.setAttribute("toSearch", request.getParameter("toSearch"));
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
-			dispatcher.forward(request, response);
 		}catch (Exception e) {
 			System.out.println("Errore in Ricerca prodotto:");
 			e.printStackTrace();

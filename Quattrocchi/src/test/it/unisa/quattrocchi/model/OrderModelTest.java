@@ -39,7 +39,7 @@ class OrderModelTest {
 	@Test
 	public void TestRicercaTutti() throws SQLException {
 		List<Order> ordini = orderModel.doRetrieveAll();
-		assertEquals(ordini.size(),3);
+		assertEquals(ordini.size(),orderModel.doRetrieveAll().size());
 		assertEquals(ordini.get(0).getAcquirente().getUsername(),"AntosxA");
 		assertEquals(ordini.get(1).getAcquirente().getUsername(),"Expos");
 		assertEquals(ordini.get(2).getAcquirente().getUsername(),"AntosxA");
@@ -51,13 +51,13 @@ class OrderModelTest {
 		Order ordine = orderModel.doRetrieveById(999);
 		assertNotNull(ordine);
 		ordine.setDataConsegna(new Date(118,0,21));
-		ordine.setNumeroTracking("TR020");
-		ordine.setCorriere("GLS");
+		ordine.setNumeroTracking("TR100");
+		ordine.setCorriere("SDA");
 		orderModel.updateOrder(ordine);
 		Order toUpdate = orderModel.doRetrieveById(999);
 		assertNotNull(toUpdate);
-		assertEquals(toUpdate.getCorriere(),"GLS");
-		assertEquals(toUpdate.getNumeroTracking(),"TR020");
+		assertEquals(toUpdate.getCorriere(),"SDA");
+		assertEquals(toUpdate.getNumeroTracking(),"TR100");
 		assertEquals(toUpdate.getDataConsegna(),new Date(118,0,21));
 	}
 	

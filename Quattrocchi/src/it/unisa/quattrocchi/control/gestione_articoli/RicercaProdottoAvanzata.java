@@ -26,6 +26,9 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 	/**
 	 * Questo metodo si occupa di effettuare la ricerca avanza di prodotti all'interno del catalogo
 	 * utilizzando i vari parametri inseriti dall'utente nell'apposita form.
+	 * 
+	 * @precondition Esiste almeno un articolo in database che corrisponde ai parametri non vuoti.
+	 * @postcondition viene scritto in response una lista di articoli non vuota.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

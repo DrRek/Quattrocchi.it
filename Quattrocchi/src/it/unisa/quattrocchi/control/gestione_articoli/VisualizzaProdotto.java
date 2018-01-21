@@ -10,7 +10,6 @@ import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/visualizza_prodotto")
 
-
 /**
  * 
  * @author quattrocchi.it
@@ -27,6 +26,9 @@ public class VisualizzaProdotto extends HttpServlet{
 	
 	/**
 	 * Questo metodo si occupa di far visualizzare la scheda di un prodotto.
+	 * 
+	 * @precondition id!=null e l'id corrisponde ad un articolo presente nel database.
+	 * @postcondition Viene inserito in response un articolo.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

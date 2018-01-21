@@ -174,7 +174,7 @@ public class OrderModel {
 			stm.setString(3, sa);
 			stm.setString(4, cc);
 			stm.setString(5, acq);
-			stm.setString(6, Order.DA_SPEDIRE);
+			stm.setString(6, statoOrdine);
 			
 			java.sql.Date consegna = null;
 			if(dataConsegna!=null) {

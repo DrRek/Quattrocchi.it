@@ -1,4 +1,4 @@
-function gestioneOrdiniValidation()
+/*function gestioneOrdiniValidation()
 {
 	var corriere = $("select[name='corriere']");
 	var tracking = $("input[name='tracking']");
@@ -39,7 +39,7 @@ function corriereSelect(inp, x, y)
 		inp.focus();
 		return false;
 	}
-}
+} 
 
 function statoControl(inp) {
 	if(inp.val().equals("Da spedire") || inp.val().equals("In corso") || inp.val().equals("consegnato"))
@@ -47,6 +47,7 @@ function statoControl(inp) {
 	else
 		return false;
 }
+*/
 
 function loginValidation(){
 	var uid = $("input[name='userid']");
@@ -87,3 +88,4 @@ function passid_validation(pass,x,y)
 		return true;
 	}
 }
+

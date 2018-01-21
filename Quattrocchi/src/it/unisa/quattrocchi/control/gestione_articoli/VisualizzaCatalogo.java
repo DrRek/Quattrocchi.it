@@ -32,19 +32,6 @@ public class VisualizzaCatalogo extends HttpServlet{
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		String action = request.getParameter("action");
-		if(action!=null && action.equalsIgnoreCase("retrieveAll")) {
-			try {
-				response.setContentType("application/json");
-				response.setHeader("Cache-Control", "no-cache");
-				response.getWriter().write(new Gson().toJson(articoloInStockModel.doRetrieveAllInStock()));
-			} catch(SQLException e) {
-				System.out.println("Errore in visualizza catalogo:");
-				e.printStackTrace();
-			}
-			return;
-		}
 			
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
 		dispatcher.forward(request, response);

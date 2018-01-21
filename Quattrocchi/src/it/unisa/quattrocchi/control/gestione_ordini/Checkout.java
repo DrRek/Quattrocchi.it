@@ -58,6 +58,8 @@ public class Checkout extends HttpServlet{
 					model.createOrder(nuovo);
 					usr.resetCart();
 					acModel.updateCart(usr);
+				} else {
+					request.setAttribute("error", "Errore nella scelta della carta di credito o dell'indirizzo!");
 				}
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profilo");
 				dispatcher.forward(request, response);

@@ -48,8 +48,10 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 		    Date parsed = format.parse(strDate);
 		    java.sql.Date dataConsegna = new java.sql.Date(parsed.getTime());
 		    
-			if(orderId == 0 || corriere == null || corriere.length() < 3 || corriere.length() >10 || tracking == null || tracking.length() < 5 ||
-					tracking.length() > 15 || statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
+			if(orderId == 0 || 
+					corriere == null || !(corriere.matches("[A-Za-z]{3,10}")) || 
+					tracking == null || !(tracking.matches("[A-Za-z0-9]{5,15}")) ||
+					statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
 				dispatcher.forward(request, response);
 				return;

@@ -50,7 +50,7 @@ public class ShippingAddressModelTest_jdbc {
 		ShippingAddress sa = shippingModel.doRetrieveById("999");
 		sa.setIndirizzo("via Settembrini nuova");
 		sa.setProvincia("BE");
-		sa.setCap();
+		//sa.setCap();
 		shippingModel.updateShippingAddress(sa);
 		assertEquals(sa.getIndirizzo(),"via Settembrini nuova");
 	}

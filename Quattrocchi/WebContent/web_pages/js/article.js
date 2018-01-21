@@ -97,10 +97,7 @@ function advancedSearch() {
 function retrieveAll() {
 	$.ajax({
 		type : "GET",
-		url : "visualizza_catalogo",
-		data : {
-			action : 'retrieveAll'
-		},
+		url : "visualizza_tutti",
 		dataType : "json",
 		error : function(xhr, status, errorThrown) {
 			console.log(JSON.stringify(xhr));

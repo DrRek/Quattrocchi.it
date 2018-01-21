@@ -52,11 +52,13 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 			}
 			
 			ArticoloInStock articolo;
-			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
-			carrello.addArticle(articolo);
+			if(articoloId != null && !(articoloId.equals(""))) {
+				articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
+				carrello.addArticle(articolo);
 
-			if(a!= null) {
-				acquirenteModel.updateCart(a);
+				if(a!= null) {
+					acquirenteModel.updateCart(a);
+				}
 			}
 		} catch (Exception e) {
 			

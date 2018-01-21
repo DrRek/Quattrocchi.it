@@ -27,7 +27,7 @@ public class RicercaProdotto extends HttpServlet{
 	 * utilizzando la stringa inserita dall'utente nell'apposita barra di ricerca.
 	 * 
 	 * @precondition toSearch != null && !toSearch.equals("") && esiste almeno un articolo in database che corrisponde alla ricerca.
-	 * @postcondition viene scritto in response una lista di articoli non vuota.
+	 * @postcondition Viene scritto in response una lista di articoli non vuota.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

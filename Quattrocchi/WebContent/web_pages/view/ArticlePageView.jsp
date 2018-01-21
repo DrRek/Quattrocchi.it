@@ -40,28 +40,6 @@
 
 <body>
 	<%@ include file="../view/Header.jsp"%>
-	<script>
-		$(document).ready(function() {
-			$("#oAddCart").click(function(event) {
-				$.ajax({
-					type : "POST",
-					url : "articlePage",
-					data : {
-						action : "addCart",
-						nome : $("#oNome").html(),
-						marca : $("#oMarca").html(),
-					},
-					success : function() {
-						var s = $("#count").html();
-						var num = parseInt(s);
-						$("#count").html(num + 1);
-					}
-
-				});
-			});
-
-		})
-	</script>
 	<div class="container-fluid">
 		<div class="content-wrapper">
 			<div class="item-container">
@@ -95,7 +73,7 @@
 						<hr>
 						<div class="product-desc"><%=articolo.getDescrizione()%></div>
 
-						<div> <span class="product-price"><%=articolo.getPrezzo()%> € </span>
+						<div> <span class="product-price">Prezzo: € <%=articolo.getPrezzo()%> </span>
 						</div>
 						<br><br>
 						<div style="float:right">

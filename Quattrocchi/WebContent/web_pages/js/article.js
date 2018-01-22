@@ -156,36 +156,39 @@ function articlePageViewFunction(idProdotto){
 
 function formatData(responseText){
 	var toAppend = '';
-	$.each(responseText, function(i, articleObject) {
-		console.log("elemento trovato")
-		if(articleObject.disponibilità > 0){
-			toAppend += '<div class="block enlarge" onClick="articlePageViewFunction('+articleObject.codice+')">' //funzione che viene chiamata per ArticlePageView
-				+'<div class="top">'
-				+ '<ul>'
-				+ '<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>'
-				+ '<li><span class="prodotto">' + articleObject.marca + '</span></li>'
-				+ '<li><a href="#"><i class="fa fa-shopping-basket" aria-hidden="true"></i> </a></li>'
-				+ '</ul>'
-				+'</div>';
-			toAppend += '<div class="middle">';
-			toAppend += '<img src="/Quattrocchi/web_pages/image/'+articleObject.img1+'" alt="pic" />';
-			toAppend += '</div>'
-				+  '<div class="bottom">'
-				+ '<div class="heading">'+ articleObject.modello +'</div>'
-				+ '<div class="info">' + articleObject.disponibilità + ' pezzi disponibili</div>';
-			if(articleObject.sconto > 0){
-				if(articleObject.tipoSconto == "%"){
-					var sconto = parseInt(((articleObject.prezzo)-(articleObject.prezzo*articleObject.sconto/100))*100)/100;
-				}else{
-					var sconto = parseInt(articleObjec.prezzo-articleObject.sconto*100)/100;
+	try{
+		$.each(responseText, function(i, articleObject) {
+			if(articleObject.disponibilità > 0){
+				toAppend += '<div class="block enlarge" onClick="articlePageViewFunction('+articleObject.codice+')">' //funzione che viene chiamata per ArticlePageView
+					+'<div class="top">'
+					+ '<ul>'
+					+ '<li><a href="#"><i class="fa fa-star-o" aria-hidden="true"></i></a></li>'
+					+ '<li><span class="prodotto">' + articleObject.marca + '</span></li>'
+					+ '<li><a href="#"><i class="fa fa-shopping-basket" aria-hidden="true"></i> </a></li>'
+					+ '</ul>'
+					+'</div>';
+				toAppend += '<div class="middle">';
+				toAppend += '<img src="/Quattrocchi/web_pages/image/'+articleObject.img1+'" alt="pic" />';
+				toAppend += '</div>'
+					+  '<div class="bottom">'
+					+ '<div class="heading">'+ articleObject.modello +'</div>'
+					+ '<div class="info">' + articleObject.disponibilità + ' pezzi disponibili</div>';
+				if(articleObject.sconto > 0){
+					if(articleObject.tipoSconto == "%"){
+						var sconto = parseInt(((articleObject.prezzo)-(articleObject.prezzo*articleObject.sconto/100))*100)/100;
+					}else{
+						var sconto = parseInt(articleObjec.prezzo-articleObject.sconto*100)/100;
+					}
+					toAppend += '<div class="price">' +sconto + ' € <span class="old-price">'+parseInt(articleObject.prezzo*100)/100+'€</span></div>';
+				} else {
+					toAppend += '<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>';
 				}
-				toAppend += '<div class="price">' +sconto + ' € <span class="old-price">'+parseInt(articleObject.prezzo*100)/100+'€</span></div>';
-			} else {
-				toAppend += '<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>';
+				toAppend +='</div>'
+				+'</div>';
 			}
-			toAppend +='</div>'
-			+'</div>';
-		}
-	});
-	$("#demos").html(toAppend);
+		});
+		$("#demos").html(toAppend);
+	} catch (exception){
+		showError(responseText);
+	}
 }

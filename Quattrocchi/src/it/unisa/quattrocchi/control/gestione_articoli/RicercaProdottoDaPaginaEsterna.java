@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/ricerca_da_pagina_esterna")
@@ -19,12 +21,29 @@ public class RicercaProdottoDaPaginaEsterna extends HttpServlet {
 	
 	/**
 	 * TODO
+	 * @precondition	toSearch!=null && toSearch.matches("[A-Za-z0-9 ]{1,20}")
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-
 		try {
-			request.setAttribute("toSearch", request.getParameter("toSearch"));
+			
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
+			String toSearch = (String) request.getParameter("toSearch");
+			if(toSearch==null || !toSearch.matches("[A-Za-z0-9 ]{1,20}")) {
+				request.setAttribute("error", "Formato parametro non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			request.setAttribute("toSearch", toSearch);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
 			dispatcher.forward(request, response);
 			

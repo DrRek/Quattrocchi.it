@@ -1,7 +1,7 @@
 package it.unisa.quattrocchi.entity;
 
 public class ArticoloInStock {
-	private String codice;
+	private int codice;
 	private String modello;
 	private String marca;
 	private String img1;
@@ -10,7 +10,7 @@ public class ArticoloInStock {
 	private String descrizione;
 	private double prezzo;
 	private int disponibilità;
-	public ArticoloInStock(String codice, String modello, String marca, String img1, String img2, String img3,
+	public ArticoloInStock(int codice, String modello, String marca, String img1, String img2, String img3,
 			String descrizione, double prezzo, int disponibilità) {
 		super();
 		this.codice = codice;
@@ -23,10 +23,10 @@ public class ArticoloInStock {
 		this.prezzo = prezzo;
 		this.disponibilità = disponibilità;
 	}
-	public String getCodice() {
+	public int getCodice() {
 		return codice;
 	}
-	public void setCodice(String codice) {
+	public void setCodice(int codice) {
 		this.codice = codice;
 	}
 	public String getModello() {
@@ -85,7 +85,7 @@ public class ArticoloInStock {
 	
 	@Override
 	public boolean equals(Object o) {
-		if(codice.equals(((ArticoloInStock) o).getCodice())){
+		if(codice == (((ArticoloInStock) o).getCodice())){
 			return true;
 		}
 		return false;
@@ -93,6 +93,6 @@ public class ArticoloInStock {
 	
 	@Override
 	public int hashCode(){
-	    return codice.hashCode();
+	    return codice;
 	}
 }

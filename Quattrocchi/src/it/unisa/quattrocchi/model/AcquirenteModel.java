@@ -146,7 +146,7 @@ public class AcquirenteModel {
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String id = rs.getString("ArticoloInStock");
+				int id = rs.getInt("ArticoloInStock");
 				int n = rs.getInt("Quantita");
 				
 				list.put(asModel.doRetrieveByIdInStock(id), n);
@@ -233,7 +233,7 @@ public class AcquirenteModel {
 		String query = "insert into " + TABLE_NAME_ARTICOLOINCARRELLO + " values(?,?,?)";
 		
 		for(ArticoloInStock a: articoli) {
-			String codiceArticolo = a.getCodice();
+			int codiceArticolo = a.getCodice();
 			int quantità = mappa.get(a);
 			
 			try {
@@ -241,7 +241,7 @@ public class AcquirenteModel {
 				stm = conn.prepareStatement(query);
 				
 				stm.setString(1, acq);
-				stm.setString(2, codiceArticolo);
+				stm.setInt(2, codiceArticolo);
 				stm.setInt(3, quantità);
 				
 				stm.executeUpdate();

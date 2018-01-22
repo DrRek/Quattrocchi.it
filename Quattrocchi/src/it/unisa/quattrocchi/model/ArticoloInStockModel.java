@@ -22,11 +22,11 @@ public class ArticoloInStockModel {
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un articolo in stock
 	 * tramite una codice specifico preso in input.
-	 * @param codiceProdotto un oggetto codiceProdotto di tipo <strong>String</strong>
+	 * @param id un oggetto codiceProdotto di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>ArticoloInStock</strong>, altrimenti null.
 	 * @throws SQLException
 	 */
-	public ArticoloInStock doRetrieveByIdInStock(String codiceProdotto) throws SQLException {
+	public ArticoloInStock doRetrieveByIdInStock(int id) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		ArticoloInStock bean = null;
@@ -36,12 +36,12 @@ public class ArticoloInStockModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(1, codiceProdotto);
+			stm.setInt(1, id);
 			
 			ResultSet rs = stm.executeQuery();
 
 			if(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
 				String img1 = rs.getString("Img1");
@@ -89,7 +89,7 @@ public class ArticoloInStockModel {
 			ResultSet rs = stm.executeQuery();
 
 			while(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
 				String img1 = rs.getString("Img1");
@@ -143,7 +143,7 @@ public class ArticoloInStockModel {
 			ResultSet rs = stm.executeQuery();
 
 			while(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				String modello = rs.getString("Modello");
 				String marca = rs.getString("Marca");
 				String img1 = rs.getString("Img1");
@@ -209,7 +209,7 @@ public class ArticoloInStockModel {
 			ResultSet rs = stm.executeQuery();
 
 			while(rs.next()) {
-				String codice = rs.getString("Codice");
+				int codice = rs.getInt("Codice");
 				String modello = rs.getString("Modello");
 				String marca1 = rs.getString("Marca");
 				String img1 = rs.getString("Img1");

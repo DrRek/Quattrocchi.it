@@ -73,7 +73,7 @@
 		<thead>
 			<th style="width:40%" id="prod">Prodotto</th>
 			<th style="width:20%" id="qta" >Quantità</th>
-			<th style="width:20%" >Prezzo</th>
+			<th style="width:20%">Prezzo</th>
 		</thead>
 		<tbody>
 		<%
@@ -86,9 +86,9 @@
 				<td class="prodotto">
 					<h3 class="nomargin nomeArt"><%=ordine.getListaArticoliInOrdine().get(i).getModello() %></h3><p class="marcaArt"><%=ordine.getListaArticoliInOrdine().get(i).getMarca() %></p></td>
 				<td>
-					<h3 class="nomargin nomeArt"><%=ordine.getListaArticoliInOrdine().get(i).getQuantità() %></h3>
+					<h3 class="nomargin quantitaArt"><%=ordine.getListaArticoliInOrdine().get(i).getQuantità() %></h3>
 				</td>
-				<td class="prezzoArt "><%=ordine.getListaArticoliInOrdine().get(i).getPrezzo() * ordine.getListaArticoliInOrdine().get(i).getQuantità() %></td>
+				<td><h3 class="prezzoArt ">€ <%=ordine.getListaArticoliInOrdine().get(i).getPrezzo() * ordine.getListaArticoliInOrdine().get(i).getQuantità() %></h3></td>
 			</tr>
 		<%
 			i++;
@@ -96,7 +96,7 @@
 		%>
 		</tbody>
 	</table>
-	<h3>Prezzo Totale: <%=prezzoTotale%> </h3>
+	<h3>Prezzo Totale: € <%=prezzoTotale%> </h3>
 	</div>
 <% } %>
 </body>

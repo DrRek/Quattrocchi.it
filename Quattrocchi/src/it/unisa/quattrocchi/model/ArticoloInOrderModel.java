@@ -35,12 +35,12 @@ public class ArticoloInOrderModel {
 		PreparedStatement stm = null;
 		ArticoloInOrder bean = null;
 		
-		String query = "SELCT * FROM " + TABLE_NAME_ARTICOLOINORDINE + "WHERE Codice = ?";
+		String query = "SELECT * FROM " + TABLE_NAME_ARTICOLOINORDINE + " WHERE Codice = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(1, codiceProdotto);
+			stm.setInt(1, Integer.parseInt(codiceProdotto));
 			
 			ResultSet rs = stm.executeQuery();
 			if(rs.next()) {
@@ -52,7 +52,7 @@ public class ArticoloInOrderModel {
 				String img3 = rs.getString("Img3");
 				String descrizione = rs.getString("Descrizione");
 				double prezzo = rs.getDouble("Prezzo");
-				int quantità = rs.getInt("Quantità");
+				int quantità = rs.getInt("Quantita");
 				
 				bean = new ArticoloInOrder(codice,modello,marca,img1,img2,img3,descrizione,prezzo,quantità);
 			}
@@ -100,7 +100,7 @@ public class ArticoloInOrderModel {
 				String img3 = rs.getString("Img3");
 				String descrizione = rs.getString("Descrizione");
 				double prezzo = rs.getDouble("Prezzo");
-				int quantità = rs.getInt("Quantità");
+				int quantità = rs.getInt("Quantita");
 				
 				beans.add(new ArticoloInOrder(codice,modello,marca,img1,img2,img3,descrizione,prezzo,quantità));
 			}

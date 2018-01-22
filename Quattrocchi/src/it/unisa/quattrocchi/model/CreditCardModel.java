@@ -85,7 +85,7 @@ public class CreditCardModel {
 		PreparedStatement stm = null;
 		List<CreditCard> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_CREDITCARD + " WHERE acquirente = ?;";
+		String query = "SELECT * FROM " + TABLE_NAME_CREDITCARD + " WHERE Acquirente = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();

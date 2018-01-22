@@ -1,16 +1,16 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-import java.io.IOException;
 import java.util.Date;
-import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import it.unisa.quattrocchi.entity.GestoreOrdini;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.model.OrderModel;
 
@@ -32,31 +32,105 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 	/**
 	 * Questo metodo si occupa di effetttuare l'aggiunta del numero di tracking,
 	 * la data della consegna e dello stato relativi all'ordine da gestire.
-	 * @precondition orderId != null e corrisponde ad un ordine nel database,
-	 * 				corriere != null, tracking != null, statoOrdine è uguale ad uno dei tre stati di un ordine
-	 * 				parsed != null ed è una data valida.
+	 * @precondition 	La richiesta è sincrona.
+	 * 					L'utente connesso è un gestore degli ordini.
+	 * 					orderId != null, è trasformabile in un intero e corrisponde ad un ordine nel database,
+	 * 					corriere != null && corriere.matches("[A-Za-z ]{3,10}")
+	 * 					tracking != null && tracking.marches("[A-Za-z0-9]{5,15}")
+	 * 					statoOrdine è uguale a Order.DA_SPEDIRE, Order.IN_CORSO o Order.TERMINATO
+	 * 					parsed != null && parsed.matches("[0-9]{4}[-]{1}[0-9]{2}[-]{1}[0-9]{2}")
 	 * @postcondition orderToUpdate viene aggiornato e le modifiche vengono propagate al database.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			int orderId = Integer.parseInt(request.getParameter("ordineId"));
-			String corriere = request.getParameter("corriere");
-			String tracking = request.getParameter("tracking");
-			String statoOrdine = request.getParameter("statoOrdine");
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			String strDate = request.getParameter("dataDiConsegna");
-		    Date parsed = format.parse(strDate);
-		    java.sql.Date dataConsegna = new java.sql.Date(parsed.getTime());
-
-			Order orderToUpdate = orderModel.doRetrieveById(orderId);
 			
-			if(orderId == 0 || orderToUpdate == null || 
-					corriere == null || !(corriere.matches("[A-Za-z]{3,10}")) || 
-					tracking == null || !(tracking.matches("[A-Za-z0-9]{5,15}")) ||
-					statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
-				request.setAttribute("error", "Errore durante la modifica dell'ordine");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
+			GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+			if(gestoreOrdini==null) {
+				request.setAttribute("error", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			String idS = request.getParameter("ordineId");
+			if(idS==null || idS.equals("")) {
+				request.setAttribute("error", "Necessario fornire un identificativo dell'ordine.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+			int orderId=0;
+			try {
+				orderId = Integer.parseInt(idS);
+			} catch(Exception e) {
+				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if(orderId==0) {
+				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			Order orderToUpdate = orderModel.doRetrieveById(orderId);
+			if(orderToUpdate==null) {
+				request.setAttribute("error", "Ordine con questo identificativo non trovato");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			String corriere = request.getParameter("corriere");
+			if(corriere==null || !corriere.matches("[A-Za-z ]{3,10}")) {
+				request.setAttribute("error", "Corriere inserito non valido.");
+				request.setAttribute("ordineId", idS);
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			String tracking = request.getParameter("tracking");
+			if(tracking==null || !tracking.matches("[A-Za-z0-9]{5,15}")) {
+				request.setAttribute("error", "Numero di tracking inserito non valido.");
+				request.setAttribute("ordineId", idS);
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			String statoOrdine = request.getParameter("statoOrdine");
+			if(statoOrdine==null || 
+					(!statoOrdine.equalsIgnoreCase(Order.DA_SPEDIRE) || !statoOrdine.equalsIgnoreCase(Order.IN_CORSO) || !statoOrdine.equalsIgnoreCase(Order.TERMINATO))) {
+				request.setAttribute("error", "Stato ordine inserito non valido.");
+				request.setAttribute("ordineId", idS);
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			java.sql.Date dataConsegna;
+			try {
+				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+				String strDate = request.getParameter("dataDiConsegna");
+			    Date parsed = format.parse(strDate);
+			    dataConsegna = new java.sql.Date(parsed.getTime());
+			} catch (Exception e){
+				request.setAttribute("error", "Data di consegna inserita non valida. Formato valido: yyyy-MM-dd");
+				request.setAttribute("ordineId", idS);
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
 				dispatcher.forward(request, response);
 				return;
 			}
@@ -70,7 +144,8 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
 			dispatcher.forward(request, response);		
-		} catch (IOException | ServletException | SQLException | ParseException e) {
+		} catch (Exception e) {
+			System.out.println("Errore in Inserisci dati di spedizione:");
 			e.printStackTrace();
 		}
 		return;

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import it.unisa.quattrocchi.entity.GestoreOrdini;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.model.OrderModel;
 
@@ -29,23 +32,62 @@ public class GestioneOrdine extends HttpServlet{
 	/**
 	 * Questo metodo si occupa di fornire la funzionalità di gestione di un ordine
 	 * da spedire. 
-	 * @precondition ordineId corrisponde veramente ad un id di un ordine in database e l'utente connesso è un gestore di ordini.
+	 * @precondition	La richiesta è sincrona.
+	 * 					L'utente connesso è un gestore degli ordini.
+	 * 					ordineId corrisponde veramente ad un id di un ordine in database.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			String orderId = request.getParameter("ordineId");
-			if(orderId == null) {				
+			
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
+			GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+			if(gestoreOrdini==null) {
+				request.setAttribute("error", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
 				dispatcher.forward(request, response);
 				return;
 			}
-			Order ordineDaGestire = orderModel.doRetrieveById(Integer.parseInt(request.getParameter("ordineId")));
-			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
 			
+			String idS = request.getParameter("ordineId");
+			if(idS==null || idS.equals("")) {
+				request.setAttribute("error", "Necessario fornire un identificativo dell'ordine.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+			int id=0;
+			try {
+				id = Integer.parseInt(idS);
+			} catch(Exception e) {
+				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			Order ordineDaGestire = orderModel.doRetrieveById(id);
+			if(ordineDaGestire==null) {
+				request.setAttribute("error", "Nessun ordine ritrovato con il dato identificativo.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
 			dispatcher.forward(request, response);
+			
 		} catch (ServletException | IOException | SQLException e) {
+			System.out.println("Errore in Gestione Ordini:");
 			e.printStackTrace();
 		}
 		return;

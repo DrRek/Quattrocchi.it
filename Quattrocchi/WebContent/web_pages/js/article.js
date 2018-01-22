@@ -7,7 +7,9 @@ $(document).ready(function() {
 
 
 	$("#advancedSearch").on("click", function(event) {
-		advancedSearch();
+		if(checkAdvancedSearchRegex()){
+			advancedSearch();
+		}
 	});
 });
 
@@ -60,6 +62,36 @@ function orderByPrezzo() {
 	else {
 		advancedSearch();
 	}
+}
+
+function checkAdvancedSearchRegex(){
+	var toSearch = $('input[name=daCercare1]').val();
+	if (toSearch == null || toSearch.length == 0) {
+		toSearch = $('input[name=daCercare]').val();
+	}
+	if(toSearch != null && toSearch != "" && !/^([A-Za-z0-9 ]{5,15})$/.test(toSearch)){
+		showError("Parametro da cercare non valido.")
+		return false;
+	}
+	
+	var marca = $('select[name=marca]').val();
+	if(marca != null && marca != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(marca)){
+		showError("Parametro marca non valido.")
+		return false;
+	}
+	
+	var prezzoMin = $('input[name=prezzoMin]').val();
+	if(prezzoMin != null && prezzoMin != ""){
+		try{
+			parseInt(prezzoMin)
+		} catch(e){
+			showError("Parametro minimo non valido.")
+			return false;
+		}
+	}
+	var prezzoMax = $('input[name=prezzoMax]').val();
+	var colore = $('input[name=colore]').val();
+	return true;
 }
 
 function advancedSearch() {

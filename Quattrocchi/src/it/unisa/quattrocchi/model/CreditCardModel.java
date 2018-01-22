@@ -216,10 +216,10 @@ public class CreditCardModel {
 	
 	/**
 	 * Questo metodo si occupa di cancellare una carta di credito nel database.
-	 * @param codice un oggetto toDelete di tipo <strong>CreditCard</strong>
+	 * @param id un oggetto toDelete di tipo <strong>CreditCard</strong>
 	 * @throws SQLException
 	 */
-	public void deleteCreditCard(String codice) throws SQLException{
+	public void deleteCreditCard(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -229,7 +229,7 @@ public class CreditCardModel {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
 			
-			stm.setString(1, codice);
+			stm.setInt(1, id);
 			
 			stm.executeUpdate();
 			stm.close();

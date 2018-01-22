@@ -26,7 +26,7 @@ class CreditCardModelTest {
 
 	@Test
 	public void TestRicercaPerId() throws SQLException {
-		CreditCard cc = creditCardModel.doRetrieveById("997");
+		CreditCard cc = creditCardModel.doRetrieveById(997);
 		assertNotNull(cc);
 		assertEquals(cc.getIdCarta(),"997");
 		assertEquals(cc.getAcquirente().getUsername(),"AntosxA");
@@ -47,7 +47,7 @@ class CreditCardModelTest {
 		Acquirente a = acquirenteModel.doRetriveById("Expos");
 		assertNotNull(a);
 		@SuppressWarnings("deprecation")
-		CreditCard cc = new CreditCard("996","4023654123214150","Ivan Esposito",
+		CreditCard cc = new CreditCard(996,"4023654123214150","Ivan Esposito",
 				"VISA",new Date(118,0,21),524,a);
 		assertNotNull(cc);
 		List<CreditCard> carteIvanPrima = creditCardModel.doRetrieveByUser(a.getUsername());
@@ -63,14 +63,14 @@ class CreditCardModelTest {
 	//problema con la data
 	@Test
 	public void TestAggiornaCart() throws SQLException {
-		CreditCard cc = creditCardModel.doRetrieveById("999");
+		CreditCard cc = creditCardModel.doRetrieveById(999);
 		assertNotNull(cc);
 		cc.setNumeroCC("4023660000058965");
 		cc.setIntestatario("Luigi Piccolo");
 		cc.setCircuito("MasterCard");
 		cc.setCvv(321);
 		creditCardModel.updateCreditCard(cc);
-		CreditCard ccUpdate = creditCardModel.doRetrieveById("999");
+		CreditCard ccUpdate = creditCardModel.doRetrieveById(999);
 		assertNotNull(ccUpdate);
 		assertEquals(ccUpdate.getIdCarta(),"999");
 		assertEquals(ccUpdate.getIntestatario(),"Luigi Piccolo");

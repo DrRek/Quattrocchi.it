@@ -80,11 +80,11 @@ class ShippingAddressModelTest {
 		assertEquals(antonio.getUsername(),"AntosxA");
 		ShippingAddress indirizzo = new ShippingAddress(955,"Italia","via Dante",80034,"NA",9,antonio);
 		assertNotNull(indirizzo);
-		String codice = shippingAddressModel.createShippingAddress(indirizzo);
+		shippingAddressModel.createShippingAddress(indirizzo);
 		List<ShippingAddress> indirizziDopo = shippingAddressModel.doRetrieveAll();
 		assertNotNull(indirizziDopo);
 		assertEquals(indirizziDopo.size(),3);
-		assertEquals(codice,997);
+		assertEquals(indirizzo.getCodice(),997);
 	}
 	
 	
@@ -93,7 +93,7 @@ class ShippingAddressModelTest {
 		List<ShippingAddress> indirizziPrima = shippingAddressModel.doRetrieveAll();
 		assertNotNull(indirizziPrima);
 		assertEquals(indirizziPrima.size(),3);
-		shippingAddressModel.deleteShippingAddress("997");
+		shippingAddressModel.deleteShippingAddress(997);
 		List<ShippingAddress> indirizziAggiornati = shippingAddressModel.doRetrieveAll();
 		assertNotNull(indirizziAggiornati);
 		assertEquals(indirizziAggiornati.size(),2);

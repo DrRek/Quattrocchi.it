@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
+
 @WebServlet("/logout")
 
 public class Logout extends HttpServlet{
@@ -15,17 +17,26 @@ public class Logout extends HttpServlet{
 	
 	/**
 	 * 
+	 * @precondition	La richiesta è sincrona.
 	 * @postcondition La sessione è invalidata.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
-		
 		try {
+			
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
 			HttpSession session = request.getSession(false);
 			if(session!=null)
 				session.invalidate();
 	
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/Index.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Errore in logout:");

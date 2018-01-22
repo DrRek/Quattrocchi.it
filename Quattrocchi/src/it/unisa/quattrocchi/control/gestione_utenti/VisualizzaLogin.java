@@ -8,22 +8,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
-import it.unisa.quattrocchi.entity.GestoreOrdini;
+@WebServlet("/login")
 
-@WebServlet("/welcome")
-
-public class Welcome extends HttpServlet{
+public class VisualizzaLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	/**
 	 * 
-	 * @precondition la richiesta è sincrona
+	 * @precondition 	La richiesta è sincrona.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			
 			//Per controllare che la richiesta sia del tipo giusto
 			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
 				response.setContentType("application/json");
@@ -32,26 +29,19 @@ public class Welcome extends HttpServlet{
 				return;
 			}
 			
-			GestoreOrdini gestore = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
-			if(gestore != null) {
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
-				dispatcher.forward(request, response);
-				return;
-			}
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/Index.jsp");
+			request.setAttribute("error", "Username o password non valida.");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/AccessView.jsp");
 			dispatcher.forward(request, response);
+			return;
 		} catch(Exception e) {
-			System.out.println("Errore in welcome page:");
+			System.out.println("Errore in visualizza login.");
 			e.printStackTrace();
 		}
-		return;
 	}
-	
+
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}
 }
-

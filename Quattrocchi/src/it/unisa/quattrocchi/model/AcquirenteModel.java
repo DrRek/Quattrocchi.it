@@ -184,8 +184,6 @@ public class AcquirenteModel {
 		String email = toUpdate.getEmail();
 		Date dataNascita = toUpdate.getDataNascita();
 		
-		Cart carrello = toUpdate.getCart();
-		
 		String query = "update " + TABLE_NAME_ACQUIRENTE + " set Pwd = ?, Nome = ?, Cognome = ?,Email = ?, DataNascita = ?" +
 		" where Username = ?;";
 		

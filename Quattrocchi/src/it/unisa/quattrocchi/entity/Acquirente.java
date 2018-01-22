@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Acquirente {
 	
@@ -137,21 +136,36 @@ public class Acquirente {
 		cc.add(creditCard);
 	}
 
-	public void removeShippingAddress(int id) {
+	public boolean removeShippingAddress(int id) {
 		for(int i=0; i<shipAdd.size(); i++) {
 			if(shipAdd.get(i).getCodice() == id) {
 				shipAdd.remove(i);
+				return true;
 			}
 		}
-		return;
+		return false;
 	}
 
-	public void removeCartAddress(int id) {
+	public boolean removeCartAddress(int id) {
 		for(int i=0; i<cc.size(); i++) {
 			if(cc.get(i).getIdCarta() == id) {
 				cc.remove(i);
+				return true;
 			}
 		}
-		return;
+		return false;
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(username.equals((((Acquirente) o).getUsername()))){
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+	    return username.hashCode();
 	}
 }

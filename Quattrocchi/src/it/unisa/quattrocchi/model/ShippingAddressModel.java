@@ -172,7 +172,6 @@ public class ShippingAddressModel {
 	 * @throws SQLException
 	 */
 	public void createShippingAddress(ShippingAddress toCreate) throws SQLException{
-		String codice = null;
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -272,10 +271,10 @@ public class ShippingAddressModel {
 	
 	/**
 	 * Questo metodo si occupa di effettuare la rimozione di un indirizzo di spedizione.
-	 * @param codice un oggetto toDelete di tipo <strong>ShippingAddress</strong>
+	 * @param id un oggetto toDelete di tipo <strong>ShippingAddress</strong>
 	 * @throws SQLException
 	 */
-	public void deleteShippingAddress(String codice) throws SQLException{
+	public void deleteShippingAddress(int id) throws SQLException{
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -285,7 +284,7 @@ public class ShippingAddressModel {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
 			
-			stm.setString(1, codice);
+			stm.setInt(1, id);
 			
 			stm.executeUpdate();
 			stm.close();

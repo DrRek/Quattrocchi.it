@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.model.OrderModel;
 
@@ -19,12 +21,30 @@ public class VisualizzaProfilo extends HttpServlet{
 	
 	/**
 	 * 
-	 * @precondition L'utente è loggato.
+	 * @precondition 	La richiesta è sincrona.
+	 * 					L'utente è loggato.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			request.setAttribute("storico_ordini", model.doRetrieveByAcquirente((Acquirente) request.getSession().getAttribute("acquirente")));
+			
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
+			Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
+			if(usr==null) {
+				request.setAttribute("error", "E' neccessario effettuare il login!");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+			request.setAttribute("storico_ordini", model.doRetrieveByAcquirente(usr));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {

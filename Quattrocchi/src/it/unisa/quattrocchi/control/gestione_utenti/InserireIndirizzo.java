@@ -1,8 +1,5 @@
 package it.unisa.quattrocchi.control.gestione_utenti;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +20,7 @@ public class InserireIndirizzo extends HttpServlet{
 	private ShippingAddressModel saModel = new ShippingAddressModel();
 	
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		try {
 			String indirizzo = request.getParameter("indirizzo");
@@ -49,7 +46,7 @@ public class InserireIndirizzo extends HttpServlet{
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}

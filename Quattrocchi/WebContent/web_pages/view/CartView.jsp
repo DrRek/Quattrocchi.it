@@ -74,7 +74,7 @@
 		<%
 			if(usr != null && cart.getNumeroDiArticoli() > 0){
 		%>
-			<form action="/Quattrocchi/checkout" method="post">
+			<form action="/Quattrocchi/visualizza_checkout" method="post">
 				<input class="btn btn-outline-secondary " type="submit" value="Checkout" />
 			</form>
 		<%

@@ -47,7 +47,7 @@ class OrderModelTest {
 	
 	@SuppressWarnings("deprecation")
 	@Test
-	public void TestUpdate() throws SQLException, InterruptedException {
+	public void TestUpdate() throws SQLException {
 		Order ordine = orderModel.doRetrieveById(999);
 		assertNotNull(ordine);
 		ordine.setDataConsegna(new Date(118,0,21));

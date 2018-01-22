@@ -30,7 +30,7 @@ public class GestoreOrdiniModel {
 		PreparedStatement stm = null;
 		GestoreOrdini bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_GESTOREORDINI + "WHERE Username = ?;";
+		String query = "SELECT * FROM " + TABLE_NAME_GESTOREORDINI + " WHERE Username = ?;";
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();

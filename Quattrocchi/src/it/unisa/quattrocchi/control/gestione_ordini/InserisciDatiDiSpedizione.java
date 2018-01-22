@@ -32,6 +32,10 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 	/**
 	 * Questo metodo si occupa di effetttuare l'aggiunta del numero di tracking,
 	 * la data della consegna e dello stato relativi all'ordine da gestire.
+	 * @precondition orderId != null e corrisponde ad un ordine nel database,
+	 * 				corriere != null, tracking != null, statoOrdine è uguale ad uno dei tre stati di un ordine
+	 * 				parsed != null ed è una data valida.
+	 * @postcondition orderToUpdate viene aggiornato e le modifiche vengono propagate al database.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -44,17 +48,19 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			String strDate = request.getParameter("dataDiConsegna");
 		    Date parsed = format.parse(strDate);
 		    java.sql.Date dataConsegna = new java.sql.Date(parsed.getTime());
-		    
-			if(orderId == 0 || 
+
+			Order orderToUpdate = orderModel.doRetrieveById(orderId);
+			
+			if(orderId == 0 || orderToUpdate == null || 
 					corriere == null || !(corriere.matches("[A-Za-z]{3,10}")) || 
 					tracking == null || !(tracking.matches("[A-Za-z0-9]{5,15}")) ||
 					statoOrdine == null || (!(statoOrdine.equals("Da spedire")) && !(statoOrdine.equals("In corso")) && !(statoOrdine.equals("consegnato")))) {
+				request.setAttribute("error", "Errore durante la modifica dell'ordine");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
 				dispatcher.forward(request, response);
 				return;
 			}
 			
-			Order orderToUpdate = orderModel.doRetrieveById(orderId);
 			orderToUpdate.setCorriere(corriere);
 			orderToUpdate.setNumeroTracking(tracking);
 			orderToUpdate.setStatoOrdine(statoOrdine);

@@ -22,6 +22,9 @@ public class VisualizzaStoricoOrdini extends HttpServlet{
 	
 	static OrderModel model = new OrderModel();
 
+	/**
+	 * 
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

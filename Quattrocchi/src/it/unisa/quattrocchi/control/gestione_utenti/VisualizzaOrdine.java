@@ -15,7 +15,12 @@ public class VisualizzaOrdine extends HttpServlet {
 
 	static OrderModel orderModel = new OrderModel();
 	private static final long serialVersionUID = 1L;
-
+	
+	/**
+	 * 
+	 * @precondition L'utente è loggato e l'ordine è associato all'utente.
+	 */
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			int orderId = Integer.parseInt(request.getParameter("ordineId"));
@@ -31,6 +36,7 @@ public class VisualizzaOrdine extends HttpServlet {
 		}
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 	}

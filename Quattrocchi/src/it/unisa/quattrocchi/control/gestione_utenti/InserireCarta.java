@@ -21,6 +21,12 @@ public class InserireCarta  extends HttpServlet{
 	
 	private CreditCardModel ccModel = new CreditCardModel();
 	
+	/**
+	 * 
+	 * @precondition l'utente è loggato, numcc corrisponde ad un numero di carta valido,
+	 * 				intestatario != null, circuito != null, circuito != null, scadenza != null, cvv != null,
+	 * @postcondition Il numero di carta di credito associate all'utente loggato è incrementato di 1.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 

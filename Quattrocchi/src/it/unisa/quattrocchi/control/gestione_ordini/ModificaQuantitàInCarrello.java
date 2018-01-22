@@ -27,6 +27,11 @@ public class ModificaQuantitàInCarrello extends HttpServlet{
 	static ArticoloInStockModel articoloInStockModel = new ArticoloInStockModel();
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 
+	/**
+	 * 
+	 * @precondition il carrello non è vuoto, articoloId != null e corrisponde ad un articolo nel database e quantità è un intero > 0.
+	 * @postcondition l'articolo corrispondente all' articoloId presente nel carrello ha una quantità pari a "quantità".
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

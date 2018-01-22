@@ -29,10 +29,11 @@ public class Login extends HttpServlet{
 	private static CreditCardModel ccModel = new CreditCardModel();
 	private static ShippingAddressModel saModel = new ShippingAddressModel();
 
-	public Login() {
-		super();
-	}
-
+	/**
+	 * 
+	 * @precondition userid != null, passid != null, l'username è presente nel database e la password corrisponde a quella associata all'username nel database.
+	 * @postcondition L'utente è loggato.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userid = request.getParameter("userid");

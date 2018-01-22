@@ -22,6 +22,10 @@ public class VisualizzaOrdini extends HttpServlet{
 	
 	static OrderModel orderModel = new OrderModel();
 
+	/**
+	 * 
+	 * @precondition l'utente loggato è un gestore ordini
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		try {

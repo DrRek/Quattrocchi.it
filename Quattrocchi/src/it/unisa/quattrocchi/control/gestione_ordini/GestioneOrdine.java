@@ -73,6 +73,12 @@ public class GestioneOrdine extends HttpServlet{
 				dispatcher.forward(request, response);
 				return;
 			}
+			if(id==0) {
+				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
+				dispatcher.forward(request, response);
+				return;
+			}
 			
 			Order ordineDaGestire = orderModel.doRetrieveById(id);
 			if(ordineDaGestire==null) {

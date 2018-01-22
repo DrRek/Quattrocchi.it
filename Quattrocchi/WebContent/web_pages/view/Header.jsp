@@ -127,8 +127,18 @@
 <br>
 <br>
 <br>
-<div id="errorInfoDiv" class="alert alert-danger container" style="text-align: center; display: none;">
-	<h3 id="errorText">Test</h3>
+<% 
+	String error = (String) request.getAttribute("error");
+	if(error != null && !error.equals("")){
+%>
+<div id="errorInfoDiv" class="alert alert-danger container" style="text-align: center;">
+	<h3 id="errorText"><%=error%></h3>
 	<input type="button" class="btn btn-outline-secondary" onClick='$("#errorInfoDiv").hide()' value="OK" />
 </div>
+<% } else {%>
+<div id="errorInfoDiv" class="alert alert-danger container" style="text-align: center; display: none;">
+	<h3 id="errorText">test</h3>
+	<input type="button" class="btn btn-outline-secondary" onClick='$("#errorInfoDiv").hide()' value="OK" />
+</div>
+<%} %>
 

@@ -68,6 +68,7 @@ public class RimuovereIndirizzo extends HttpServlet{
 			if(usr.removeShippingAddress(id)) {
 				ccModel.deleteShippingAddress(id);
 			}
+			response.getWriter().write(new Gson().toJson(""));
 
 		} catch(Exception e) {
 			System.out.println("Errore in Inserisci indirizzo:");

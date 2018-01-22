@@ -64,7 +64,6 @@ public class RicercaProdotto extends HttpServlet{
 			}
 			
 			response.getWriter().write(new Gson().toJson(articoli));
-			return;
 
 		}catch (Exception e) {
 			System.out.println("Errore in Ricerca prodotto:");

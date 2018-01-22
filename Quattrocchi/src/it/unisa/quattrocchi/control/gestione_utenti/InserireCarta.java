@@ -99,6 +99,7 @@ public class InserireCarta  extends HttpServlet{
 			CreditCard cc = new CreditCard(numcc, intestatario, circuito, scadenzaDate, Integer.parseInt(cvv), usr);
 			usr.addCreditCard(cc);
 			ccModel.createCreditCard(cc);
+			response.getWriter().write(new Gson().toJson(cc.getIdCarta()));
 		} catch(Exception e) {
 			System.out.println("Errore in Inserisci indirizzo:");
 			e.printStackTrace();

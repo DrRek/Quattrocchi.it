@@ -49,6 +49,9 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 				return;
 			}
 
+			response.setContentType("application/json");
+			response.setHeader("Cache-Control", "no-cache");
+
 			Cart carrello = null;
 			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(a != null) {
@@ -67,8 +70,6 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 
 			String idS = request.getParameter("articoloId");
 			if(idS==null || idS.equals("")) {
-				response.setContentType("application/json");
-				response.setHeader("Cache-Control", "no-cache");
 				response.getWriter().write(new Gson().toJson("Necessario fornire identificativo del prodotto."));
 				return;
 			}
@@ -77,8 +78,6 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 			try {
 				id = Integer.parseInt(idS);
 			} catch(Exception e) {
-				response.setContentType("application/json");
-				response.setHeader("Cache-Control", "no-cache");
 				response.getWriter().write(new Gson().toJson("Formato identificativo del prodotto non valido."));
 				return;
 			}
@@ -87,8 +86,6 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 				ArticoloInStock articolo;
 				articolo = articoloInStockModel.doRetrieveByIdInStock(id);
 				if(articolo==null) {
-					response.setContentType("application/json");
-					response.setHeader("Cache-Control", "no-cache");
 					response.getWriter().write(new Gson().toJson("Nessun articolo trovato."));
 				}
 
@@ -96,10 +93,10 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 				if(a!= null) {
 					acquirenteModel.updateCart(a);
 				}
+				response.getWriter().write(new Gson().toJson(""));
 			}
 
 		} catch (Exception e) {
-
 			System.out.println("Errore in aggiungi prodotto al carrello");
 			e.printStackTrace();
 		}

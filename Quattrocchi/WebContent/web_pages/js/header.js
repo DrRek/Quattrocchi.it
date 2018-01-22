@@ -1,4 +1,6 @@
 function showError(error){
-	$('#errorInfoDiv').show();
-	$('#errorText').html(error);
+	if(error != null && error != ""){
+		$('#errorInfoDiv').show();
+		$('#errorText').html(error);
+	}
 }

@@ -37,7 +37,7 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 		try {
 			
 			//Per controllare che la richiesta sia del tipo giusto
-			if(!"XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
 				response.setContentType("application/json");
 				response.setHeader("Cache-Control", "no-cache");
 				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));

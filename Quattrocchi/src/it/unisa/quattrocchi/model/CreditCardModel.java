@@ -7,6 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.CreditCard;
 
@@ -130,10 +134,9 @@ public class CreditCardModel {
 		PreparedStatement stm = null;
 		
 		String query = "INSERT INTO " + TABLE_NAME_CREDITCARD + 
-				" (IdCarta,NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente)" +
-				" VALUES(?,?,?,?,?,?,?);";
+				" (NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente)" +
+				" VALUES(?,?,?,?,?,?);";
 		
-		int codice = toCreate.getIdCarta();
 		String numeroCC = toCreate.getNumeroCC();
 		String intestatario = toCreate.getIntestatario();
 		String circuito = toCreate.getCircuito();
@@ -143,17 +146,23 @@ public class CreditCardModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
-			stm.setInt(1, codice);
-			stm.setString(2, numeroCC);
-			stm.setString(3, intestatario);
-			stm.setString(4, circuito);
-			stm.setDate(5, new java.sql.Date(dataScadenza.getTime()));
-			stm.setInt(6, cvccvv);
-			stm.setString(7, acquirente);
+			stm.setString(1, numeroCC);
+			stm.setString(2, intestatario);
+			stm.setString(3, circuito);
+			stm.setDate(4, new java.sql.Date(dataScadenza.getTime()));
+			stm.setInt(5, cvccvv);
+			stm.setString(6, acquirente);
 			
 			stm.executeUpdate();
+			
+			ResultSet rs = stm.getGeneratedKeys();
+			if(rs.next()) {
+				toCreate.setIdCarta(rs.getInt(1));
+			}
+			
+			rs.close();
 			stm.close();
 			conn.commit();
 		}finally {
@@ -231,6 +240,16 @@ public class CreditCardModel {
 			
 			stm.setInt(1, id);
 			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		} catch(MySQLIntegrityConstraintViolationException e){
+			stm.close();
+			conn.commit();
+			
+			query = "update " + TABLE_NAME_CREDITCARD + " set Acquirente = NULL where IdCarta = ?;";
+			stm = conn.prepareStatement(query);
+			stm.setInt(1, id);
 			stm.executeUpdate();
 			stm.close();
 			conn.commit();

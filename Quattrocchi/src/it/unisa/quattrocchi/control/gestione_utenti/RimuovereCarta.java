@@ -68,6 +68,7 @@ public class RimuovereCarta extends HttpServlet{
 			if(usr.removeCartAddress(id)) {
 				saModel.deleteCreditCard(id);
 			}
+			response.getWriter().write(new Gson().toJson(""));
 
 		} catch(Exception e) {
 			System.out.println("Errore in Inserisci indirizzo:");

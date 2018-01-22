@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Statement;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ShippingAddress;
@@ -286,6 +287,16 @@ public class ShippingAddressModel {
 			
 			stm.setInt(1, id);
 			
+			stm.executeUpdate();
+			stm.close();
+			conn.commit();
+		}catch(MySQLIntegrityConstraintViolationException e){
+			stm.close();
+			conn.commit();
+			
+			query = "update " + TABLE_NAME_ADDRESS + " set Acquirente = NULL where Id = ?;";
+			stm = conn.prepareStatement(query);
+			stm.setInt(1, id);
 			stm.executeUpdate();
 			stm.close();
 			conn.commit();

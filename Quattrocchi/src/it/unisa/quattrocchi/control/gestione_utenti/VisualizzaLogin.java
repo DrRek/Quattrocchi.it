@@ -29,7 +29,6 @@ public class VisualizzaLogin extends HttpServlet {
 				return;
 			}
 			
-			request.setAttribute("error", "Username o password non valida.");
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/AccessView.jsp");
 			dispatcher.forward(request, response);
 			return;

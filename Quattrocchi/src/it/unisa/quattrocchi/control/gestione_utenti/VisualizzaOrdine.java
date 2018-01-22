@@ -72,7 +72,7 @@ public class VisualizzaOrdine extends HttpServlet {
 
 			GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
 			Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
-			if(gestoreOrdini==null || usr==null || !ordineDaGestire.getAcquirente().equals(usr)) {
+			if(gestoreOrdini==null && (usr==null || !ordineDaGestire.getAcquirente().equals(usr))) {
 				request.setAttribute("error", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 				dispatcher.forward(request, response);
@@ -80,7 +80,7 @@ public class VisualizzaOrdine extends HttpServlet {
 			}
 
 			request.setAttribute("ordineDaGestire", ordineDaGestire);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/VisualizzaOrdine.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (Exception e) {

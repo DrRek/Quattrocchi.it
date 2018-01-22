@@ -79,7 +79,7 @@
 					
 				if (usr == null) {
 				%>
-						<li><a href="access">Login</a></li>
+						<li><a href="login">Login</a></li>
 				<%
 					} else {
 				%>

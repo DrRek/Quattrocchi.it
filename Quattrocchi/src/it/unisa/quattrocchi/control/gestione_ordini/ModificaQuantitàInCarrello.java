@@ -79,7 +79,7 @@ public class ModificaQuantit‡InCarrello extends HttpServlet{
 			
 			int quantit‡=0;
 			try {
-				quantit‡ = Integer.parseInt(idS);
+				quantit‡ = Integer.parseInt(quantit‡S);
 			} catch(Exception e) {
 				response.getWriter().write(new Gson().toJson("Formato della quantit‡ non valido."));
 				return;
@@ -116,6 +116,7 @@ public class ModificaQuantit‡InCarrello extends HttpServlet{
 			if(a != null) {
 				acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
 			}
+			response.getWriter().write(new Gson().toJson(""));
 		} catch (Exception e) {
 			System.out.println("Errore in aggiungi prodotto al carrello");
 			e.printStackTrace();

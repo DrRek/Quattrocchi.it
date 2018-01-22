@@ -8,9 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
-import java.io.IOException;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/visualizza_catalogo")
@@ -34,23 +32,27 @@ public class VisualizzaCatalogo extends HttpServlet{
 	 * @precondition	La richiesta è sincrona.
 	 */
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//Per controllare che la richiesta sia del tipo giusto
-		if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-			response.setContentType("application/json");
-			response.setHeader("Cache-Control", "no-cache");
-			response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
-			return;
-		}	
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
-		dispatcher.forward(request, response);
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}	
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
+			dispatcher.forward(request, response);
+		} catch(Exception e) {
+			System.out.println("Errore in visualizza catalogo");
+			e.printStackTrace();
+		}
 		return;
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}

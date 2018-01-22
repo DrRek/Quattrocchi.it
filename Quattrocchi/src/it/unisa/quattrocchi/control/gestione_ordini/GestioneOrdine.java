@@ -82,7 +82,7 @@ public class GestioneOrdine extends HttpServlet{
 				return;
 			}
 			
-			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
+			request.setAttribute("ordineDaGestire", ordineDaGestire);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
 			dispatcher.forward(request, response);
 			

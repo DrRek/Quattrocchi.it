@@ -65,7 +65,7 @@
 		<p><%=ordine.getShippingAddress().getIndirizzo() %>, <%=ordine.getShippingAddress().getStato() %> <%=ordine.getShippingAddress().getProvincia() %></p>
 	</div>
 	
-	<form action="/Quattrocchi/inserisciDatiDiSpedizione" method="post">
+	<form action="/Quattrocchi/inserisciDatiDiSpedizione" method="post" onSubmit = "return checkForErrorGestioneOrdine()">
     	<input type="hidden" name="ordineId" value="<%=ordine.getCodice()%>">
 		<div class="container">
 			<h3>Corriere</h3>
@@ -126,12 +126,12 @@
 		</div>
 		<br>
 		<div class="container">
-	      <input class="btn btn-outline-secondary " type="submit" name="inserireNOME" value="Conferma" style="float: right;"/>
+	      <input class="btn btn-outline-secondary " type="submit" name="manageOrder" value="Conferma" style="float: right;"/>
 		</div>
 	</form>
 <% } %>
 </body>
-	<script type="text/javascript" src="web_pages/js/validation.js"></script>
+	<script type="text/javascript" src="web_pages/js/ordini.js"></script>
 	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  

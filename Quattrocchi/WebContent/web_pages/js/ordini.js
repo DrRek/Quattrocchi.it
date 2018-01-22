@@ -1,21 +1,20 @@
-
 function checkForErrorGestioneOrdine(){
 	var stato = $("input[name='statoOrdine']:checked");
 	
 	if(!/^([A-Za-z]{3,10})$/.test($('select[name=corriere]').val())){
 		showError("Inserire un valore valido per il corriere!");
-		return true;
+		return false;
 	}
 	
 	if(!/^([A-Za-z0-9]{5,15})$/.test($('input[name=tracking]').val())){
 		showError("Inserire un valore valido per il numero di tracking!");
-		return true;
+		return false;
 	}
 	
 	if(!stato.val().equals("Da spedire") && !stato.val().equals("In corso") && !stato.val().equals("consegnato")){
-		showError("Inserire un valore valido per il cap!");
-		return true;
+		showError("Inserire un valore valido per lo stato dell'ordine!");
+		return false;
 	}
 
-	return false;
+	return true;
 }

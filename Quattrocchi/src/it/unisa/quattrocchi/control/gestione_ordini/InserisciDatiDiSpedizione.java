@@ -113,7 +113,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			
 			String statoOrdine = request.getParameter("statoOrdine");
 			if(statoOrdine==null || 
-					(!statoOrdine.equalsIgnoreCase(Order.DA_SPEDIRE) || !statoOrdine.equalsIgnoreCase(Order.IN_CORSO) || !statoOrdine.equalsIgnoreCase(Order.TERMINATO))) {
+					(!statoOrdine.equalsIgnoreCase(Order.DA_SPEDIRE) && !statoOrdine.equalsIgnoreCase(Order.IN_CORSO) && !statoOrdine.equalsIgnoreCase(Order.TERMINATO))) {
 				request.setAttribute("error", "Stato ordine inserito non valido.");
 				request.setAttribute("ordineId", idS);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");

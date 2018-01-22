@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.jdbc.Statement;
+
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 
@@ -168,7 +171,7 @@ public class ShippingAddressModel {
 	 * @param toCreate un oggetto toCreate di tipo <strong>ShippingAddress</strong>
 	 * @throws SQLException
 	 */
-	public String createShippingAddress(ShippingAddress toCreate) throws SQLException{
+	public void createShippingAddress(ShippingAddress toCreate) throws SQLException{
 		String codice = null;
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -187,7 +190,7 @@ public class ShippingAddressModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			stm.setInt(1, id);
 			stm.setString(2, stato);
@@ -198,38 +201,13 @@ public class ShippingAddressModel {
 			stm.setString(7, acquirente);
 			
 			stm.executeUpdate();
-			stm.close();
-			conn.commit();
-		}finally {
-			try {
-				if(stm != null)
-					stm.close();
-			}finally {
-				DriverManagerConnectionPool.releaseConnection(conn);
-			}
-		}
-		
-		query = "Select * from " + TABLE_NAME_ADDRESS +
-				" where Stato = ? and Provincia = ? and CAP = ? and Indirizzo = ? and NumeroCivico = ? and Acquirente = ?";
-		
-		try {
-			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
 			
-			stm.setString(1, stato);
-			stm.setString(2, provincia);
-			stm.setInt(3, cap);
-			stm.setString(4, indirizzo);
-			stm.setInt(5, numeroCivico);
-			stm.setString(6, acquirente);
-			
-			System.out.println(stm);
-			
-			ResultSet rs = stm.executeQuery();
+			ResultSet rs = stm.getGeneratedKeys();
 			if(rs.next()) {
-				 codice= rs.getString("id");
+				toCreate.setCodice(rs.getInt(1));
 			}
 			rs.close();
+			
 			stm.close();
 			conn.commit();
 		}finally {
@@ -240,7 +218,8 @@ public class ShippingAddressModel {
 				DriverManagerConnectionPool.releaseConnection(conn);
 			}
 		}
-		return codice;
+		
+		return;
 	}
 	
 	

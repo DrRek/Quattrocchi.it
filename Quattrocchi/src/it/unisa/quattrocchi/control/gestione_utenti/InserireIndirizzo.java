@@ -39,7 +39,7 @@ public class InserireIndirizzo extends HttpServlet{
 			if(usr!=null && indirizzo!=null && !indirizzo.equals("") && civico!=null && !civico.equals("") && cap!=null && !cap.equals("") && provincia!=null && !provincia.equals("") && stato!=null && !stato.equals("")) {
 				ShippingAddress sa = new ShippingAddress(stato, indirizzo, Integer.parseInt(cap), provincia, Integer.parseInt(civico), usr);
 				usr.addShippingAddress(sa);
-				sa.setCodice(saModel.createShippingAddress(sa));
+				saModel.createShippingAddress(sa);
 
 				response.setContentType("application/json");
 				response.getWriter().write(new Gson().toJson(sa.getCodice()));

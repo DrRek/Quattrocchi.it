@@ -44,7 +44,7 @@ public class ShippingAddressModel {
 			ResultSet rs = stm.executeQuery();
 			
 			if(rs.next()) {
-				String codice = rs.getString("Id");
+				int codice = rs.getInt("Id");
 				String stato = rs.getString("Stato");
 				String provincia = rs.getString("Provincia");
 				int cap = rs.getInt("CAP");
@@ -90,7 +90,7 @@ public class ShippingAddressModel {
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String codice = rs.getString("Id");
+				int codice = rs.getInt("Id");
 				String stato = rs.getString("Stato");
 				String provincia = rs.getString("Provincia");
 				int cap = rs.getInt("CAP");
@@ -137,7 +137,7 @@ public class ShippingAddressModel {
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String codice = rs.getString("Id");
+				int codice = rs.getInt("Id");
 				String stato = rs.getString("Stato");
 				String provincia = rs.getString("Provincia");
 				int cap = rs.getInt("CAP");
@@ -177,7 +177,7 @@ public class ShippingAddressModel {
 				" (Id,Stato,Provincia,CAP,Indirizzo,NumeroCivico,Acquirente)"+
 				" VALUES(?,?,?,?,?,?,?);";
 		
-		String id = toCreate.getCodice();
+		int id = toCreate.getCodice();
 		String stato = toCreate.getStato();
 		String provincia = toCreate.getProvincia();
 		int cap = toCreate.getCap();
@@ -189,7 +189,7 @@ public class ShippingAddressModel {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
 			
-			stm.setString(1, id);
+			stm.setInt(1, id);
 			stm.setString(2, stato);
 			stm.setString(3, provincia);
 			stm.setInt(4, cap);
@@ -253,7 +253,7 @@ public class ShippingAddressModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String id = toUpdate.getCodice();
+		int id = toUpdate.getCodice();
 		String stato = toUpdate.getStato();
 		String provincia = toUpdate.getProvincia();
 		int cap = toUpdate.getCap();
@@ -273,7 +273,7 @@ public class ShippingAddressModel {
 			stm.setInt(3, cap);
 			stm.setString(4, indirizzo);
 			stm.setInt(5, numeroCivico);
-			stm.setString(6, id);
+			stm.setInt(6, id);
 			stm.setString(7, acquirente);
 			
 			stm.executeUpdate();

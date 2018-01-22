@@ -60,7 +60,7 @@ public class OrderModel {
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
-				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
+				CreditCard carta = creditCardModel.doRetrieveById(rs.getInt("CartaCredito"));
 				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				String statoOrdine = rs.getString("StatoOrdine");
 				Date dataConsegna = rs.getDate("DataConsegna");
@@ -112,7 +112,7 @@ public class OrderModel {
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
-				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
+				CreditCard carta = creditCardModel.doRetrieveById(rs.getInt("CartaCredito"));
 				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				String statoOrdine = rs.getString("StatoOrdine");
 				Date dataConsegna = rs.getDate("DataConsegna");
@@ -162,8 +162,8 @@ public class OrderModel {
 		String numTrack = toCreate.getNumeroTracking();
 		String corriere = toCreate.getCorriere();
 		String acq = toCreate.getAcquirente().getUsername();
-		String sa = toCreate.getShippingAddress().getCodice();
-		String cc = toCreate.getCreditCard().getIdCarta();
+		int sa = toCreate.getShippingAddress().getCodice();
+		int cc = toCreate.getCreditCard().getIdCarta();
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
@@ -171,8 +171,8 @@ public class OrderModel {
 			
 			stm.setDate(1, new java.sql.Date(dataEx.getTime()));
 			stm.setDouble(2, prezzo);
-			stm.setString(3, sa);
-			stm.setString(4, cc);
+			stm.setInt(3, sa);
+			stm.setInt(4, cc);
 			stm.setString(5, acq);
 			stm.setString(6, statoOrdine);
 			
@@ -282,7 +282,7 @@ public class OrderModel {
 				Date dataEx = rs.getDate("DataEsecuzione");
 				double prezzo = rs.getDouble("Prezzo");
 				ShippingAddress indirizzo = shippingAddressModel.doRetrieveById(rs.getString("IndirizzoSpedizione"));
-				CreditCard carta = creditCardModel.doRetrieveById(rs.getString("CartaCredito"));
+				CreditCard carta = creditCardModel.doRetrieveById(rs.getInt("CartaCredito"));
 				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
 				String statoOrdine = rs.getString("StatoOrdine");
 				Date dataConsegna = rs.getDate("DataConsegna");

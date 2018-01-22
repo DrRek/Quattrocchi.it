@@ -4,12 +4,12 @@ import java.util.Date;
 
 public class CreditCard {
 
-	private String numeroCC, intestatario, circuito,idCarta;
-	private int cvv;
+	private String numeroCC, intestatario, circuito;
+	private int cvv, idCarta;
 	private Date dataScadenza;
 	private Acquirente acquirente;
 	
-	public CreditCard(String idCarta,String numeroCC, String intestatario, String circuito, Date dataScadenza, int cvv, Acquirente acquirente) {
+	public CreditCard(int idCarta,String numeroCC, String intestatario, String circuito, Date dataScadenza, int cvv, Acquirente acquirente) {
 		this.idCarta = idCarta;
 		this.numeroCC = numeroCC;
 		this.intestatario = intestatario;
@@ -20,7 +20,7 @@ public class CreditCard {
 	}
 	
 	public CreditCard(String numeroCC, String intestatario, String circuito, Date dataScadenza, int cvv, Acquirente acquirente) {
-		this.idCarta = null;
+		this.idCarta = 0;
 		this.numeroCC = numeroCC;
 		this.intestatario = intestatario;
 		this.circuito = circuito;
@@ -29,11 +29,11 @@ public class CreditCard {
 		this.acquirente = acquirente;
 	}
 	
-	public String getIdCarta() {
+	public int getIdCarta() {
 		return idCarta;
 	}
 	
-	public void setIdCarta(String id) {
+	public void setIdCarta(int id) {
 		this.idCarta = id;
 	}
 	

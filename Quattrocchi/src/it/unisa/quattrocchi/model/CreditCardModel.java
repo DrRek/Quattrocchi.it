@@ -31,7 +31,7 @@ public class CreditCardModel {
 	 * @return un oggetto di tipo <strong>CreditCard</strong>, altrimenti null.
 	 * @throws SQLException
 	 */
-	public CreditCard doRetrieveById(String idCarta) throws SQLException {
+	public CreditCard doRetrieveById(int idCarta) throws SQLException {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		CreditCard bean = null;
@@ -42,7 +42,7 @@ public class CreditCardModel {
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
-			stm.setString(1, idCarta);
+			stm.setInt(1, idCarta);
 			
 			ResultSet rs = stm.executeQuery();
 			
@@ -95,7 +95,7 @@ public class CreditCardModel {
 			ResultSet rs = stm.executeQuery();
 			
 			while(rs.next()) {
-				String idCarta  = rs.getString("IdCarta");
+				int idCarta  = rs.getInt("IdCarta");
 				String numeroCC  = rs.getString("NumeroCC"); 
 				String intestatario = rs.getString("Intestatario");
 				String circuito = rs.getString("Circuito");
@@ -133,7 +133,7 @@ public class CreditCardModel {
 				" (IdCarta,NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente)" +
 				" VALUES(?,?,?,?,?,?,?);";
 		
-		String codice = toCreate.getIdCarta();
+		int codice = toCreate.getIdCarta();
 		String numeroCC = toCreate.getNumeroCC();
 		String intestatario = toCreate.getIntestatario();
 		String circuito = toCreate.getCircuito();
@@ -145,7 +145,7 @@ public class CreditCardModel {
 			conn = DriverManagerConnectionPool.getConnection();
 			stm = conn.prepareStatement(query);
 			
-			stm.setString(1, codice);
+			stm.setInt(1, codice);
 			stm.setString(2, numeroCC);
 			stm.setString(3, intestatario);
 			stm.setString(4, circuito);
@@ -176,7 +176,7 @@ public class CreditCardModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String idCarta = toUpdate.getIdCarta();
+		int idCarta = toUpdate.getIdCarta();
 		String numeroCC = toUpdate.getNumeroCC();
 		String intestatario = toUpdate.getIntestatario();
 		String circuito = toUpdate.getCircuito();
@@ -196,7 +196,7 @@ public class CreditCardModel {
 			stm.setString(3, circuito);
 			stm.setDate(4, (java.sql.Date) dataScadenza);
 			stm.setInt(5, cvccvv);
-			stm.setString(6, idCarta);
+			stm.setInt(6, idCarta);
 			stm.setString(7, acquirente);
 			
 			stm.executeUpdate();

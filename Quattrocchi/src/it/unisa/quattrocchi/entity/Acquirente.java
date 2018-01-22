@@ -105,18 +105,18 @@ public class Acquirente {
 				+ ", email=" + email + ", dataNascita=" + dataNascita + "]";
 	}
 
-	public CreditCard checkCC(String creditCardID) {
+	public CreditCard checkCC(int creditCardID) {
 		for(CreditCard c : cc) {
-			if(c.getIdCarta().equals(creditCardID)) {
+			if(c.getIdCarta() == creditCardID) {
 				return c;
 			}
 		}
 		return null;
 	}
 
-	public ShippingAddress checkSA(String shippingAddressID) {
+	public ShippingAddress checkSA(int shippingAddressID) {
 		for(ShippingAddress s : shipAdd) {
-			if(s.getCodice().equals(shippingAddressID)) {
+			if(s.getCodice() == shippingAddressID) {
 				return s;
 			}
 		}
@@ -137,18 +137,18 @@ public class Acquirente {
 		cc.add(creditCard);
 	}
 
-	public void removeShippingAddress(String id) {
+	public void removeShippingAddress(int id) {
 		for(int i=0; i<shipAdd.size(); i++) {
-			if(shipAdd.get(i).getCodice().equals(id)) {
+			if(shipAdd.get(i).getCodice() == id) {
 				shipAdd.remove(i);
 			}
 		}
 		return;
 	}
 
-	public void removeCartAddress(String id) {
+	public void removeCartAddress(int id) {
 		for(int i=0; i<cc.size(); i++) {
-			if(cc.get(i).getIdCarta().equals(id)) {
+			if(cc.get(i).getIdCarta() == id) {
 				cc.remove(i);
 			}
 		}

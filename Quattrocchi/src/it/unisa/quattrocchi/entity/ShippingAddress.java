@@ -2,11 +2,11 @@ package it.unisa.quattrocchi.entity;
 
 public class ShippingAddress {
 	
-	private String stato,indirizzo, provincia,codice;
-	private int nc,cap;
+	private String stato,indirizzo, provincia;
+	private int nc,cap, codice;
 	private Acquirente acq;
 
-	public ShippingAddress(String codice,String stato, String indirizzo, int cap, String provincia,int nc,Acquirente acq) {
+	public ShippingAddress(int codice,String stato, String indirizzo, int cap, String provincia,int nc,Acquirente acq) {
 		this.codice = codice;
 		this.stato = stato;
 		this.indirizzo = indirizzo;
@@ -17,7 +17,7 @@ public class ShippingAddress {
 	}
 	
 	public ShippingAddress(String stato, String indirizzo, int cap2, String provincia,int civico,Acquirente acq) {
-		this.codice = null;
+		this.codice = 0;
 		this.stato = stato;
 		this.indirizzo = indirizzo;
 		this.cap = cap2;
@@ -42,11 +42,11 @@ public class ShippingAddress {
 		this.nc = nc;
 	}
 	
-	public String getCodice() {
+	public int getCodice() {
 		return codice;
 	}
 	
-	public void setCodice(String id) {
+	public void setCodice(int id) {
 		this.codice = id;
 	}
 

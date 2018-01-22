@@ -5,9 +5,6 @@ import java.util.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +34,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 	 * la data della consegna e dello stato relativi all'ordine da gestire.
 	 */
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			int orderId = Integer.parseInt(request.getParameter("ordineId"));
 			String corriere = request.getParameter("corriere");
@@ -63,17 +60,18 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			orderToUpdate.setStatoOrdine(statoOrdine);
 			orderToUpdate.setDataConsegna(dataConsegna);
 			orderModel.updateOrder(orderToUpdate);
-			request.getSession().setAttribute("ordini", orderModel.doRetrieveAll());			
-		} catch (SQLException | ParseException e) {
+			request.getSession().setAttribute("ordini", orderModel.doRetrieveAll());	
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+			dispatcher.forward(request, response);		
+		} catch (IOException | ServletException | SQLException | ParseException e) {
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
-		dispatcher.forward(request, response);
 		return;
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}

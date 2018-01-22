@@ -1,38 +1,38 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
-import java.io.IOException;
-import java.sql.SQLException;
-
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
+import it.unisa.quattrocchi.model.AcquirenteModel;
+import it.unisa.quattrocchi.model.ArticoloInOrderModel;
 import it.unisa.quattrocchi.model.OrderModel;
 
-@WebServlet("/visualizza_storico_ordini")
+@WebServlet("/visualizza_checkout")
 
-public class VisualizzaStoricoOrdini extends HttpServlet{
-	
+public class VisualizzaCheckout extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 	
 	static OrderModel model = new OrderModel();
+	static AcquirenteModel acModel = new AcquirenteModel();
+	static ArticoloInOrderModel aInOrderModel = new ArticoloInOrderModel();
 
+	
+	/**
+	 * Questo metodo si occupa di effettuare la procedura di checkout.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			response.getWriter().write(new Gson().toJson(model.doRetrieveAll()));
-			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");
 			dispatcher.forward(request, response);
-		}catch(IOException | ServletException | SQLException e) {
+		} catch (Exception e) {
+			System.out.println("Errore in Checkout:");
 			e.printStackTrace();
 		}
-		
 		return;
 	}
 	
@@ -41,4 +41,5 @@ public class VisualizzaStoricoOrdini extends HttpServlet{
 		doGet(request, response);
 		return;
 	}
+
 }

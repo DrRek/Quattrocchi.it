@@ -31,7 +31,7 @@ public class GestioneOrdine extends HttpServlet{
 	 * da spedire. 
 	 */
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String orderId = request.getParameter("ordineId");
 			if(orderId == null) {				
@@ -41,16 +41,17 @@ public class GestioneOrdine extends HttpServlet{
 			}
 			Order ordineDaGestire = orderModel.doRetrieveById(Integer.parseInt(request.getParameter("ordineId")));
 			request.getSession().setAttribute("ordineDaGestire", ordineDaGestire);
-		} catch (SQLException e) {
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
+			dispatcher.forward(request, response);
+		} catch (ServletException | IOException | SQLException e) {
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestioneOrdine.jsp");
-		dispatcher.forward(request, response);
 		return;
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}

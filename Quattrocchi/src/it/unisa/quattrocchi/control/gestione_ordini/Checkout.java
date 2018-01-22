@@ -1,21 +1,12 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import it.unisa.quattrocchi.entity.Acquirente;
-
-import it.unisa.quattrocchi.entity.ArticoloInOrder;
-import it.unisa.quattrocchi.entity.ArticoloInStock;
-import it.unisa.quattrocchi.entity.Cart;
 
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
@@ -60,13 +51,10 @@ public class Checkout extends HttpServlet{
 					acModel.updateCart(usr);
 				} else {
 					request.setAttribute("error", "Errore nella scelta della carta di credito o dell'indirizzo!");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profilo");
+					dispatcher.forward(request, response);
 				}
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profilo");
-				dispatcher.forward(request, response);
-				return;
 			}
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");
-			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Errore in Checkout:");
 			e.printStackTrace();

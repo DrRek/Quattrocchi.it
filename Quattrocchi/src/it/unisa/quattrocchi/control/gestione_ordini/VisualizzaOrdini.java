@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.model.OrderModel;
 
@@ -20,23 +18,26 @@ import it.unisa.quattrocchi.model.OrderModel;
 
 public class VisualizzaOrdini extends HttpServlet{
 	
+	private static final long serialVersionUID = 1L;
+	
 	static OrderModel orderModel = new OrderModel();
 
 	@Override
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		try {
 			List<Order> ordini = orderModel.doRetrieveAll();
 			request.getSession().setAttribute("ordini", ordini);
-		} catch(SQLException e) {
+			
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+			dispatcher.forward(request, response);
+		} catch(IOException | ServletException | SQLException e) {
 			e.printStackTrace();
 		}
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
-		dispatcher.forward(request, response);
 		return;
 	}
 	
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) {
 		doGet(request, response);
 		return;
 	}

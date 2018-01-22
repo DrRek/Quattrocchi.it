@@ -72,6 +72,52 @@ public class ShippingAddressModel {
 	
 	
 	/**
+	 * Questo metodo si occupa di effettuare la ricerca di tutti gli indirizzi.
+	 * @return una lista di oggetti di tipo <strong>ShippingAddress</strong>, altrimenti null.
+	 * @throws SQLException
+	 */
+	public List<ShippingAddress> doRetrieveAll() throws SQLException {
+		Connection conn = null;
+		PreparedStatement stm = null;
+		List<ShippingAddress> beans = new ArrayList<>();
+		
+		String query = "SELECT * FROM " + TABLE_NAME_ADDRESS;
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(query);
+			
+			ResultSet rs = stm.executeQuery();
+			
+			while(rs.next()) {
+				String codice = rs.getString("Id");
+				String stato = rs.getString("Stato");
+				String provincia = rs.getString("Provincia");
+				int cap = rs.getInt("CAP");
+				String indirizzo = rs.getString("Indirizzo");
+				int nc = rs.getInt("NumeroCivico");
+				Acquirente acq = acquirenteModel.doRetriveById(rs.getString("Acquirente"));
+				
+				beans.add(new ShippingAddress(codice,stato,indirizzo,cap,provincia,nc,acq));
+			}
+			
+			stm.close();
+			rs.close();
+			conn.commit();
+		}finally {
+			try {
+				if(stm != null)
+					stm.close();
+			}finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+
+		return beans;
+	}
+	
+	
+	/**
 	 * Questo metodo si occupa di effettuare la ricerca degli indirizzi di spedizione per username.
 	 * @param username un oggetto username di tipo <strong>String</strong>
 	 * @return una lista di indirizzi di spedizione di tipo <strong>ArticoloInStock</strong>, altrimenti null.

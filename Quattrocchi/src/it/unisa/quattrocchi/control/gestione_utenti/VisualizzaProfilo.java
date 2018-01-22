@@ -17,6 +17,10 @@ public class VisualizzaProfilo extends HttpServlet{
 	
 	static OrderModel model = new OrderModel();
 	
+	/**
+	 * 
+	 * @precondition L'utente è loggato.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

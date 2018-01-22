@@ -29,6 +29,8 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 
 	/**
 	 * Questo metodo si occupa di effettuare l'aggiunta di un articolo al carrello.
+	 * @precondition articoloId != null e corrisponde ad un id di un articolo nel database.
+	 * @postcondition cart.size() == cart.size()+1 
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

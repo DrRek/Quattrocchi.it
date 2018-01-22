@@ -23,6 +23,8 @@ public class VisualizzaCheckout extends HttpServlet {
 	
 	/**
 	 * Questo metodo si occupa di effettuare la procedura di checkout.
+	 * 
+	 * @precondition l'utente è loggato ed il carrello non è vuoto.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

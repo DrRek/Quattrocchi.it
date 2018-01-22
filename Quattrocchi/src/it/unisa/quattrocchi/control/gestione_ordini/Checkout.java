@@ -34,6 +34,9 @@ public class Checkout extends HttpServlet{
 	
 	/**
 	 * Questo metodo si occupa di effettuare la procedura di checkout.
+	 * @precondition usr != null, CreditCardID != null e ShippingAddress != null
+	 * 				ShippingAddressID e CreditCardID devono corrispondere ad un indirizzo ed una carta di usr.
+	 * @postcondition usr.getCart().size() == 0 e il numero degli ordini passati di usr è incrementato di uno. 
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

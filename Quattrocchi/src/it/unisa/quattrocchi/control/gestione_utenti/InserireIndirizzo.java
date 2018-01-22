@@ -20,6 +20,12 @@ public class InserireIndirizzo extends HttpServlet{
 	private ShippingAddressModel saModel = new ShippingAddressModel();
 	
 	@Override
+	/**
+	 * 
+	 * @precondition l'utente è loggato, indirizzo != null, civico != null, cap!= null,
+	 * 				provincia != null, stato != null.
+	 * @postcondition Il numero di indirizzi associati all'utente loggato è incrementato di 1.
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 
 		try {

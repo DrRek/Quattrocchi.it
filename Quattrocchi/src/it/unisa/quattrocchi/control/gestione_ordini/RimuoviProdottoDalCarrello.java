@@ -24,6 +24,11 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 	static ArticoloInStockModel articoloInStockModel = new ArticoloInStockModel();
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 
+	/**
+	 * 
+	 * @precondition articoloId corrisponde ad un articolo presente nel carrello.
+	 * @postcondition articoloId non corrisponde ad un articolo presente nel carrello.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {

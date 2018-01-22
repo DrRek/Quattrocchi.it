@@ -16,6 +16,11 @@ private static final long serialVersionUID = 1L;
 	
 	private ShippingAddressModel ccModel = new ShippingAddressModel();
 	
+	/**
+	 * 
+	 * @precondition L'utente è loggato e l'id corrisponde ad un indirizzo dell'utente.
+	 * @postcondition L'id non corrisponde ad un indirizzo dell'utente.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 

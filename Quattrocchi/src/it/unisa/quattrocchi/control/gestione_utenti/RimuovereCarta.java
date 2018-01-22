@@ -16,6 +16,11 @@ public class RimuovereCarta extends HttpServlet{
 	
 	private CreditCardModel saModel = new CreditCardModel();
 	
+	/**
+	 * 
+	 * @precondition L'utente è loggato e l'id corrisponde ad una carta dell'utente.
+	 * @postcondition L'id non corrisponde ad una carta dell'utente.
+	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 

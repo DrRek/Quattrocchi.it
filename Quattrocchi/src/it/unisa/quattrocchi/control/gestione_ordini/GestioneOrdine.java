@@ -29,6 +29,7 @@ public class GestioneOrdine extends HttpServlet{
 	/**
 	 * Questo metodo si occupa di fornire la funzionalità di gestione di un ordine
 	 * da spedire. 
+	 * @precondition ordineId corrisponde veramente ad un id di un ordine in database e l'utente connesso è un gestore di ordini.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

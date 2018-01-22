@@ -85,12 +85,27 @@ function checkAdvancedSearchRegex(){
 		try{
 			parseInt(prezzoMin)
 		} catch(e){
-			showError("Parametro minimo non valido.")
+			showError("Parametro prezzo minimo non valido.")
 			return false;
 		}
 	}
+	
 	var prezzoMax = $('input[name=prezzoMax]').val();
+	if(prezzoMax != null && prezzoMax != ""){
+		try{
+			parseInt(prezzoMax)
+		} catch(e){
+			showError("Parametro prezzo massimo non valido.")
+			return false;
+		}
+	}
+	
 	var colore = $('input[name=colore]').val();
+	if(colore != null && colore != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(marca)){
+		showError("Parametro colore non valido.")
+		return false;
+	}
+	
 	return true;
 }
 

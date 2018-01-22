@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import it.unisa.quattrocchi.entity.GestoreOrdini;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.model.OrderModel;
 
@@ -24,11 +27,29 @@ public class VisualizzaOrdini extends HttpServlet{
 
 	/**
 	 * 
-	 * @precondition l'utente loggato è un gestore ordini
+	 * @precondition 	La richiesta è sincrona
+	 * 					L'utente loggato è un gestore ordini
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		try {
+			
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
+			GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
+			if(gestoreOrdini==null) {
+				request.setAttribute("error", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
 			List<Order> ordini = orderModel.doRetrieveAll();
 			request.getSession().setAttribute("ordini", ordini);
 			

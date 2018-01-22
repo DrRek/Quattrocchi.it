@@ -2,10 +2,14 @@ package it.unisa.quattrocchi.control.gestione_ordini;
 
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
@@ -29,14 +33,62 @@ public class ModificaQuantit‡InCarrello extends HttpServlet{
 
 	/**
 	 * 
-	 * @precondition il carrello non Ë vuoto, articoloId != null e corrisponde ad un articolo nel database e quantit‡ Ë un intero > 0.
-	 * @postcondition l'articolo corrispondente all' articoloId presente nel carrello ha una quantit‡ pari a "quantit‡".
+	 * @precondition 	La richiesta Ë asincrona.
+	 * 					articoloId != null, trasformabile in un intero e corrisponde ad un articolo nel carrello
+	 * 					quantit‡S != null ed Ë trasformabile in un intero > 0.
+	 * @postcondition L'articolo corrispondente all' articoloId presente nel carrello ha una quantit‡ pari a "quantit‡".
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			String articoloId = request.getParameter("articoloId");
-			int quantit‡ = Integer.parseInt(request.getParameter("quantita"));
+			
+			//Per controllare che la richiesta sia del tipo giusto
+			if(!"XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				request.setAttribute("error", "Errore generato dalla richiesta! Se il problema persiste contattaci.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			response.setContentType("application/json");
+			response.setHeader("Cache-Control", "no-cache");
+			
+			String idS = request.getParameter("articoloId");
+			if(idS==null || idS.equals("")) {
+				response.getWriter().write(new Gson().toJson("E' necessario fornire l'id dell'articolo di cui modificare la quantit‡."));
+				return;
+			}
+			
+			int articoloId=0;
+			try {
+				articoloId = Integer.parseInt(idS);
+			} catch(Exception e) {
+				response.getWriter().write(new Gson().toJson("Identificativo articolo non valido."));
+				return;
+			}
+			if(articoloId==0) {
+				response.getWriter().write(new Gson().toJson("Identificativo articolo non valido."));
+				return;
+			}
+			
+			String quantit‡S = request.getParameter("quantita");
+			if(quantit‡S==null || quantit‡S.equals("")) {
+				response.getWriter().write(new Gson().toJson("E' necessario fornire la quantit‡ dell'articolo nel carrello."));
+				return;
+			}
+			
+			int quantit‡=0;
+			try {
+				quantit‡ = Integer.parseInt(idS);
+			} catch(Exception e) {
+				response.getWriter().write(new Gson().toJson("Formato della quantit‡ non valido."));
+				return;
+			}
+			if(quantit‡==0) {
+				response.getWriter().write(new Gson().toJson("Formato della quantit‡ non valido."));
+				return;
+			}
+			
 			Cart carrello = null;
 			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(a != null) {
@@ -55,8 +107,12 @@ public class ModificaQuantit‡InCarrello extends HttpServlet{
 			
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
-			carrello.setArticle(articolo, quantit‡);
+			if(articolo==null) {
+				response.getWriter().write(new Gson().toJson("L'identificativo fornito non corrisponde a nessun articolo nel carrello."));
+				return;
+			}
 			
+			carrello.setArticle(articolo, quantit‡);
 			if(a != null) {
 				acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
 			}

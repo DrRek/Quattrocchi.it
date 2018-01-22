@@ -51,7 +51,7 @@ public class GestioneOrdine extends HttpServlet{
 			GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
 			if(gestoreOrdini==null) {
 				request.setAttribute("error", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/GestoreOrdiniView.jsp");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 				dispatcher.forward(request, response);
 				return;
 			}

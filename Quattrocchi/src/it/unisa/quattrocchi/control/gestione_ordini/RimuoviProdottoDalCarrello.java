@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
@@ -26,13 +28,46 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 
 	/**
 	 * 
-	 * @precondition articoloId corrisponde ad un articolo presente nel carrello.
+	 * @precondition 	La richiesta è asincrona
+	 * 					articoloId!=null, è trasformabile in un interno e corrisponde ad un articolo presente nel carrello.
 	 * @postcondition articoloId non corrisponde ad un articolo presente nel carrello.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			String articoloId = request.getParameter("articoloId");
+			
+			//Per controllare che la richiesta sia del tipo giusto
+			if(!"XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
+			String idS = request.getParameter("articoloId");
+			if(idS==null || idS.equals("")) {
+				request.setAttribute("error", "E' necessario fornire l'id dell'articolo da cancellare dal carrello.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			int articoloId=0;
+			try {
+				articoloId = Integer.parseInt(idS);
+			} catch(Exception e) {
+				request.setAttribute("error", "Identificativo articolo non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
+				dispatcher.forward(request, response);
+				return;
+			}
+			if(articoloId==0) {
+				request.setAttribute("error", "Identificativo articolo non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
 			Cart carrello = null;
 			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(a != null) {
@@ -51,13 +86,19 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 			
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
+			if(articolo==null) {
+				request.setAttribute("error", "L'identificativo fornito non corrisponde a nessun articolo nel carrello.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
 			carrello.removeArticle(articolo);
-
 			if(a != null) {
 				acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
 			}
 			
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CartView.jsp");
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
 			dispatcher.forward(request, response);
 		} catch (Exception e) {
 			System.out.println("Errore in aggiungi prodotto al carrello");

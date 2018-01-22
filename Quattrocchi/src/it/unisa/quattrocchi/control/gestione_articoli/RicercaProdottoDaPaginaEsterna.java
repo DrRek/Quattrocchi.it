@@ -21,7 +21,8 @@ public class RicercaProdottoDaPaginaEsterna extends HttpServlet {
 	
 	/**
 	 * TODO
-	 * @precondition	toSearch!=null && toSearch.matches("[A-Za-z0-9 ]{1,20}")
+	 * @precondition	La richiesta è sincrona.
+	 * 					toSearch!=null && toSearch.matches("[A-Za-z0-9 ]{1,20}")
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

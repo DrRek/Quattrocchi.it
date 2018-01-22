@@ -5,6 +5,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
@@ -27,18 +30,53 @@ public class VisualizzaProdotto extends HttpServlet{
 	/**
 	 * Questo metodo si occupa di far visualizzare la scheda di un prodotto.
 	 * 
-	 * @precondition id!=null e l'id corrisponde ad un articolo presente nel database.
+	 * @precondition 	La richiesta è sincrona.
+	 * 					idS!=null, idS è trasformabile in un intero e l'id corrisponde ad un articolo presente nel database.
 	 * @postcondition Viene inserito in response un articolo.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			String id = request.getParameter("id");
-			ArticoloInStock a = articoloInStockModel.doRetrieveByIdInStock(id);
 			
-			request.setAttribute("articolo", a);
-			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticlePageView.jsp");
-			dispatcher.forward(request, response);
+			//Per controllare che la richiesta sia del tipo giusto
+			if("XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
+				response.setContentType("application/json");
+				response.setHeader("Cache-Control", "no-cache");
+				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}	
+			
+			String idS = request.getParameter("id");
+			if(idS==null || idS.equals("")) {
+				request.setAttribute("error", "Necessario fornire identificativo del prodotto.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
+				dispatcher.forward(request, response);
+				return;
+			}
+			
+			int id=0;
+			try {
+				id = Integer.parseInt(idS);
+			} catch(Exception e) {
+				request.setAttribute("error", "Formato identificativo del prodotto non valido.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
+				dispatcher.forward(request, response);
+				return;
+			}
+
+			if(id!=0) {
+				ArticoloInStock a = articoloInStockModel.doRetrieveByIdInStock(id);
+				if(a==null) {
+					request.setAttribute("error", "Nessun articolo trovato.");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
+					dispatcher.forward(request, response);
+					return;
+				}
+				
+				request.setAttribute("articolo", a);
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticlePageView.jsp");
+				dispatcher.forward(request, response);
+			}
 		} catch (Exception e) {
 			System.out.println("Errore in Visualizza prodotto:");
 			e.printStackTrace();

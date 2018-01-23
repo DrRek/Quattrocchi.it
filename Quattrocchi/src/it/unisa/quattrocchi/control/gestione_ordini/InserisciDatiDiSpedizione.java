@@ -127,6 +127,13 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 				String strDate = request.getParameter("dataDiConsegna");
 			    Date parsed = format.parse(strDate);
 			    dataConsegna = new java.sql.Date(parsed.getTime());
+			    if(!dataConsegna.after(new Date())) {
+			    	request.setAttribute("error", "Data di consegna inserita non valida. Inserire una data che sia successiva ad oggi.");
+					request.setAttribute("ordineId", idS);
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
+					dispatcher.forward(request, response);
+					return;
+			    }
 			} catch (Exception e){
 				request.setAttribute("error", "Data di consegna inserita non valida. Formato valido: yyyy-MM-dd");
 				request.setAttribute("ordineId", idS);

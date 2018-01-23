@@ -19,7 +19,7 @@ import it.unisa.quattrocchi.model.GestoreOrdiniModel;
 import it.unisa.quattrocchi.model.ShippingAddressModel;
 
 
-@WebServlet("/access")
+@WebServlet("/login")
 
 
 /**

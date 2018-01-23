@@ -58,7 +58,7 @@
 						<h3 class="nomargin nomeArt"><%=a.getModello() %></h3><p class="marcaArt"><%=a.getMarca() %></p>
 					</td>
 					<td><input  data-th="Numero Prodotti" name="quantitaPezzi" class="form-control"  type="number" min="1"value="<%=map.get(a) %>"></td>
-					<td class="prezzoArt "><%=a.getPrezzo() %>€</td>
+					<td class="prezzoArt ">€ <%=a.getPrezzo() %></td>
 					<td class="forForm">
 						<form class="formForRemove"action="/Quattrocchi/rimuovi_dal_carrello" method="post">
 							<input type="hidden" class="articoloId" name="articoloId" value="<%=a.getCodice()%>">
@@ -71,7 +71,7 @@
 			%>
 			</tbody>
 		</table>
-		<h5>Prezzo Totale: <span class="prezzo-carrello"><%=cart.getPrezzo()%></span>€</h5>
+		<h3>Prezzo Totale: € <span class="prezzo-carrello"><%=cart.getPrezzo()%></span></h3>
 		<%
 			if(usr != null && cart.getNumeroDiArticoli() > 0){
 		%>

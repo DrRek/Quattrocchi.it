@@ -1,8 +1,6 @@
 package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
-import java.io.FileInputStream;
-
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
@@ -47,7 +45,7 @@ public class DBTestCaseProva extends DBTestCase {
         ITable actualTable = databaseDataSet.getTable("ArticoloInCarrello");
  
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/last_cart.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("last_cart.xml"));
         ITable expectedTable = expectedDataSet.getTable("ArticoloInCarrello");
  
         Assertion.assertEquals(expectedTable, actualTable);
@@ -59,6 +57,6 @@ public class DBTestCaseProva extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/init_cart.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/init-cart.xml"));
     }
 }

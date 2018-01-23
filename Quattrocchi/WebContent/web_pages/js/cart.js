@@ -19,15 +19,24 @@ $(document).ready(function() {
 					showError("Errore durante il cambio della quantità dell'articolo nel carrello! Se il problema persiste contattaci");
 				},
 				success : function(responseText) {
-					if(responseText!=null && responseText!=""){
-						showError(responseText)
-					}
-					updateCartNumber()
+						if(responseText!=null && responseText!=""){
+							try{
+								var prezzo = parseInt(responseText);
+								updateCartPrice(prezzo)
+								updateCartNumber()
+							} catch(ex){
+								showError(responseText)
+							}
+						}
 				}
 			});
 		}
 	});
 });
+
+function updateCartPrice(prezzo){
+	$(".prezzo-carrello").html(prezzo);
+}
 
 function updateCartNumber(){
 	var sum = 0;

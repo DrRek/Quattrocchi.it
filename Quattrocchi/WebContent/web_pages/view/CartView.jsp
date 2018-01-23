@@ -71,6 +71,7 @@
 			%>
 			</tbody>
 		</table>
+		<h5>Prezzo Totale: <span class="prezzo-carrello"><%=cart.getPrezzo()%></span>€</h5>
 		<%
 			if(usr != null && cart.getNumeroDiArticoli() > 0){
 		%>

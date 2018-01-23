@@ -39,7 +39,7 @@ public class RicercaProdottoDaPaginaEsterna extends HttpServlet {
 			String toSearch = (String) request.getParameter("toSearch");
 			if(toSearch==null || !toSearch.matches("[A-Za-z0-9 ]{1,20}")) {
 				request.setAttribute("error", "Formato parametro non valido.");
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
 				dispatcher.forward(request, response);
 				return;
 			}

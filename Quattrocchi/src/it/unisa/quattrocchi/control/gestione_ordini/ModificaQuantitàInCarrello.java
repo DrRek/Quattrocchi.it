@@ -116,7 +116,7 @@ public class ModificaQuantit‡InCarrello extends HttpServlet{
 			if(a != null) {
 				acquirenteModel.updateCart((Acquirente)request.getSession().getAttribute("acquirente"));
 			}
-			response.getWriter().write(new Gson().toJson(""));
+			response.getWriter().write(new Gson().toJson(carrello.getPrezzo()));
 		} catch (Exception e) {
 			System.out.println("Errore in aggiungi prodotto al carrello");
 			e.printStackTrace();

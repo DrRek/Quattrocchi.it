@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
+  	<acquirente	Username="Expos"
+  				Pwd="Informatica"
+  				Nome="Ivan"
+  				Cognome="Esposito"
+  				Email="ivanesposito@mediaset.it"
+  				DataNascita="1996-06-15"/>
+  	<articoloinstock	Codice="994"
+  						Modello="Spirit titanium"
+  						Marca="Lindemberg"
+  						Img1="Spirit titanium_Lindberg_1.jpg"
+  						Img2="Spirit titanium_Lindberg_2.jpg"
+  						Img3="Spirit titanium_Lindberg_3.jpg"
+  						Descrizione="Occhiali di colore nero, molto eleganti."
+  						Prezzo="55.00"
+  						Disponibilita="60"/>
     <articoloincarrello Acquirente="Expos"
     					ArticoloInStock="994"
     					Quantita="2"/>

@@ -1,0 +1,41 @@
+<DATA>
+
+	<ROW>
+		<Codice>997</Codice>
+		<DataEsecuzione>2018-01-01</DataEsecuzione>
+		<Prezzo>30.00</Prezzo>
+		<IndirizzoSpedizione>999</IndirizzoSpedizione>
+		<CartaCredito>999</CartaCredito>
+		<Acquirente>AntosxA</Acquirente>
+		<StatoOrdine>Consegnato</StatoOrdine>
+		<DataConsegna>2018-01-04</DataConsegna>
+		<NumeroTracking>TR514</NumeroTracking>
+		<Corriere>Bartolini</Corriere>
+	</ROW>
+
+	<ROW>
+		<Codice>998</Codice>
+		<DataEsecuzione>2017-10-10</DataEsecuzione>
+		<Prezzo>40.00</Prezzo>
+		<IndirizzoSpedizione>998</IndirizzoSpedizione>
+		<CartaCredito>998</CartaCredito>
+		<Acquirente>Expos</Acquirente>
+		<StatoOrdine>In corso</StatoOrdine>
+		<DataConsegna>2019-10-05</DataConsegna>
+		<NumeroTracking>TR015</NumeroTracking>
+		<Corriere>UPS</Corriere>
+	</ROW>
+
+	<ROW>
+		<Codice>999</Codice>
+		<DataEsecuzione>2017-05-06</DataEsecuzione>
+		<Prezzo>50.00</Prezzo>
+		<IndirizzoSpedizione>999</IndirizzoSpedizione>
+		<CartaCredito>999</CartaCredito>
+		<Acquirente>AntosxA</Acquirente>
+		<StatoOrdine>Da spedire</StatoOrdine>
+		<DataConsegna>NULL</DataConsegna>
+		<NumeroTracking>NULL</NumeroTracking>
+		<Corriere>NULL</Corriere>
+	</ROW>
+</DATA>

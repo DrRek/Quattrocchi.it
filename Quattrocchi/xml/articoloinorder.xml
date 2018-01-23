@@ -1,0 +1,54 @@
+<DATA>
+
+	<ROW>
+		<Codice>996</Codice>
+		<Modello>Flak Draft Prizm Golf sport</Modello>
+		<Marca>Oakley</Marca>
+		<Img1>NULL</Img1>
+		<Img2>NULL</Img2>
+		<Img3>NULL</Img3>
+		<Descrizione>descrizione</Descrizione>
+		<Prezzo>30.00</Prezzo>
+		<Quantita>1</Quantita>
+		<Ordine>997</Ordine>
+	</ROW>
+
+	<ROW>
+		<Codice>997</Codice>
+		<Modello>Wayfarer Folding Classic</Modello>
+		<Marca>RayBan</Marca>
+		<Img1>NULL</Img1>
+		<Img2>NULL</Img2>
+		<Img3>NULL</Img3>
+		<Descrizione>descrizione</Descrizione>
+		<Prezzo>40.00</Prezzo>
+		<Quantita>1</Quantita>
+		<Ordine>998</Ordine>
+	</ROW>
+
+	<ROW>
+		<Codice>998</Codice>
+		<Modello>Original Wayfarer Classic</Modello>
+		<Marca>RayBan</Marca>
+		<Img1>NULL</Img1>
+		<Img2>NULL</Img2>
+		<Img3>NULL</Img3>
+		<Descrizione>descrizione</Descrizione>
+		<Prezzo>20.00</Prezzo>
+		<Quantita>1</Quantita>
+		<Ordine>999</Ordine>
+	</ROW>
+
+	<ROW>
+		<Codice>999</Codice>
+		<Modello>Occhiali iGreen</Modello>
+		<Marca>GreenVision</Marca>
+		<Img1>NULL</Img1>
+		<Img2>NULL</Img2>
+		<Img3>NULL</Img3>
+		<Descrizione>descrizione</Descrizione>
+		<Prezzo>30.00</Prezzo>
+		<Quantita>1</Quantita>
+		<Ordine>999</Ordine>
+	</ROW>
+</DATA>

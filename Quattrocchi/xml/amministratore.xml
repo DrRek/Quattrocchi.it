@@ -1,0 +1,34 @@
+<DATA>
+
+	<ROW>
+		<Username>Abbettino</Username>
+		<Pwd>Limone</Pwd>
+		<Nome>Alberto</Nome>
+		<Cognome>Palmiero</Cognome>
+		<Email>albertopalmiero@libero.it</Email>
+	</ROW>
+
+	<ROW>
+		<Username>DottorRek</Username>
+		<Pwd>Riccio97</Pwd>
+		<Nome>Luca</Nome>
+		<Cognome>Reccia</Cognome>
+		<Email>lucareccia@hormail.it</Email>
+	</ROW>
+
+	<ROW>
+		<Username>pluigi94</Username>
+		<Pwd>Gigio1512</Pwd>
+		<Nome>Luigi</Nome>
+		<Cognome>Piccolo</Cognome>
+		<Email>luigi.piccolo94@yahoo.it</Email>
+	</ROW>
+
+	<ROW>
+		<Username>Vahn</Username>
+		<Pwd>Juve</Pwd>
+		<Nome>Nicola</Nome>
+		<Cognome>Volpe</Cognome>
+		<Email>nicolavolpe@live.it</Email>
+	</ROW>
+</DATA>

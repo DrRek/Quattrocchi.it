@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+
+  <acquirente	Username="AntosxA"
+  				Pwd="Forzajuve"
+  				Nome="Antonio"
+  				Cognome="Spera"
+  				Email="antoniospera@live.it"
+  				DataNascita="1995-05-10"/>
+  <acquirente	Username="Expos"
+  				Pwd="Informatica"
+  				Nome="Ivan"
+  				Cognome="Esposito"
+  				Email="ivanesposito@mediaset.it"
+  				DataNascita="1996-06-15"/>
+  				
+  <amministratore	Username="Abbettino"
+  					Pwd="Limone"
+  					Nome="Alberto"
+  					Cognome="Palmiero"
+  					Email="albertopalmiero@libero.it"/>
+  <amministratore	Username="DottorRek"
+  					Pwd="Riccio97"
+  					Nome="Luca"
+  					Cognome="Reccia"
+  					Email="lucareccia@hotmail.it"/>
+  <amministratore	Username="pluigi94"
+  					Pwd="Gigio1512"
+  					Nome="Luigi"
+  					Cognome="Piccolo"
+  					Email="luigi.piccolo94@yahoo.it"/>
+  <amministratore	Username="Vahn"
+  					Pwd="Juve"
+  					Nome="Nicola"
+  					Cognome="Volpe"
+  					Email="nicolavolpe@live.it"/>
+  					
+  <articoloincarrello	Acquirente="AntosxA"
+  						ArticoloInStock="998"
+  						Quantita="2"/>
+  <articoloincarrello	Acquirente="AntosxA"
+  						ArticoloInStock="999"
+  						Quantita="1"/>
+  <articoloincarrello	Acquirente="Expos"
+  						ArticoloInStock="997"
+  						Quantita="3"/>
+  						
+  <articoloinorder	Codice="996"
+  					Modello="Flak Draft Prizm Golf sport"
+  					Marca="Oakley"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="30.00"
+  					Quantita="1"
+  					Ordine="997"/>
+  <articoloinorder	Codice="997"
+  					Modello="Wayfarer Folding Classic"
+  					Marca="RayBan"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="40.00"
+  					Quantita="1"
+  					Ordine="998"/>
+  <articoloinorder	Codice="998"
+  					Modello="Original Wayfarer Classic"
+  					Marca="RayBan"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="20.00"
+  					Quantita="1"
+  					Ordine="999"/>
+  <articoloinorder	Codice="999"
+  					Modello="Occhiali iGreen"
+  					Marca="GreenVision"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="30.00"
+  					Quantita="1"
+  					Ordine="999"/>
+  <articoloinstock/>
+  <cartacredito/>
+  <gestoreordini/>
+  <indirizzospedizione/>
+  <ordine/>
+</dataset>

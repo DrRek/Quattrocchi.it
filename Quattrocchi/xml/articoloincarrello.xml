@@ -1,0 +1,20 @@
+<DATA>
+
+	<ROW>
+		<Acquirente>AntosxA</Acquirente>
+		<ArticoloInStock>998</ArticoloInStock>
+		<Quantita>2</Quantita>
+	</ROW>
+
+	<ROW>
+		<Acquirente>AntosxA</Acquirente>
+		<ArticoloInStock>999</ArticoloInStock>
+		<Quantita>1</Quantita>
+	</ROW>
+
+	<ROW>
+		<Acquirente>Expos</Acquirente>
+		<ArticoloInStock>997</ArticoloInStock>
+		<Quantita>3</Quantita>
+	</ROW>
+</DATA>

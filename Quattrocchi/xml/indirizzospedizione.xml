@@ -1,0 +1,22 @@
+<DATA>
+
+	<ROW>
+		<Id>998</Id>
+		<Stato>Italia</Stato>
+		<Provincia>AV</Provincia>
+		<CAP>80060</CAP>
+		<Indirizzo>via Mondragone</Indirizzo>
+		<NumeroCivico>101</NumeroCivico>
+		<Acquirente>Expos</Acquirente>
+	</ROW>
+
+	<ROW>
+		<Id>999</Id>
+		<Stato>Italia</Stato>
+		<Provincia>NA</Provincia>
+		<CAP>80045</CAP>
+		<Indirizzo>via Settembrini</Indirizzo>
+		<NumeroCivico>55</NumeroCivico>
+		<Acquirente>AntosxA</Acquirente>
+	</ROW>
+</DATA>

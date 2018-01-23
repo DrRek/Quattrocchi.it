@@ -86,7 +86,7 @@
          	<% 	
          		String strDataConsegna;
          		if(ordine.getDataConsegna() == null){
-         			strDataConsegna = "1970-01-01";
+         			strDataConsegna = "";
          		}
          		else{
          			strDataConsegna = ordine.getDataConsegna().toString();

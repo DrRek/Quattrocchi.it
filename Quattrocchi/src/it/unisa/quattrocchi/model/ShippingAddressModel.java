@@ -13,7 +13,6 @@ import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationExceptio
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 
-
 /**
  * 
  * @author quattrocchi.it
@@ -31,8 +30,14 @@ public class ShippingAddressModel {
 	 * @param idShip un oggetto idShip di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>ShippingAddress</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition idShip != null e corrisponde ad un indirizzo di spedizione presente nel database.
 	 */
 	public ShippingAddress doRetrieveById(String idShip) throws SQLException {
+		if(idShip == null) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		ShippingAddress bean = null;
@@ -126,8 +131,14 @@ public class ShippingAddressModel {
 	 * @param username un oggetto username di tipo <strong>String</strong>
 	 * @return una lista di indirizzi di spedizione di tipo <strong>ArticoloInStock</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition username != null e corrisponde ad un utente inserito nel database.
 	 */
 	public List<ShippingAddress> doRetrieveByUser(String username) throws SQLException{
+		if(username == null) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<ShippingAddress> beans = new ArrayList<>();
@@ -171,8 +182,14 @@ public class ShippingAddressModel {
 	 * Questo metodo si occupa di rendere persistente un nuovo indirizzo di spedizione.
 	 * @param toCreate un oggetto toCreate di tipo <strong>ShippingAddress</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition toCreate != null.
 	 */
 	public void createShippingAddress(ShippingAddress toCreate) throws SQLException{
+		if(toCreate == null) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -227,8 +244,14 @@ public class ShippingAddressModel {
 	 * Questo metodo si occupa di effettuare l'aggiornamento di un indirizzo di spezione.
 	 * @param toUpdate un oggetto toUpdate di tipo <strong>ShippingAddress</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition toUpdate != null.
 	 */
 	public void updateShippingAddress(ShippingAddress toUpdate) throws SQLException{
+		if(toUpdate == null) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -274,8 +297,14 @@ public class ShippingAddressModel {
 	 * Questo metodo si occupa di effettuare la rimozione di un indirizzo di spedizione.
 	 * @param id un oggetto toDelete di tipo <strong>ShippingAddress</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition id != 0 e corrisponde ad un indirizzo di spedizione presente nel database.
 	 */
 	public void deleteShippingAddress(int id) throws SQLException{
+		if(id == 0) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		

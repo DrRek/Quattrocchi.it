@@ -25,8 +25,14 @@ public class ArticoloInStockModel {
 	 * @param id un oggetto codiceProdotto di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>ArticoloInStock</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition id != 0 e corrisponde ad un articolo presente nel database.
 	 */
 	public ArticoloInStock doRetrieveByIdInStock(int id) throws SQLException {
+		if(id == 0) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		ArticoloInStock bean = null;
@@ -123,8 +129,14 @@ public class ArticoloInStockModel {
 	 * @param daCercare un oggetto daCercare di tipo <strong>String</strong>
 	 * @return una lista di articoli in stock di tipo <strong>ArticoloInStock</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondtion daCercare != null ed è il contenuto di modello, marca o descrizione di almeno un articolo presente nel database.
 	 */
 	public List<ArticoloInStock> doRetrieveSimpleSearch(String daCercare) throws SQLException{
+		if(daCercare == null) {
+			return null;
+		}
+		
 		String query = "select * from "+TABLE_NAME_CATALOGO + " where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
 		
 		Connection conn = null;
@@ -181,8 +193,19 @@ public class ArticoloInStockModel {
 	 * @param colore un oggetto colore di tipo <strong>String</strong>
 	 * @return una lista di articoli in stock di tipo <strong>ArticoloInStock</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition 	daCercare != null ed è il contenuto del modello, marca o descrizione di almeno un articolo presente nel database.
+	 * 					marca != null && ( marca.equals("") || (corrisponde al contenuto della marca di almeno un articolo nel database) ).
+	 * 					minPrice >= 0.
+	 * 					maxPrice <= 9999999.
+	 * 					minPrice <= maxPrice
+	 * 					colore != null && ( colore.equals("") || (è il contenuto del modello, marca o descrizione di almeno un articolo presente nel database) ).
 	 */
 	public List<ArticoloInStock> doRetrieveAdvancedSearch(String daCercare, String marca, double minPrice, double maxPrice, String colore) throws SQLException{
+		if(daCercare == null || marca == null || minPrice < 0 || maxPrice >= 9999999 || minPrice > maxPrice || colore == null) {
+			return null;
+		}
+		
 		String query = "select * from "+TABLE_NAME_CATALOGO + " where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?))"
 				+ " and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
 		

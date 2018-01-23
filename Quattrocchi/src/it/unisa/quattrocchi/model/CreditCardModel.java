@@ -34,8 +34,14 @@ public class CreditCardModel {
 	 * @param idCarta un oggetto idCarta di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>CreditCard</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition idCarta != 0 e corrisponde ad una carta presente nel database.
 	 */
 	public CreditCard doRetrieveById(int idCarta) throws SQLException {
+		if(idCarta == 0) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		CreditCard bean = null;
@@ -83,8 +89,13 @@ public class CreditCardModel {
 	 * @param username un oggetto username di tipo <strong>String</strong>
 	 * @return una lista di carte di credito di tipo <strong>CreditCard</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition username != null.
 	 */
 	public List<CreditCard> doRetrieveByUser(String username) throws SQLException{
+		if(username == null) {
+			return null;
+		}
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<CreditCard> beans = new ArrayList<>();
@@ -128,8 +139,14 @@ public class CreditCardModel {
 	 * Questo metodo si occupa di inserire una nuova carta di credito nel database.
 	 * @param toCreate un oggetto toCreate di tipo <strong>CreditCard</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition toCreate != null.
 	 */
 	public void createCreditCard(CreditCard toCreate) throws SQLException{
+		if(toCreate == null) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -180,8 +197,14 @@ public class CreditCardModel {
 	 * Questo metodo si occupa di aggiornare una carta di credito nel database.
 	 * @param toUpdate un oggetto toUpdate di tipo <strong>CreditCard</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition toUpdate != null.
 	 */
 	public void updateCreditCard(CreditCard toUpdate) throws SQLException{
+		if(toUpdate == null) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -227,8 +250,14 @@ public class CreditCardModel {
 	 * Questo metodo si occupa di cancellare una carta di credito nel database.
 	 * @param id un oggetto toDelete di tipo <strong>CreditCard</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition id != 0 e corrisponde ad una carta presente nel database.
 	 */
 	public void deleteCreditCard(int id) throws SQLException{
+		if(id == 0) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		

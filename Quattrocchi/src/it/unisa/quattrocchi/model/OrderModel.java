@@ -35,8 +35,14 @@ public class OrderModel {
 	 * @param idOrder un oggetto idOrder di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>Order</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition idOrder != 0 e corrisponde ad un ordine presente nel database.
 	 */
 	public Order doRetrieveById(int idOrder) throws SQLException {
+		if(idOrder == 0) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		Order bean = null;
@@ -142,8 +148,13 @@ public class OrderModel {
 	 * Questo metodo si occupa di rendere persistente un nuovo ordine.
 	 * @param toCreate un oggetto toCreate di tipo <strong>Order</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition toCreate != null
 	 */
 	public void createOrder(Order toCreate) throws SQLException {
+		if(toCreate == null) {
+			return;
+		}
 		
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -211,8 +222,13 @@ public class OrderModel {
 	 * Questo metodo si occupa di effettuare l'aggiornamento di un ordine.
 	 * @param toUpdate un oggetto toUpdate di tipo <strong>Order</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition toUpdate != null;
 	 */
 	public void updateOrder(Order toUpdate) throws SQLException{
+		if(toUpdate == null) {
+			return;
+		}
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -257,13 +273,17 @@ public class OrderModel {
 	 * @param acquirente un oggetto acquirente di tipo <strong>Acquirente</strong>
 	 * @return una lista di ordini di tipo <strong>Order</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition acquirente != null.
 	 */
 	public List<Order> doRetrieveByAcquirente(Acquirente acquirente) throws SQLException {
+		if(acquirente == null) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<Order> beans = new ArrayList<>();
-		
-		
 		
 		String query = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
 		

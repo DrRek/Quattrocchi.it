@@ -24,8 +24,13 @@ public class GestoreOrdiniModel {
 	 * @param userName un oggetto userName di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>GestoreOrdini</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition userName != null e corrisponde ad un gestore nel database.
 	 */
 	public GestoreOrdini doRetriveById(String userName) throws SQLException {
+		if(userName == null) {
+			return null;
+		}
 		Connection conn = null;
 		PreparedStatement stm = null;
 		GestoreOrdini bean = null;
@@ -73,8 +78,15 @@ public class GestoreOrdiniModel {
 	 * @param password un oggetto password di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>GestoreOrdini</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition	usernaName != null e corrisponde all'identificativo di un user nel database.
+	 * 					password != null e corrisponde alla password dell'username specificato nel database.
 	 */
 	public GestoreOrdini checkLogin(String userName, String password) throws SQLException {
+		if(userName == null || password == null) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		GestoreOrdini bean = null;

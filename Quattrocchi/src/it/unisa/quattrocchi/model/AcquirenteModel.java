@@ -35,8 +35,14 @@ public class AcquirenteModel {
 	 * @param userName un oggetto userName di tipo <strong>String</strong> 
 	 * @return un oggetto di tipo <strong>Acquirente</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition usernaName != null e corrisponde all'identificativo di un user nel database.
 	 */
 	public Acquirente doRetriveById(String userName) throws SQLException {
+		if(userName==null) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		Acquirente bean = null;
@@ -82,8 +88,16 @@ public class AcquirenteModel {
 	 * @param password un oggetto password di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>Acquirente</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition	usernaName != null e corrisponde all'identificativo di un user nel database.
+	 * 					password != null e corrisponde alla password dell'username specificato nel database.
 	 */
 	public Acquirente checkLogin(String userName, String password) throws SQLException {
+		
+		if(userName==null || password==null) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		Acquirente bean = null;
@@ -129,8 +143,14 @@ public class AcquirenteModel {
 	 * @param userName un oggetto userName di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>Carrello</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition usernaName != null e corrisponde all'identificativo di un user nel database.
 	 */
 	public Cart doRetrieveCartByUser(String userName) throws SQLException {
+		if(userName == null) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		Cart bean = null;
@@ -172,8 +192,14 @@ public class AcquirenteModel {
 	 * Questo metodo si occupa di aggiornare i dati di un Acquirente presente nel database.
 	 * @param toUpdate un oggetto toUpdate di tipo <strong>Acquirente</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition toUpdate != null.
 	 */
 	public void updateAcquirente(Acquirente toUpdate) throws SQLException{
+		if(toUpdate==null) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
@@ -216,8 +242,15 @@ public class AcquirenteModel {
 	 * Questo metodo si occupa di aggiornare la lista degli articoli di un carrello associato ad un Acquirente presente nel database. 
 	 * @param acquirente un oggetto acquirente di tipo <strong>Acquirente</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition	acquirente != null.
+	 * 					acquirente.getCart().getNumeroDiArticoli() >= 1.
 	 */
 	public void updateCart(Acquirente acquirente) throws SQLException{
+		if(acquirente == null || acquirente.getCart().getNumeroDiArticoli() == 0) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 	
@@ -261,8 +294,14 @@ public class AcquirenteModel {
 	 * Questo metodo si occupa di svuotare un carrello associato ad un acquirente presente nel database.
 	 * @param acquirente un oggetto acquirente di tipo <strong>Acquirente</strong>
 	 * @throws SQLException
+	 * 
+	 * @precondition	acquirente != null.
 	 */
 	public void dropCart(Acquirente acquirente) throws SQLException{
+		if(acquirente == null) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		

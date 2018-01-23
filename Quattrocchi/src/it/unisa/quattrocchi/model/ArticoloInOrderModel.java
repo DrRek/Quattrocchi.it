@@ -27,8 +27,13 @@ public class ArticoloInOrderModel {
 	 * @param codiceProdotto un oggetto codiceProdotto di tipo <strong>String</strong>
 	 * @return un oggetto di tipo <strong>ArticoloInOrder</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition codiceProdotto != null e corrisponde ad un articolo nel database.
 	 */
 	public ArticoloInOrder doRetrieveByIdInOrder(String codiceProdotto) throws SQLException{
+		if(codiceProdotto == null) {
+			return null;
+		}
 		
 		Connection conn = null;
 		PreparedStatement stm = null;
@@ -125,8 +130,14 @@ public class ArticoloInOrderModel {
 	 * @param codice2 un oggetto codiceOrdine di tipo <strong>String</strong>
 	 * @return una lista di articoli in ordine di tipo <strong>ArticoloInOrder</strong>, altrimenti null.
 	 * @throws SQLException
+	 * 
+	 * @precondition idOrder != 0 e corrisponde ad un ordine presente nel database.
 	 */
 	public List<ArticoloInOrder> restituisciArticoliAssociatiAdUnOrdine(int idOrder) throws SQLException{
+		if(idOrder == 0) {
+			return null;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<ArticoloInOrder> beans = new ArrayList<>();
@@ -169,8 +180,20 @@ public class ArticoloInOrderModel {
 		return beans;
 	}
 
-
+	/**
+	 * 
+	 * @param a
+	 * @param o
+	 * @throws SQLException
+	 * 
+	 * @precondition 	a != null.
+	 * 					o != null.
+	 */
 	public void addArticle(ArticoloInOrder a, Order o) throws SQLException{
+		if(a == null || o == null) {
+			return;
+		}
+		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		

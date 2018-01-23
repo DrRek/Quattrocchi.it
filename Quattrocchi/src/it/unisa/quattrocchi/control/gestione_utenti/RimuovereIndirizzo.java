@@ -13,6 +13,12 @@ import it.unisa.quattrocchi.model.ShippingAddressModel;
 
 @WebServlet("/rimuovere_indirizzo")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la rimozione di un indirizzo di spedizione.
+ */
 public class RimuovereIndirizzo extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

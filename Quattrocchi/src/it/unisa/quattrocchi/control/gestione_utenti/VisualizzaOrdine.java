@@ -15,6 +15,12 @@ import it.unisa.quattrocchi.model.OrderModel;
 
 
 @WebServlet("/VisualizzaOrdineUtente")
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la visualizzazione di un ordine.
+ */
 public class VisualizzaOrdine extends HttpServlet {
 
 	static OrderModel orderModel = new OrderModel();

@@ -13,6 +13,12 @@ import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/profilo")
 
+
+/**
+ * 
+ * @author quattrochi.it
+ * Questa classe è una servlet che si occupa di gestire la visualizzazione del profilo.
+ */
 public class VisualizzaProfilo extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

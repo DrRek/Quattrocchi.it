@@ -18,6 +18,11 @@ import it.unisa.quattrocchi.model.CreditCardModel;
 
 @WebServlet("/inserisci_carta")
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire l'inserimento di una carta di credito.
+ */
 public class InserireCarta  extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

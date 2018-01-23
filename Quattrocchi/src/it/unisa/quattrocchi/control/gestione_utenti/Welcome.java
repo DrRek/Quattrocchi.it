@@ -12,6 +12,12 @@ import it.unisa.quattrocchi.entity.GestoreOrdini;
 
 @WebServlet("/welcome")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la welcome.
+ */
 public class Welcome extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

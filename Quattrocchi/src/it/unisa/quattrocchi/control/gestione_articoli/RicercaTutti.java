@@ -12,6 +12,12 @@ import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/visualizza_tutti")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la ricerca di tutti i prodotti.
+ */
 public class RicercaTutti extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

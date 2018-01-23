@@ -14,6 +14,11 @@ import it.unisa.quattrocchi.model.ShippingAddressModel;
 
 @WebServlet("/inserisci_indirizzo")
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire l'inserimento di un indirizzo di spedizione.
+ */
 public class InserireIndirizzo extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

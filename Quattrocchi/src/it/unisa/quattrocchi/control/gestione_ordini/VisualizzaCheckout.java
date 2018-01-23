@@ -16,6 +16,11 @@ import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/visualizza_checkout")
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la visualizzazione del checkout.
+ */
 public class VisualizzaCheckout extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

@@ -10,6 +10,12 @@ import com.google.gson.Gson;
 
 @WebServlet("/login")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la visualizzazione del login.
+ */
 public class VisualizzaLogin extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;

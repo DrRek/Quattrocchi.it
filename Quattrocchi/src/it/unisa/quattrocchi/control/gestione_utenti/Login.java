@@ -21,6 +21,12 @@ import it.unisa.quattrocchi.model.ShippingAddressModel;
 
 @WebServlet("/access")
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire il login.
+ */
 public class Login extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;

@@ -19,6 +19,11 @@ import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 @WebServlet("/rimuovi_dal_carrello")
 
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa classe è una servlet che si occupa di gestire la rimozione di un articolo dal carrello.
+ */
 public class RimuoviProdottoDalCarrello extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;

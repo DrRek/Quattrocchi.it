@@ -1,0 +1,20 @@
+<DATA>
+
+	<ROW>
+		<Username>AntosxA</Username>
+		<Pwd>Forzajuve</Pwd>
+		<Nome>Antonio</Nome>
+		<Cognome>Spera</Cognome>
+		<Email>antoniospera@live.it</Email>
+		<DataNascita>1995-05-10</DataNascita>
+	</ROW>
+
+	<ROW>
+		<Username>Expos</Username>
+		<Pwd>Informatica</Pwd>
+		<Nome>Ivan</Nome>
+		<Cognome>Esposito</Cognome>
+		<Email>ivanesposito@mediaset.it</Email>
+		<DataNascita>1996-06-15</DataNascita>
+	</ROW>
+</DATA>

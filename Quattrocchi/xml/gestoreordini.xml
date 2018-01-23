@@ -1,0 +1,20 @@
+<DATA>
+
+	<ROW>
+		<Username>Citrux</Username>
+		<Pwd>Mito</Pwd>
+		<Nome>Guarino</Nome>
+		<Cognome>Citro</Cognome>
+		<Email>guarinocitro@libero.it</Email>
+		<Matricola>GO0002</Matricola>
+	</ROW>
+
+	<ROW>
+		<Username>ViGal</Username>
+		<Pwd>Capra</Pwd>
+		<Nome>Vincenzo</Nome>
+		<Cognome>Gallicchio</Cognome>
+		<Email>vincenzogallicchio@yahoo.it</Email>
+		<Matricola>GO0001</Matricola>
+	</ROW>
+</DATA>

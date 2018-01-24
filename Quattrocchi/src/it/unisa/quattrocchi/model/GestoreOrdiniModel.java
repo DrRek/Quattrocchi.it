@@ -15,8 +15,10 @@ import it.unisa.quattrocchi.entity.GestoreOrdini;
  */
 public class GestoreOrdiniModel {
 	
-	private static final String TABLE_NAME_GESTOREORDINI = "quattrocchidb.gestoreordini";
+	public static final String TABLE_NAME_GESTOREORDINI = "quattrocchidb.gestoreordini";
 	
+	public static String SELECT_GESTORE_ORDINI_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ?;";
+	public static String SELECT_GESTORE_ORDINI_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ? AND Pwd = ?;";
 	
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un GestoreOrdini
@@ -35,11 +37,9 @@ public class GestoreOrdiniModel {
 		PreparedStatement stm = null;
 		GestoreOrdini bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_GESTOREORDINI + " WHERE Username = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_GESTORE_ORDINI_BY_USERNAME);
 			stm.setString(1, userName);
 			
 			ResultSet rs = stm.executeQuery();
@@ -91,11 +91,9 @@ public class GestoreOrdiniModel {
 		PreparedStatement stm = null;
 		GestoreOrdini bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_GESTOREORDINI + " WHERE Username = ? AND Pwd = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_GESTORE_ORDINI_BY_CREDENTIALS);
 			stm.setString(1, userName);
 			stm.setString(2, password);
 			

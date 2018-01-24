@@ -23,11 +23,18 @@ import it.unisa.quattrocchi.entity.ShippingAddress;
  */
 public class OrderModel {
 	
+	public static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
+	
+	public static String RETRIEVE_ORDER_BY_ID = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
+	public static String RETRIEVE_ALL_ORDER = "SELECT * FROM " + TABLE_NAME_ORDER + ";";
+	public static String INSERT_ORDER = "INSERT INTO "+TABLE_NAME_ORDER+" (DataEsecuzione,Prezzo,IndirizzoSpedizione,CartaCredito,Acquirente,StatoOrdine,DataConsegna,NumeroTracking,Corriere) VALUES(?,?,?,?,?,?,?,?,?);";
+	public static String UPDATE_ORDER = "update "+TABLE_NAME_ORDER+" set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ? where Codice =?;";
+	public static String SELECT_ORDER_BY_ACQUIRENTE = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
+	
 	static ShippingAddressModel shippingAddressModel = new ShippingAddressModel();
 	static CreditCardModel creditCardModel = new CreditCardModel();
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	static ArticoloInOrderModel articoloInOrderModel = new ArticoloInOrderModel();
-	private static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
 	
 	
 	/**
@@ -49,11 +56,9 @@ public class OrderModel {
 		List<ArticoloInOrder> listaArticoliInOrdine = new ArrayList<>();
 		listaArticoliInOrdine = articoloInOrderModel.restituisciArticoliAssociatiAdUnOrdine(idOrder);
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(RETRIEVE_ORDER_BY_ID);
 			stm.setInt(1, idOrder);
 			
 			ResultSet rs = stm.executeQuery();
@@ -100,13 +105,9 @@ public class OrderModel {
 		PreparedStatement stm = null;
 		List<Order> beans = new ArrayList<>();
 		
-		
-		
-		String query = "SELECT * FROM " + TABLE_NAME_ORDER + ";";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(RETRIEVE_ALL_ORDER);
 			
 			ResultSet rs = stm.executeQuery();
 			
@@ -159,10 +160,6 @@ public class OrderModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String query = "INSERT INTO " + TABLE_NAME_ORDER + 
-				" (DataEsecuzione,Prezzo,IndirizzoSpedizione,CartaCredito,Acquirente,StatoOrdine,DataConsegna,NumeroTracking,Corriere)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?);";
-		
 		Date dataEx = toCreate.getDataEsecuzione();
 		double prezzo = toCreate.getPrezzo();
 		String statoOrdine = toCreate.getStatoOrdine();
@@ -175,7 +172,7 @@ public class OrderModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			stm = conn.prepareStatement(INSERT_ORDER, Statement.RETURN_GENERATED_KEYS);
 			
 			stm.setDate(1, new java.sql.Date(dataEx.getTime()));
 			stm.setDouble(2, prezzo);
@@ -238,13 +235,9 @@ public class OrderModel {
 		String numTrack = toUpdate.getNumeroTracking();
 		String corriere = toUpdate.getCorriere();
 		
-		
-		String query = "update " + TABLE_NAME_ORDER + " set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ?" 
-		+ " where Codice =?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(UPDATE_ORDER);
 			
 			stm.setString(1,statoOrdine);
 			stm.setDate(2, (java.sql.Date) dataConsegna);
@@ -285,11 +278,9 @@ public class OrderModel {
 		PreparedStatement stm = null;
 		List<Order> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_ORDER_BY_ACQUIRENTE);
 			stm.setString(1, acquirente.getUsername());
 			
 			ResultSet rs = stm.executeQuery();

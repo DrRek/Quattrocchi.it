@@ -21,7 +21,14 @@ import it.unisa.quattrocchi.entity.ShippingAddress;
  */
 public class ShippingAddressModel {
 	
-	private static final String TABLE_NAME_ADDRESS = "quattrocchidb.indirizzospedizione";
+	public static final String TABLE_NAME_ADDRESS = "quattrocchidb.indirizzospedizione";
+	
+	public static String SELECT_SHIPPING_ADDRESS_BY_ID = "SELECT * FROM "+TABLE_NAME_ADDRESS+" WHERE Id = ?;";
+	public static String SELECT_ALL_SHIPPING_ADDRESS = "SELECT * FROM " + TABLE_NAME_ADDRESS;
+	public static String SELECT_ALL_SHIIPING_ADDRESS_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_ADDRESS+" where Acquirente = ?;";
+	public static String CREATE_SHIPPING_ADDRESS = "INSERT INTO "+TABLE_NAME_ADDRESS+" (Id,Stato,Provincia,CAP,Indirizzo,NumeroCivico,Acquirente) VALUES(?,?,?,?,?,?,?);";
+	public static String UPDATE_SHIPPING_ADDRESS = "update "+TABLE_NAME_ADDRESS+" set Stato = ?, Provincia = ?, CAP = ?, Indirizzo = ?, NumeroCivico = ? where Id = ? AND Acquirente = ?";
+	
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	
 	
@@ -42,12 +49,9 @@ public class ShippingAddressModel {
 		PreparedStatement stm = null;
 		ShippingAddress bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ADDRESS + 
-				" WHERE Id = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_SHIPPING_ADDRESS_BY_ID);
 			stm.setString(1, idShip);
 			
 			ResultSet rs = stm.executeQuery();
@@ -90,11 +94,9 @@ public class ShippingAddressModel {
 		PreparedStatement stm = null;
 		List<ShippingAddress> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ADDRESS;
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_ALL_SHIPPING_ADDRESS);
 			
 			ResultSet rs = stm.executeQuery();
 			
@@ -143,11 +145,9 @@ public class ShippingAddressModel {
 		PreparedStatement stm = null;
 		List<ShippingAddress> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ADDRESS + " where Acquirente = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_ALL_SHIIPING_ADDRESS_BY_ACQUIRENTE);
 			stm.setString(1, username);
 			ResultSet rs = stm.executeQuery();
 			
@@ -193,10 +193,6 @@ public class ShippingAddressModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String query = "INSERT INTO " + TABLE_NAME_ADDRESS + 
-				" (Id,Stato,Provincia,CAP,Indirizzo,NumeroCivico,Acquirente)"+
-				" VALUES(?,?,?,?,?,?,?);";
-		
 		int id = toCreate.getCodice();
 		String stato = toCreate.getStato();
 		String provincia = toCreate.getProvincia();
@@ -207,7 +203,7 @@ public class ShippingAddressModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			stm = conn.prepareStatement(CREATE_SHIPPING_ADDRESS, Statement.RETURN_GENERATED_KEYS);
 			
 			stm.setInt(1, id);
 			stm.setString(2, stato);
@@ -263,12 +259,9 @@ public class ShippingAddressModel {
 		int numeroCivico = toUpdate.getNC();
 		String acquirente = toUpdate.getAcq().getUsername();
 		
-		String query = "update " + TABLE_NAME_ADDRESS + " set Stato = ?, Provincia = ?, CAP = ?, Indirizzo = ?, NumeroCivico = ?"
-				+ " where Id = ? AND Acquirente = ?";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(UPDATE_SHIPPING_ADDRESS);
 			
 			stm.setString(1, stato);
 			stm.setString(2, provincia);

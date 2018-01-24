@@ -49,7 +49,7 @@ public class RicercaProdottoDaPaginaEsterna extends HttpServlet {
 				dispatcher.forward(request, response);
 				return;
 			}
-			
+
 			request.setAttribute("toSearch", toSearch);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
 			dispatcher.forward(request, response);

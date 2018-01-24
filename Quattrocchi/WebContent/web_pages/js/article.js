@@ -125,7 +125,7 @@ function simpleSearch(toSearch) {
 }
 
 function initialize(){
-	var toSearch = $('input[name=daCercare1]').val();
+	var toSearch = $('input[name=daCercare]').val();
 	if(toSearch != null && toSearch != undefined && toSearch != ""){
 		simpleSearch(toSearch);
 	}

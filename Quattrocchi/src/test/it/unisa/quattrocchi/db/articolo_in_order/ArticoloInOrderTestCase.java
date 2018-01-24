@@ -11,7 +11,9 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
+import it.unisa.quattrocchi.entity.ArticoloInOrder;
 import it.unisa.quattrocchi.model.AcquirenteModel;
+import it.unisa.quattrocchi.model.ArticoloInOrderModel;
 import test.it.unisa.quattrocchi.db.DatabaseProperty;
 
 public class ArticoloInOrderTestCase extends DBTestCase {
@@ -32,106 +34,17 @@ public class ArticoloInOrderTestCase extends DBTestCase {
           DatabaseProperty.DATABASE_PASSWORD);
     }
     
-    public void testRetrieveAcquirenteByUsername() throws Exception{
+    public void testRetrieveArticoloInOrderById() throws Exception{
         IDatabaseConnection connection = getConnection();
   
-		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.RETRIEVE_ACQUIRENTE_BY_USERNAME);
-		stm.setString(1, "Expos");
+		PreparedStatement stm = connection.getConnection().prepareStatement(ArticoloInOrderModel.RETRIEVE_BY_ID);
+		stm.setInt(1, 996);
 		
-		ITable actualTable = connection.createTable("retrieve_acquirente_by_username", stm);
+		ITable actualTable = connection.createTable("retrieve_articolo_in_order_by_id", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/retrieve_acquirente_by_username_oracle.xml"));
-        ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
-
-        Assertion.assertEquals(expectedTable, actualTable);
-    }
-    
-    public void testCheckLoginByCredential() throws Exception{
-        IDatabaseConnection connection = getConnection();
-  
-		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.CHECK_LOGIN_BY_CREDENTIALS);
-		stm.setString(1, "Expos");
-		stm.setString(2, "Informatica");
-		
-		ITable actualTable = connection.createTable("check_login_by_credentials", stm);
-        
-        // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/check_login_by_credentials_oracle.xml"));
-        ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
-
-        Assertion.assertEquals(expectedTable, actualTable);
-    }
-    
-    public void testUpdateAcquirente() throws Exception{
-        IDatabaseConnection connection = getConnection();
-  
-		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.UPDATE_ACQUIRENTE);
-		stm.setString(1, "prova1");
-		stm.setString(2, "prova2");
-		stm.setString(3, "prova3");
-		stm.setString(4, "prova4");
-		stm.setString(5, "2020-02-20");
-		stm.setString(6, "Expos");
-		
-		stm.executeUpdate();
-		
-		ITable actualTable = connection.createDataSet().getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
-        
-        // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/update_acquirente_oracle.xml"));
-        ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
-
-        Assertion.assertEquals(expectedTable, actualTable);
-    }
-    
-    public void testRetrieveCartByUser() throws Exception{
-        IDatabaseConnection connection = getConnection();
-  
-		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.RETRIEVE_CART_BY_USER);
-		stm.setString(1, "Expos");
-		
-		ITable actualTable = connection.createTable("check_login_by_credentials", stm);
-        
-        // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/retrieve_cart_by_user_oracle.xml"));
-        ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
-
-        Assertion.assertEquals(expectedTable, actualTable);
-    }
-    
-    public void testInsertIntoCart() throws Exception{
-        IDatabaseConnection connection = getConnection();
-  
-		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.INSERT_INTO_CART);
-		stm.setString(1, "Expos");
-		stm.setString(2, "998");
-		stm.setInt(3, 10);
-		
-		stm.executeUpdate();
-		
-		ITable actualTable = connection.createDataSet().getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
-        
-        // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/insert_into_cart_oracle.xml"));
-        ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
-
-        Assertion.assertEquals(expectedTable, actualTable);
-    }
-    
-    public void testDeleteCart() throws Exception{
-        IDatabaseConnection connection = getConnection();
-  
-		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.DELETE_CART);
-		stm.setString(1, "Expos");
-		
-		stm.executeUpdate();
-		
-		ITable actualTable = connection.createDataSet().getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
-        
-        // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/delete_cart_oracle.xml"));
-        ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/articolo_in_order/retrieve_articolo_in_ordine_by_id_oracle.xml"));
+        ITable expectedTable = expectedDataSet.getTable(ArticoloInOrderModel.TABLE_NAME_ARTICOLOINORDINE);
 
         Assertion.assertEquals(expectedTable, actualTable);
     }

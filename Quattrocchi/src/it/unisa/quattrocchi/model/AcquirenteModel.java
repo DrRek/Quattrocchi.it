@@ -26,6 +26,8 @@ public class AcquirenteModel {
 	private static final String TABLE_NAME_ACQUIRENTE = "quattrocchidb.acquirente";
 	private static final String TABLE_NAME_ARTICOLOINCARRELLO = "quattrocchidb.articoloincarrello";
 	
+	public static final String RETRIEVE_ACQUIRENTE_BY_USERNAME = "SELECT * FROM acquirente WHERE Username = ?;";
+	
 	private static ArticoloInStockModel asModel = new ArticoloInStockModel();
 	
 	

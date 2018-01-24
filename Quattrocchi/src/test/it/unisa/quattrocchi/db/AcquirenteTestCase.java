@@ -1,6 +1,8 @@
 package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
+import java.sql.PreparedStatement;
+
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
@@ -8,14 +10,15 @@ import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
+
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.model.AcquirenteModel;
 
-public class UpdateCartTestCase extends DBTestCase {
+public class AcquirenteTestCase extends DBTestCase {
 	
 	private AcquirenteModel acquirenteModel;
 	 
-    public UpdateCartTestCase(String name) {
+    public AcquirenteTestCase(String name) {
         super(name);
         System.setProperty(
           PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS,
@@ -32,25 +35,22 @@ public class UpdateCartTestCase extends DBTestCase {
 
 		acquirenteModel = new AcquirenteModel();
     }
- 
-    public void testInsert() throws Exception {
-        Acquirente acquirente = acquirenteModel.doRetriveById("Expos");
-        acquirente.resetCart();
-        
-        acquirenteModel.updateCart(acquirente);
-        
-        // get the actual table values
+    
+    public void testRetrieveAcquirenteByUsername() throws Exception{
         IDatabaseConnection connection = getConnection();
-        IDataSet databaseDataSet = connection.createDataSet();
-        ITable actualTable = databaseDataSet.getTable("ArticoloInCarrello");
- 
+  
+		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.RETRIEVE_ACQUIRENTE_BY_USERNAME);
+		stm.setString(1, "Expos");
+		
+		ITable actualTable = connection.createTable("retrieve_acquirente_by_username", stm);
+        
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/update_cart_oracle.xml"));
-        ITable expectedTable = expectedDataSet.getTable("ArticoloInCarrello");
- 
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/retrieve_user_by_id_oracle.xml"));
+        ITable expectedTable = expectedDataSet.getTable("Acquirente");
+
         Assertion.assertEquals(expectedTable, actualTable);
- 
     }
+    
     /*
      * (non-Javadoc)
      * @see org.dbunit.DatabaseTestCase#getDataSet()

@@ -3,7 +3,6 @@ var sortD = 'nome';
 $(document).ready(function() {
 
 	initialize();
-	setSearchField();
 
 
 	$("#advancedSearch").on("click", function(event) {
@@ -13,63 +12,11 @@ $(document).ready(function() {
 	});
 });
 
-function setSearchField() {
-	if ($('select[name=tipo]').val() == "O") {
-		$(".specificiPerOcchiali").show();
-		$(".specificiPerLentine").hide();
-	} else {
-		$(".specificiPerOcchiali").hide();
-		$(".specificiPerLentine").show();
-	}
-}
 
-function orderByName() {
-	sortD = 'nome';
-	if (toDoD == "asyncGenericSearch") {
-		asyncGenericSearch();
-	}
-	else {
-		advancedSearch();
-	}
-}
-
-function orderByMarca() {
-	sortD = 'marca';
-	if (toDoD == "asyncGenericSearch") {
-		asyncGenericSearch();
-	}
-	else {
-
-		advancedSearch();
-	}
-}
-
-function orderByTipo() {
-	sortD = 'tipo';
-	if (toDoD == "asyncGenericSearch") {
-		asyncGenericSearch();
-	}
-	else {
-		advancedSearch();
-	}
-}
-
-function orderByPrezzo() {
-	sortD = 'prezzo';
-	if (toDoD == "asyncGenericSearch") {
-		asyncGenericSearch();
-	}
-	else {
-		advancedSearch();
-	}
-}
 
 function checkAdvancedSearchRegex(){
-	var toSearch = $('input[name=daCercare1]').val();
-	if (toSearch == null || toSearch.length == 0) {
-		toSearch = $('input[name=daCercare]').val();
-	}
-	if(toSearch != null && toSearch != "" && !/^([A-Za-z0-9 ]{5,15})$/.test(toSearch)){
+	var toSearch = $('input[name=daCercare]').val();
+	if(toSearch != null && toSearch != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(toSearch)){
 		showError("Parametro da cercare non valido.")
 		return false;
 	}
@@ -213,25 +160,15 @@ function formatData(responseText){
 					+ '<li><span class="prodotto">' + articleObject.marca + '</span></li>'
 					+ '<li><a href="#"><i class="fa fa-shopping-basket" aria-hidden="true"></i> </a></li>'
 					+ '</ul>'
-					+'</div>';
-				toAppend += '<div class="middle">';
-				toAppend += '<img src="/Quattrocchi/web_pages/image/'+articleObject.img1+'" alt="pic" />';
-				toAppend += '</div>'
-					+  '<div class="bottom">'
+					+'</div>'
+					+'<div class="middle">'
+					+'<img src="/Quattrocchi/web_pages/image/'+articleObject.img1+'" alt="pic" />'
+					+'</div>'
+					+ '<div class="bottom">'
 					+ '<div class="heading">'+ articleObject.modello +'</div>'
-					+ '<div class="info">' + articleObject.disponibilità + ' pezzi disponibili</div>';
-				if(articleObject.sconto > 0){
-					if(articleObject.tipoSconto == "%"){
-						var sconto = parseInt(((articleObject.prezzo)-(articleObject.prezzo*articleObject.sconto/100))*100)/100;
-					}else{
-						var sconto = parseInt(articleObjec.prezzo-articleObject.sconto*100)/100;
-					}
-					toAppend += '<div class="price">' +sconto + ' € <span class="old-price">'+parseInt(articleObject.prezzo*100)/100+'€</span></div>';
-				} else {
-					toAppend += '<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>';
-				}
-				toAppend +='</div>'
-				+'</div>';
+					+'<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>'
+					+'</div>'
+					+'</div>';
 			}
 		});
 		$("#demos").html(toAppend);

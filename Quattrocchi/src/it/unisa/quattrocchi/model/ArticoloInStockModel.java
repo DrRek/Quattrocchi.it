@@ -201,10 +201,9 @@ public class ArticoloInStockModel {
 	 * 					colore != null && ( colore.equals("") || (è il contenuto del modello, marca o descrizione di almeno un articolo presente nel database) ).
 	 */
 	public List<ArticoloInStock> doRetrieveAdvancedSearch(String daCercare, String marca, double minPrice, double maxPrice, String colore) throws SQLException{
-		if(daCercare == null || marca == null || minPrice < 0 || maxPrice >= 9999999 || minPrice > maxPrice || colore == null) {
+		if(daCercare == null || marca == null || minPrice < 0 || maxPrice > 9999999 || minPrice > maxPrice || colore == null) {
 			return null;
 		}
-		
 		daCercare = "%"+daCercare+"%";
 		marca = "%"+marca+"%";
 		colore = "%"+colore+"%";

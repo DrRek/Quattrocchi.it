@@ -101,7 +101,7 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 			}
 
 			String colore = request.getParameter("colore");
-			if(colore == null) {
+			if(colore == null || colore.equals("")) {
 				colore = "";
 			} else if(!colore.matches("[A-Za-z0-9 ]{1,20}")) {
 				response.getWriter().write(new Gson().toJson("Formato parametri non valido."));

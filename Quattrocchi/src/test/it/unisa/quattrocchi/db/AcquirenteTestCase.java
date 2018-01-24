@@ -40,7 +40,7 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_acquirente_by_username", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/retrieve_user_by_id_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/retrieve_acquirente_by_username_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable("Acquirente");
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -56,8 +56,81 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("check_login_by_credentials", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/retrieve_user_by_id_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/check_login_by_credentials_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable("Acquirente");
+
+        Assertion.assertEquals(expectedTable, actualTable);
+    }
+    
+    public void testUpdateAcquirente() throws Exception{
+        IDatabaseConnection connection = getConnection();
+  
+		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.UPDATE_ACQUIRENTE);
+		stm.setString(1, "prova1");
+		stm.setString(2, "prova2");
+		stm.setString(3, "prova3");
+		stm.setString(4, "prova4");
+		stm.setString(5, "2020-02-20");
+		stm.setString(6, "Expos");
+		
+		stm.executeUpdate();
+		
+		ITable actualTable = connection.createDataSet().getTable("Acquirente");
+        
+        // get the expected table values
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/update_acquirente_oracle.xml"));
+        ITable expectedTable = expectedDataSet.getTable("Acquirente");
+
+        Assertion.assertEquals(expectedTable, actualTable);
+    }
+    
+    public void testRetrieveCartByUser() throws Exception{
+        IDatabaseConnection connection = getConnection();
+  
+		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.RETRIEVE_CART_BY_USER);
+		stm.setString(1, "Expos");
+		
+		ITable actualTable = connection.createTable("check_login_by_credentials", stm);
+        
+        // get the expected table values
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/retrieve_cart_by_user_oracle.xml"));
+        ITable expectedTable = expectedDataSet.getTable("ArticoloInCarrello");
+
+        Assertion.assertEquals(expectedTable, actualTable);
+    }
+    
+    public void testInsertIntoCart() throws Exception{
+        IDatabaseConnection connection = getConnection();
+  
+		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.INSERT_INTO_CART);
+		stm.setString(1, "Expos");
+		stm.setString(2, "998");
+		stm.setInt(3, 10);
+		
+		stm.executeUpdate();
+		
+		ITable actualTable = connection.createDataSet().getTable("ArticoloInCarrello");
+        
+        // get the expected table values
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/insert_into_cart_oracle.xml"));
+        ITable expectedTable = expectedDataSet.getTable("ArticoloInCarrello");
+
+        Assertion.assertEquals(expectedTable, actualTable);
+    }
+    
+    public void testDeleteCart() throws Exception{
+        IDatabaseConnection connection = getConnection();
+  
+		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.DELETE_CART);
+		stm.setString(1, "Expos");
+		
+		stm.executeUpdate();
+		
+		ITable actualTable = connection.createDataSet().getTable("ArticoloInCarrello");
+        
+        // get the expected table values
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/delete_cart_oracle.xml"));
+        ITable expectedTable = expectedDataSet.getTable("ArticoloInCarrello");
 
         Assertion.assertEquals(expectedTable, actualTable);
     }

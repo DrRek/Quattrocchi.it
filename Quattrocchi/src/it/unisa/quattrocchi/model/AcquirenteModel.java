@@ -28,8 +28,8 @@ public class AcquirenteModel {
 	
 	public static final String RETRIEVE_ACQUIRENTE_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Username = ?;";
 	public static final String CHECK_LOGIN_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Username = ? AND Pwd = ?;";
-	public static final String RETRIEVE_CART_BY_USER = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Acquirente = ?;";
 	public static final String UPDATE_ACQUIRENTE = "update "+TABLE_NAME_ACQUIRENTE+" set Pwd = ?, Nome = ?, Cognome = ?,Email = ?, DataNascita = ? where Username = ?;";
+	public static final String RETRIEVE_CART_BY_USER = "SELECT * FROM "+TABLE_NAME_ARTICOLOINCARRELLO+" WHERE Acquirente = ?;";
 	public static final String INSERT_INTO_CART = "insert into "+TABLE_NAME_ARTICOLOINCARRELLO+" values(?,?,?)";
 	public static final String DELETE_CART = "delete from "+TABLE_NAME_ARTICOLOINCARRELLO+" where Acquirente = ?";
 	

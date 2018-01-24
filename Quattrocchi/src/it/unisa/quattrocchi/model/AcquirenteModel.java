@@ -23,8 +23,8 @@ import it.unisa.quattrocchi.entity.Cart;
  */
 public class AcquirenteModel {
 	
-	private static final String TABLE_NAME_ACQUIRENTE = "acquirente";
-	private static final String TABLE_NAME_ARTICOLOINCARRELLO = "articoloincarrello";
+	public static final String TABLE_NAME_ACQUIRENTE = "acquirente";
+	public static final String TABLE_NAME_ARTICOLOINCARRELLO = "articoloincarrello";
 	
 	public static final String RETRIEVE_ACQUIRENTE_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Username = ?;";
 	public static final String CHECK_LOGIN_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Username = ? AND Pwd = ?;";

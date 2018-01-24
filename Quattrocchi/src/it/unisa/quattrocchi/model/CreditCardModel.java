@@ -22,11 +22,17 @@ import it.unisa.quattrocchi.entity.CreditCard;
  * Gestisce le query riguardanti le carte di credito.
  */
 public class CreditCardModel {
-	
-	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 
 	private static final String TABLE_NAME_CREDITCARD = "quattrocchidb.cartacredito";
 	
+	public static String SELECT_CREDIT_CARD_BY_ID = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE IdCarta = ?;";
+	public static String SELECT_ALL_CREDIT_CARD_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE Acquirente = ?;";
+	public static String INSET_CREDIT_CARD = "INSERT INTO "+TABLE_NAME_CREDITCARD+" (NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente) VALUES(?,?,?,?,?,?);";
+	public static String UPDATE_CREDIT_CARD = "update "+TABLE_NAME_CREDITCARD+" set NumeroCC = ?, Intestatario = ?,Circuito = ?,DataScadenza = ?,CvcCvv = ? where IdCarta = ? AND Acquirente = ?;";
+	public static String DELETE_CREDIT_CARD = "delete from "+TABLE_NAME_CREDITCARD+" where IdCarta = ?;";
+	public static String SET_CREDIT_CART_ACQUIRENTE_NULL = "update "+TABLE_NAME_CREDITCARD+" set Acquirente = NULL where IdCarta = ?;";
+	
+	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	
 	/**
 	 * Questo metodo si occupa di effettuare la ricerca di una carta di credito
@@ -46,12 +52,9 @@ public class CreditCardModel {
 		PreparedStatement stm = null;
 		CreditCard bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_CREDITCARD + 
-				" WHERE IdCarta = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_CREDIT_CARD_BY_ID);
 			stm.setInt(1, idCarta);
 			
 			ResultSet rs = stm.executeQuery();
@@ -100,11 +103,9 @@ public class CreditCardModel {
 		PreparedStatement stm = null;
 		List<CreditCard> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_CREDITCARD + " WHERE Acquirente = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SELECT_ALL_CREDIT_CARD_BY_ACQUIRENTE);
 			stm.setString(1, username);
 			
 			ResultSet rs = stm.executeQuery();
@@ -150,10 +151,6 @@ public class CreditCardModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String query = "INSERT INTO " + TABLE_NAME_CREDITCARD + 
-				" (NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente)" +
-				" VALUES(?,?,?,?,?,?);";
-		
 		String numeroCC = toCreate.getNumeroCC();
 		String intestatario = toCreate.getIntestatario();
 		String circuito = toCreate.getCircuito();
@@ -163,7 +160,7 @@ public class CreditCardModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			stm = conn.prepareStatement(INSET_CREDIT_CARD, Statement.RETURN_GENERATED_KEYS);
 			
 			stm.setString(1, numeroCC);
 			stm.setString(2, intestatario);
@@ -216,12 +213,9 @@ public class CreditCardModel {
 		int cvccvv = toUpdate.getCvv();
 		String acquirente = toUpdate.getAcquirente().getUsername();
 		
-		String query = "update " + TABLE_NAME_CREDITCARD + " set NumeroCC = ?, Intestatario = ?,Circuito = ?,DataScadenza = ?,CvcCvv = ? "+
-		"where IdCarta = ? AND Acquirente = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(UPDATE_CREDIT_CARD);
 			
 			stm.setString(1, numeroCC);
 			stm.setString(2, intestatario);
@@ -261,11 +255,9 @@ public class CreditCardModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String query = "delete from " + TABLE_NAME_CREDITCARD + " where IdCarta = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(DELETE_CREDIT_CARD);
 			
 			stm.setInt(1, id);
 			
@@ -276,8 +268,7 @@ public class CreditCardModel {
 			stm.close();
 			conn.commit();
 			
-			query = "update " + TABLE_NAME_CREDITCARD + " set Acquirente = NULL where IdCarta = ?;";
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SET_CREDIT_CART_ACQUIRENTE_NULL);
 			stm.setInt(1, id);
 			stm.executeUpdate();
 			stm.close();

@@ -19,7 +19,13 @@ import it.unisa.quattrocchi.entity.Order;
  */
 public class ArticoloInOrderModel {
 	
-	private static final String TABLE_NAME_ARTICOLOINORDINE = "quattrocchidb.articoloinorder";
+	public static final String TABLE_NAME_ARTICOLOINORDINE = "articoloinorder";
+	
+	public static String RETRIEVE_BY_ID = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+" WHERE Codice = ?;";
+	public static String RETRIEVE_ALL = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+";";
+	public static String RETRIEVE_BY_ORDER = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+" WHERE Ordine = ?;";
+	public static String INSERT_ARTICLE_BY_ORDER = "INSERT INTO "+TABLE_NAME_ARTICOLOINORDINE+" (Modello,Marca,Img1,Img2,Img3,Descrizione,Prezzo,Quantita,Ordine) VALUES(?,?,?,?,?,?,?,?,?);";
+	
 	
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un articolo in ordine
@@ -39,11 +45,9 @@ public class ArticoloInOrderModel {
 		PreparedStatement stm = null;
 		ArticoloInOrder bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ARTICOLOINORDINE + " WHERE Codice = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(RETRIEVE_BY_ID);
 			stm.setInt(1, Integer.parseInt(codiceProdotto));
 			
 			ResultSet rs = stm.executeQuery();
@@ -87,11 +91,9 @@ public class ArticoloInOrderModel {
 		PreparedStatement stm = null;
 		List<ArticoloInOrder> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ARTICOLOINORDINE + ";";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(RETRIEVE_ALL);
 			
 			ResultSet rs = stm.executeQuery();
 			
@@ -142,11 +144,9 @@ public class ArticoloInOrderModel {
 		PreparedStatement stm = null;
 		List<ArticoloInOrder> beans = new ArrayList<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ARTICOLOINORDINE + " WHERE Ordine = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(RETRIEVE_BY_ORDER);
 			stm.setInt(1, idOrder);
 			
 			ResultSet rs = stm.executeQuery();
@@ -197,10 +197,6 @@ public class ArticoloInOrderModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String query = "INSERT INTO " + TABLE_NAME_ARTICOLOINORDINE + 
-				" (Modello,Marca,Img1,Img2,Img3,Descrizione,Prezzo,Quantita,Ordine)"
-				+ " VALUES(?,?,?,?,?,?,?,?,?);";
-		
 		String modello = a.getModello();
 		String marca = a.getMarca();
 		String img1 = a.getImg1();
@@ -213,7 +209,7 @@ public class ArticoloInOrderModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			stm = conn.prepareStatement(INSERT_ARTICLE_BY_ORDER, Statement.RETURN_GENERATED_KEYS);
 			
 			stm.setString(1, modello);
 			stm.setString(2, marca);

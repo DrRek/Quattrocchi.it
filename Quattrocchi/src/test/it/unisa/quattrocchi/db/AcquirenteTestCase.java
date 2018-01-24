@@ -11,12 +11,9 @@ import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
-import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.model.AcquirenteModel;
 
 public class AcquirenteTestCase extends DBTestCase {
-	
-	private AcquirenteModel acquirenteModel;
 	 
     public AcquirenteTestCase(String name) {
         super(name);
@@ -32,8 +29,6 @@ public class AcquirenteTestCase extends DBTestCase {
         System.setProperty(
           PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD,
           DatabaseProperty.DATABASE_PASSWORD);
-
-		acquirenteModel = new AcquirenteModel();
     }
     
     public void testRetrieveAcquirenteByUsername() throws Exception{
@@ -43,6 +38,22 @@ public class AcquirenteTestCase extends DBTestCase {
 		stm.setString(1, "Expos");
 		
 		ITable actualTable = connection.createTable("retrieve_acquirente_by_username", stm);
+        
+        // get the expected table values
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/retrieve_user_by_id_oracle.xml"));
+        ITable expectedTable = expectedDataSet.getTable("Acquirente");
+
+        Assertion.assertEquals(expectedTable, actualTable);
+    }
+    
+    public void testCheckLoginByCredential() throws Exception{
+        IDatabaseConnection connection = getConnection();
+  
+		PreparedStatement stm = connection.getConnection().prepareStatement(AcquirenteModel.CHECK_LOGIN_BY_CREDENTIALS);
+		stm.setString(1, "Expos");
+		stm.setString(2, "Informatica");
+		
+		ITable actualTable = connection.createTable("check_login_by_credentials", stm);
         
         // get the expected table values
         IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/retrieve_user_by_id_oracle.xml"));

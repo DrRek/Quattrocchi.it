@@ -23,10 +23,15 @@ import it.unisa.quattrocchi.entity.Cart;
  */
 public class AcquirenteModel {
 	
-	private static final String TABLE_NAME_ACQUIRENTE = "quattrocchidb.acquirente";
-	private static final String TABLE_NAME_ARTICOLOINCARRELLO = "quattrocchidb.articoloincarrello";
+	private static final String TABLE_NAME_ACQUIRENTE = "acquirente";
+	private static final String TABLE_NAME_ARTICOLOINCARRELLO = "articoloincarrello";
 	
-	public static final String RETRIEVE_ACQUIRENTE_BY_USERNAME = "SELECT * FROM acquirente WHERE Username = ?;";
+	public static final String RETRIEVE_ACQUIRENTE_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Username = ?;";
+	public static final String CHECK_LOGIN_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Username = ? AND Pwd = ?;";
+	public static final String RETRIEVE_CART_BY_USER = "SELECT * FROM "+TABLE_NAME_ACQUIRENTE+" WHERE Acquirente = ?;";
+	public static final String UPDATE_ACQUIRENTE = "update "+TABLE_NAME_ACQUIRENTE+" set Pwd = ?, Nome = ?, Cognome = ?,Email = ?, DataNascita = ? where Username = ?;";
+	public static final String INSERT_INTO_CART = "insert into "+TABLE_NAME_ARTICOLOINCARRELLO+" values(?,?,?)";
+	public static final String DELETE_CART = "delete from "+TABLE_NAME_ARTICOLOINCARRELLO+" where Acquirente = ?";
 	
 	private static ArticoloInStockModel asModel = new ArticoloInStockModel();
 	
@@ -49,11 +54,9 @@ public class AcquirenteModel {
 		PreparedStatement stm = null;
 		Acquirente bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ACQUIRENTE + " WHERE Username = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(RETRIEVE_ACQUIRENTE_BY_USERNAME);
 			stm.setString(1, userName);
 			
 			ResultSet rs = stm.executeQuery();
@@ -104,11 +107,9 @@ public class AcquirenteModel {
 		PreparedStatement stm = null;
 		Acquirente bean = null;
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ACQUIRENTE + " WHERE Username = ? AND Pwd = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(CHECK_LOGIN_BY_CREDENTIALS);
 			stm.setString(1, userName);
 			stm.setString(2, password);
 			
@@ -158,11 +159,9 @@ public class AcquirenteModel {
 		Cart bean = null;
 		Map<ArticoloInStock, Integer> list = new HashMap<>();
 		
-		String query = "SELECT * FROM " + TABLE_NAME_ARTICOLOINCARRELLO + " WHERE Acquirente = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(RETRIEVE_CART_BY_USER);
 			stm.setString(1, userName);
 			
 			ResultSet rs = stm.executeQuery();
@@ -212,12 +211,9 @@ public class AcquirenteModel {
 		String email = toUpdate.getEmail();
 		Date dataNascita = toUpdate.getDataNascita();
 		
-		String query = "update " + TABLE_NAME_ACQUIRENTE + " set Pwd = ?, Nome = ?, Cognome = ?,Email = ?, DataNascita = ?" +
-		" where Username = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(UPDATE_ACQUIRENTE);
 			
 			stm.setString(1, password);
 			stm.setString(2, nome);
@@ -262,16 +258,13 @@ public class AcquirenteModel {
 		Map<ArticoloInStock,Integer> mappa = acquirente.getCart().getArticoli();
 		Set<ArticoloInStock> articoli = mappa.keySet();
 		
-		
-		String query = "insert into " + TABLE_NAME_ARTICOLOINCARRELLO + " values(?,?,?)";
-		
 		for(ArticoloInStock a: articoli) {
 			int codiceArticolo = a.getCodice();
 			int quantità = mappa.get(a);
 			
 			try {
 				conn = DriverManagerConnectionPool.getConnection();
-				stm = conn.prepareStatement(query);
+				stm = conn.prepareStatement(INSERT_INTO_CART);
 				
 				stm.setString(1, acq);
 				stm.setInt(2, codiceArticolo);
@@ -309,12 +302,9 @@ public class AcquirenteModel {
 		
 		String acq = acquirente.getUsername();
 		
-		String query = "delete from " + TABLE_NAME_ARTICOLOINCARRELLO + 
-				" where Acquirente = ?";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(DELETE_CART);
 			
 			stm.setString(1, acq);
 			

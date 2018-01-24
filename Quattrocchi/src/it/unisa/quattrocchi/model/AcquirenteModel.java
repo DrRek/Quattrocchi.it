@@ -244,10 +244,10 @@ public class AcquirenteModel {
 	 * @throws SQLException
 	 * 
 	 * @precondition	acquirente != null.
-	 * 					acquirente.getCart().getNumeroDiArticoli() >= 1.
+	 * 					acquirente.getCart()!=null.
 	 */
 	public void updateCart(Acquirente acquirente) throws SQLException{
-		if(acquirente == null || acquirente.getCart().getNumeroDiArticoli() == 0) {
+		if(acquirente == null || acquirente.getCart() == null) {
 			return;
 		}
 		

@@ -1,8 +1,6 @@
 package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
-import java.io.FileInputStream;
-
 import org.dbunit.Assertion;
 import org.dbunit.DBTestCase;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
@@ -13,11 +11,11 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.model.AcquirenteModel;
 
-public class DBTestCaseProva extends DBTestCase {
+public class UpdateCartTestCase extends DBTestCase {
 	
 	private AcquirenteModel acquirenteModel;
 	 
-    public DBTestCaseProva(String name) {
+    public UpdateCartTestCase(String name) {
         super(name);
         System.setProperty(
           PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS,
@@ -47,7 +45,7 @@ public class DBTestCaseProva extends DBTestCase {
         ITable actualTable = databaseDataSet.getTable("ArticoloInCarrello");
  
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/last_cart.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/update_cart_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable("ArticoloInCarrello");
  
         Assertion.assertEquals(expectedTable, actualTable);
@@ -59,6 +57,6 @@ public class DBTestCaseProva extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/init_cart.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/db_init.xml"));
     }
 }

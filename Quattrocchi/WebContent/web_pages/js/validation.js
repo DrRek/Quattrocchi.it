@@ -63,12 +63,10 @@ function userid_validation(uid,x,y){
 	var uid_len = uid.val().length;
 	if (uid_len == 0 || uid_len >= y || uid_len < x || !(uid.val().match(lettersAndNumbers)))
 	{
-		$("#userid").html("This username is not valid!");
-		uid.focus();
+		showError("Username non valido");
 		return false;
 	}
 	{
-		$("#userid").empty();
 		return true;
 	}
 }
@@ -79,12 +77,10 @@ function passid_validation(pass,x,y)
 	var pass_len = pass.val().length;
 	if (pass_len == 0 ||pass_len >= y || pass_len < x || !(uid.val().match(lettersAndNumbers)))
 	{
-		$("#passid").html("This password is not valid!");
-		pass.focus();
+		showError("Password non valido");
 		return false;
 	}
 	else{
-		$("#passid").empty();
 		return true;
 	}
 }

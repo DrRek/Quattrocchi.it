@@ -133,7 +133,7 @@
 					<td><%=sa.getStato() %></td>
 					<td>
 						<input type="hidden" class="addressCode" value="<%=sa.getCodice()%>"/>
-						<input type="submit" class="btn btn-outline-secondary" name="removeAddress" value="remove" />
+						<input type="submit" class="btn btn-outline-secondary" name="removeAddress" value="rimuovi" />
 					</td>
 				</tr>
 				<%} %>

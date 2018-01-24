@@ -19,16 +19,16 @@ public class UpdateCartTestCase extends DBTestCase {
         super(name);
         System.setProperty(
           PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS,
-          "com.mysql.jdbc.Driver");
+          DatabaseProperty.DATABASE_DRIVER);
         System.setProperty(
           PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL,
-          "jdbc:mysql://127.0.0.1:3306/quattrocchidb");
+          DatabaseProperty.DATABASE_URL);
         System.setProperty(
           PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME,
-          "progetto");
+          DatabaseProperty.DATABASE_USERNAME);
         System.setProperty(
           PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD,
-          "pw");
+          DatabaseProperty.DATABASE_PASSWORD);
 
 		acquirenteModel = new AcquirenteModel();
     }

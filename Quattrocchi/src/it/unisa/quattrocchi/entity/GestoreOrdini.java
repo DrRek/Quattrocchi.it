@@ -1,5 +1,10 @@
 package it.unisa.quattrocchi.entity;
 
+/**
+ * Questa classe rappresenta un gestore degli orgini.
+ * @author quattrocchi.it
+ *
+ */
 public class GestoreOrdini {
 	private String username;
 	private String password;

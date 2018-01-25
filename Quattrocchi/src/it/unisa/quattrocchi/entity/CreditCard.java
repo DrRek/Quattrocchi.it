@@ -2,6 +2,11 @@ package it.unisa.quattrocchi.entity;
 
 import java.util.Date;
 
+/**
+ * Questa classe rappresenta la carta di credito.
+ * @author quattrocchi.it
+ *
+ */
 public class CreditCard {
 
 	private String numeroCC, intestatario, circuito;

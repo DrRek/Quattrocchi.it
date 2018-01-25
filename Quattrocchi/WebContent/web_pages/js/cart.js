@@ -16,7 +16,7 @@ $(document).ready(function() {
 				error : function(xhr, status, errorThrown) {
 					console.log(JSON.stringify(xhr));
 					console.log("AJAX error: " + status + ' : ' + errorThrown);
-					showError("Errore durante il cambio della quantità dell'articolo nel carrello! Se il problema persiste contattaci");
+					showNotification("Errore durante il cambio della quantità dell'articolo nel carrello! Se il problema persiste contattaci");
 				},
 				success : function(responseText) {
 						if(responseText!=null && responseText!=""){
@@ -25,7 +25,7 @@ $(document).ready(function() {
 								updateCartPrice(prezzo)
 								updateCartNumber()
 							} catch(ex){
-								showError(responseText)
+								showNotification(responseText)
 							}
 						}
 				}

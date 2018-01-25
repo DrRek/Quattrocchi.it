@@ -51,7 +51,7 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 			
 			String idS = request.getParameter("articoloId");
 			if(idS==null || idS.equals("")) {
-				request.setAttribute("error", "E' necessario fornire l'id dell'articolo da cancellare dal carrello.");
+				request.setAttribute("notification", "E' necessario fornire l'id dell'articolo da cancellare dal carrello.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
 				dispatcher.forward(request, response);
 				return;
@@ -61,13 +61,13 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 			try {
 				articoloId = Integer.parseInt(idS);
 			} catch(Exception e) {
-				request.setAttribute("error", "Identificativo articolo non valido.");
+				request.setAttribute("notification", "Identificativo articolo non valido.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
 				dispatcher.forward(request, response);
 				return;
 			}
 			if(articoloId==0) {
-				request.setAttribute("error", "Identificativo articolo non valido.");
+				request.setAttribute("notification", "Identificativo articolo non valido.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
 				dispatcher.forward(request, response);
 				return;
@@ -92,7 +92,7 @@ public class RimuoviProdottoDalCarrello extends HttpServlet{
 			ArticoloInStock articolo;
 			articolo = articoloInStockModel.doRetrieveByIdInStock(articoloId);
 			if(articolo==null) {
-				request.setAttribute("error", "L'identificativo fornito non corrisponde a nessun articolo nel carrello.");
+				request.setAttribute("notification", "L'identificativo fornito non corrisponde a nessun articolo nel carrello.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_carrello");
 				dispatcher.forward(request, response);
 				return;

@@ -128,17 +128,17 @@
 <br>
 <br>
 <% 
-	String error = (String) request.getAttribute("error");
-	if(error != null && !error.equals("")){
+	String notification = (String) request.getAttribute("notification");
+	if(notification != null && !notification.equals("")){
 %>
-		<div id="errorInfoDiv" class="alert alert-warning container" style="text-align: center;">
-			<h3 id="errorText"><%=error%></h3>
-			<input type="button" class="btn btn-outline-secondary" onClick='$("#errorInfoDiv").hide()' value="OK" />
+		<div id="notificationInfoDiv" class="alert alert-warning container" style="text-align: center;">
+			<h3 id="notificationText"><%=notification%></h3>
+			<input type="button" class="btn btn-outline-secondary" onClick='$("#notificationInfoDiv").hide()' value="OK" />
 		</div>
 		<% } else {%>
-		<div id="errorInfoDiv" class="alert alert-warning container" style="text-align: center; display: none;">
-			<h3 id="errorText">test</h3>
-			<input type="button" class="btn btn-outline-secondary" onClick='$("#errorInfoDiv").hide()' value="OK" />
+		<div id="notificationInfoDiv" class="alert alert-warning container" style="text-align: center; display: none;">
+			<h3 id="notificationText"></h3>
+			<input type="button" class="btn btn-outline-secondary" onClick='$("#notificationInfoDiv").hide()' value="OK" />
 		</div>
 <%} %>
 

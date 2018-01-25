@@ -17,13 +17,13 @@ $(document).ready(function() {
 function checkAdvancedSearchRegex(){
 	var toSearch = $('input[name=daCercare]').val();
 	if(toSearch != null && toSearch != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(toSearch)){
-		showError("Parametro da cercare non valido.")
+		showNotification("Parametro da cercare non valido.")
 		return false;
 	}
 	
 	var marca = $('select[name=marca]').val();
 	if(marca != null && marca != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(marca)){
-		showError("Parametro marca non valido.")
+		showNotification("Parametro marca non valido.")
 		return false;
 	}
 	
@@ -32,7 +32,7 @@ function checkAdvancedSearchRegex(){
 		try{
 			parseInt(prezzoMin)
 		} catch(e){
-			showError("Parametro prezzo minimo non valido.")
+			showNotification("Parametro prezzo minimo non valido.")
 			return false;
 		}
 	}
@@ -42,14 +42,14 @@ function checkAdvancedSearchRegex(){
 		try{
 			parseInt(prezzoMax)
 		} catch(e){
-			showError("Parametro prezzo massimo non valido.")
+			showNotification("Parametro prezzo massimo non valido.")
 			return false;
 		}
 	}
 	
 	var colore = $('input[name=colore]').val();
 	if(colore != null && colore != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(marca)){
-		showError("Parametro colore non valido.")
+		showNotification("Parametro colore non valido.")
 		return false;
 	}
 	
@@ -77,7 +77,7 @@ function advancedSearch() {
 		error : function(xhr, status, errorThrown) {
 			console.log(JSON.stringify(xhr));
 			console.log("AJAX error: " + status + ' : ' + errorThrown);
-			showError("Errore durante l'esecuzione della ricerca avanzata! Se il problema persiste contattaci");
+			showNotification("Errore durante l'esecuzione della ricerca avanzata! Se il problema persiste contattaci");
 		},
 		success : function(responseText) {
 			formatData(responseText);
@@ -93,7 +93,7 @@ function retrieveAll() {
 		error : function(xhr, status, errorThrown) {
 			console.log(JSON.stringify(xhr));
 			console.log("AJAX error: " + status + ' : ' + errorThrown);
-			showError("Errore durante l'esecuzione della ricerca globale! Se il problema persiste contattaci");
+			showNotification("Errore durante l'esecuzione della ricerca globale! Se il problema persiste contattaci");
 		},
 		success : function(responseText) {
 			formatData(responseText);
@@ -113,7 +113,7 @@ function simpleSearch(toSearch) {
 		error : function(xhr, status, errorThrown) {
 			console.log(JSON.stringify(xhr));
 			console.log("AJAX error: " + status + ' : ' + errorThrown);
-			showError("Errore durante l'esecuzione della ricerca semplice! Se il problema persiste contattaci");
+			showNotification("Errore durante l'esecuzione della ricerca semplice! Se il problema persiste contattaci");
 		},
 		success : function(responseText) {
 			formatData(responseText);
@@ -170,6 +170,6 @@ function formatData(responseText){
 		});
 		$("#demos").html(toAppend);
 	} catch (exception){
-		showError(responseText);
+		showNotification(responseText);
 	}
 }

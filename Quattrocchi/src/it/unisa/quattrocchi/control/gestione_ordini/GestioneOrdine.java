@@ -50,7 +50,7 @@ public class GestioneOrdine extends HttpServlet{
 			
 			GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
 			if(gestoreOrdini==null) {
-				request.setAttribute("error", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
+				request.setAttribute("notification", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 				dispatcher.forward(request, response);
 				return;
@@ -58,7 +58,7 @@ public class GestioneOrdine extends HttpServlet{
 			
 			String idS = request.getParameter("ordineId");
 			if(idS==null || idS.equals("")) {
-				request.setAttribute("error", "Necessario fornire un identificativo dell'ordine.");
+				request.setAttribute("notification", "Necessario fornire un identificativo dell'ordine.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;
@@ -68,13 +68,13 @@ public class GestioneOrdine extends HttpServlet{
 			try {
 				id = Integer.parseInt(idS);
 			} catch(Exception e) {
-				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				request.setAttribute("notification", "Identificativo dell'ordine non valido.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;
 			}
 			if(id==0) {
-				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				request.setAttribute("notification", "Identificativo dell'ordine non valido.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;
@@ -82,7 +82,7 @@ public class GestioneOrdine extends HttpServlet{
 			
 			Order ordineDaGestire = orderModel.doRetrieveById(id);
 			if(ordineDaGestire==null) {
-				request.setAttribute("error", "Nessun ordine ritrovato con il dato identificativo.");
+				request.setAttribute("notification", "Nessun ordine ritrovato con il dato identificativo.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;

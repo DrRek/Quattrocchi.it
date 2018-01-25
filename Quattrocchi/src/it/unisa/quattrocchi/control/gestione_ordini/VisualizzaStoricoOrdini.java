@@ -47,7 +47,7 @@ public class VisualizzaStoricoOrdini extends HttpServlet{
 			
 			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(a==null) {
-				request.setAttribute("error", "Devi essere loggato per poter effettuare il checkout.");
+				request.setAttribute("notification", "Devi essere loggato per poter effettuare il checkout.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 			}

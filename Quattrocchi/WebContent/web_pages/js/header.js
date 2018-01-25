@@ -1,6 +1,6 @@
-function showError(error){
-	if(error != null && error != ""){
-		$('#errorInfoDiv').show();
-		$('#errorText').html(error);
+function showNotification(notification){
+	if(notification != null && notification != ""){
+		$('#notificationInfoDiv').show();
+		$('#notificationText').html(notification);
 	}
 }

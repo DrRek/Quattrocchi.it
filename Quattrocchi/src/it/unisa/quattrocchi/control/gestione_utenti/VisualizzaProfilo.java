@@ -44,7 +44,7 @@ public class VisualizzaProfilo extends HttpServlet{
 			
 			Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(usr==null) {
-				request.setAttribute("error", "E' neccessario effettuare il login!");
+				request.setAttribute("notification", "E' neccessario effettuare il login!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 				return;

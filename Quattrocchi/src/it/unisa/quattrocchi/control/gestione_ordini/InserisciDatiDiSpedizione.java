@@ -55,7 +55,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			
 			GestoreOrdini gestoreOrdini = (GestoreOrdini) request.getSession().getAttribute("gestoreOrdini");
 			if(gestoreOrdini==null) {
-				request.setAttribute("error", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
+				request.setAttribute("notification", "Errore nell'eseguire la richiesta. Permessi insufficienti.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 				dispatcher.forward(request, response);
 				return;
@@ -63,7 +63,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			
 			String idS = request.getParameter("ordineId");
 			if(idS==null || idS.equals("")) {
-				request.setAttribute("error", "Necessario fornire un identificativo dell'ordine.");
+				request.setAttribute("notification", "Necessario fornire un identificativo dell'ordine.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;
@@ -73,13 +73,13 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			try {
 				orderId = Integer.parseInt(idS);
 			} catch(Exception e) {
-				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				request.setAttribute("notification", "Identificativo dell'ordine non valido.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;
 			}
 			if(orderId==0) {
-				request.setAttribute("error", "Identificativo dell'ordine non valido.");
+				request.setAttribute("notification", "Identificativo dell'ordine non valido.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;
@@ -87,7 +87,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			
 			Order orderToUpdate = orderModel.doRetrieveById(orderId);
 			if(orderToUpdate==null) {
-				request.setAttribute("error", "Ordine con questo identificativo non trovato");
+				request.setAttribute("notification", "Ordine con questo identificativo non trovato");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestoreOrdini");
 				dispatcher.forward(request, response);
 				return;
@@ -95,7 +95,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			
 			String corriere = request.getParameter("corriere");
 			if(corriere==null || !corriere.matches("[A-Za-z ]{3,10}")) {
-				request.setAttribute("error", "Corriere inserito non valido.");
+				request.setAttribute("notification", "Corriere inserito non valido.");
 				request.setAttribute("ordineId", idS);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
 				dispatcher.forward(request, response);
@@ -104,7 +104,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			
 			String tracking = request.getParameter("tracking");
 			if(tracking==null || !tracking.matches("[A-Za-z0-9]{5,15}")) {
-				request.setAttribute("error", "Numero di tracking inserito non valido.");
+				request.setAttribute("notification", "Numero di tracking inserito non valido.");
 				request.setAttribute("ordineId", idS);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
 				dispatcher.forward(request, response);
@@ -114,7 +114,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			String statoOrdine = request.getParameter("statoOrdine");
 			if(statoOrdine==null || 
 					(!statoOrdine.equalsIgnoreCase(Order.DA_SPEDIRE) && !statoOrdine.equalsIgnoreCase(Order.IN_CORSO) && !statoOrdine.equalsIgnoreCase(Order.TERMINATO))) {
-				request.setAttribute("error", "Stato ordine inserito non valido.");
+				request.setAttribute("notification", "Stato ordine inserito non valido.");
 				request.setAttribute("ordineId", idS);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
 				dispatcher.forward(request, response);
@@ -128,7 +128,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			    Date parsed = format.parse(strDate);
 			    dataConsegna = new java.sql.Date(parsed.getTime());
 			} catch (Exception e){
-				request.setAttribute("error", "Data di consegna inserita non valida. Formato valido: yyyy-MM-dd");
+				request.setAttribute("notification", "Data di consegna inserita non valida. Formato valido: yyyy-MM-dd");
 				request.setAttribute("ordineId", idS);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");
 				dispatcher.forward(request, response);

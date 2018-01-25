@@ -35,7 +35,7 @@ public class RicercaTutti extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response){
 		try {
 			if(!"XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-				request.setAttribute("error", "Errore generato dalla richiesta! Se il problema persiste contattaci.");
+				request.setAttribute("notification", "Errore generato dalla richiesta! Se il problema persiste contattaci.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 				dispatcher.forward(request, response);
 				return;

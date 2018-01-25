@@ -10,6 +10,7 @@ public class ArticoloInOrder {
 	private String descrizione;
 	private double prezzo;
 	private int quantità;
+	private Order order;
 	
 	public ArticoloInOrder(int codice, String modello, String marca, String img1, String img2, String img3,
 			String descrizione, double prezzo, int quantità) {
@@ -109,10 +110,18 @@ public class ArticoloInOrder {
 		this.quantità = quantità;
 	}
 
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
 	@Override
 	public String toString() {
 		return "ArticoloInOrder [codice=" + codice + ", modello=" + modello + ", marca=" + marca + ", descrizione="
-				+ descrizione + ", prezzo=" + prezzo + ", quantità=" + quantità + "]";
+				+ descrizione + ", prezzo=" + prezzo + ", quantità=" + quantità + ", ordine=" + order.getCodice() + "]";
 	}
 		
 

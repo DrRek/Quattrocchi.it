@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.db.credit_card;
+package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -16,7 +16,6 @@ import it.unisa.quattrocchi.entity.ArticoloInOrder;
 import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.ArticoloInOrderModel;
 import it.unisa.quattrocchi.model.CreditCardModel;
-import test.it.unisa.quattrocchi.db.DatabaseProperty;
 
 public class CreditCardTestCase extends DBTestCase {
 	 

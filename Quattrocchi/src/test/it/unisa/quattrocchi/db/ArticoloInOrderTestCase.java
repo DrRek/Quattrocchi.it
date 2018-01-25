@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.db.articolo_in_order;
+package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -13,7 +13,6 @@ import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
 import it.unisa.quattrocchi.model.ArticoloInOrderModel;
-import test.it.unisa.quattrocchi.db.DatabaseProperty;
 
 public class ArticoloInOrderTestCase extends DBTestCase {
 	 

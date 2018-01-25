@@ -27,9 +27,9 @@ public class OrderModel {
 	
 	public static String RETRIEVE_ORDER_BY_ID = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
 	public static String RETRIEVE_ALL_ORDER = "SELECT * FROM " + TABLE_NAME_ORDER + ";";
+	public static String RETRIEVE_ORDER_BY_ACQUIRENTE = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
 	public static String INSERT_ORDER = "INSERT INTO "+TABLE_NAME_ORDER+" (DataEsecuzione,Prezzo,IndirizzoSpedizione,CartaCredito,Acquirente,StatoOrdine,DataConsegna,NumeroTracking,Corriere) VALUES(?,?,?,?,?,?,?,?,?);";
 	public static String UPDATE_ORDER = "update "+TABLE_NAME_ORDER+" set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ? where Codice =?;";
-	public static String SELECT_ORDER_BY_ACQUIRENTE = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
 	
 	static ShippingAddressModel shippingAddressModel = new ShippingAddressModel();
 	static CreditCardModel creditCardModel = new CreditCardModel();
@@ -280,7 +280,7 @@ public class OrderModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_ORDER_BY_ACQUIRENTE);
+			stm = conn.prepareStatement(RETRIEVE_ORDER_BY_ACQUIRENTE);
 			stm.setString(1, acquirente.getUsername());
 			
 			ResultSet rs = stm.executeQuery();

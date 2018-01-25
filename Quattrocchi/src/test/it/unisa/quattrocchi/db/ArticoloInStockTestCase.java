@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.db.articolo_in_stock;
+package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -13,7 +13,6 @@ import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
-import test.it.unisa.quattrocchi.db.DatabaseProperty;
 
 public class ArticoloInStockTestCase extends DBTestCase {
 	 

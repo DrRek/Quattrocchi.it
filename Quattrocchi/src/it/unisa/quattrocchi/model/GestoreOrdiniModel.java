@@ -17,8 +17,8 @@ public class GestoreOrdiniModel {
 	
 	public static final String TABLE_NAME_GESTOREORDINI = "gestoreordini";
 	
-	public static String SELECT_GESTORE_ORDINI_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ?;";
-	public static String SELECT_GESTORE_ORDINI_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ? AND Pwd = ?;";
+	public static String RETRIEVE_GESTORE_ORDINI_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ?;";
+	public static String RETRIEVE_GESTORE_ORDINI_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ? AND Pwd = ?;";
 	
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un GestoreOrdini
@@ -39,7 +39,7 @@ public class GestoreOrdiniModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_GESTORE_ORDINI_BY_USERNAME);
+			stm = conn.prepareStatement(RETRIEVE_GESTORE_ORDINI_BY_USERNAME);
 			stm.setString(1, userName);
 			
 			ResultSet rs = stm.executeQuery();
@@ -93,7 +93,7 @@ public class GestoreOrdiniModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_GESTORE_ORDINI_BY_CREDENTIALS);
+			stm = conn.prepareStatement(RETRIEVE_GESTORE_ORDINI_BY_CREDENTIALS);
 			stm.setString(1, userName);
 			stm.setString(2, password);
 			

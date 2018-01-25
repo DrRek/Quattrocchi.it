@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.db.acquirente;
+package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -12,7 +12,6 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
 import it.unisa.quattrocchi.model.AcquirenteModel;
-import test.it.unisa.quattrocchi.db.DatabaseProperty;
 
 public class AcquirenteTestCase extends DBTestCase {
 	 

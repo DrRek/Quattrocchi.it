@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  			
+  <indirizzospedizione	Id="998"
+						Stato="prova 1"
+						Provincia="p2"
+						CAP="33333"
+						Indirizzo="via della prova 4"
+						NumeroCivico="55"
+						Acquirente="Expos"/>
+  <indirizzospedizione	Id="999"
+						Stato="Italia"
+						Provincia="NA"
+						CAP="80045"
+						Indirizzo="via Settembrini"
+						NumeroCivico="55"
+						Acquirente="AntosxA"/>
+  <indirizzospedizione	Id="1000"
+						Stato="Italia"
+						Provincia="NA"
+						CAP="80059"
+						Indirizzo="via Ottembrini"
+						NumeroCivico="66"
+						Acquirente="Expos"/>
+  
+</dataset>

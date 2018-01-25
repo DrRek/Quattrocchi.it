@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.db.shipping_address;
+package test.it.unisa.quattrocchi.db;
 
 import java.io.File;
 import java.sql.PreparedStatement;
@@ -14,7 +14,6 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
 import it.unisa.quattrocchi.model.CreditCardModel;
 import it.unisa.quattrocchi.model.ShippingAddressModel;
-import test.it.unisa.quattrocchi.db.DatabaseProperty;
 
 public class ShippingAddressTestCase extends DBTestCase {
 	 

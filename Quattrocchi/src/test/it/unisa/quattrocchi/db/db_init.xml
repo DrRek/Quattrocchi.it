@@ -62,6 +62,13 @@
 						Indirizzo="via Settembrini"
 						NumeroCivico="55"
 						Acquirente="AntosxA"/>
+  <indirizzospedizione	Id="1000"
+						Stato="Italia"
+						Provincia="NA"
+						CAP="80059"
+						Indirizzo="via Ottembrini"
+						NumeroCivico="66"
+						Acquirente="Expos"/>
 					
   <cartacredito	IdCarta="997"
 				NumeroCC="4023654123214120"

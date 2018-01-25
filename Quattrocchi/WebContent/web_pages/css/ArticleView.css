@@ -100,15 +100,14 @@
 
 .info {
 	font-size: 14px;
-	color: #969696;
+	color: #008040;
 	margin-bottom: 10px;
 }
 
 .price {
 	font-size: 16px;
 	margin-bottom: 20px;
-	color: #969696;
-}
+	color: #969696
 
 img.zoom {
 	width: 350px;

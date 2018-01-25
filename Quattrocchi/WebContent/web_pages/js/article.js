@@ -162,6 +162,7 @@ function formatData(responseText){
 					+'<img src="/Quattrocchi/web_pages/image/'+articleObject.img1+'" alt="pic" />'
 					+'</div>'
 					+ '<div class="bottom">'
+					+ '<div class="info">Disponibilità immediata</div>'
 					+ '<div class="heading">'+ articleObject.modello +'</div>'
 					+'<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>'
 					+'</div>'

@@ -15,7 +15,7 @@ import it.unisa.quattrocchi.entity.GestoreOrdini;
  */
 public class GestoreOrdiniModel {
 	
-	public static final String TABLE_NAME_GESTOREORDINI = "quattrocchidb.gestoreordini";
+	public static final String TABLE_NAME_GESTOREORDINI = "gestoreordini";
 	
 	public static String SELECT_GESTORE_ORDINI_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ?;";
 	public static String SELECT_GESTORE_ORDINI_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ? AND Pwd = ?;";

@@ -23,7 +23,7 @@ import it.unisa.quattrocchi.entity.ShippingAddress;
  */
 public class OrderModel {
 	
-	public static final String TABLE_NAME_ORDER = "quattrocchidb.ordine";
+	public static final String TABLE_NAME_ORDER = "ordine";
 	
 	public static String RETRIEVE_ORDER_BY_ID = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
 	public static String RETRIEVE_ALL_ORDER = "SELECT * FROM " + TABLE_NAME_ORDER + ";";

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  				
+  <articoloinstock 	Codice="999"
+					Modello="Occhiali iGreen"
+					Marca="GreenVision"
+					Img1="Occhiali iGreen_GreenVision_1.jpg"
+					Img2="Occhiali iGreen_GreenVision_2.jpg"
+					Img3="Occhiali iGreen_GreenVision_3.jpg"
+					Descrizione="descrizione"
+					Prezzo="30.00"
+					Disponibilita="10"/>
+  
+</dataset>

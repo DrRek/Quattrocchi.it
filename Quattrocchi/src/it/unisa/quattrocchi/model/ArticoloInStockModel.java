@@ -17,12 +17,12 @@ import it.unisa.quattrocchi.entity.ArticoloInStock;
  */
 public class ArticoloInStockModel {
 	
-	public static final String TABLE_NAME_CATALOGO = "quattrocchidb.articoloinstock";
+	public static final String TABLE_NAME_CATALOGO = "articoloinstock";
 
-	public static String SELECT_ARTICOLO_STOCK_BY_ID = "SELECT * FROM "+TABLE_NAME_CATALOGO+" WHERE Codice = ?;";
-	public static String SELECT_ALL_ARTICOLO_STOCK = "SELECT * FROM "+TABLE_NAME_CATALOGO+";";
-	public static String SELECT_ARTICOLO_STOCK_BY_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
-	public static String SELECT_ARTICOLO_STOCK_BY_ADVANCED_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)) and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
+	public static String RETRIEVE_ARTICOLO_STOCK_BY_ID = "SELECT * FROM "+TABLE_NAME_CATALOGO+" WHERE Codice = ?;";
+	public static String RETRIEVE_ALL_ARTICOLO_STOCK = "SELECT * FROM "+TABLE_NAME_CATALOGO+";";
+	public static String RETRIEVE_ARTICOLO_STOCK_BY_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
+	public static String RETRIEVE_ARTICOLO_STOCK_BY_ADVANCED_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)) and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
 
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un articolo in stock
@@ -44,7 +44,7 @@ public class ArticoloInStockModel {
 
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_ARTICOLO_STOCK_BY_ID);
+			stm = conn.prepareStatement(RETRIEVE_ARTICOLO_STOCK_BY_ID);
 			stm.setInt(1, id);
 			
 			ResultSet rs = stm.executeQuery();
@@ -91,7 +91,7 @@ public class ArticoloInStockModel {
 
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_ALL_ARTICOLO_STOCK);
+			stm = conn.prepareStatement(RETRIEVE_ALL_ARTICOLO_STOCK);
 			
 			ResultSet rs = stm.executeQuery();
 
@@ -144,7 +144,7 @@ public class ArticoloInStockModel {
 
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_ARTICOLO_STOCK_BY_SEARCH);
+			stm = conn.prepareStatement(RETRIEVE_ARTICOLO_STOCK_BY_SEARCH);
 			
 			daCercare = "%"+daCercare+"%";
 			stm.setString(1, daCercare);
@@ -215,7 +215,7 @@ public class ArticoloInStockModel {
 
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_ARTICOLO_STOCK_BY_ADVANCED_SEARCH);
+			stm = conn.prepareStatement(RETRIEVE_ARTICOLO_STOCK_BY_ADVANCED_SEARCH);
 			stm.setString(1, daCercare);
 			stm.setString(2, daCercare);
 			stm.setString(3, daCercare);

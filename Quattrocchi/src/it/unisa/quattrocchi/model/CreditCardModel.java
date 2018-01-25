@@ -23,7 +23,7 @@ import it.unisa.quattrocchi.entity.CreditCard;
  */
 public class CreditCardModel {
 
-	private static final String TABLE_NAME_CREDITCARD = "quattrocchidb.cartacredito";
+	public static final String TABLE_NAME_CREDITCARD = "cartacredito";
 	
 	public static String SELECT_CREDIT_CARD_BY_ID = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE IdCarta = ?;";
 	public static String SELECT_ALL_CREDIT_CARD_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE Acquirente = ?;";

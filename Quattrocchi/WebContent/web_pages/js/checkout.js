@@ -24,7 +24,7 @@ $(document).ready(function() {
 			error : function(xhr, status, errorThrown) {
 				console.log(JSON.stringify(xhr));
 				console.log("AJAX error: " + status + ' : ' + errorThrown);
-				showError("Errore durante l'esecuzione del checkout! Se il problema persiste contattaci");
+				showNotification("Errore durante l'esecuzione del checkout! Se il problema persiste contattaci");
 			}
 		});*/
 	});

@@ -48,7 +48,7 @@ public class VisualizzaProdotto extends HttpServlet{
 			
 			String idS = request.getParameter("id");
 			if(idS==null || idS.equals("")) {
-				request.setAttribute("error", "Necessario fornire identificativo del prodotto.");
+				request.setAttribute("notification", "Necessario fornire identificativo del prodotto.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
 				dispatcher.forward(request, response);
 				return;
@@ -58,7 +58,7 @@ public class VisualizzaProdotto extends HttpServlet{
 			try {
 				id = Integer.parseInt(idS);
 			} catch(Exception e) {
-				request.setAttribute("error", "Formato identificativo del prodotto non valido.");
+				request.setAttribute("notification", "Formato identificativo del prodotto non valido.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
 				dispatcher.forward(request, response);
 				return;
@@ -67,7 +67,7 @@ public class VisualizzaProdotto extends HttpServlet{
 			if(id!=0) {
 				ArticoloInStock a = articoloInStockModel.doRetrieveByIdInStock(id);
 				if(a==null) {
-					request.setAttribute("error", "Nessun articolo trovato.");
+					request.setAttribute("notification", "Nessun articolo trovato.");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
 					dispatcher.forward(request, response);
 					return;

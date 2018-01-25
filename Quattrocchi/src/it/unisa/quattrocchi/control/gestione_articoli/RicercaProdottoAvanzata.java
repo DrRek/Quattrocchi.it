@@ -48,7 +48,7 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 
 			//Per controllare che la richiesta sia del tipo giusto
 			if(!"XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-				request.setAttribute("error", "Errore generato dalla richiesta! Se il problema persiste contattaci.");
+				request.setAttribute("notification", "Errore generato dalla richiesta! Se il problema persiste contattaci.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 				dispatcher.forward(request, response);
 				return;
@@ -101,7 +101,7 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 			}
 
 			String colore = request.getParameter("colore");
-			if(colore == null) {
+			if(colore == null || colore.equals("")) {
 				colore = "";
 			} else if(!colore.matches("[A-Za-z0-9 ]{1,20}")) {
 				response.getWriter().write(new Gson().toJson("Formato parametri non valido."));
@@ -113,7 +113,6 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 				response.getWriter().write(new Gson().toJson("Nessun articolo trovato."));
 				return;
 			}
-
 			response.getWriter().write(new Gson().toJson(articoli));
 		} catch (Exception e) {
 			System.out.println("Errore in Ricerca prodotto avanzata:");

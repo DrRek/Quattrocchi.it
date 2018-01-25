@@ -51,14 +51,14 @@ public class VisualizzaCheckout extends HttpServlet {
 			
 			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(a==null) {
-				request.setAttribute("error", "Devi essere loggato per poter effettuare il checkout.");
+				request.setAttribute("notification", "Devi essere loggato per poter effettuare il checkout.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 			}
 			
 			Cart carrello = a.getCart();
 			if(carrello==null || carrello.getNumeroDiArticoli()==0) {
-				request.setAttribute("error", "Aggiungi articoli al carrello prima di poter effettuare il checkout.");
+				request.setAttribute("notification", "Aggiungi articoli al carrello prima di poter effettuare il checkout.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
 				dispatcher.forward(request, response);
 			}

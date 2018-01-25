@@ -174,6 +174,5 @@
 	<%@ include file="../view/Footer.jsp"%>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="web_pages/js/user.js"></script>
-	<script src="js/util.js"></script>
 </body>
 </html>

@@ -67,7 +67,7 @@
 				<form>
 					<div class="form-group">
 						<h4>Nome:</h4>
-						<input type="text" class="form-control" name="daCercare1"
+						<input type="text" class="form-control" name="daCercare"
 							<%if (toSearch != null) {%> value="<%=toSearch%>" <%}%> />
 					</div>
 					<hr>
@@ -99,7 +99,7 @@
 					</div>
 					<hr>
 					<input class="form-control" id="advancedSearch" type='button'
-						value='Ricerca!' />
+						value='Cerca' />
 				</form>
 			</div>
 		</div>

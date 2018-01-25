@@ -56,7 +56,7 @@ public class Checkout extends HttpServlet{
 
 			Acquirente usr = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(usr==null) {
-				request.setAttribute("error", "E' neccessario effettuare il login!");
+				request.setAttribute("notification", "E' neccessario effettuare il login!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 				return;
@@ -64,7 +64,7 @@ public class Checkout extends HttpServlet{
 
 			String creditCardIDS = request.getParameter("CreditCardID");
 			if(creditCardIDS==null || creditCardIDS.equals("")) {
-				request.setAttribute("error", "E' neccessario scegliere una carta di credito valida!");
+				request.setAttribute("notification", "E' neccessario scegliere una carta di credito valida!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_checkout");
 				dispatcher.forward(request, response);
 				return;
@@ -74,7 +74,7 @@ public class Checkout extends HttpServlet{
 			try {
 				creditCardID = Integer.parseInt(creditCardIDS);
 			} catch(Exception e) {
-				request.setAttribute("error", "E' neccessario scegliere una carta di credito valida!");
+				request.setAttribute("notification", "E' neccessario scegliere una carta di credito valida!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_checkout");
 				dispatcher.forward(request, response);
 				return;
@@ -82,7 +82,7 @@ public class Checkout extends HttpServlet{
 
 			String shippingAddressIDS = request.getParameter("ShippingAddressID");
 			if(shippingAddressIDS==null || shippingAddressIDS.equals("")) {
-				request.setAttribute("error", "E' neccessario scegliere un indirizzo di spedizione valido!");
+				request.setAttribute("notification", "E' neccessario scegliere un indirizzo di spedizione valido!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_checkout");
 				dispatcher.forward(request, response);
 				return;
@@ -92,7 +92,7 @@ public class Checkout extends HttpServlet{
 			try {
 				shippingAddressID = Integer.parseInt(shippingAddressIDS);
 			} catch(Exception e) {
-				request.setAttribute("error", "E' neccessario scegliere un indirizzo di spedizione valido!");
+				request.setAttribute("notification", "E' neccessario scegliere un indirizzo di spedizione valido!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_checkout");
 				dispatcher.forward(request, response);
 				return;
@@ -102,7 +102,7 @@ public class Checkout extends HttpServlet{
 				CreditCard cc = usr.checkCC(creditCardID);
 				ShippingAddress sa = usr.checkSA(shippingAddressID);
 				if(cc==null || sa==null) {
-					request.setAttribute("error", "Errore nella scelta della carta di credito o dell'indirizzo!");
+					request.setAttribute("notification", "Errore nella scelta della carta di credito o dell'indirizzo!");
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_checkout");
 					dispatcher.forward(request, response);
 					return;
@@ -113,7 +113,7 @@ public class Checkout extends HttpServlet{
 				usr.resetCart();
 				acModel.updateCart(usr);
 
-				request.setAttribute("error", "L'ordine è stato sottomesso con successo!");
+				request.setAttribute("notification", "L'ordine è stato sottomesso con successo!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profilo");
 				dispatcher.forward(request, response);
 				return;

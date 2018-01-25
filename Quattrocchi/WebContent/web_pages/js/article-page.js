@@ -11,7 +11,7 @@ $(document).ready(function() {
 			error : function(xhr, status, errorThrown) {
 				console.log(JSON.stringify(xhr));
 				console.log("AJAX error: " + status + ' : ' + errorThrown);
-				showError("Errore durante l'aggiunta al carrello! Se il problema persiste contattaci");
+				showNotification("Errore durante l'aggiunta al carrello! Se il problema persiste contattaci");
 			},
 			success : function(responseText) {
 				$("span#count").html(parseInt($("span#count").html()) + 1);

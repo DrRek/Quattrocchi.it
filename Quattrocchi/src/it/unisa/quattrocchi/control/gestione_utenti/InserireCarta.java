@@ -47,7 +47,7 @@ public class InserireCarta  extends HttpServlet{
 			
 			//Per controllare che la richiesta sia del tipo giusto
 			if(!"XMLHttpRequest".equals(request.getHeader("X-Requested-With"))) {
-				request.setAttribute("error", "Errore generato dalla richiesta! Se il problema persiste contattaci.");
+				request.setAttribute("notification", "Errore generato dalla richiesta! Se il problema persiste contattaci.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
 				dispatcher.forward(request, response);
 				return;

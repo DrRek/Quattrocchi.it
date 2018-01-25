@@ -181,9 +181,9 @@ public class ArticoloInOrderModel {
 	}
 
 	/**
-	 * 
-	 * @param a
-	 * @param o
+	 * Questo metodo di occupa di aggiungere un articolo ad un ordine.
+	 * @param a un oggetto a di tipo <strong>ArticoloInOrder</strong>
+	 * @param o un oggetto o di tipo <strong>Order</strong>
 	 * @throws SQLException
 	 * 
 	 * @precondition 	a != null.

@@ -54,7 +54,7 @@ public class Login extends HttpServlet{
 
 			String userid = request.getParameter("userid");
 			if(userid==null || !userid.matches("[A-Za-z0-9]{5,15}")) {
-				request.setAttribute("error", "Username o password errati.");
+				request.setAttribute("notification", "Username o password errati.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 				return;
@@ -62,7 +62,7 @@ public class Login extends HttpServlet{
 
 			String passid = request.getParameter("passid");
 			if(passid==null || !passid.matches("[A-Za-z0-9]{5,15}")) {
-				request.setAttribute("error", "Username o password errati.");
+				request.setAttribute("notification", "Username o password errati.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 				return;
@@ -81,7 +81,7 @@ public class Login extends HttpServlet{
 
 			acquirente = aModel.checkLogin(userid, passid);
 			if(acquirente == null) {
-				request.setAttribute("error", "Username o password errati.");
+				request.setAttribute("notification", "Username o password errati.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 				return;

@@ -36,7 +36,7 @@ $(document).ready(function() {
 					$("input[name=cap]").val("");
 					$("input[name=provincia]").val("");
 					$("input[name=stato]").val("");
-					showSuccess("Indirizzo inserito con successo");
+					showNotification("Indirizzo inserito con successo");
 				} catch(exception){
 					showNotification(responseText)
 				}
@@ -79,7 +79,7 @@ $(document).ready(function() {
 					$("input[name=circuito]").val("");
 					$("input[name=scadenza]").val("");
 					$("input[name=cvv]").val("");
-					showSuccess("Carta aggiunta con successo");
+					showNotification("Carta aggiunta con successo");
 				} catch(exception){
 					showNotification(responseText)
 				}

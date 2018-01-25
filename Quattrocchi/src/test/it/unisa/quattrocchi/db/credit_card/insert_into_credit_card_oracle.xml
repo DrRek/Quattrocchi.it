@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  			
+  <cartacredito	IdCarta="997"
+				NumeroCC="4023654123214120"
+				Intestatario="Antonio Spera"
+				Circuito="VISA"
+				DataScadenza="2019-09-01"
+				CvcCvv="101"
+				Acquirente="AntosxA"/>
+  <cartacredito	IdCarta="998"
+				NumeroCC="4023854125699650"
+				Intestatario="Ivan Esposito"
+				Circuito="VISA"
+				DataScadenza="2021-06-01"
+				CvcCvv="154"
+				Acquirente="Expos"/>
+  <cartacredito IdCarta="999"
+				NumeroCC="4023660000000000"
+				Intestatario="Antonio Spera"
+				Circuito="VISA"
+				DataScadenza="2020-06-01"
+				CvcCvv="183"
+				Acquirente="AntosxA"/>
+  <cartacredito IdCarta="11111"
+				NumeroCC="12345"
+				Intestatario="prova 1"
+				Circuito="prova 2"
+				DataScadenza="2020-02-20"
+				CvcCvv="123"
+				Acquirente="Expos"/>
+  
+</dataset>

@@ -21,13 +21,15 @@ import it.unisa.quattrocchi.entity.ShippingAddress;
  */
 public class ShippingAddressModel {
 	
-	public static final String TABLE_NAME_ADDRESS = "quattrocchidb.indirizzospedizione";
+	public static final String TABLE_NAME_ADDRESS = "indirizzospedizione";
 	
 	public static String SELECT_SHIPPING_ADDRESS_BY_ID = "SELECT * FROM "+TABLE_NAME_ADDRESS+" WHERE Id = ?;";
 	public static String SELECT_ALL_SHIPPING_ADDRESS = "SELECT * FROM " + TABLE_NAME_ADDRESS;
-	public static String SELECT_ALL_SHIIPING_ADDRESS_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_ADDRESS+" where Acquirente = ?;";
+	public static String SELECT_ALL_SHIPING_ADDRESS_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_ADDRESS+" where Acquirente = ?;";
 	public static String CREATE_SHIPPING_ADDRESS = "INSERT INTO "+TABLE_NAME_ADDRESS+" (Id,Stato,Provincia,CAP,Indirizzo,NumeroCivico,Acquirente) VALUES(?,?,?,?,?,?,?);";
 	public static String UPDATE_SHIPPING_ADDRESS = "update "+TABLE_NAME_ADDRESS+" set Stato = ?, Provincia = ?, CAP = ?, Indirizzo = ?, NumeroCivico = ? where Id = ? AND Acquirente = ?";
+	public static String DELETE_SHIPPING_ADDRESS = "delete from "+TABLE_NAME_ADDRESS+" where Id = ?;";
+	public static String SET_SHIPPING_ADDRESS_ACQUIRENTE_NULL = "update " + TABLE_NAME_ADDRESS + " set Acquirente = NULL where Id = ?;";
 	
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	
@@ -147,7 +149,7 @@ public class ShippingAddressModel {
 		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(SELECT_ALL_SHIIPING_ADDRESS_BY_ACQUIRENTE);
+			stm = conn.prepareStatement(SELECT_ALL_SHIPING_ADDRESS_BY_ACQUIRENTE);
 			stm.setString(1, username);
 			ResultSet rs = stm.executeQuery();
 			
@@ -301,11 +303,9 @@ public class ShippingAddressModel {
 		Connection conn = null;
 		PreparedStatement stm = null;
 		
-		String query = "delete from " + TABLE_NAME_ADDRESS + " where Id = ?;";
-		
 		try {
 			conn = DriverManagerConnectionPool.getConnection();
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(DELETE_SHIPPING_ADDRESS);
 			
 			stm.setInt(1, id);
 			
@@ -316,8 +316,7 @@ public class ShippingAddressModel {
 			stm.close();
 			conn.commit();
 			
-			query = "update " + TABLE_NAME_ADDRESS + " set Acquirente = NULL where Id = ?;";
-			stm = conn.prepareStatement(query);
+			stm = conn.prepareStatement(SET_SHIPPING_ADDRESS_ACQUIRENTE_NULL);
 			stm.setInt(1, id);
 			stm.executeUpdate();
 			stm.close();

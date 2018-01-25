@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  				
+  
+  <articoloinstock 	Codice="997"
+					Modello="Wayfarer Folding Classic"
+					Marca="RayBan"
+					Img1="Original Wayfarer Classic_RayBan_1.jpg"
+					Img2="Original Wayfarer Classic_RayBan_2.jpg"
+					Img3="Original Wayfarer Classic_RayBan_3.jpg"
+					Descrizione="descrizione"
+					Prezzo="40.00"
+					Disponibilita="20"/>
+  <articoloinstock 	Codice="998"
+					Modello="Original Wayfarer Classic"
+					Marca="RayBan"
+					Img1="Wayfarer Folding Classic_RayBan_1.jpg"
+					Img2="Wayfarer Folding Classic_RayBan_2.jpg"
+					Img3="Wayfarer Folding Classic_RayBan_3.jpg"
+					Descrizione="descrizione"
+					Prezzo="20.00"
+					Disponibilita="15"/>
+  
+</dataset>

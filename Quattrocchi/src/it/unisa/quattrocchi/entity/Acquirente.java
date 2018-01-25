@@ -5,6 +5,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+
+/**
+ * 
+ * @author quattrocchi.it
+ * Questa è una classe che rappresenta l'Acquirente.
+ */
 public class Acquirente {
 	
 	private String username;
@@ -104,6 +110,11 @@ public class Acquirente {
 				+ ", email=" + email + ", dataNascita=" + dataNascita + "]";
 	}
 
+	/**
+	 * Questo metodo controlla se la carta scelta per il pagamento esiste nella lista delle carte dell'Acquirente
+	 * @param creditCardID un oggetto di tipi <strong>Integer</strong>
+	 * @return un oggetto c di tipo <strong>CreditCard</strong>
+	 */
 	public CreditCard checkCC(int creditCardID) {
 		for(CreditCard c : cc) {
 			if(c.getIdCarta() == creditCardID) {
@@ -113,6 +124,11 @@ public class Acquirente {
 		return null;
 	}
 
+	/**
+	 * Questo metodo controlla l'indirizzo scelto per il checkout esiste nella lista degli indirizzi dell'Acquirente
+	 * @param shippingAddressID un oggetto ti tipo <strong>Integer</strong>
+	 * @return un oggetto s di tipo <strong>ShippingAddress</strong>
+	 */
 	public ShippingAddress checkSA(int shippingAddressID) {
 		for(ShippingAddress s : shipAdd) {
 			if(s.getCodice() == shippingAddressID) {
@@ -122,20 +138,37 @@ public class Acquirente {
 		return null;
 	}
 
+	/**
+	 * Resetta il carrello dopo aver completato un ordine.
+	 */
 	public void resetCart() {
 		cart = new Cart(new HashMap<ArticoloInStock, Integer>());
 	}
 
+	
+	/**
+	 * Questo metodo aggiunge un indirizzo di spedizione alla lista degli indirizzi dell'Acquirente.
+	 * @param sa un oggetto di tipo <strong>ShippingAddress</strong>
+	 */
 	public void addShippingAddress(ShippingAddress sa) {
 		if(shipAdd==null) shipAdd=new ArrayList<>();
 		shipAdd.add(sa);
 	}
 
+	/**
+	 * Questo metodo aggiunge una carta di credito alla lista delle carte dell'Acquirente.
+	 * @param creditCard un oggetto di tipo <strong>CreditCard</strong>
+	 */
 	public void addCreditCard(CreditCard creditCard) {
 		if(cc==null) cc=new ArrayList<>();
 		cc.add(creditCard);
 	}
 
+	/**
+	 * Questo metodo rimuove un indirizzo di spedizione dalla lista degli indirizzi dell'Acquirente.
+	 * @param id un oggetto di tipo <strong>Integer</strong>
+	 * @return <strong>true</strong> se è stato rimosso correttamente, altrimentni <strong>false</strong>
+	 */
 	public boolean removeShippingAddress(int id) {
 		for(int i=0; i<shipAdd.size(); i++) {
 			if(shipAdd.get(i).getCodice() == id) {
@@ -146,6 +179,11 @@ public class Acquirente {
 		return false;
 	}
 
+	/**
+	 * Questo metodo rimuove una carta di credito dalla lista delle carte dell'Acquirente.
+	 * @param id un oggetto di tipo <strong>Integer</strong>
+	 * @return <strong>true</strong> se è stata rimossa correttamente, altrimentni <strong>false</strong>
+	 */
 	public boolean removeCartAddress(int id) {
 		for(int i=0; i<cc.size(); i++) {
 			if(cc.get(i).getIdCarta() == id) {

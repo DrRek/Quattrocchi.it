@@ -90,6 +90,10 @@ public class CreditCard {
 		this.acquirente = acquirente;
 	}
 	
+	/**
+	 * Questo metodo consente di ricavare gli ultimi quattro numeri della carta di credito.
+	 * @return un oggetto di tipo <strong>String</strong> contenente gli ultimi quattro numeri della carta di credito.
+	 */
 	public String getLastCC() {
 		return numeroCC.substring(12);
 	}

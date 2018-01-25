@@ -113,7 +113,6 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 				response.getWriter().write(new Gson().toJson("Nessun articolo trovato."));
 				return;
 			}
-
 			response.getWriter().write(new Gson().toJson(articoli));
 		} catch (Exception e) {
 			System.out.println("Errore in Ricerca prodotto avanzata:");

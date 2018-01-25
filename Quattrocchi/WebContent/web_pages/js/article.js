@@ -57,10 +57,7 @@ function checkAdvancedSearchRegex(){
 }
 
 function advancedSearch() {
-	var toSearch = $('input[name=daCercare1]').val();
-	if (toSearch == null || toSearch.length == 0) {
-		toSearch = $('input[name=daCercare]').val();
-	}
+	toSearch = $('input[name=daCercare]').val();
 	var marca = $('select[name=marca]').val();
 	var prezzoMin = $('input[name=prezzoMin]').val();
 	var prezzoMax = $('input[name=prezzoMax]').val();

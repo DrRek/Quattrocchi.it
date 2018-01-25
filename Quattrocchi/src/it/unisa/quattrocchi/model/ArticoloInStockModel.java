@@ -207,7 +207,6 @@ public class ArticoloInStockModel {
 		daCercare = "%"+daCercare+"%";
 		marca = "%"+marca+"%";
 		colore = "%"+colore+"%";
-		
 		Connection conn = null;
 		PreparedStatement stm = null;
 		List<ArticoloInStock> beans = new ArrayList<>();

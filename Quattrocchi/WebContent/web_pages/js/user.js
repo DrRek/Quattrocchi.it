@@ -36,6 +36,7 @@ $(document).ready(function() {
 					$("input[name=cap]").val("");
 					$("input[name=provincia]").val("");
 					$("input[name=stato]").val("");
+					showError("Indirizzo inserito con successo");
 				} catch(exception){
 					showError(responseText)
 				}
@@ -78,6 +79,7 @@ $(document).ready(function() {
 					$("input[name=circuito]").val("");
 					$("input[name=scadenza]").val("");
 					$("input[name=cvv]").val("");
+					showError("Carta aggiunta con successo");
 				} catch(exception){
 					showError(responseText)
 				}

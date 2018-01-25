@@ -1,5 +1,11 @@
 package it.unisa.quattrocchi.entity;
 
+
+/**
+ * Questa classe rappresenta un articolo presente nel catalogo.
+ * @author quattrocchi.it
+ *
+ */
 public class ArticoloInStock {
 	private int codice;
 	private String modello;

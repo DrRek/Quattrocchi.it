@@ -1,5 +1,11 @@
 package it.unisa.quattrocchi.entity;
 
+
+/**
+ * Questa classe rappresenta un indirizzo di spedizione.
+ * @author quattrocchi.it
+ *
+ */
 public class ShippingAddress {
 	
 	private String stato,indirizzo, provincia;

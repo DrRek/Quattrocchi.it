@@ -5,6 +5,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Questa classe rappresente un ordine.
+ * @author quattrocchi.it
+ *
+ */
 public class Order {
 	
 	public static String DA_SPEDIRE = "Da spedire";

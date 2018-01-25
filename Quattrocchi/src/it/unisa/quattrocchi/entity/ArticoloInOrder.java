@@ -1,5 +1,10 @@
 package it.unisa.quattrocchi.entity;
 
+/**
+ * Questa classe rappresenta un articolo in ordine.
+ * @author quattrocchi.it
+ *
+ */
 public class ArticoloInOrder {
 	private int codice;
 	private String modello;

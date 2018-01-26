@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.aggiunta_metodo_di_pagamento;
+package test.it.unisa.quattrocchi.system.gestioneutenti.aggiunta_metodo_di_pagamento;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__3_3 {
+public class TC_1__3_2 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,8 +18,8 @@ public class TC_1__3_3 {
 	}
 
 	@Test
-	public void testTC133() throws Exception {
-		driver.get("http://localhost:8080/Quattrocchi/logout");
+	public void testTC132() throws Exception {
+		driver.get("http://localhost:8080/Quattrocchi/inserisci_carta");
 		driver.findElement(By.linkText("Login")).click();
 		driver.findElement(By.name("userid")).click();
 		driver.findElement(By.name("passid")).clear();
@@ -30,13 +30,13 @@ public class TC_1__3_3 {
 		driver.findElement(By.linkText("Benvenuto, AntosxA")).click();
 		driver.findElement(By.name("numcc")).click();
 		driver.findElement(By.name("numcc")).clear();
-		driver.findElement(By.name("numcc")).sendKeys("2515211916");
+		driver.findElement(By.name("numcc")).sendKeys("4256321456325645");
 		driver.findElement(By.name("intestatario")).clear();
-		driver.findElement(By.name("intestatario")).sendKeys("Antonio Spera");
+		driver.findElement(By.name("intestatario")).sendKeys("Lu");
 		driver.findElement(By.name("circuito")).clear();
 		driver.findElement(By.name("circuito")).sendKeys("VISA");
 		driver.findElement(By.name("scadenza")).clear();
-		driver.findElement(By.name("scadenza")).sendKeys("08/2023");
+		driver.findElement(By.name("scadenza")).sendKeys("07/2023");
 		driver.findElement(By.name("cvv")).clear();
 		driver.findElement(By.name("cvv")).sendKeys("456");
 		driver.findElement(By.name("addCard")).click();

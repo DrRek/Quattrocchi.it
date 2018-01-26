@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.visualizza_profilo;
+package test.it.unisa.quattrocchi.system.gestioneutenti.login;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__2_1 {
+public class TC_1__1_4 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,8 +18,15 @@ public class TC_1__2_1 {
 	}
 
 	@Test
-	public void testTC121() throws Exception {
-		driver.get("http://localhost:8080/Quattrocchi/profilo");
+	public void testTC114() throws Exception {
+		driver.get("http://localhost:8080/Quattrocchi/");
+		driver.findElement(By.linkText("Login")).click();
+		driver.findElement(By.name("userid")).click();
+		driver.findElement(By.name("userid")).clear();
+		driver.findElement(By.name("userid")).sendKeys("Expos");
+		driver.findElement(By.name("passid")).clear();
+		driver.findElement(By.name("passid")).sendKeys("dibcabadca");
+		driver.findElement(By.name("submit")).click();
 		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 
@@ -32,3 +39,4 @@ public class TC_1__2_1 {
 		}
 	}
 }
+

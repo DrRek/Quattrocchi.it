@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.aggiunta_metodo_di_pagamento;
+package test.it.unisa.quattrocchi.system.gestioneutenti.aggiunta_metodo_di_pagamento;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__3_8 {
+public class TC_1__3_5 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,7 +18,7 @@ public class TC_1__3_8 {
 	}
 
 	@Test
-	public void testTC138() throws Exception {
+	public void testTC135() throws Exception {
 		driver.get("http://localhost:8080/Quattrocchi/logout");
 		driver.findElement(By.linkText("Login")).click();
 		driver.findElement(By.name("userid")).click();
@@ -30,15 +30,18 @@ public class TC_1__3_8 {
 		driver.findElement(By.linkText("Benvenuto, AntosxA")).click();
 		driver.findElement(By.name("numcc")).click();
 		driver.findElement(By.name("numcc")).clear();
-		driver.findElement(By.name("numcc")).sendKeys("4234569878547412");
+		driver.findElement(By.name("numcc")).sendKeys("1234123412341234");
 		driver.findElement(By.name("intestatario")).clear();
 		driver.findElement(By.name("intestatario")).sendKeys("Antonio Spera");
 		driver.findElement(By.name("circuito")).clear();
 		driver.findElement(By.name("circuito")).sendKeys("VISA");
 		driver.findElement(By.name("scadenza")).clear();
-		driver.findElement(By.name("scadenza")).sendKeys("06/2022");
+		driver.findElement(By.name("scadenza")).sendKeys("047/2023");
 		driver.findElement(By.name("cvv")).clear();
-		driver.findElement(By.name("cvv")).sendKeys("123");
+		driver.findElement(By.name("cvv")).sendKeys("456");
+		driver.findElement(By.name("scadenza")).click();
+		driver.findElement(By.name("scadenza")).clear();
+		driver.findElement(By.name("scadenza")).sendKeys("047/20236");
 		driver.findElement(By.name("addCard")).click();
 		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}

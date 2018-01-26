@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.aggiunta_indirizzo_di_spedizione;
+package test.it.unisa.quattrocchi.system.gestioneutenti.aggiunta_indirizzo_di_spedizione;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__4_3 {
+public class TC_1__4_2 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,8 +18,8 @@ public class TC_1__4_3 {
 	}
 
 	@Test
-	public void testTC143() throws Exception {
-		driver.get("http://localhost:8080/Quattrocchi/");
+	public void testTC142() throws Exception {
+		driver.get("http://localhost:8080/Quattrocchi/logout");
 		driver.findElement(By.linkText("Login")).click();
 		driver.findElement(By.name("userid")).click();
 		driver.findElement(By.name("passid")).clear();
@@ -34,13 +34,11 @@ public class TC_1__4_3 {
 		driver.findElement(By.name("numeroCivico")).clear();
 		driver.findElement(By.name("numeroCivico")).sendKeys("54");
 		driver.findElement(By.name("cap")).clear();
-		driver.findElement(By.name("cap")).sendKeys("80065");
-		driver.findElement(By.name("provincia")).click();
+		driver.findElement(By.name("cap")).sendKeys("80041");
 		driver.findElement(By.name("provincia")).clear();
-		driver.findElement(By.name("provincia")).sendKeys("NAP");
-		driver.findElement(By.name("stato")).click();
+		driver.findElement(By.name("provincia")).sendKeys("NA");
 		driver.findElement(By.name("stato")).clear();
-		driver.findElement(By.name("stato")).sendKeys("Italia");
+		driver.findElement(By.name("stato")).sendKeys("Pao");
 		driver.findElement(By.name("addAddress")).click();
 		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}

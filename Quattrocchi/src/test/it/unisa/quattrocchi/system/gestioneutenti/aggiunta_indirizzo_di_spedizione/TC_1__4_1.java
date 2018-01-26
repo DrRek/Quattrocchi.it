@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.aggiunta_metodo_di_pagamento;
+package test.it.unisa.quattrocchi.system.gestioneutenti.aggiunta_indirizzo_di_spedizione;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__3_1 {
+public class TC_1__4_1 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,8 +18,8 @@ public class TC_1__3_1 {
 	}
 
 	@Test
-	public void testTC131() throws Exception {
-		driver.get("http://localhost:8080/Quattrocchi/inserisci_carta");
+	public void testTC141() throws Exception {
+		driver.get("http://localhost:8080/Quattrocchi/inserisci_indirizzo");
 		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 

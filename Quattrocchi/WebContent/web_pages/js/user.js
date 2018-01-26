@@ -73,6 +73,10 @@ $(document).ready(function() {
 			success : function(responseText) {
 				try{
 					var id = parseInt(responseText)
+					if(isNaN(id) || id<=0){
+						throw "Not a number";
+					}
+					console.log(responseText + id);
 					$("#lastCreditCard").before('<tr><td>xxxx-xxxx-xxxx-'+numcc.substring(12)+'</td><td>'+intestatario+'</td><td >'+circuito+'</td><td>'+scadenza+'</td><td>xxx</td><td><input type="hidden" class="cardCode" value="'+id+'"/><input type="submit"class="btn btn-outline-secondary" name="removeCard" value="rimuovi" /></td></tr>');
 					$("input[name=numcc]").val("");
 					$("input[name=intestatario]").val("");

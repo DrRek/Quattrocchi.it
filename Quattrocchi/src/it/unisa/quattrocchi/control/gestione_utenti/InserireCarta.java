@@ -94,15 +94,15 @@ public class InserireCarta  extends HttpServlet{
 			}
 			
 			Date scadenzaDate;
+			DateFormat df = new SimpleDateFormat("MM/yyyy");
 			try {
-				DateFormat df = new SimpleDateFormat("MM/yyyy");
 				scadenzaDate = df.parse(scadenza);
 			} catch(Exception e) {
 				response.getWriter().write(new Gson().toJson("Formato scadenza non valido."));
 				return;
 			}
 			
-			if(!scadenzaDate.after(new Date())) {
+			if(scadenzaDate.compareTo(new Date())<=0) {
 				response.getWriter().write(new Gson().toJson("Inserire una data maggiore della data di oggi."));
 				return;
 			}

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unisa.quattrocchi.entity.Acquirente;
@@ -21,6 +23,16 @@ class ShippingAddressModelTest {
 		shippingAddressModel = new ShippingAddressModel();
 		acquirenteModel = new AcquirenteModel();
 	}
+	
+	@BeforeEach
+	public void setUp() throws Exception{
+		DatabaseHelper.initializeDatabase();
+    }
+
+	@AfterEach
+    public void tearDown() throws Exception{
+		DatabaseHelper.initializeDatabase();
+    }
 
 	@Test
 	public void TestRicercaPerId() throws SQLException {

@@ -38,6 +38,7 @@ public class InserireCarta  extends HttpServlet{
 	 * 					circuito != null && circuito.matches("[A-Za-z ]{4,20}"),
 	 * 					scadenza != null && scandenza.matches("[0-9]{2}[/]{1}[0-9]{4}"),
 	 * 					cvv != null && cvv.matches("[0-9]{3}")
+	 * 					scadenza >= data di oggi.
 	 * @postcondition Il numero di carta di credito associate all'utente loggato è incrementato di 1.
 	 */
 	@Override
@@ -93,11 +94,16 @@ public class InserireCarta  extends HttpServlet{
 			}
 			
 			Date scadenzaDate;
+			DateFormat df = new SimpleDateFormat("MM/yyyy");
 			try {
-				DateFormat df = new SimpleDateFormat("MM/yyyy");
 				scadenzaDate = df.parse(scadenza);
 			} catch(Exception e) {
 				response.getWriter().write(new Gson().toJson("Formato scadenza non valido."));
+				return;
+			}
+			
+			if(scadenzaDate.compareTo(new Date())<=0) {
+				response.getWriter().write(new Gson().toJson("Inserire una data maggiore della data di oggi."));
 				return;
 			}
 			

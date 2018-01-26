@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system;
+package test.it.unisa.quattrocchi.system.login;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class LoginOk {
+public class TC_1__1_1 {
   private WebDriver driver;
   private StringBuffer verificationErrors = new StringBuffer();
 
@@ -25,7 +25,7 @@ public class LoginOk {
     driver.findElement(By.name("userid")).clear();
     driver.findElement(By.name("userid")).sendKeys("Expos");
     driver.findElement(By.name("passid")).clear();
-    driver.findElement(By.name("passid")).sendKeys("Informatica");
+    driver.findElement(By.name("passid")).sendKeys("sonoivan");
     driver.findElement(By.name("submit")).click();
     driver.findElement(By.linkText("logout")).click();
   }

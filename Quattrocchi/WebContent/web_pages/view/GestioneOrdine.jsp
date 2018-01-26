@@ -76,10 +76,14 @@
 				<option value="poste">Poste</option>
 			</select>
 		</div>
+		<% String track = "";
+			if(ordine.getNumeroTracking() != null)
+				track = ordine.getNumeroTracking();
+		%>
 		<div class="container">
 			<h3>Numero tracking</h3>
 			<input class="form-control" name="tracking" type="text"
-				value="123456789" />
+				value="<%=track%>" />
 		</div>
 		<div class="container">
         	 <h3>Data di consegna</h3>

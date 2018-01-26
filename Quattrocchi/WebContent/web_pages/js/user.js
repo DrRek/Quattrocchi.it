@@ -30,6 +30,9 @@ $(document).ready(function() {
 			success : function(responseText) {
 				try{ 
 					var id = parseInt(responseText)
+					if(isNaN(id) || id<=0){
+						throw "Not a number";
+					}
 					$("#lastShipAdd").before('<tr><td>'+indirizzo+'</td><td>'+civico+'</td><td >'+cap+'</td><td>'+provincia+'</td><td>'+stato+'</td><td><input type="hidden" class="addressCode" value="'+id+'"/><input type="submit"class="btn btn-outline-secondary" name="removeAddress"value="rimuovi" /></td></tr>');
 					$("input[name=indirizzo]").val("");
 					$("input[name=numeroCivico]").val("");

@@ -44,7 +44,7 @@ public class CreditCardTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_credit_card_by_id", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/credit_card/retrieve_credit_card_by_id_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/credit_card/retrieve_credit_card_by_id_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
         
@@ -60,7 +60,7 @@ public class CreditCardTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_credit_card_by_acquirente", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/credit_card/retrieve_credit_card_by_acquirente_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/credit_card/retrieve_credit_card_by_acquirente_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
         
@@ -83,7 +83,7 @@ public class CreditCardTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/credit_card/insert_into_credit_card_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/credit_card/insert_into_credit_card_oracle.xml")));
 		expectedDataSet.addReplacementObject("NULL", null);
 		ITable expectedTable = expectedDataSet.getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
 
@@ -107,7 +107,7 @@ public class CreditCardTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/credit_card/update_credit_card_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/credit_card/update_credit_card_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -124,7 +124,7 @@ public class CreditCardTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/credit_card/delete_credit_card_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/credit_card/delete_credit_card_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -141,7 +141,7 @@ public class CreditCardTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/credit_card/credit_card_set_acquirente_null_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/credit_card/credit_card_set_acquirente_null_oracle.xml")));
 		expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(CreditCardModel.TABLE_NAME_CREDITCARD);
 
@@ -156,6 +156,6 @@ public class CreditCardTestCase extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/db_init.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/db_init.xml"));
     }
 }

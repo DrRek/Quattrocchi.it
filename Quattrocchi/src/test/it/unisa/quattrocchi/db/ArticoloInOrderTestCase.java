@@ -41,7 +41,7 @@ public class ArticoloInOrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_articolo_in_order_by_id", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/articolo_in_order/retrieve_articolo_in_ordine_by_id_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/articolo_in_order/retrieve_articolo_in_ordine_by_id_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(ArticoloInOrderModel.TABLE_NAME_ARTICOLOINORDINE);
         
@@ -56,7 +56,7 @@ public class ArticoloInOrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_all_articolo_in_order", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/articolo_in_order/retrieve_all_articolo_in_ordine_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/articolo_in_order/retrieve_all_articolo_in_ordine_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(ArticoloInOrderModel.TABLE_NAME_ARTICOLOINORDINE);
         
@@ -72,7 +72,7 @@ public class ArticoloInOrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_articolo_in_order_by_order", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/articolo_in_order/retrieve_articolo_in_ordine_by_order_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/articolo_in_order/retrieve_articolo_in_ordine_by_order_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(ArticoloInOrderModel.TABLE_NAME_ARTICOLOINORDINE);
         
@@ -98,7 +98,7 @@ public class ArticoloInOrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(ArticoloInOrderModel.TABLE_NAME_ARTICOLOINORDINE);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/articolo_in_order/insert_into_articolo_in_ordine_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/articolo_in_order/insert_into_articolo_in_ordine_oracle.xml")));
 		expectedDataSet.addReplacementObject("NULL", null);
 		ITable expectedTable = expectedDataSet.getTable(ArticoloInOrderModel.TABLE_NAME_ARTICOLOINORDINE);
 
@@ -111,6 +111,6 @@ public class ArticoloInOrderTestCase extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/db_init.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/db_init.xml"));
     }
 }

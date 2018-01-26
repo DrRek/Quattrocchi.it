@@ -42,7 +42,7 @@ public class ShippingAddressTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_shipping_address_by_id", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/shipping_address/retrieve_shipping_address_by_id_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/shipping_address/retrieve_shipping_address_by_id_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
         
@@ -58,7 +58,7 @@ public class ShippingAddressTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_shipping_address_by_acquirente", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/shipping_address/retrieve_shipping_address_by_acquirente_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/shipping_address/retrieve_shipping_address_by_acquirente_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
         
@@ -82,7 +82,7 @@ public class ShippingAddressTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/shipping_address/insert_into_shipping_address_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/shipping_address/insert_into_shipping_address_oracle.xml")));
 		expectedDataSet.addReplacementObject("NULL", null);
 		ITable expectedTable = expectedDataSet.getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
 
@@ -106,7 +106,7 @@ public class ShippingAddressTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/shipping_address/update_shipping_address_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/shipping_address/update_shipping_address_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -123,7 +123,7 @@ public class ShippingAddressTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/shipping_address/delete_shipping_address_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/shipping_address/delete_shipping_address_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -140,7 +140,7 @@ public class ShippingAddressTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/shipping_address/shipping_address_set_acquirente_null_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/shipping_address/shipping_address_set_acquirente_null_oracle.xml")));
 		expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(ShippingAddressModel.TABLE_NAME_ADDRESS);
 
@@ -155,6 +155,6 @@ public class ShippingAddressTestCase extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/db_init.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/db_init.xml"));
     }
 }

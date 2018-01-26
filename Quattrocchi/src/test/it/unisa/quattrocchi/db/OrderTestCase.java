@@ -42,7 +42,7 @@ public class OrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_order_by_id", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/order/retrieve_order_by_id_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/order/retrieve_order_by_id_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(OrderModel.TABLE_NAME_ORDER);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -56,7 +56,7 @@ public class OrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_all_order", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/order/retrieve_all_order.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/order/retrieve_all_order.xml"));
         ITable expectedTable = expectedDataSet.getTable(OrderModel.TABLE_NAME_ORDER);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -71,7 +71,7 @@ public class OrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_order_by_acquirente", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/order/retrieve_order_by_acquirente.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/order/retrieve_order_by_acquirente.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(OrderModel.TABLE_NAME_ORDER);
 
@@ -97,7 +97,7 @@ public class OrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(OrderModel.TABLE_NAME_ORDER);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/order/insert_order_oracle.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/order/insert_order_oracle.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(OrderModel.TABLE_NAME_ORDER);
 
@@ -119,7 +119,7 @@ public class OrderTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(OrderModel.TABLE_NAME_ORDER);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/order/update_order_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/order/update_order_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(OrderModel.TABLE_NAME_ORDER);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -131,6 +131,6 @@ public class OrderTestCase extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/db_init.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/db_init.xml"));
     }
 }

@@ -42,7 +42,7 @@ public class GestoreOrdiniTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_gestore_ordini_by_username", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/gestore_ordini/retrieve_gestore_ordini_by_username.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/gestore_ordini/retrieve_gestore_ordini_by_username.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(GestoreOrdiniModel.TABLE_NAME_GESTOREORDINI);
         
@@ -59,7 +59,7 @@ public class GestoreOrdiniTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_gestore_ordini_by_credentials", stm);
         
         // get the expected table values
-		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/gestore_ordini/retrieve_gestore_ordini_by_credentials.xml")));
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/gestore_ordini/retrieve_gestore_ordini_by_credentials.xml")));
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(GestoreOrdiniModel.TABLE_NAME_GESTOREORDINI);
         
@@ -72,6 +72,6 @@ public class GestoreOrdiniTestCase extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/db_init.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/db_init.xml"));
     }
 }

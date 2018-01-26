@@ -40,7 +40,7 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("retrieve_acquirente_by_username", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/retrieve_acquirente_by_username_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/acquirente/retrieve_acquirente_by_username_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -56,7 +56,7 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("check_login_by_credentials", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/check_login_by_credentials_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/acquirente/check_login_by_credentials_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -78,7 +78,7 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/update_acquirente_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/acquirente/update_acquirente_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ACQUIRENTE);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -93,7 +93,7 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createTable("check_login_by_credentials", stm);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/retrieve_cart_by_user_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/acquirente/retrieve_cart_by_user_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -112,7 +112,7 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/insert_into_cart_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/acquirente/insert_into_cart_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -129,7 +129,7 @@ public class AcquirenteTestCase extends DBTestCase {
 		ITable actualTable = connection.createDataSet().getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
         
         // get the expected table values
-        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/acquirente/delete_cart_oracle.xml"));
+        IDataSet expectedDataSet = new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/acquirente/delete_cart_oracle.xml"));
         ITable expectedTable = expectedDataSet.getTable(AcquirenteModel.TABLE_NAME_ARTICOLOINCARRELLO);
 
         Assertion.assertEquals(expectedTable, actualTable);
@@ -141,6 +141,6 @@ public class AcquirenteTestCase extends DBTestCase {
      */
     @Override
     protected IDataSet getDataSet() throws Exception {
-        return new FlatXmlDataSetBuilder().build(new File("src/test/it/unisa/quattrocchi/db/db_init.xml"));
+        return new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/db_init.xml"));
     }
 }

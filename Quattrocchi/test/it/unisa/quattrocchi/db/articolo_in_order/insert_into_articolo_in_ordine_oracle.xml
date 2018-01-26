@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  				
+  <articoloinorder	Codice="996"
+  					Modello="Flak Draft Prizm Golf sport"
+  					Marca="Oakley"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="30.00"
+  					Quantita="1"
+  					Ordine="997"/>
+  <articoloinorder	Codice="997"
+  					Modello="Wayfarer Folding Classic"
+  					Marca="RayBan"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="40.00"
+  					Quantita="1"
+  					Ordine="998"/>
+  <articoloinorder	Codice="998"
+  					Modello="Original Wayfarer Classic"
+  					Marca="RayBan"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="20.00"
+  					Quantita="1"
+  					Ordine="999"/>
+  <articoloinorder	Codice="999"
+  					Modello="Occhiali iGreen"
+  					Marca="GreenVision"
+  					Img1="NULL"
+  					Img2="NULL"
+  					Img3="NULL"
+  					Descrizione="descrizione"
+  					Prezzo="30.00"
+  					Quantita="1"
+  					Ordine="999"/>
+  <articoloinorder	Codice="111111"
+  					Modello="1"
+  					Marca="prova 1"
+  					Img1="prova 2"
+  					Img2="prova 3"
+  					Img3="prova 4"
+  					Descrizione="prova 5"
+  					Prezzo="6.78"
+  					Quantita="9"
+  					Ordine="999"/>
+  
+</dataset>

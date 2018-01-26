@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+  					
+  <articoloincarrello	Acquirente="AntosxA"
+  						ArticoloInStock="998"
+  						Quantita="2"/>
+  <articoloincarrello	Acquirente="AntosxA"
+  						ArticoloInStock="999"
+  						Quantita="1"/>
+			
+</dataset>

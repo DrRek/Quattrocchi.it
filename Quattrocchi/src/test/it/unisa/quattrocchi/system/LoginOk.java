@@ -22,10 +22,10 @@ public class LoginOk {
     driver.get("http://localhost:8080/Quattrocchi/");
     driver.findElement(By.linkText("Login")).click();
     driver.findElement(By.name("userid")).click();
-    driver.findElement(By.name("passid")).clear();
-    driver.findElement(By.name("passid")).sendKeys("Informatica");
     driver.findElement(By.name("userid")).clear();
     driver.findElement(By.name("userid")).sendKeys("Expos");
+    driver.findElement(By.name("passid")).clear();
+    driver.findElement(By.name("passid")).sendKeys("Informatica");
     driver.findElement(By.name("submit")).click();
     driver.findElement(By.linkText("logout")).click();
   }

@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__1_1 {
+public class TC_1__1_5 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,7 +18,7 @@ public class TC_1__1_1 {
 	}
 
 	@Test
-	public void testLoginOk() throws Exception {
+	public void testTC115() throws Exception {
 		driver.get("http://localhost:8080/Quattrocchi/");
 		driver.findElement(By.linkText("Login")).click();
 		driver.findElement(By.name("userid")).click();
@@ -27,7 +27,6 @@ public class TC_1__1_1 {
 		driver.findElement(By.name("passid")).clear();
 		driver.findElement(By.name("passid")).sendKeys("sonoivan");
 		driver.findElement(By.name("submit")).click();
-		driver.findElement(By.linkText("logout")).click();
 	}
 
 	@After

@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.aggiunta_metodo_di_pagamento;
+package test.it.unisa.quattrocchi.system.gestioneutenti.aggiunta_indirizzo_di_spedizione;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__3_4 {
+public class TC_1__4_6 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,7 +18,7 @@ public class TC_1__3_4 {
 	}
 
 	@Test
-	public void testTC134() throws Exception {
+	public void testTC146() throws Exception {
 		driver.get("http://localhost:8080/Quattrocchi/logout");
 		driver.findElement(By.linkText("Login")).click();
 		driver.findElement(By.name("userid")).click();
@@ -28,18 +28,18 @@ public class TC_1__3_4 {
 		driver.findElement(By.name("userid")).sendKeys("AntosxA");
 		driver.findElement(By.name("submit")).click();
 		driver.findElement(By.linkText("Benvenuto, AntosxA")).click();
-		driver.findElement(By.name("numcc")).click();
-		driver.findElement(By.name("numcc")).clear();
-		driver.findElement(By.name("numcc")).sendKeys("4023145652321456");
-		driver.findElement(By.name("intestatario")).clear();
-		driver.findElement(By.name("intestatario")).sendKeys("Antonio Spera");
-		driver.findElement(By.name("circuito")).clear();
-		driver.findElement(By.name("circuito")).sendKeys("VIS");
-		driver.findElement(By.name("scadenza")).clear();
-		driver.findElement(By.name("scadenza")).sendKeys("06/2023");
-		driver.findElement(By.name("cvv")).clear();
-		driver.findElement(By.name("cvv")).sendKeys("456");
-		driver.findElement(By.name("addCard")).click();
+		driver.findElement(By.name("indirizzo")).click();
+		driver.findElement(By.name("indirizzo")).clear();
+		driver.findElement(By.name("indirizzo")).sendKeys("via Vincenzo");
+		driver.findElement(By.name("numeroCivico")).clear();
+		driver.findElement(By.name("numeroCivico")).sendKeys("456854");
+		driver.findElement(By.name("cap")).clear();
+		driver.findElement(By.name("cap")).sendKeys("80034");
+		driver.findElement(By.name("provincia")).clear();
+		driver.findElement(By.name("provincia")).sendKeys("NA");
+		driver.findElement(By.name("stato")).clear();
+		driver.findElement(By.name("stato")).sendKeys("Italia");
+		driver.findElement(By.name("addAddress")).click();
 		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 

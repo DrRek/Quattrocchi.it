@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.aggiunta_metodo_di_pagamento;
+package test.it.unisa.quattrocchi.system.gestioneutenti.aggiunta_metodo_di_pagamento;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;

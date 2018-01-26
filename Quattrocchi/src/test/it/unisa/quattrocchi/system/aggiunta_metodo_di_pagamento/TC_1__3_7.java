@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_1__3_5 {
+public class TC_1__3_7 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -36,12 +36,9 @@ public class TC_1__3_5 {
 		driver.findElement(By.name("circuito")).clear();
 		driver.findElement(By.name("circuito")).sendKeys("VISA");
 		driver.findElement(By.name("scadenza")).clear();
-		driver.findElement(By.name("scadenza")).sendKeys("047/2023");
+		driver.findElement(By.name("scadenza")).sendKeys("06/2017");
 		driver.findElement(By.name("cvv")).clear();
-		driver.findElement(By.name("cvv")).sendKeys("456");
-		driver.findElement(By.name("scadenza")).click();
-		driver.findElement(By.name("scadenza")).clear();
-		driver.findElement(By.name("scadenza")).sendKeys("047/20236");
+		driver.findElement(By.name("cvv")).sendKeys("134");
 		driver.findElement(By.name("addCard")).click();
 		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}

@@ -220,7 +220,7 @@ public class CreditCardModel {
 			stm.setString(1, numeroCC);
 			stm.setString(2, intestatario);
 			stm.setString(3, circuito);
-			stm.setDate(4, (java.sql.Date) dataScadenza);
+			stm.setDate(4, new java.sql.Date(dataScadenza.getTime()));
 			stm.setInt(5, cvccvv);
 			stm.setInt(6, idCarta);
 			stm.setString(7, acquirente);

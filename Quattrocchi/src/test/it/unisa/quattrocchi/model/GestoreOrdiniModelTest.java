@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unisa.quattrocchi.entity.GestoreOrdini;
@@ -16,6 +18,16 @@ class GestoreOrdiniModelTest {
 	static {
 		gestoreOrdiniModel = new GestoreOrdiniModel();
 	}
+	
+	@BeforeEach
+	public void setUp() throws Exception{
+		DatabaseHelper.initializeDatabase();
+    }
+
+	@AfterEach
+    public void tearDown() throws Exception{
+		DatabaseHelper.initializeDatabase();
+    }
 
 	@Test
 	public void TestRicercaPerId() throws SQLException {

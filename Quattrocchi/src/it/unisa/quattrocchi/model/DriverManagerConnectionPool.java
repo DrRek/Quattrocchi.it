@@ -9,6 +9,7 @@ import java.util.List;
 public class DriverManagerConnectionPool  {
 
 	private static List<Connection> freeDbConnections;
+	private static boolean isTest = false;
 
 	static {
 		freeDbConnections = new LinkedList<Connection>();
@@ -23,7 +24,14 @@ public class DriverManagerConnectionPool  {
 		Connection newConnection = null;
 		String ip = "localhost";
 		String port = "3306";
-		String db = "quattrocchidb";
+		String db;
+		if(!isTest) {
+			System.out.println("Non sono nel test");
+			db = "quattrocchidb";
+		} else {
+			System.out.println("Sono nel test");
+			db = "quattrocchidbtest";
+		}
 		String username = "progetto";
 		String password = "pw";
 
@@ -57,5 +65,15 @@ public class DriverManagerConnectionPool  {
 
 	public static synchronized void releaseConnection(Connection connection) throws SQLException {
 		if(connection != null) freeDbConnections.add(connection);
+	}
+
+
+	public static boolean isTest() {
+		return isTest;
+	}
+
+
+	public static void setTest(boolean isTest) {
+		DriverManagerConnectionPool.isTest = isTest;
 	}
 }

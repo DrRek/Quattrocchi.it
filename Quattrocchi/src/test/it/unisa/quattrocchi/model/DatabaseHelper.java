@@ -14,7 +14,7 @@ import it.unisa.quattrocchi.model.DriverManagerConnectionPool;
 
 public class DatabaseHelper {
 	public static void initializeDatabase() throws SQLException {
-		
+
 		DriverManagerConnectionPool.setTest(true);
 		Connection conn = DriverManagerConnectionPool.getConnection();
 		

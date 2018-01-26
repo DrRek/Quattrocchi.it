@@ -26,10 +26,8 @@ public class DriverManagerConnectionPool  {
 		String port = "3306";
 		String db;
 		if(!isTest) {
-			System.out.println("Non sono nel test");
 			db = "quattrocchidb";
 		} else {
-			System.out.println("Sono nel test");
 			db = "quattrocchidbtest";
 		}
 		String username = "progetto";

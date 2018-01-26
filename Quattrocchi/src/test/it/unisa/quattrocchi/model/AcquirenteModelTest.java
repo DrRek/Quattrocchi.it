@@ -2,15 +2,8 @@ package test.it.unisa.quattrocchi.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.File;
-import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.dbunit.database.DatabaseConnection;
-import org.dbunit.database.IDatabaseConnection;
-import org.dbunit.dataset.xml.FlatXmlDataSet;
-import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
-import org.dbunit.operation.DatabaseOperation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import it.unisa.quattrocchi.entity.Acquirente;
 import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.model.AcquirenteModel;
-import it.unisa.quattrocchi.model.DriverManagerConnectionPool;
 
 class AcquirenteModelTest {
 	

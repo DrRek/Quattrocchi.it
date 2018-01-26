@@ -40,7 +40,7 @@ class CreditCardModelTest {
 	public void TestRicercaPerId() throws SQLException {
 		CreditCard cc = creditCardModel.doRetrieveById(997);
 		assertNotNull(cc);
-		assertEquals(cc.getIdCarta(),"997");
+		assertEquals(cc.getIdCarta(),997);
 		assertEquals(cc.getAcquirente().getUsername(),"AntosxA");
 		assertEquals(cc.getCircuito(),"VISA");
 		assertEquals(cc.getNumeroCC(),"4023654123214120");
@@ -84,7 +84,7 @@ class CreditCardModelTest {
 		creditCardModel.updateCreditCard(cc);
 		CreditCard ccUpdate = creditCardModel.doRetrieveById(999);
 		assertNotNull(ccUpdate);
-		assertEquals(ccUpdate.getIdCarta(),"999");
+		assertEquals(ccUpdate.getIdCarta(),999);
 		assertEquals(ccUpdate.getIntestatario(),"Luigi Piccolo");
 		assertEquals(ccUpdate.getNumeroCC(),"4023660000058965");
 		assertEquals(ccUpdate.getCircuito(),"MasterCard");

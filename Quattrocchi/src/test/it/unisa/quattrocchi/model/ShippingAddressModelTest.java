@@ -56,8 +56,8 @@ class ShippingAddressModelTest {
 		assertEquals(username,"Expos");
 		List<ShippingAddress> indirizzi = shippingAddressModel.doRetrieveByUser(username);
 		assertNotNull(indirizzi);
-		assertEquals(indirizzi.size(),1);
-		assertEquals(indirizzi.get(0).getCodice(),999);
+		assertEquals(indirizzi.size(),2);
+		assertEquals(indirizzi.get(0).getCodice(),998);
 		assertEquals(indirizzi.get(0).getStato(),"Italia");
 		assertEquals(indirizzi.get(0).getProvincia(),"AV");
 		assertEquals(indirizzi.get(0).getCap(),80060);
@@ -86,17 +86,16 @@ class ShippingAddressModelTest {
 	public void TestCreaIndirizzo() throws SQLException {
 		List<ShippingAddress> indirizziPrima = shippingAddressModel.doRetrieveAll();
 		assertNotNull(indirizziPrima);
-		assertEquals(indirizziPrima.size(),2);
+		assertEquals(indirizziPrima.size(),3);
 		Acquirente antonio = acquirenteModel.doRetriveById("AntosxA");
 		assertNotNull(antonio);
 		assertEquals(antonio.getUsername(),"AntosxA");
-		ShippingAddress indirizzo = new ShippingAddress(955,"Italia","via Dante",80034,"NA",9,antonio);
+		ShippingAddress indirizzo = new ShippingAddress("Italia","via Dante",80034,"NA",9,antonio);
 		assertNotNull(indirizzo);
 		shippingAddressModel.createShippingAddress(indirizzo);
 		List<ShippingAddress> indirizziDopo = shippingAddressModel.doRetrieveAll();
 		assertNotNull(indirizziDopo);
-		assertEquals(indirizziDopo.size(),3);
-		assertEquals(indirizzo.getCodice(),997);
+		assertEquals(indirizziDopo.size(),4);
 	}
 	
 	
@@ -105,7 +104,7 @@ class ShippingAddressModelTest {
 		List<ShippingAddress> indirizziPrima = shippingAddressModel.doRetrieveAll();
 		assertNotNull(indirizziPrima);
 		assertEquals(indirizziPrima.size(),3);
-		shippingAddressModel.deleteShippingAddress(997);
+		shippingAddressModel.deleteShippingAddress(1000);
 		List<ShippingAddress> indirizziAggiornati = shippingAddressModel.doRetrieveAll();
 		assertNotNull(indirizziAggiornati);
 		assertEquals(indirizziAggiornati.size(),2);

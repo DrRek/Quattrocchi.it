@@ -41,7 +41,7 @@ class OrderModelTest {
 		assertNotNull(ordine);
 		assertEquals(ordine.getCodice(),997);
 		assertEquals(ordine.getCorriere(),"Bartolini");
-		assertEquals(ordine.getCreditCard().getIdCarta(),"999");
+		assertEquals(ordine.getCreditCard().getIdCarta(),999);
 		assertEquals(ordine.getAcquirente().getUsername(),"AntosxA");
 		assertEquals(ordine.getStatoOrdine(),"Consegnato");
 		assertEquals(ordine.getNumeroTracking(),"TR514");

@@ -171,6 +171,7 @@ function formatData(responseText){
 		});
 		$("#demos").html(toAppend);
 	} catch (exception){
+		$("#demos").empty();
 		showNotification(responseText);
 	}
 }

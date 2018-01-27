@@ -13,7 +13,7 @@ function userid_validation(uid,x,y){
 	var uid_len = uid.val().length;
 	if (uid_len == 0 || uid_len >= y || uid_len < x || !(uid.val().match(lettersAndNumbers)))
 	{
-		showNotification("Username non valido");
+		showNotification("Username o password errati.");
 		return false;
 	}
 	{
@@ -27,7 +27,7 @@ function passid_validation(pass,x,y)
 	var pass_len = pass.val().length;
 	if (pass_len == 0 ||pass_len >= y || pass_len < x || !(uid.val().match(lettersAndNumbers)))
 	{
-		showNotification("Password non valida");
+		showNotification("Username o password errati.");
 		return false;
 	}
 	else{

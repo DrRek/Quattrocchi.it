@@ -13,47 +13,25 @@
 		<div id="myCarousel" class="carousel slide" data-ride="carousel">
 			<!-- Indicators -->
 			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0"></li>
-				<li data-target="#myCarousel" data-slide-to="1" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
 				<li data-target="#myCarousel" data-slide-to="2"></li>
 			</ol>
 
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner">
-				<div class="item">
-					<img src="web_pages/image/home1.jpg" alt="persol">
-					<div class="carousel-caption">
-						<h1>
-							<a style="color: white; text-decoration: none;"
-								href="ricerca_da_pagina_esterna?toSearch=persol">Persol</a>
-						</h1>
-						<p>La marca eco-frienldy</p>
+			<a href="/Quattrocchi/visualizza_catalogo" >
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="web_pages/image/home1.jpg" alt="home1">
 					</div>
-				</div>
-				<div class="item active">
-					<img src="web_pages/image/home2.jpg" alt="rayban">
-					<div class="carousel-caption">
-						<h1>
-							<a style="color: white; text-decoration: none;"
-								href="ricerca_da_pagina_esterna?toSearch=rayban">Rayban</a>
-						</h1>
-						<p>Guarda le ultime uscite</p>
+					<div class="item">
+						<img src="web_pages/image/home2.jpg" alt="home2">
 					</div>
-				</div>
-
-				<div class="item">
-					<img src="web_pages/image/home3.jpg" alt="oakley">
-					<div class="carousel-caption">
-						<h1>
-							<a style="color: white; text-decoration: none;"
-								href="ricerca_da_pagina_esterna?toSearch=oakley">Oakley</a>
-						</h1>
-						<p>Scegli lo stile californiano</p>
+					<div class="item">
+						<img src="web_pages/image/home3.jpg" alt="home3">
 					</div>
-				</div>
-			</div>
-
-		</div>
+				</div>	
+			</a>
 	</div>
 	<br><br>
 	<div class="container box"  style="text-align:center">

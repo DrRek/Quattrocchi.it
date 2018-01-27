@@ -33,6 +33,7 @@
 
 <body>
 	<%@ include file="../view/Header.jsp"%>
+	<br>
 	<%
 		if (usr == null) {
 	%>

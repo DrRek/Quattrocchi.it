@@ -28,6 +28,7 @@
 <body>
 	
 	<%@ include file="../view/Header.jsp"%>
+	<br>
 	<div class="container">
 		<h2>Carrello</h2>
 	</div>

@@ -19,7 +19,7 @@
 
 <body>
 	<%@ include file="../view/Header.jsp"%>
-	
+	<br>
 	<div class="container">
 	<h2>Error 404 - pagina non trovata</h2>
 	</div>

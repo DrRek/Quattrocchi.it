@@ -32,6 +32,7 @@
 
 <body>
 	<%@ include file="../view/Header.jsp"%>
+	<br>
 	<% if(acquirente != null || admin !=  null) {%>
 
 	<div class="container">

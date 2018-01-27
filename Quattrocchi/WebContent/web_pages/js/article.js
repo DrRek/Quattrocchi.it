@@ -28,7 +28,7 @@ function checkAdvancedSearchRegex(){
 	}
 	
 	var prezzoMin = $('input[name=prezzoMin]').val();
-	if(prezzoMin != null && prezzoMin != "" && !/^([0-9]{1,5})$/.test(prezzoMin)){
+	if(prezzoMin != null && prezzoMin != ""){
 		try{
 			parseInt(prezzoMin);
 		} catch(e){
@@ -36,23 +36,15 @@ function checkAdvancedSearchRegex(){
 			return false;
 		}
 	}
-	else{ 
-		showNotification("Parametro prezzo minimo non valido.");
-		return false; 
-	}
 	
 	var prezzoMax = $('input[name=prezzoMax]').val();
-	if(prezzoMax != null && prezzoMax != "" && !/^([0-9]{1,5})$/.test(prezzoMax)){
+	if(prezzoMax != null && prezzoMax != ""){
 		try{
 			parseInt(prezzoMax);
 		} catch(e){
 			showNotification("Parametro prezzo massimo non valido.");
 			return false;
 		}
-	}
-	else{ 
-		showNotification("Parametro prezzo massimo non valido.");
-		return false; 
 	}
 	
 	var colore = $('input[name=colore]').val();

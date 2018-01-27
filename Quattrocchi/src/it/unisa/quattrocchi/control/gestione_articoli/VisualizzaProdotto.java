@@ -31,6 +31,7 @@ public class VisualizzaProdotto extends HttpServlet{
 	 * Questo metodo si occupa di far visualizzare la scheda di un prodotto.
 	 * 
 	 * @precondition 	La richiesta è sincrona.
+	 * 					La richiesta non è effettuata da un gestore.
 	 * 					idS!=null, idS è trasformabile in un intero e l'id corrisponde ad un articolo presente nel database.
 	 * @postcondition Viene inserito in response un articolo.
 	 */
@@ -44,7 +45,14 @@ public class VisualizzaProdotto extends HttpServlet{
 				response.setHeader("Cache-Control", "no-cache");
 				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
 				return;
-			}	
+			}
+			
+			if(request.getSession().getAttribute("gestoreOrdini") != null) {
+				request.setAttribute("notification", "Sei un gestore, è necessario che tu faccia il logout prima di poter utilizzare il sito come utente normale.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
+				dispatcher.forward(request, response);
+				return;
+			}
 			
 			String idS = request.getParameter("id");
 			if(idS==null || idS.equals("")) {

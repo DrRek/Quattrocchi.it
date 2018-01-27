@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
 import it.unisa.quattrocchi.entity.ArticoloInStock;
 
 
@@ -23,7 +24,44 @@ public class ArticoloInStockModel {
 	public static String RETRIEVE_ALL_ARTICOLO_STOCK = "SELECT * FROM "+TABLE_NAME_CATALOGO+";";
 	public static String RETRIEVE_ARTICOLO_STOCK_BY_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
 	public static String RETRIEVE_ARTICOLO_STOCK_BY_ADVANCED_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)) and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
-
+	public static String DO_UPDATE_DISPONIBILITA_ARTICOLO_STOCK = "update " + TABLE_NAME_CATALOGO + " set disponibilita = ? where codice = ?";
+	
+	
+	/**
+	 * Questo metodo si occupa di effettuare l'aggiornamento della disponibilita di un articolo in stock nel database
+	 * tramite una codice specifico.
+	 * @param prodotto aggiornato <strong>ArticoloInStock</strong>
+	 * @throws SQLException
+	 * 
+	 * @precondition toSave corrisponde ad un articolo in stock presente nel database.
+	 */
+	
+	public void updateDisponibilita(ArticoloInStock toSave) throws SQLException {
+		
+		Connection conn = null;
+		PreparedStatement stm = null;
+		
+		try {
+			conn = DriverManagerConnectionPool.getConnection();
+			stm = conn.prepareStatement(DO_UPDATE_DISPONIBILITA_ARTICOLO_STOCK);
+			stm.setInt(1, toSave.getDisponibilità());
+			stm.setInt(2, toSave.getCodice());
+			
+			stm.executeUpdate();
+			conn.commit();
+			
+		} finally {
+			try {
+				if (stm != null)
+					stm.close();
+			} finally {
+				DriverManagerConnectionPool.releaseConnection(conn);
+			}
+		}
+		
+	}
+	
+	
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un articolo in stock
 	 * tramite una codice specifico preso in input.
@@ -33,6 +71,7 @@ public class ArticoloInStockModel {
 	 * 
 	 * @precondition id != 0 e corrisponde ad un articolo presente nel database.
 	 */
+	
 	public ArticoloInStock doRetrieveByIdInStock(int id) throws SQLException {
 		if(id == 0) {
 			return null;

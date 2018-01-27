@@ -1,6 +1,9 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import it.unisa.quattrocchi.entity.Acquirente;
-
+import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.entity.ShippingAddress;
 import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.ArticoloInOrderModel;
+import it.unisa.quattrocchi.model.ArticoloInStockModel;
 import it.unisa.quattrocchi.model.OrderModel;
 
 @WebServlet("/checkout")
@@ -33,6 +37,7 @@ public class Checkout extends HttpServlet{
 	static OrderModel model = new OrderModel();
 	static AcquirenteModel acModel = new AcquirenteModel();
 	static ArticoloInOrderModel aInOrderModel = new ArticoloInOrderModel();
+	static ArticoloInStockModel aInStockModel = new ArticoloInStockModel();
 
 
 	/**
@@ -110,8 +115,24 @@ public class Checkout extends HttpServlet{
 				
 				Order nuovo = new Order(usr, sa, cc);
 				model.createOrder(nuovo);
+				
+				Map<ArticoloInStock,Integer> articoli = usr.getCart().getArticoli();
+				for(ArticoloInStock a : articoli.keySet()) {
+					int d = articoli.get(a);
+					
+					a.setDisponibilità(a.getDisponibilità() - d);
+					
+					aInStockModel.updateDisponibilita(a);
+				}
+				
+				
+				for(int i=0; i < usr.getCart().getArticoli().size(); i++) {
+					
+				}
+				
 				usr.resetCart();
 				acModel.updateCart(usr);
+				
 
 				request.setAttribute("notification", "L'ordine è stato sottomesso con successo!");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/profilo");

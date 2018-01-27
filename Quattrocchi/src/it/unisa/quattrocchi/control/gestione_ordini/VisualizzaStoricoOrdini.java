@@ -47,7 +47,7 @@ public class VisualizzaStoricoOrdini extends HttpServlet{
 			
 			Acquirente a = (Acquirente) request.getSession().getAttribute("acquirente");
 			if(a==null) {
-				request.setAttribute("notification", "Devi essere loggato per poter effettuare il checkout.");
+				request.setAttribute("notification", "Devi essere loggato per poter visualizzare lo storico degli ordini.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
 				return;
@@ -60,7 +60,7 @@ public class VisualizzaStoricoOrdini extends HttpServlet{
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/UserView.jsp");
 			dispatcher.forward(request, response);
 		}catch(Exception e) {
-			System.out.println("Errore in Inserisci dati di spedizione:");
+			System.out.println("Errore in Visualizza Storico Ordini:");
 			e.printStackTrace();
 		}
 		

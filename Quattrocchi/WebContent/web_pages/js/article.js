@@ -48,7 +48,7 @@ function checkAdvancedSearchRegex(){
 	}
 	
 	var colore = $('input[name=colore]').val();
-	if(colore != null && colore != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(colore)){
+	if(colore != null && colore != "" && !/^([A-Za-z ]{1,20})$/.test(colore)){
 		showNotification("Parametro colore non valido.");
 		return false;
 	}

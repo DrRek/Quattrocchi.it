@@ -38,7 +38,7 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 	 * if(prezzoMinS!=null) !prezzoMinS.matches("[0-9]{1,5}")
 	 * if(prezzoMaxS!=null) !prezzoMaxS.matches("[0-9]{1,5}")
 	 * if(prezzoMinS!=null && prezzoMaxS!=null) Integer.parseInt(prezzoMinS)<=Integer.parseInt(prezzoMaxS)
-	 * if(colore!=null) !colore.matches("[A-Za-z0-9 ]{1,20}")
+	 * if(colore!=null) !colore.matches("[A-Za-z ]{1,20}")
 	 * Esiste almeno un articolo in database che corrisponde ai parametri non vuoti.
 	 * @postcondition Viene scritto in response una lista di articoli non vuota.
 	 */
@@ -103,7 +103,7 @@ public class RicercaProdottoAvanzata extends HttpServlet{
 			String colore = request.getParameter("colore");
 			if(colore == null || colore.equals("")) {
 				colore = "";
-			} else if(!colore.matches("[A-Za-z0-9 ]{1,20}")) {
+			} else if(!colore.matches("[A-Za-z ]{1,20}")) {
 				response.getWriter().write(new Gson().toJson("Formato parametri non valido."));
 				return;
 			}

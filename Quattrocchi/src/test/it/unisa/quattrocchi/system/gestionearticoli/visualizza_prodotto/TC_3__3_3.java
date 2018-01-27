@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_3__3_2_2 {
+public class TC_3__3_3 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,11 +18,10 @@ public class TC_3__3_2_2 {
 	}
 
 	@Test
-	public void testTC3321() throws Exception {
+	public void testTC3323() throws Exception {
 		driver.get("http://localhost:8080/Quattrocchi/");
 		driver.findElement(By.linkText("Catalogo")).click();
-		driver.get("http://localhost:8080/Quattrocchi/visualizza_prodotto?id=1200");
-		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
+		driver.findElement(By.cssSelector("img[alt=\"pic\"]")).click();
 	}
 
 	@After

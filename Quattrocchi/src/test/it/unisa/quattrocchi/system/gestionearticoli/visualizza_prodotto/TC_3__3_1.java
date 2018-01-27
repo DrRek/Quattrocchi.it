@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_3__3_2_3 {
+public class TC_3__3_1 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,10 +18,16 @@ public class TC_3__3_2_3 {
 	}
 
 	@Test
-	public void testTC3323() throws Exception {
+	public void testTC3321() throws Exception {
 		driver.get("http://localhost:8080/Quattrocchi/");
-		driver.findElement(By.linkText("Catalogo")).click();
-		driver.findElement(By.cssSelector("img[alt=\"pic\"]")).click();
+		driver.findElement(By.linkText("Login")).click();
+		driver.findElement(By.name("userid")).click();
+		driver.findElement(By.name("passid")).clear();
+		driver.findElement(By.name("passid")).sendKeys("Capra");
+		driver.findElement(By.name("userid")).clear();
+		driver.findElement(By.name("userid")).sendKeys("ViGal");
+		driver.findElement(By.name("submit")).click();
+		driver.get("http://localhost:8080/Quattrocchi/visualizza_prodotto?id=998");
 	}
 
 	@After

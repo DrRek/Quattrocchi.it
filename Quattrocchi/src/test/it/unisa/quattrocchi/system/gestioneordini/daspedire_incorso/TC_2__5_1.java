@@ -1,4 +1,4 @@
-package test.it.unisa.quattrocchi.system.gestionearticoli.visualizza_prodotto;
+package test.it.unisa.quattrocchi.system.gestioneordini.daspedire_incorso;
 
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_3__3_2_3 {
+public class TC_2__5_1 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,10 +18,9 @@ public class TC_3__3_2_3 {
 	}
 
 	@Test
-	public void testTC3323() throws Exception {
-		driver.get("http://localhost:8080/Quattrocchi/");
-		driver.findElement(By.linkText("Catalogo")).click();
-		driver.findElement(By.cssSelector("img[alt=\"pic\"]")).click();
+	public void testTC251() throws Exception {
+		driver.get("http://localhost:8080/Quattrocchi/gestioneOrdineDaSpedire");
+		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 
 	@After

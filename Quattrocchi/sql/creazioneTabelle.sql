@@ -95,7 +95,7 @@ create table ArticoloInStock(
 	Img3 varchar(60),
 	Descrizione varchar(255) not null,
 	Prezzo decimal(6,2) not null,
-	Disponibilita decimal(3) not null
+	Disponibilita integer(3) not null
 );
 
 

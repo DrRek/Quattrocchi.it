@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_3__3_2_2 {
+public class TC_3__3_2 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 

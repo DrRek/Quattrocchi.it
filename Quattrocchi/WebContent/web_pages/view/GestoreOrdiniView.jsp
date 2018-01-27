@@ -21,6 +21,7 @@
 </head>
 <body>
 <%@ include file="../view/Header.jsp"%>
+<br>
 <% if(gestoreOrdini != null) { 
 %>
 	<div class="container">

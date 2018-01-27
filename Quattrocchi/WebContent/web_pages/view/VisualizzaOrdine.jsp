@@ -24,6 +24,7 @@
 </head>
 <body>
 <%@ include file="../view/Header.jsp"%>
+<br>
 <% 
 	if((gestore != null && ordine != null) || (usr != null && ordine != null)) { 
 %>

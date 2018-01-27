@@ -20,6 +20,7 @@
 </head>
 <body>
 <%@ include file="../view/Header.jsp"%>
+<br>
 <% if(gestoreOrdini != null && ordine != null) { 
 %>
 	<div class="container">

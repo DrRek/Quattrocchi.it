@@ -50,6 +50,7 @@ public class VisualizzaStoricoOrdini extends HttpServlet{
 				request.setAttribute("notification", "Devi essere loggato per poter effettuare il checkout.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
+				return;
 			}
 			
 			List<Order> ordini = model.doRetrieveByAcquirente(a);

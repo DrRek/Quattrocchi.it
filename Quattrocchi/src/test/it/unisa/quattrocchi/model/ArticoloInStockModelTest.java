@@ -79,4 +79,19 @@ class ArticoloInStockModelTest {
 		assertEquals(ricercaAvanzata.get(0).getDisponibilità(),60);
 		assertTrue(ricercaAvanzata.get(0).getDescrizione().contains("nero"));
 	}
+	
+	@Test
+	public void TestUpdateDisponibilità() throws SQLException {
+		ArticoloInStock a = articoloInStockModel.doRetrieveByIdInStock(999);
+		assertNotNull(a);
+		assertEquals(a.getCodice(),999);
+		int dispA = a.getDisponibilità();
+		a.setDisponibilità(dispA + 1);
+		articoloInStockModel.updateDisponibilita(a);
+		ArticoloInStock b = articoloInStockModel.doRetrieveByIdInStock(999);
+		assertNotNull(b);
+		assertEquals(b.getCodice(),999);
+		int dispB = a.getDisponibilità();
+		assertEquals(dispB,dispA +1);
+	}
 }

@@ -58,8 +58,6 @@
 	<br><br>
 	<div class="container box"  style="text-align:center">
 		<h1>Benvenuto su Quattrocchi.it</h1>
-		<h4>Quattrocchi.it è un e-commerce innovativo dedicato
-			esclusivamente alla vendita di occhiali da sole.</h4>
 	</div>
 	<!-- /.container -->
 	<br>

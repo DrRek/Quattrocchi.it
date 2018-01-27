@@ -158,3 +158,11 @@
 	-o-transform: scale(1.05);
 	transform: scale(1.05);
 }
+
+.warning {
+	color: #c40000;
+}
+
+.info {
+	color: #008040;
+}

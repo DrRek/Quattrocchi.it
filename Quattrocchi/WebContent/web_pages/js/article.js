@@ -149,7 +149,7 @@ function formatData(responseText){
 	var toAppend = '';
 	try{
 		$.each(responseText, function(i, articleObject) {
-			if(articleObject.disponibilità > 0){
+			
 				toAppend += '<div class="block enlarge" onClick="articlePageViewFunction('+articleObject.codice+')">' //funzione che viene chiamata per ArticlePageView
 					+'<div class="top">'
 					+ '<ul>'
@@ -161,13 +161,18 @@ function formatData(responseText){
 					+'<div class="middle">'
 					+'<img src="/Quattrocchi/web_pages/image/'+articleObject.img1+'" alt="pic" />'
 					+'</div>'
-					+ '<div class="bottom">'
-					+ '<div class="info">Disponibilità immediata</div>'
-					+ '<div class="heading">'+ articleObject.modello +'</div>'
+					+ '<div class="bottom">';
+					if(articleObject.disponibilità > 0){
+					toAppend += '<div class="info">Disponibilità immediata</div>';
+					}
+					else{
+					toAppend += '<div class="warning">Disponibilità non immediata</div>';	
+					}
+					toAppend += '<div class="heading">'+ articleObject.modello +'</div>'
 					+'<div class="price">' + parseInt(articleObject.prezzo*100)/100 + '€</div>'
 					+'</div>'
 					+'</div>';
-			}
+			
 		});
 		$("#demos").html(toAppend);
 	} catch (exception){

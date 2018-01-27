@@ -55,6 +55,11 @@
 						<input type="hidden" id="codice" value="<%=articolo.getCodice()%>" />
 						<h1 class="text-center"><%=articolo.getModello()%></h1>
 						<h4><%=articolo.getMarca()%></h4>
+						<% if(articolo.getDisponibilità() > 0){%>
+							<h5 class="info">Disponibilità immediata</h5>
+						<%}else{ %>
+							<h5 class="warning">Disponibilità non immediata</h5>
+						<%} %>
 						<p class="goToDescription">
 							<a href="#details" class="scroll-to">Mostra descrizione</a>
 						</p>

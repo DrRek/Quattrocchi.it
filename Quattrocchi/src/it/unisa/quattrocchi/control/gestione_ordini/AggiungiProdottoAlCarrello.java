@@ -87,6 +87,7 @@ public class AggiungiProdottoAlCarrello extends HttpServlet{
 				articolo = articoloInStockModel.doRetrieveByIdInStock(id);
 				if(articolo==null) {
 					response.getWriter().write(new Gson().toJson("Nessun articolo trovato."));
+					return;
 				}
 
 				carrello.addArticle(articolo);

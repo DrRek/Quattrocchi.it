@@ -1,4 +1,4 @@
-create schema quattrocchiDB;
+﻿create schema quattrocchiDB;
 
 use quattrocchiDB;
 
@@ -37,7 +37,7 @@ create table Acquirente(
 create table IndirizzoSpedizione(
 	Id int primary key auto_increment,
 	Stato varchar(30) not null,
-	Provincia char(2) not null, -- non Ã¨ var Ã¨ char
+	Provincia char(2) not null,
 	CAP integer(5) not null,
 	Indirizzo varchar(40) not null,
 	NumeroCivico integer(5) not null, -- 10 Ã¨ decisamente troppo

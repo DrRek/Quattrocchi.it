@@ -1,13 +1,12 @@
-package test.it.unisa.quattrocchi.system.gestionearticoli.visualizza_catalogo;
+package test.it.unisa.quattrocchi.system.gestioneordini.daspedire_incorso;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_3__2_2_1 {
+public class TC_2__5_1 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -19,16 +18,9 @@ public class TC_3__2_2_1 {
 	}
 
 	@Test
-	public void testTC3221() throws Exception {
-		driver.get("http://localhost:8080/Quattrocchi/");
-		driver.findElement(By.linkText("Login")).click();
-		driver.findElement(By.name("userid")).click();
-		driver.findElement(By.name("passid")).clear();
-		driver.findElement(By.name("passid")).sendKeys("Capra");
-		driver.findElement(By.name("userid")).clear();
-		driver.findElement(By.name("userid")).sendKeys("ViGal");
-		driver.findElement(By.name("submit")).click();;
-		driver.get("http://localhost:8080/Quattrocchi/visualizza_catalogo");
+	public void testTC251() throws Exception {
+		driver.get("http://localhost:8080/Quattrocchi/gestioneOrdineDaSpedire");
+		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 
 	@After

@@ -54,6 +54,7 @@ public class VisualizzaCheckout extends HttpServlet {
 				request.setAttribute("notification", "Devi essere loggato per poter effettuare il checkout.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login");
 				dispatcher.forward(request, response);
+				return;
 			}
 			
 			Cart carrello = a.getCart();
@@ -61,6 +62,7 @@ public class VisualizzaCheckout extends HttpServlet {
 				request.setAttribute("notification", "Aggiungi articoli al carrello prima di poter effettuare il checkout.");
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/visualizza_catalogo");
 				dispatcher.forward(request, response);
+				return;
 			}
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/CheckoutView.jsp");

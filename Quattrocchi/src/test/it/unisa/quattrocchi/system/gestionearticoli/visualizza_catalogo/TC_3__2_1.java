@@ -1,13 +1,12 @@
 package test.it.unisa.quattrocchi.system.gestionearticoli.visualizza_catalogo;
 
-import java.util.regex.Pattern;
 import java.util.concurrent.TimeUnit;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_3__2_2_1 {
+public class TC_3__2_1 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 

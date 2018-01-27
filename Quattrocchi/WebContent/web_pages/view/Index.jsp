@@ -34,11 +34,28 @@
 				</a>
 			</div>
     </div>
+    <br>
+    <div class="container box">
+    <p align="center" style="font-size: 2.5em;"><strong>BENVENUTO SU QUATTROCCHI.IT</strong></p>
+    </div>
+    <br>
 	<%@ include file="../view/Footer.jsp"%>
 	<script>
 		$('.carousel').carousel({
 			interval : 2000
 		})
 	</script>
+	<style>
+		.box {
+			background: #fff;
+			border: solid 1px #e6e6e6;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+			box-sizing: border-box;
+			padding: 20px;
+			-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+			box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+		}
+	</style>
 </body>
 </html>

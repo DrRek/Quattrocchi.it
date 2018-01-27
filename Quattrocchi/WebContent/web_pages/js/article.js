@@ -28,28 +28,36 @@ function checkAdvancedSearchRegex(){
 	}
 	
 	var prezzoMin = $('input[name=prezzoMin]').val();
-	if(prezzoMin != null && prezzoMin != ""){
+	if(prezzoMin != null && prezzoMin != "" && !/^([0-9]{1,5})$/.test(prezzoMin)){
 		try{
-			parseInt(prezzoMin)
+			parseInt(prezzoMin);
 		} catch(e){
-			showNotification("Parametro prezzo minimo non valido.")
+			showNotification("Parametro prezzo minimo non valido.");
 			return false;
 		}
 	}
+	else{ 
+		showNotification("Parametro prezzo minimo non valido.");
+		return false; 
+	}
 	
 	var prezzoMax = $('input[name=prezzoMax]').val();
-	if(prezzoMax != null && prezzoMax != ""){
+	if(prezzoMax != null && prezzoMax != "" && !/^([0-9]{1,5})$/.test(prezzoMax)){
 		try{
-			parseInt(prezzoMax)
+			parseInt(prezzoMax);
 		} catch(e){
-			showNotification("Parametro prezzo massimo non valido.")
+			showNotification("Parametro prezzo massimo non valido.");
 			return false;
 		}
+	}
+	else{ 
+		showNotification("Parametro prezzo massimo non valido.");
+		return false; 
 	}
 	
 	var colore = $('input[name=colore]').val();
 	if(colore != null && colore != "" && !/^([A-Za-z0-9 ]{1,20})$/.test(colore)){
-		showNotification("Parametro colore non valido.")
+		showNotification("Parametro colore non valido.");
 		return false;
 	}
 	

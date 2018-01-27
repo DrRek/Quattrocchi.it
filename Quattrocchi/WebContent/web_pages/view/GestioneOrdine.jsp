@@ -69,12 +69,53 @@
     	<input type="hidden" name="ordineId" value="<%=ordine.getCodice()%>">
 		<div class="container">
 			<h3>Corriere</h3>
+			<%  if(ordine.getCorriere() != null) {
+					if(ordine.getCorriere().equalsIgnoreCase("sda")) {%>
+			<select class="form-control" name = "corriere">
+				<option value="sda" selected>SDA</option>
+				<option value="dhl">DHL</option>
+				<option value="bartolini">Bartolini</option>
+				<option value="poste">Poste</option>
+			</select>
+			<% 	} else if(ordine.getCorriere().equalsIgnoreCase("dhl")) { %>
+				<select class="form-control" name = "corriere">
+				<option value="sda">SDA</option>
+				<option value="dhl" selected>DHL</option>
+				<option value="bartolini">Bartolini</option>
+				<option value="poste">Poste</option>
+			</select>
+			<% } else if(ordine.getCorriere().equalsIgnoreCase("bartolini")) {%>
+			<select class="form-control" name = "corriere">
+				<option value="sda">SDA</option>
+				<option value="dhl">DHL</option>
+				<option value="bartolini" selected>Bartolini</option>
+				<option value="poste">Poste</option>
+			</select>
+			<% } else if(ordine.getCorriere().equalsIgnoreCase("poste")) {%>
+			<select class="form-control" name = "corriere">
+				<option value="sda">SDA</option>
+				<option value="dhl">DHL</option>
+				<option value="bartolini">Bartolini</option>
+				<option value="poste" selected>Poste</option>
+			</select>
+			<% } else { %>
 			<select class="form-control" name = "corriere">
 				<option value="sda">SDA</option>
 				<option value="dhl">DHL</option>
 				<option value="bartolini">Bartolini</option>
 				<option value="poste">Poste</option>
 			</select>
+			<% }
+			} else {
+			%>	
+			<select class="form-control" name = "corriere">
+				<option value="sda">SDA</option>
+				<option value="dhl">DHL</option>
+				<option value="bartolini">Bartolini</option>
+				<option value="poste">Poste</option>
+			</select>
+			<%} %>
+
 		</div>
 		<% String track = "";
 			if(ordine.getNumeroTracking() != null)

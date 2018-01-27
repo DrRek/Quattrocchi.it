@@ -35,12 +35,13 @@ public class TC_2__5_5 {
 		driver.findElement(By.name("tracking")).click();
 		driver.findElement(By.name("tracking")).clear();
 		driver.findElement(By.name("tracking")).sendKeys("TR548896547856944");
-		driver.findElement(By.name("dataDiConsegna")).click();
-		driver.findElement(By.name("dataDiConsegna")).clear();
-		driver.findElement(By.name("dataDiConsegna")).sendKeys("2018-01-31");
-		driver.findElement(By.xpath("//label[2]")).click();
-		driver.findElement(By.name("manageOrder")).click();
-		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
+		//La data viene inserita tramite calendario 
+		//driver.findElement(By.name("dataDiConsegna")).click();
+		//driver.findElement(By.name("dataDiConsegna")).clear();
+		//driver.findElement(By.name("dataDiConsegna")).sendKeys("2018-01-31");
+		//driver.findElement(By.xpath("//label[2]")).click();
+		//driver.findElement(By.name("manageOrder")).click();
+		//driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 
 	@After

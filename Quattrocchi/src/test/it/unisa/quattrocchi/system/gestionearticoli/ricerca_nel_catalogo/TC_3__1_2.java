@@ -24,7 +24,6 @@ public class TC_3__1_2 {
 		driver.findElement(By.name("toSearch")).clear();
 		driver.findElement(By.name("toSearch")).sendKeys("ANCIANIURCB");
 		driver.findElement(By.cssSelector("button.btn.btn-default")).click();
-		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 
 	@After

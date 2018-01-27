@@ -94,7 +94,7 @@ public class InserisciDatiDiSpedizione extends HttpServlet{
 			}
 			
 			String corriere = request.getParameter("corriere");
-			if(corriere==null || !corriere.matches("[A-Za-z ]{3,10}")) {
+			if(corriere==null || !corriere.matches("[A-Za-z ]{3,10}") || (!corriere.equalsIgnoreCase("SDA") && !corriere.equalsIgnoreCase("Bartolini") && !corriere.equalsIgnoreCase("DHL") && !corriere.equalsIgnoreCase("Poste"))) {
 				request.setAttribute("notification", "Corriere inserito non valido.");
 				request.setAttribute("ordineId", idS);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/gestioneOrdineDaSpedire");

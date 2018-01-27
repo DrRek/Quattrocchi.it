@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class TC_2__5_4 {
+public class TC_2__5_7 {
 	private WebDriver driver;
 	private StringBuffer verificationErrors = new StringBuffer();
 
@@ -18,7 +18,7 @@ public class TC_2__5_4 {
 	}
 
 	@Test
-	public void testTC254() throws Exception {
+	public void testTC257() throws Exception {
 		driver.get("http://localhost:8080/Quattrocchi/");
 		driver.findElement(By.linkText("Login")).click();
 		driver.findElement(By.name("userid")).click();
@@ -28,7 +28,7 @@ public class TC_2__5_4 {
 		driver.findElement(By.name("userid")).sendKeys("ViGal");
 		driver.findElement(By.name("submit")).click();
 		driver.findElement(By.name("inserireNAME")).click();
-		driver.get("http://localhost:8080/Quattrocchi//inserisciDatiDiSpedizione?ordineId=1000&corriere=adcda&tracking=TR1234567&statoOrdine=consegnato&dataDiConsegna=2020/02/02");
+		driver.get("http://localhost:8080/Quattrocchi//inserisciDatiDiSpedizione?ordineId=999&corriere=Bartolini&tracking=TR1234567&statoOrdine=MIAOMIAO&dataDiConsegna=2020-05-10");
 		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 

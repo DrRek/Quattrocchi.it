@@ -30,6 +30,7 @@ public class VisualizzaCatalogo extends HttpServlet{
 	 * Questo metodo si occupa di effettuare la visualizzazione dell'intero catalogo dei prodotti.
 	 * 
 	 * @precondition	La richiesta è sincrona.
+	 * 					La richiesta non è effettuata da un gestore.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -41,6 +42,13 @@ public class VisualizzaCatalogo extends HttpServlet{
 				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
 				return;
 			}	
+			
+			if(request.getSession().getAttribute("gestoreOrdini") != null) {
+				request.setAttribute("notification", "Sei un gestore, è necessario che tu faccia il logout prima di poter utilizzare il sito come utente normale.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
+				dispatcher.forward(request, response);
+				return;
+			}
 			
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/web_pages/view/ArticleView.jsp");
 			dispatcher.forward(request, response);

@@ -23,7 +23,8 @@ public class VisualizzaCarrello extends HttpServlet{
 	
 	/**
 	 * Questo metodo si occupa di effettuare la visualizzazione del carrello.
-	 * @precondition La richiesta è sincrona.
+	 * @precondition 	La richiesta è sincrona.
+	 * 					La richiesta non è effettuata da un gestore.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {
@@ -34,6 +35,13 @@ public class VisualizzaCarrello extends HttpServlet{
 				response.setContentType("application/json");
 				response.setHeader("Cache-Control", "no-cache");
 				response.getWriter().write(new Gson().toJson("Errore generato dalla richiesta! Se il problema persiste contattaci."));
+				return;
+			}
+			
+			if(request.getSession().getAttribute("gestoreOrdini") != null) {
+				request.setAttribute("notification", "Sei un gestore, è necessario che tu faccia il logout prima di poter utilizzare il sito come utente normale.");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/welcome");
+				dispatcher.forward(request, response);
 				return;
 			}
 			

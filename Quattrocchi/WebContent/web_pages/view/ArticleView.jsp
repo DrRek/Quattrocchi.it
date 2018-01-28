@@ -102,10 +102,8 @@
 				</form>
 			</div>
 		</div>
-
-		<div class="container-fluid col-sm-8 col-md-9 col-lg-10 products"></div>
 	
-		<div id="demos" class="container products"></div>
+		<div id="demos" class="products"></div>
 	</div>
 	<%@ include file="../view/Footer.jsp"%>
 	<script src="web_pages/js/article.js"></script>

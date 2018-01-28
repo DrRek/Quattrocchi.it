@@ -50,10 +50,9 @@
 			});
 		});
 	</script>
-	<!--  search.js gestisce questa parte-->
 	<div class="row container-fluid">
-		<!-- devo ancora ricercare nelle impostazioni iniziali anche in base alla parola cercata e implementare il sort -->
-		<div id='daMettereASinistra' class='col-sm-4 col-md-3 col-lg-2 '>
+	
+		<div id='daMettereASinistra' class='col-sm-4 col-md-3 col-lg-2'>
 			<div align="center">
 				<br><br><br>
 				<h3>Ricerca avanzata</h3>
@@ -106,7 +105,7 @@
 
 		<div class="container-fluid col-sm-8 col-md-9 col-lg-10 products"></div>
 	
-		<div id="demos" class="products"></div>
+		<div id="demos" class="container products"></div>
 	</div>
 	<%@ include file="../view/Footer.jsp"%>
 	<script src="web_pages/js/article.js"></script>

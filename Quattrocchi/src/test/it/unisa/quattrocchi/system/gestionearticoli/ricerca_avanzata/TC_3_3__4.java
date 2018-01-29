@@ -36,7 +36,7 @@ public class TC_3_3__4 {
 		driver.findElement(By.name("prezzoMax")).clear();
 		driver.findElement(By.name("prezzoMax")).sendKeys("9516591189165");
 		driver.findElement(By.id("advancedSearch")).click();
-		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
+		//driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 
 	@After

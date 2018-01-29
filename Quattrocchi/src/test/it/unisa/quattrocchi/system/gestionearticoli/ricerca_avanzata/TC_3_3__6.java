@@ -19,23 +19,28 @@ public class TC_3_3__6 {
 	}
 
 	@Test
-	public void testTC3126() throws Exception {
+	public void testMancante1() throws Exception {
 		driver.get("http://localhost:8080/Quattrocchi/");
-		driver.findElement(By.cssSelector("button.btn.btn-default")).click();
-		driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
+		driver.findElement(By.name("toSearch")).click();
+		driver.findElement(By.name("toSearch")).clear();
+		driver.findElement(By.name("toSearch")).sendKeys("ray");
+		driver.findElement(By.name("toSearch")).sendKeys(Keys.ENTER);
 		driver.findElement(By.name("marca")).click();
-		new Select(driver.findElement(By.name("marca"))).selectByVisibleText("Lindberg");
-		driver.findElement(By.cssSelector("option[value=\"Lindberg\"]")).click();
+		new Select(driver.findElement(By.name("marca"))).selectByVisibleText("RayBan");
+		driver.findElement(By.cssSelector("option[value=\"RayBan\"]")).click();
 		driver.findElement(By.name("prezzoMin")).click();
 		driver.findElement(By.name("prezzoMin")).clear();
-		driver.findElement(By.name("prezzoMin")).sendKeys("50");
+		driver.findElement(By.name("prezzoMin")).sendKeys("10");
 		driver.findElement(By.name("prezzoMax")).click();
 		driver.findElement(By.name("prezzoMax")).clear();
-		driver.findElement(By.name("prezzoMax")).sendKeys("60");
+		driver.findElement(By.name("prezzoMax")).sendKeys("29");
+		driver.findElement(By.name("prezzoMax")).clear();
+		driver.findElement(By.name("prezzoMax")).sendKeys("28");
 		driver.findElement(By.name("colore")).click();
-		driver.findElement(By.name("colore")).clear();
-		driver.findElement(By.name("colore")).sendKeys("nero");
+		new Select(driver.findElement(By.name("colore"))).selectByVisibleText("Nero");
+		driver.findElement(By.cssSelector("option[value=\"nero\"]")).click();
 		driver.findElement(By.id("advancedSearch")).click();
+		//driver.findElement(By.cssSelector("input.btn.btn-outline-secondary")).click();
 	}
 
 	@After

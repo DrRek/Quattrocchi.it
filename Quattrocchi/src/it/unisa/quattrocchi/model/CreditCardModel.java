@@ -25,12 +25,12 @@ public class CreditCardModel {
 
 	public static final String TABLE_NAME_CREDITCARD = "cartacredito";
 	
-	public static String SELECT_CREDIT_CARD_BY_ID = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE IdCarta = ?;";
-	public static String SELECT_ALL_CREDIT_CARD_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE Acquirente = ?;";
-	public static String INSET_CREDIT_CARD = "INSERT INTO "+TABLE_NAME_CREDITCARD+" (NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente) VALUES(?,?,?,?,?,?);";
-	public static String UPDATE_CREDIT_CARD = "update "+TABLE_NAME_CREDITCARD+" set NumeroCC = ?, Intestatario = ?,Circuito = ?,DataScadenza = ?,CvcCvv = ? where IdCarta = ? AND Acquirente = ?;";
-	public static String DELETE_CREDIT_CARD = "delete from "+TABLE_NAME_CREDITCARD+" where IdCarta = ?;";
-	public static String SET_CREDIT_CART_ACQUIRENTE_NULL = "update "+TABLE_NAME_CREDITCARD+" set Acquirente = NULL where IdCarta = ?;";
+	public static final String SELECT_CREDIT_CARD_BY_ID = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE IdCarta = ?;";
+	public static final String SELECT_ALL_CREDIT_CARD_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_CREDITCARD+" WHERE Acquirente = ?;";
+	public static final String INSET_CREDIT_CARD = "INSERT INTO "+TABLE_NAME_CREDITCARD+" (NumeroCC,Intestatario,Circuito,DataScadenza,CvcCvv,Acquirente) VALUES(?,?,?,?,?,?);";
+	public static final String UPDATE_CREDIT_CARD = "update "+TABLE_NAME_CREDITCARD+" set NumeroCC = ?, Intestatario = ?,Circuito = ?,DataScadenza = ?,CvcCvv = ? where IdCarta = ? AND Acquirente = ?;";
+	public static final String DELETE_CREDIT_CARD = "delete from "+TABLE_NAME_CREDITCARD+" where IdCarta = ?;";
+	public static final String SET_CREDIT_CART_ACQUIRENTE_NULL = "update "+TABLE_NAME_CREDITCARD+" set Acquirente = NULL where IdCarta = ?;";
 	
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	

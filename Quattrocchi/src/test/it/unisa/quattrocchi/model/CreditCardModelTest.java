@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -71,15 +72,16 @@ class CreditCardModelTest {
 		assertEquals(carteIvan.size(),2);
 	}
 	
-	
-	//problema con la data
 	@Test
-	public void TestAggiornaCart() throws SQLException {
+	public void TestAggiornaCard() throws SQLException {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date a = new Date();
 		CreditCard cc = creditCardModel.doRetrieveById(999);
 		assertNotNull(cc);
 		cc.setNumeroCC("4023660000058965");
 		cc.setIntestatario("Luigi Piccolo");
 		cc.setCircuito("MasterCard");
+		cc.setDataScadenza(a);
 		cc.setCvv(321);
 		creditCardModel.updateCreditCard(cc);
 		CreditCard ccUpdate = creditCardModel.doRetrieveById(999);
@@ -87,6 +89,7 @@ class CreditCardModelTest {
 		assertEquals(ccUpdate.getIdCarta(),999);
 		assertEquals(ccUpdate.getIntestatario(),"Luigi Piccolo");
 		assertEquals(ccUpdate.getNumeroCC(),"4023660000058965");
+		assertEquals(sdf.format(ccUpdate.getDataScadenza()),sdf.format(a));
 		assertEquals(ccUpdate.getCircuito(),"MasterCard");
 		assertEquals(ccUpdate.getCvv(),321);
 	}

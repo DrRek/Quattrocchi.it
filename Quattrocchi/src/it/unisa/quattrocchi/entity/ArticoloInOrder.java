@@ -128,6 +128,19 @@ public class ArticoloInOrder {
 		return "ArticoloInOrder [codice=" + codice + ", modello=" + modello + ", marca=" + marca + ", descrizione="
 				+ descrizione + ", prezzo=" + prezzo + ", quantità=" + quantità + ", ordine=" + order.getCodice() + "]";
 	}
+	
+	@Override
+	public boolean equals(Object o) {
+		if(codice == (((ArticoloInOrder) o).getCodice())){
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+	    return codice;
+	}
 		
 
 }

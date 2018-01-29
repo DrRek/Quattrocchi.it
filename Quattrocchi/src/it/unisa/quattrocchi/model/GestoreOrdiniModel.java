@@ -17,8 +17,8 @@ public class GestoreOrdiniModel {
 	
 	public static final String TABLE_NAME_GESTOREORDINI = "gestoreordini";
 	
-	public static String RETRIEVE_GESTORE_ORDINI_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ?;";
-	public static String RETRIEVE_GESTORE_ORDINI_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ? AND Pwd = ?;";
+	public static final String RETRIEVE_GESTORE_ORDINI_BY_USERNAME = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ?;";
+	public static final String RETRIEVE_GESTORE_ORDINI_BY_CREDENTIALS = "SELECT * FROM "+TABLE_NAME_GESTOREORDINI+" WHERE Username = ? AND Pwd = ?;";
 	
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un GestoreOrdini

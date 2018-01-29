@@ -25,11 +25,11 @@ public class OrderModel {
 	
 	public static final String TABLE_NAME_ORDER = "ordine";
 	
-	public static String RETRIEVE_ORDER_BY_ID = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
-	public static String RETRIEVE_ALL_ORDER = "SELECT * FROM " + TABLE_NAME_ORDER + ";";
-	public static String RETRIEVE_ORDER_BY_ACQUIRENTE = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
-	public static String INSERT_ORDER = "INSERT INTO "+TABLE_NAME_ORDER+" (DataEsecuzione,Prezzo,IndirizzoSpedizione,CartaCredito,Acquirente,StatoOrdine,DataConsegna,NumeroTracking,Corriere) VALUES(?,?,?,?,?,?,?,?,?);";
-	public static String UPDATE_ORDER = "update "+TABLE_NAME_ORDER+" set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ? where Codice =?;";
+	public static final String RETRIEVE_ORDER_BY_ID = "SELECT * FROM " + TABLE_NAME_ORDER + " WHERE Codice = ?;";
+	public static final String RETRIEVE_ALL_ORDER = "SELECT * FROM " + TABLE_NAME_ORDER + ";";
+	public static final String RETRIEVE_ORDER_BY_ACQUIRENTE = "SELECT * FROM " + TABLE_NAME_ORDER + " where Acquirente = ? order by DataEsecuzione;";
+	public static final String INSERT_ORDER = "INSERT INTO "+TABLE_NAME_ORDER+" (DataEsecuzione,Prezzo,IndirizzoSpedizione,CartaCredito,Acquirente,StatoOrdine,DataConsegna,NumeroTracking,Corriere) VALUES(?,?,?,?,?,?,?,?,?);";
+	public static final String UPDATE_ORDER = "update "+TABLE_NAME_ORDER+" set StatoOrdine = ?, DataConsegna = ?, NumeroTracking = ?,Corriere = ? where Codice =?;";
 	
 	static ShippingAddressModel shippingAddressModel = new ShippingAddressModel();
 	static CreditCardModel creditCardModel = new CreditCardModel();

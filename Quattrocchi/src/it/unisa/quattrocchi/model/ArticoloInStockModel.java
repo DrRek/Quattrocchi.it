@@ -20,11 +20,11 @@ public class ArticoloInStockModel {
 	
 	public static final String TABLE_NAME_CATALOGO = "articoloinstock";
 
-	public static String RETRIEVE_ARTICOLO_STOCK_BY_ID = "SELECT * FROM "+TABLE_NAME_CATALOGO+" WHERE Codice = ?;";
-	public static String RETRIEVE_ALL_ARTICOLO_STOCK = "SELECT * FROM "+TABLE_NAME_CATALOGO+";";
-	public static String RETRIEVE_ARTICOLO_STOCK_BY_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
-	public static String RETRIEVE_ARTICOLO_STOCK_BY_ADVANCED_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)) and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
-	public static String DO_UPDATE_DISPONIBILITA_ARTICOLO_STOCK = "update " + TABLE_NAME_CATALOGO + " set disponibilita = ? where codice = ?";
+	public static final String RETRIEVE_ARTICOLO_STOCK_BY_ID = "SELECT * FROM "+TABLE_NAME_CATALOGO+" WHERE Codice = ?;";
+	public static final String RETRIEVE_ALL_ARTICOLO_STOCK = "SELECT * FROM "+TABLE_NAME_CATALOGO+";";
+	public static final String RETRIEVE_ARTICOLO_STOCK_BY_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where (Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)";
+	public static final String RETRIEVE_ARTICOLO_STOCK_BY_ADVANCED_SEARCH = "select * from "+TABLE_NAME_CATALOGO+" where ((Modello LIKE ?) or (Marca LIKE ?) or (Descrizione LIKE ?)) and (Prezzo >= ? and Prezzo <= ?) and (Marca LIKE ?) and ((Modello LIKE ?) or (Descrizione LIKE ?))";
+	public static final String DO_UPDATE_DISPONIBILITA_ARTICOLO_STOCK = "update " + TABLE_NAME_CATALOGO + " set disponibilita = ? where codice = ?";
 	
 	
 	/**

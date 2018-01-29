@@ -23,13 +23,13 @@ public class ShippingAddressModel {
 	
 	public static final String TABLE_NAME_ADDRESS = "indirizzospedizione";
 	
-	public static String SELECT_SHIPPING_ADDRESS_BY_ID = "SELECT * FROM "+TABLE_NAME_ADDRESS+" WHERE Id = ?;";
-	public static String SELECT_ALL_SHIPPING_ADDRESS = "SELECT * FROM " + TABLE_NAME_ADDRESS;
-	public static String SELECT_ALL_SHIPING_ADDRESS_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_ADDRESS+" where Acquirente = ?;";
-	public static String CREATE_SHIPPING_ADDRESS = "INSERT INTO "+TABLE_NAME_ADDRESS+" (Id,Stato,Provincia,CAP,Indirizzo,NumeroCivico,Acquirente) VALUES(?,?,?,?,?,?,?);";
-	public static String UPDATE_SHIPPING_ADDRESS = "update "+TABLE_NAME_ADDRESS+" set Stato = ?, Provincia = ?, CAP = ?, Indirizzo = ?, NumeroCivico = ? where Id = ? AND Acquirente = ?";
-	public static String DELETE_SHIPPING_ADDRESS = "delete from "+TABLE_NAME_ADDRESS+" where Id = ?;";
-	public static String SET_SHIPPING_ADDRESS_ACQUIRENTE_NULL = "update " + TABLE_NAME_ADDRESS + " set Acquirente = NULL where Id = ?;";
+	public static final String SELECT_SHIPPING_ADDRESS_BY_ID = "SELECT * FROM "+TABLE_NAME_ADDRESS+" WHERE Id = ?;";
+	public static final String SELECT_ALL_SHIPPING_ADDRESS = "SELECT * FROM " + TABLE_NAME_ADDRESS;
+	public static final String SELECT_ALL_SHIPING_ADDRESS_BY_ACQUIRENTE = "SELECT * FROM "+TABLE_NAME_ADDRESS+" where Acquirente = ?;";
+	public static final String CREATE_SHIPPING_ADDRESS = "INSERT INTO "+TABLE_NAME_ADDRESS+" (Id,Stato,Provincia,CAP,Indirizzo,NumeroCivico,Acquirente) VALUES(?,?,?,?,?,?,?);";
+	public static final String UPDATE_SHIPPING_ADDRESS = "update "+TABLE_NAME_ADDRESS+" set Stato = ?, Provincia = ?, CAP = ?, Indirizzo = ?, NumeroCivico = ? where Id = ? AND Acquirente = ?";
+	public static final String DELETE_SHIPPING_ADDRESS = "delete from "+TABLE_NAME_ADDRESS+" where Id = ?;";
+	public static final String SET_SHIPPING_ADDRESS_ACQUIRENTE_NULL = "update " + TABLE_NAME_ADDRESS + " set Acquirente = NULL where Id = ?;";
 	
 	static AcquirenteModel acquirenteModel = new AcquirenteModel();
 	

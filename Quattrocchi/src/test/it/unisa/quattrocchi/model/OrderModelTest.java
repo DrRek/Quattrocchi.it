@@ -11,18 +11,27 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unisa.quattrocchi.entity.Acquirente;
+import it.unisa.quattrocchi.entity.Cart;
+import it.unisa.quattrocchi.entity.CreditCard;
 import it.unisa.quattrocchi.entity.Order;
+import it.unisa.quattrocchi.entity.ShippingAddress;
 import it.unisa.quattrocchi.model.AcquirenteModel;
+import it.unisa.quattrocchi.model.CreditCardModel;
 import it.unisa.quattrocchi.model.OrderModel;
+import it.unisa.quattrocchi.model.ShippingAddressModel;
 
 class OrderModelTest {
 
 	private static OrderModel orderModel;
 	private static AcquirenteModel acquirenteModel;
+	private static ShippingAddressModel shippingAddressModel;
+	private static CreditCardModel creditCardModel;
 	
 	static {
 		orderModel = new OrderModel();
 		acquirenteModel = new AcquirenteModel();
+		shippingAddressModel = new ShippingAddressModel();
+		creditCardModel = new CreditCardModel();
 	}
 	
 	@BeforeEach
@@ -95,6 +104,19 @@ class OrderModelTest {
 	
 	@Test
 	public void TestCreaOrdine() throws SQLException {
-		//Da fare con LucaRè
+		Acquirente a = acquirenteModel.doRetriveById("Expos");
+		assertNotNull(a);
+		Cart c = acquirenteModel.doRetrieveCartByUser(a.getUsername());
+		a.setCart(c);
+		List<ShippingAddress> sa = shippingAddressModel.doRetrieveByUser(a.getUsername());
+		assertNotNull(sa);
+		List<CreditCard> cc = creditCardModel.doRetrieveByUser(a.getUsername());
+		assertNotNull(cc);
+		Order o = new Order(a,sa.get(0),cc.get(0));
+		assertNotNull(o);
+		orderModel.createOrder(o);
+		List<Order> listo = orderModel.doRetrieveByAcquirente(a);
+		assertNotNull(listo);
+		assertTrue(listo.contains(o));
 	}
 }

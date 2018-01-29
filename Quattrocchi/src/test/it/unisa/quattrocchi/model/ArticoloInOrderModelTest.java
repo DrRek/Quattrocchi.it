@@ -10,14 +10,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unisa.quattrocchi.entity.ArticoloInOrder;
+import it.unisa.quattrocchi.entity.ArticoloInStock;
+import it.unisa.quattrocchi.entity.Order;
 import it.unisa.quattrocchi.model.ArticoloInOrderModel;
+import it.unisa.quattrocchi.model.ArticoloInStockModel;
+import it.unisa.quattrocchi.model.OrderModel;
 
 class ArticoloInOrderModelTest {
 	
 	private static ArticoloInOrderModel articoloInOrderModel;
+	private static ArticoloInStockModel articoloInStockModel;
+	private static OrderModel orderModel;
 	
 	static {
 		articoloInOrderModel = new ArticoloInOrderModel();
+		orderModel = new OrderModel();
+		articoloInStockModel = new ArticoloInStockModel();
 	}
 	
 	@BeforeEach
@@ -64,7 +72,18 @@ class ArticoloInOrderModelTest {
 	
 	@Test
 	public void TestAggiungiArticolo() throws SQLException {
-		//non so cosa testare
+		Order o = orderModel.doRetrieveById(999);
+		assertNotNull(o);
+		ArticoloInStock ais = articoloInStockModel.doRetrieveByIdInStock(994);
+		assertNotNull(ais);
+		ArticoloInOrder aio = new ArticoloInOrder(ais,1);
+		assertNotNull(aio);
+		articoloInOrderModel.addArticle(aio, o);
+		Order o1 = orderModel.doRetrieveById(999);
+		assertNotNull(o1);
+		List<ArticoloInOrder> laio = articoloInOrderModel.restituisciArticoliAssociatiAdUnOrdine(o1.getCodice());
+		assertNotNull(laio);
+		assertTrue(laio.contains(aio));
 		
 	}
 }

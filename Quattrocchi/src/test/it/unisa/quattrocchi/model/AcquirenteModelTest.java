@@ -9,15 +9,19 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import it.unisa.quattrocchi.entity.Acquirente;
+import it.unisa.quattrocchi.entity.ArticoloInStock;
 import it.unisa.quattrocchi.entity.Cart;
 import it.unisa.quattrocchi.model.AcquirenteModel;
+import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 class AcquirenteModelTest {
 	
 	private static AcquirenteModel acquirenteModel;
+	private static ArticoloInStockModel articoloInStockModel;
 	
 	static {
 		acquirenteModel = new AcquirenteModel();
+		articoloInStockModel = new ArticoloInStockModel();
 	}
 	
 	@BeforeEach
@@ -73,13 +77,25 @@ class AcquirenteModelTest {
 		assertEquals(b.getEmail(),"ivanesposito96@miao.it");
 	}
 	
-	/* non so come testarlo
+	
 	@Test
 	public void TestAggiornaCarrello() throws SQLException {
 		Acquirente a = acquirenteModel.doRetriveById("Expos");
 		assertNotNull(a);
+		Cart c = acquirenteModel.doRetrieveCartByUser(a.getUsername());
+		assertNotNull(c);
+		assertEquals(c.getArticoli().size(),1);
+		ArticoloInStock ais = articoloInStockModel.doRetrieveByIdInStock(999);
+		c.addArticle(ais);
+		a.setCart(c);
 		acquirenteModel.updateCart(a);
-	}*/
+		Acquirente b = acquirenteModel.doRetriveById("Expos");
+		assertNotNull(b);
+		Cart c1 = acquirenteModel.doRetrieveCartByUser(b.getUsername());
+		assertNotNull(c1);
+		assertEquals(c1.getArticoli().size(),2);
+		assertTrue(c1.getArticoli().containsKey(ais));
+	}
 	
 	@Test
 	public void TestCancellaCarrello() throws SQLException {

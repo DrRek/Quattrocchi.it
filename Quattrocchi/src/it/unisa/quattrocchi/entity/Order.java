@@ -148,5 +148,17 @@ public class Order {
 		this.listaDiArticoli = listaNuova;
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		if(codice == (((Order) o).getCodice())){
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode(){
+	    return codice;
+	}
 
 }

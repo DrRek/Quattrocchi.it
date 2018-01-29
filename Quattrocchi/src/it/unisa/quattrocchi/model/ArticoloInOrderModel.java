@@ -21,11 +21,11 @@ public class ArticoloInOrderModel {
 	
 	public static final String TABLE_NAME_ARTICOLOINORDINE = "articoloinorder";
 	
-	public static String RETRIEVE_BY_ID = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+" WHERE Codice = ?;";
-	public static String RETRIEVE_ALL = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+";";
-	public static String RETRIEVE_BY_ORDER = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+" WHERE Ordine = ?;";
-	public static String INSERT_ARTICLE_BY_ORDER = "INSERT INTO "+TABLE_NAME_ARTICOLOINORDINE+" (Modello,Marca,Img1,Img2,Img3,Descrizione,Prezzo,Quantita,Ordine) VALUES(?,?,?,?,?,?,?,?,?);";
-	
+	public static final String RETRIEVE_BY_ID = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+" WHERE Codice = ?;";
+	public static final String RETRIEVE_ALL = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+";";
+	public static final String RETRIEVE_BY_ORDER = "SELECT * FROM "+TABLE_NAME_ARTICOLOINORDINE+" WHERE Ordine = ?;";
+	public static final String INSERT_ARTICLE_BY_ORDER = "INSERT INTO "+TABLE_NAME_ARTICOLOINORDINE+" (Modello,Marca,Img1,Img2,Img3,Descrizione,Prezzo,Quantita,Ordine) VALUES(?,?,?,?,?,?,?,?,?);";
+
 	
 	/**
 	 * Questo metodo si occupa di verificare se nel database è presente un articolo in ordine

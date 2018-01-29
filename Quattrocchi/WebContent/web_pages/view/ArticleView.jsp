@@ -102,7 +102,7 @@
 				</form>
 			</div>
 		</div>
-	
+		<br><br>
 		<div id="demos" class="products"></div>
 	</div>
 	<%@ include file="../view/Footer.jsp"%>

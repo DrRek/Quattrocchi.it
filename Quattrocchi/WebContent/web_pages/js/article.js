@@ -61,7 +61,7 @@ function advancedSearch() {
 	var marca = $('select[name=marca]').val();
 	var prezzoMin = $('input[name=prezzoMin]').val();
 	var prezzoMax = $('input[name=prezzoMax]').val();
-	var colore = $('input[name=colore]').val();
+	var colore = $('select[name=colore]').val();
 	$.ajax({
 		type : "GET",
 		url : "ricerca_prodotto_avanzata",

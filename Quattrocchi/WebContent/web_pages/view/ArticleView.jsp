@@ -94,7 +94,12 @@
 					<hr>
 					<div class="form-group">
 						<h4>Colore:</h4>
-						<input class="form-control" type="text" name="colore" value="" />
+						<select class="form-control" name="colore">
+							<option selected value="">Tutti</option>
+							<option value="nero">Nero</option>
+							<option value="blu">Blu</option>
+							<option value="Rosso">Rosso</option>
+						</select>
 					</div>
 					<hr>
 					<input class="form-control" id="advancedSearch" type='button'

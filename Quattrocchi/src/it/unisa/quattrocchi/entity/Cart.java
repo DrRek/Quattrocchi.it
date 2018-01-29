@@ -10,6 +10,7 @@ import java.util.Map;
  */
 public class Cart {
 	
+	@SuppressWarnings("unused")
 	private double prezzo;
 	private Map<ArticoloInStock, Integer> articoli;
 	

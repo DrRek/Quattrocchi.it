@@ -12,7 +12,7 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
-import it.unisa.quattrocchi.model.ArticoloInOrderModel;
+
 import it.unisa.quattrocchi.model.GestoreOrdiniModel;
 
 public class GestoreOrdiniTestCase extends DBTestCase {

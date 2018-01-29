@@ -12,9 +12,7 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
-import it.unisa.quattrocchi.entity.ArticoloInOrder;
-import it.unisa.quattrocchi.model.AcquirenteModel;
-import it.unisa.quattrocchi.model.ArticoloInOrderModel;
+
 import it.unisa.quattrocchi.model.CreditCardModel;
 
 public class CreditCardTestCase extends DBTestCase {

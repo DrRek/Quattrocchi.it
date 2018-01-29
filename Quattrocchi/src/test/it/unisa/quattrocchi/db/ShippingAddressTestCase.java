@@ -12,7 +12,7 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
-import it.unisa.quattrocchi.model.CreditCardModel;
+
 import it.unisa.quattrocchi.model.ShippingAddressModel;
 
 public class ShippingAddressTestCase extends DBTestCase {

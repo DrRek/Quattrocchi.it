@@ -12,6 +12,7 @@ import org.dbunit.dataset.ITable;
 import org.dbunit.dataset.ReplacementDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 
+import it.unisa.quattrocchi.model.AcquirenteModel;
 import it.unisa.quattrocchi.model.ArticoloInStockModel;
 
 public class ArticoloInStockTestCase extends DBTestCase {
@@ -101,6 +102,23 @@ public class ArticoloInStockTestCase extends DBTestCase {
         expectedDataSet.addReplacementObject("NULL", null);
         ITable expectedTable = expectedDataSet.getTable(ArticoloInStockModel.TABLE_NAME_CATALOGO);
         
+        Assertion.assertEquals(expectedTable, actualTable);
+    }
+    
+    public void testUpdateDisponibilitaArticoloInStock() throws Exception{
+        IDatabaseConnection connection = getConnection();
+        
+      	PreparedStatement stm = connection.getConnection().prepareStatement(ArticoloInStockModel.DO_UPDATE_DISPONIBILITA_ARTICOLO_STOCK);
+      	stm.setInt(1, 100);
+      	stm.setInt(2, 999);
+      	
+		stm.executeUpdate();
+		
+		ITable actualTable = connection.createDataSet().getTable(ArticoloInStockModel.TABLE_NAME_CATALOGO);
+		
+		ReplacementDataSet expectedDataSet = new ReplacementDataSet(new FlatXmlDataSetBuilder().build(new File("test/it/unisa/quattrocchi/db/articolo_in_stock/update_disponibilita_articolo_in_stock_oracle.xml")));
+        ITable expectedTable = expectedDataSet.getTable(ArticoloInStockModel.TABLE_NAME_CATALOGO);
+    	
         Assertion.assertEquals(expectedTable, actualTable);
     }
     

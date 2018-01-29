@@ -1,7 +1,6 @@
 package it.unisa.quattrocchi.control.gestione_ordini;
 
 
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -45,7 +44,8 @@ public class Checkout extends HttpServlet{
 	 * @precondition 	La richiesta è sincrona.
 	 * 					usr != null, CreditCardID != null e ShippingAddress != null
 	 * 					ShippingAddressID e CreditCardID devono corrispondere ad un indirizzo ed una carta di usr.
-	 * @postcondition usr.getCart().size() == 0 e il numero degli ordini passati di usr è incrementato di uno. 
+	 * @postcondition 	usr.getCart().size() == 0 e il numero degli ordini passati di usr è incrementato di uno.
+	 * 					La disponibilità di tutti gli articoli in ordine viene decrementata per i relativi articoli in stock.
 	 */
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) {

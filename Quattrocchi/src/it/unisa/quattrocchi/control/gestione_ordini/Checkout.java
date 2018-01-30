@@ -125,11 +125,6 @@ public class Checkout extends HttpServlet{
 					aInStockModel.updateDisponibilita(a);
 				}
 				
-				
-				for(int i=0; i < usr.getCart().getArticoli().size(); i++) {
-					
-				}
-				
 				usr.resetCart();
 				acModel.updateCart(usr);
 				
